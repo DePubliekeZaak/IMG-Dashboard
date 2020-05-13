@@ -125,7 +125,6 @@ export class MultiBarProgression  {
             return new Date(a._date).getTime() - new Date(b._date).getTime();
         });
 
-        // start-date and end-date in call?  Op 2e pagina?
         let elWidth = d3.select(this.elementID).node().getBoundingClientRect().width;
 
         let minBarWidth = 36;
@@ -144,9 +143,8 @@ export class MultiBarProgression  {
 
     redraw(data) {
 
-        let minValue = d3.min(data.map(d => ((d.properties[0].value) * .75)));
-
-        this.yScale = this.chartYScale.set(data.map(d => d.properties[0].value), minValue);
+        let minValue = d3.min(data.map(d => ((d.properties[1].value) * .75)));
+        this.yScale = this.chartYScale.set(data.map(d => d.properties[1].value), minValue);
 
         // on redraw chart gets new dimensions
         this.dimensions = this.chartDimensions.get(this.dimensions);

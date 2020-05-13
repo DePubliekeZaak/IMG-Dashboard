@@ -14,7 +14,7 @@ function readTextFile(file, callback) {
 }
 
 
-function createGraphSelector(graphs) {
+function selector(graphs) {
 
     let mainElement = document.querySelector('main');
     let dropdown = document.createElement('select');
@@ -53,10 +53,9 @@ function initGraph(graphSlug,graphs) {
     new imgGraph(graphOptionObject);
 }
 
+readTextFile("https://graphs.publikaan.nl/graph-selector/json/img_single_graphs.json", function(config){
 
-readTextFile("/json/img_single_graphs.json", function(config){
-
-    createGraphSelector(JSON.parse(config));
+    selector(JSON.parse(config));
 });
 
 

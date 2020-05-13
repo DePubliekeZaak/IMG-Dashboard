@@ -241,6 +241,7 @@
         "graphType": "PieChartSum",
         "currencyLabels" : false,
         "legendWidth" : 240,
+        "maxHeight" : 320,
         "padding": {
           "top": 20,
           "bottom": 40,
@@ -299,6 +300,7 @@
         "smallMultiple" : false,
         "currencyLabels" : true,
         "legendWidth" : 240,
+        "maxHeight" : 320,
         "padding": {
           "top": 20,
           "bottom": 40,
@@ -346,6 +348,7 @@
         "graphType": "PieChartSum",
         "currencyLabels" : false,
         "legendWidth" : 240,
+        "maxHeight" : 320,
         "padding": {
           "top": 20,
           "bottom": 40,
