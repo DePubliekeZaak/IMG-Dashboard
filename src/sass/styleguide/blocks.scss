@@ -1,0 +1,81 @@
+
+.blocks {
+
+  rect, path {
+    fill: #ccc;
+  }
+  path {  opacity : .4 }
+
+  &.zonder.opname {
+    rect, path {
+      fill: $green;
+    }
+  }
+
+  &.met.opname {
+    rect, path {
+      fill: orange;
+    }
+  }
+
+  &.Na {
+    rect, path {
+      fill: $blue;
+      display: block;
+    }
+  }
+
+  &.acuut {
+    rect, path {
+      fill: darkblue;
+      display: block;
+    }
+  }
+
+
+}
+
+rect.block {
+
+  fill : #ccc;
+
+  &.voor-19-maart-2018-zonder-opname {
+    fill: $green;
+  }
+
+  &.na-19-maart-2018 {
+    fill : $blue;
+  }
+
+  &.voor-19-maart-2018-met-opname {
+    fill: orange;
+  }
+
+}
+
+.output-container  {
+
+  min-height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+
+  rect.block {
+
+    &.afgewezen {
+
+      fill: orange;
+    }
+
+    &.gedeeltelijk-toegekend {
+
+      fill: $blue;
+    }
+
+    &.geheel-toegekend {
+
+      fill: darkblue;
+    }
+  }
+}

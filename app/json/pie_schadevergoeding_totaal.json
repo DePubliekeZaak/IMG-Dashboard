@@ -1,0 +1,54 @@
+{
+  "mapping": [[
+    [
+      {
+        "label": "Mijnbouwschade",
+        "column": "BEDRAG_SCHADEBEDRAG",
+        "colour": "violet"
+      },
+      {
+        "label": "Stuwmeerregeling",
+        "column": "BEDRAG_SMR",
+        "colour": "purple"
+      },
+      {
+        "label": "Bijkomende kosten",
+        "column": "BEDRAG_BIJKOMENDE_KOSTEN",
+        "colour": "green"
+      },
+      {
+        "label": "Wettelijke rente",
+        "column": "BEDRAG_WETTELIJKE_RENTE",
+        "colour": "red"
+      }
+    ],
+    [
+      {
+        "label": "Totaal",
+        "column": "TOTAAL_VERLEEND",
+        "colour": "yellow"
+      }
+    ]
+  ]],
+  "config": {
+    "graphType": "PieChartSum",
+    "smallMultiple" : false,
+    "currencyLabels" : true,
+    "legendWidth" : 240,
+    "padding": {
+      "top": 20,
+      "bottom": 40,
+      "left": 60,
+      "right": 30
+    },
+    "margin": {
+      "top": 0,
+      "bottom": 15,
+      "left": 0,
+      "right": 0
+    }
+  },
+  "endpoint": "/api/data",
+  "segment": "all",
+  "publishDate": false
+}

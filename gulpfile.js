@@ -14,8 +14,8 @@ const babelify = require('babelify').configure({
   presets: ['es2015'] 
 })
 
-const entry = './src/index.js'
-const outfile = 'bundle.js'
+
+const outfile = 'bundle.js';
 
 //our CSS pre-processor
 gulp.task('sass', function() {
@@ -33,7 +33,7 @@ gulp.task('watch', ['sass'], function(cb) {
   gulp.watch('src/sass/*.scss', ['sass'])
 
   //dev server
-  budo(entry, {
+  budo('dist/init.js', {
     serve: 'bundle.js',     // end point for our <script> tag
     stream: process.stdout, // pretty-print requests
     live: true,             // live reload & CSS injection
@@ -47,7 +47,7 @@ gulp.task('watch', ['sass'], function(cb) {
 
 //the distribution bundle task
 gulp.task('bundle', ['sass'], function() {
-  var bundler = browserify(entry, { transform: babelify })
+  var bundler = browserify('dist/init.js', { transform: babelify })
         .bundle()
   return bundler
     .pipe(source('index.js'))

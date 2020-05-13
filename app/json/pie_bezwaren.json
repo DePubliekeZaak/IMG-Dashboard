@@ -1,0 +1,71 @@
+{
+  "mapping": [[
+    [
+
+      {
+        "label": "Gegrond",
+        "column": "BEZWAAR_GEGROND",
+        "colour": "brown"
+      },
+      {
+        "label": "Deels gegrond",
+        "column": "BEZWAAR_DEELS_GEGROND",
+        "colour": "blue"
+      },
+      {
+        "label": "Ongegrond",
+        "column": "BEZWAAR_ONGEGROND",
+        "colour": "violet"
+      },
+      {
+        "label": "Niet ontvankelijk",
+        "column": "BEZWAAR_NIET_ONTVANKELIJK",
+        "colour": "purple"
+      },
+      {
+        "label": "Ingetrokken",
+        "column": "BEZWAAR_INGETROKKEN",
+        "colour": "green"
+      },
+      {
+        "label": "Naar schadeprocedure",
+        "column": "BEZWAAR_DOORGEZET_SCHADEP",
+        "colour": "red"
+      }
+    ],
+    [
+      {
+        "label": "Totaal afgehandeld",
+        "column": false
+      }
+
+    ],
+    [
+      {
+        "label": "In behandeling",
+        "column": "BEZWAAR_IN_BEHANDELING",
+        "colour": "yellow"
+      }
+    ]
+  ]],
+  "config": {
+    "graphType": "PieChartSum",
+    "currencyLabels" : false,
+    "legendWidth" : 240,
+    "padding": {
+      "top": 20,
+      "bottom": 40,
+      "left": 60,
+      "right": 30
+    },
+    "margin": {
+      "top": 0,
+      "bottom": 15,
+      "left": 0,
+      "right": 0
+    }
+  },
+  "endpoint": "/api/data",
+  "segment": "all",
+  "publishDate": false
+}

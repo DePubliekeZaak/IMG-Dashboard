@@ -1,26 +1,19 @@
 {
-  "name": "budo-gulp-starter",
+  "name": "graphness",
   "version": "1.0.0",
-  "description": "a starter kit with Budo, LESS and Gulp",
-  "main": "index.js",
+  "description": "graphness met typescript",
+  "main": "init.js",
   "license": "MIT",
   "author": {
-    "name": "Matt DesLauriers",
-    "email": "dave.des@gmail.com",
-    "url": "https://github.com/mattdesl"
+    "name": "JRM",
+    "email": "joeramulders@gmail.com",
+    "url": "https://joeramulders.com"
   },
   "dependencies": {
-    "2d-context": "^1.3.0",
-    "array-range": "^1.0.1",
-    "bunny": "^1.0.1",
-    "canvas-fit": "^1.5.0",
-    "delaunay-triangulate": "^1.1.6",
-    "domify": "^1.4.0",
-    "domready": "^1.0.8",
-    "draw-triangles-2d": "^1.0.0",
-    "gl-vec2": "^1.0.0",
-    "raf-loop": "^1.1.3",
-    "randf": "^1.0.0"
+    "@types/d3": "^5.7.2",
+    "d3": "^5.15.0",
+    "moment": "^2.24.0",
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
@@ -34,6 +27,7 @@
     "gulp-uglify": "^3.0.0",
     "minimist": "^1.2.0",
     "node-reset-scss": "^1.0.1",
+    "typescript": "^3.8.3",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
@@ -41,21 +35,5 @@
     "open": "gulp watch --open",
     "start": "gulp watch",
     "build": "gulp bundle --production"
-  },
-  "keywords": [
-    "budo",
-    "html",
-    "css",
-    "sass",
-    "live",
-    "reload"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mattdesl/budo-gulp-starter.git"
-  },
-  "homepage": "https://github.com/mattdesl/budo-gulp-starter",
-  "bugs": {
-    "url": "https://github.com/mattdesl/budo-gulp-starter/issues"
   }
 }

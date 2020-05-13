@@ -1,0 +1,368 @@
+[ {
+    "label": "geen",
+    "value": "none",
+    "data": {}
+  },
+  {
+    "label": "Staaf schademeldingen",
+    "value": "staaf_schademeldingen",
+    "data": {
+      "mapping": [
+        [
+          {
+            "label": "Schademeldingen",
+            "column": "schademeldingen",
+            "colour": "purple"
+          },
+          {
+            "label": "",
+            "column": "nieuwe_schademeldingen",
+            "colour": "purple"
+          }
+        ]
+      ],
+      "config": {
+        "graphType": "BarProgression",
+        "xScaleType": "bandTime",
+        "yScaleType": "linear",
+        "xParameter": "_date",
+        "yParameter": "schademeldingen",
+        "xScaleTicks": "timeMonth",
+        "barWidth": 12,
+        "padding": {
+          "top": 20,
+          "bottom": 40,
+          "left": 60,
+          "right": 30
+        },
+        "margin": {
+          "top": 0,
+          "bottom": 15,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "endpoint": "/api/data",
+      "segment": "all",
+      "publishDate": false
+    }
+  },
+  {
+    "label" : "Staaf schade-opnames",
+    "value" : "staaf_schade-opnames",
+    "data" : {
+        "mapping": [
+          [
+            {
+              "label": "Schade-opnames",
+              "column": "schadeopnames",
+              "colour": "blue"
+            },
+            {
+              "label": "",
+              "column": "nieuwe_schadeopnames",
+              "colour": "blue"
+            }
+          ]
+        ],
+        "config": {
+          "graphType": "BarProgression",
+          "xScaleType": "bandTime",
+          "yScaleType": "linear",
+          "xParameter": "_date",
+          "yParameter": "schademeldingen",
+          "xScaleTicks" : "timeMonth",
+          "barWidth" : 12,
+          "padding": {
+            "top": 20,
+            "bottom": 40,
+            "left": 60,
+            "right": 30
+          },
+          "margin": {
+            "top": 0,
+            "bottom": 15,
+            "left": 0,
+            "right": 0
+          }
+        },
+        "endpoint": "/api/data",
+        "segment": "all",
+        "publishDate": false
+    }
+  },
+  {
+    "label" : "Multistaaf besluiten en afgehandeld",
+    "value" : "multistaaf_besluiten_afgehandeld",
+    "data" : {
+      "mapping": [[
+        [
+          {
+            "label": "Besluiten",
+            "column": "BESCHIKT",
+            "colour": "blue"
+          },
+          {
+            "label": "",
+            "column": "nieuwe_BESCHIKT",
+            "colour": "blue"
+          }
+        ],
+        [
+          {
+            "label": "Afgehandelde schademeldingen",
+            "column": "AFGEHANDELD_TOTAAL",
+            "colour": "red"
+          },
+          {
+            "label": "",
+            "column": "nieuwe_AFGEHANDELD_TOTAAL",
+            "colour": "red"
+          }
+        ]
+      ]],
+      "config": {
+        "graphType": "MultiBarProgression",
+        "xScaleType": "bandTime",
+        "yScaleType": "linear",
+        "xParameter": "_date",
+        "yParameter": "AFGEHANDELD_TOTAAL",
+        "useLineFill": true,
+        "minValue" : 0,
+        "xScaleTicks" : "timeMonth",
+        "barWidth" : 12,
+        "padding": {
+          "top": 20,
+          "bottom": 40,
+          "left": 60,
+          "right": 30
+        },
+        "margin": {
+          "top": 0,
+          "bottom": 15,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "endpoint": "/api/data",
+      "segment": "all",
+      "publishDate": false
+    }
+  },
+  {
+    "label" : "Kaart schademeldingen",
+    "value" : "kaart_schademeldingen",
+    "data" : {
+      "mapping": [
+        [
+          {
+            "label": "Schademeldingen",
+            "column": "schademeldingen",
+            "colour": "violet"
+          }
+        ]
+      ],
+      "config": {
+        "graphType": "Map",
+        "currencyLabels" : false,
+        "legendWidth" : 240,
+        "padding": {
+          "top": 20,
+          "bottom": 40,
+          "left": 60,
+          "right": 30
+        },
+        "margin": {
+          "top": 0,
+          "bottom": 15,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "endpoint": "/api/gemeenten",
+      "segment": "all",
+      "publishDate": false
+    }
+  },
+  {
+    "label" : "Taart Bezwaren",
+    "value" : "taart_bezwaren",
+    "data" : {
+      "mapping": [[
+        [
+
+          {
+            "label": "Gegrond",
+            "column": "BEZWAAR_GEGROND",
+            "colour": "brown"
+          },
+          {
+            "label": "Deels gegrond",
+            "column": "BEZWAAR_DEELS_GEGROND",
+            "colour": "blue"
+          },
+          {
+            "label": "Ongegrond",
+            "column": "BEZWAAR_ONGEGROND",
+            "colour": "violet"
+          },
+          {
+            "label": "Niet ontvankelijk",
+            "column": "BEZWAAR_NIET_ONTVANKELIJK",
+            "colour": "purple"
+          },
+          {
+            "label": "Ingetrokken",
+            "column": "BEZWAAR_INGETROKKEN",
+            "colour": "green"
+          },
+          {
+            "label": "Naar schadeprocedure",
+            "column": "BEZWAAR_DOORGEZET_SCHADEP",
+            "colour": "red"
+          }
+        ],
+        [
+          {
+            "label": "Totaal afgehandeld",
+            "column": false
+          }
+
+        ],
+        [
+          {
+            "label": "In behandeling",
+            "column": "BEZWAAR_IN_BEHANDELING",
+            "colour": "yellow"
+          }
+        ]
+      ]],
+      "config": {
+        "graphType": "PieChartSum",
+        "currencyLabels" : false,
+        "legendWidth" : 240,
+        "padding": {
+          "top": 20,
+          "bottom": 40,
+          "left": 60,
+          "right": 30
+        },
+        "margin": {
+          "top": 0,
+          "bottom": 15,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "endpoint": "/api/data",
+      "segment": "all",
+      "publishDate": false
+    }
+  },
+  {
+    "label" : "Taart Schadevergoedingen",
+    "value" : "taart_schadevergoedingen",
+    "data" : {
+      "mapping": [[
+        [
+          {
+            "label": "Mijnbouwschade",
+            "column": "BEDRAG_SCHADEBEDRAG",
+            "colour": "violet"
+          },
+          {
+            "label": "Stuwmeerregeling",
+            "column": "BEDRAG_SMR",
+            "colour": "purple"
+          },
+          {
+            "label": "Bijkomende kosten",
+            "column": "BEDRAG_BIJKOMENDE_KOSTEN",
+            "colour": "green"
+          },
+          {
+            "label": "Wettelijke rente",
+            "column": "BEDRAG_WETTELIJKE_RENTE",
+            "colour": "red"
+          }
+        ],
+        [
+          {
+            "label": "Totaal",
+            "column": "TOTAAL_VERLEEND",
+            "colour": "yellow"
+          }
+        ]
+      ]],
+      "config": {
+        "graphType": "PieChartSum",
+        "smallMultiple" : false,
+        "currencyLabels" : true,
+        "legendWidth" : 240,
+        "padding": {
+          "top": 20,
+          "bottom": 40,
+          "left": 60,
+          "right": 30
+        },
+        "margin": {
+          "top": 0,
+          "bottom": 15,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "endpoint": "/api/data",
+      "segment": "all",
+      "publishDate": false
+    }
+  },
+  {
+    "label" : "Taart Specials",
+    "value" : "taart_specials",
+    "data" :{
+      "mapping": [[
+        [
+          {
+            "label": "Afgehandelde specials",
+            "column": "SPECIALS_AFGEHANDELD_TOTAAL",
+            "colour": "green"
+          },
+          {
+            "label": "Specials in behandeling",
+            "column": "SPECIALS_WERKVOORRAAD_IN_BEH",
+            "colour": "yellow"
+          }
+        ],
+        [
+          {
+            "label": "Totaal",
+            "column": false
+          }
+
+        ]
+      ]],
+      "config": {
+        "graphType": "PieChartSum",
+        "currencyLabels" : false,
+        "legendWidth" : 240,
+        "padding": {
+          "top": 20,
+          "bottom": 40,
+          "left": 60,
+          "right": 30
+        },
+        "margin": {
+          "top": 0,
+          "bottom": 15,
+          "left": 0,
+          "right": 0
+        }
+      },
+      "endpoint": "/api/data",
+      "segment": "all",
+      "publishDate": false
+    }
+  }
+
+]
