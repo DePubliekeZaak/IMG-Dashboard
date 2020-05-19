@@ -1,4 +1,6 @@
 import * as d3 from 'd3';
+import {Dimensions} from "../types/dimensions";
+import {Config} from "../types/graphConfig";
 
 export class ChartScale {
 
@@ -7,12 +9,11 @@ export class ChartScale {
 
     constructor(
 
-        private type,
-        private config,
-        private dimensions
+        private type : string,
+        private config : Config ,
+        private dimensions : Dimensions
 
     ) {
-
         this.dataLength = 0;
     }
 
@@ -45,16 +46,14 @@ export class ChartScale {
                 return d3.scaleBand()
                 // what is domain when working with a stack?
                     .domain(data)
-                    .paddingInner(this.config.paddingInner)
-                    .paddingOuter(this.config.paddingOuter)
+                    .paddingInner(this.config.extra.paddingInner)
+                    .paddingOuter(this.config.extra.paddingOuter)
                     .align(0.5)
 
                 break;
 
 
             case 'bandTime':
-
-                console.log('bandTime');
 
                 return d3.scaleBand()
                     .domain(data)
@@ -109,7 +108,7 @@ export class ChartScale {
             case 'radius' :
 
                 return newScale
-                    .range([this.config.minRadius, (dimensions.width / this.dataLength) * this.config.radiusFactor]);
+                    .range([this.config.extra.minRadius, (dimensions.width / this.dataLength) * this.config.extra.radiusFactor]);
 
                 break;
 

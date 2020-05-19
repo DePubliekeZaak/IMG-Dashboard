@@ -32,8 +32,9 @@ export class ChartPie {
             .enter()
             .append("path")
             .attr("class", "arc")
-            .attr("fill", function(d, i) { return colours[d.data.colour][0] });
-
+            .style("fill", function(d, i) { return colours[d.data.colour][0] })
+            .style("stroke", "#fff")
+            .style("stroke-width", "2px");
     }
 
     redraw(dimensions) {
@@ -43,8 +44,8 @@ export class ChartPie {
 
         if(window.innerWidth < 480) {
 
-            radius = 66;
-            innerRadius = 20;
+            // radius = 66;
+            // innerRadius = 20;
 
             this.svg.layers.data
                 .attr("transform", "translate(" + radius + ",66)");
@@ -59,24 +60,26 @@ export class ChartPie {
 
         } else {
 
-            innerRadius = (this.config.innerRadius !== undefined) ? this.config.innerRadius : 30;
+            innerRadius = (this.config.extra.innerRadius !== undefined) ? this.config.extra.innerRadius : 30;
+
+            let offset = ( this.config.extra.maxRadius / 2)  + (this.dimensions.width - this.config.extra.maxRadius) / 2;
 
             this.svg.layers.data
-                .attr("transform", "translate(" + (dimensions.svgWidth / 3)+ "," + (dimensions.svgHeight / 2) + ")");
+                .attr("transform", "translate(" + offset + "," + ((offset / 2) + 20) + ")");
 
             radius = dimensions.svgWidth / 3;
 
-            if(radius > (this.config.maxHeight / 2)) {
-                radius = this.config.maxHeight / 2;
+            if(radius > (this.config.extra.maxRadius)) {
+                radius = this.config.extra.maxRadius;
             }
 
             labelArc = d3.arc()
-                .outerRadius(radius - 40)
-                .innerRadius(radius - 40);
+                .outerRadius(this.config.extra.maxRadius)
+                .innerRadius(this.config.extra.maxRadius);
 
             arc = d3.arc()
-                .outerRadius(radius - 10)
-                .innerRadius(innerRadius);
+                .outerRadius(this.config.extra.maxRadius)
+                .innerRadius(this.config.extra.innerRadius);
         }
 
         function arcTween(a) {

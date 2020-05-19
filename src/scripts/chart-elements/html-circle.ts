@@ -9,15 +9,18 @@ export class HtmlCircle {
         private label
     ){}
 
-    draw(data) {
+    draw() {
 
         let miniContainer = document.createElement('div');
+
+        console.log(this.dataMapping);
 
         let div = document.createElement('div');
         div.classList.add('number_circle');
         div.style.backgroundColor =  colours[this.dataMapping[0].colour][0];
         div.style.borderRadius = '50%';
         div.style.display =  'flex';
+        div.style.position = 'relative';
         div.style.flexDirection = 'column';
         div.style.justifyContent = 'center';
         div.style.alignItems = 'center';
@@ -26,20 +29,23 @@ export class HtmlCircle {
 
         // div.style.marginBottom = '1rem';
 
+
+
         let number = document.createElement('span');
         number.classList.add('number');
         number.style.fontSize = '3rem';
+        number.style.lineHeight = "1";
         number.style.color = 'white';
         number.style.fontFamily = 'Replica';
 
         // number.innerText = data[0][this.property];
         div.appendChild(number);
 
-        if(config.units && config.units !== undefined) {
+        if(this.config.units && this.config.units !== undefined) {
 
             let units = document.createElement('span');
             units.classList.add('units');
-            units.innerText = config.units;
+            units.innerText = this.config.units;
             units.style.color = 'white';
             div.appendChild(units);
         }
@@ -59,7 +65,29 @@ export class HtmlCircle {
         //
         // div.appendChild(diff);
 
+
+
+        //
+
+        if(this.config.extra.firstInLine) {
+
+            let period = document.createElement('span');
+            period.classList.add('period');
+            period.style.fontSize = '.8rem';
+            period.style.height = '1rem';
+            period.style.position = 'absolute';
+            period.style.top = 'calc(50% - .5rem)';
+            period.style.left = '-130px';
+            period.style.fontFamily = 'NotoSans Regular';
+            // period.style.textTransform = 'uppercase';
+            period.innerText = 'deze week:';
+            div.appendChild(period);
+        }
+
+
         miniContainer.appendChild(div);
+
+
 
         // return miniContainer;
 
@@ -73,7 +101,7 @@ export class HtmlCircle {
 
         let value =  Math.round(data[0][parameter]);
 
-        if (config.suspended) {
+        if (this.config.extra.suspended) {
 
             this.element.querySelector('.number').innerText = '---';
 

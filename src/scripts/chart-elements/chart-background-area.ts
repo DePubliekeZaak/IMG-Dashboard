@@ -10,10 +10,10 @@ export class ChartBackgroundArea {
 
     draw(data) {
 
-        if(config.useLineFill) {
+        if(this.config.extra.useLineFill) {
 
             this.svg.lineFill = this.svg.layers.underData.selectAll('path.line_fill')
-                .data((config.xScaleType === 'time') ? [data] : [data.slice(1,data.length)]);
+                .data((this.config.xScaleType === 'time') ? [data] : [data.slice(1,data.length)]);
 
             this.svg.lineFill.exit().remove();
 
@@ -26,6 +26,7 @@ export class ChartBackgroundArea {
 
     redraw(xScale,yScale,dimensions,data,colour,xParameter, yParameter) {
 
+        let self = this;
         let area = d3.area();
 
         if(this.config.xScaleType === 'time') {
@@ -47,7 +48,7 @@ export class ChartBackgroundArea {
                 .curve(d3.curveCardinal);
         }
 
-        if(this.config.useLineFill) {
+        if(this.config.extra.useLineFill) {
 
             this.svg.lineFill
                 .merge(this.svg.lineFillEnter)
@@ -55,7 +56,7 @@ export class ChartBackgroundArea {
                 .attr("fill", colours[colour][1])
                 .attr("stroke", "none")
                 .attr("transform", function () {
-                    return (this.config.yScaleType === 'time') ? "translate(" + -(xScale(data[0][xParameter]) - (dimensions.width / 2)) + ",0)" : "translate(0,0)"
+                    return (self.config.yScaleType === 'time') ? "translate(" + -(xScale(data[0][xParameter]) - (dimensions.width / 2)) + ",0)" : "translate(0,0)"
                 });
             ;
         }

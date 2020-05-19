@@ -39,8 +39,6 @@ export class ChartMap {
 
 
     draw(features) {
-
-        console.log(features);
         let self = this;
 
         this.svg.map = this.svg.layers.data.selectAll("path")
@@ -79,13 +77,16 @@ export class ChartMap {
             .style("font-size",".66rem");
     }
 
-    redraw(dimensions,property,scale) {
+    redraw(dimensions,property,scale,colour) {
 
         let self = this;
 
         this.svg.map
             .merge(this.svg.map)
-            .attr("fill", d => (d.properties[property] > 0) ? colours[d.properties.colour][0] : '#eee')
+            .attr("fill", d => {
+                const c = (colour) ? colour : d.properties.colour;
+                return (d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
+            } )
             .attr("fill-opacity", d => (d.properties[property] > 0) ? scale(d.properties[property]) : 1)
             .on("mouseover", function (d) {
 

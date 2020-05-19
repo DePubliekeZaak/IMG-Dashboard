@@ -1,9 +1,9 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, HtmlCircle, HtmlHeader } from '../chart-elements/module';
+import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, HtmlCircle, HtmlHeader, HtmlLink } from '../chart-elements/module';
 import * as d3 from "d3";
 
-export class CijfersLineWithoutData  {
+export class CijfersLine  {
 
     element;
     yParameter;
@@ -27,42 +27,34 @@ export class CijfersLineWithoutData  {
     htmlHeader;
     htmlCircle;
 
-
-
+    link;
 
     constructor(
 
-        private elementID,
-        private config,
-        private dataMapping,
-        private segment,
-        private  data
+        private data : any,
+        private elementID : string,
+        private config : any,
+        private dataMapping : [any],
+        private segment
+
     ){
-        this.element = d3.select(elementID).node();
-        this.yParameter = dataMapping[0].column;
-        this.config.yParameter = dataMapping[0].column;
+
+        this.element = d3.select(this.elementID).node();
+        this.yParameter = this.dataMapping[0].column;
+        this.config.yParameter = this.dataMapping[0].column;
     }
 
     init() {
 
         let self = this;
 
-    //    this.radios = [].slice.call(document.querySelectorAll('.selector li input[type=radio]'));
-
         let chartObjects = ChartObjects();
-        this.config = Object.assign(this.config,chartObjects.config());
+        this.config = Object.assign(chartObjects.config(),this.config);
         this.dimensions = chartObjects.dimensions();
         this.svg = chartObjects.svg();
 
-
-        this.config.margin.top = 90;
-        this.config.padding.top = 20;
-        this.config.padding.bottom = 60;
-        this.config.padding.left = 40;
-        this.config.padding.right = 40;
         this.config.paddingInner = 0;
         this.config.paddingOuter = 0;
-
 
         // get dimensions from parent element
         this.chartDimensions = new ChartDimensions(this.element, this.config);
@@ -81,20 +73,25 @@ export class CijfersLineWithoutData  {
         this.htmlHeader = new HtmlHeader(this.element,this.dataMapping[0].label);
         this.htmlCircle = new HtmlCircle(this.config,this.dataMapping,this.element,this.dataMapping[0].label);
 
-        this.chartAxes.drawXAxis();
-        this.chartAxes.drawYAxis();
+        this.bottomAxis.draw();
+        this.leftAxis.draw();
+        this.htmlCircle.draw();
+        this.htmlHeader.draw();
+        this.chartAvgLine.draw();
+        this.link = new HtmlLink(this.element,this.dataMapping[0].label,'');
 
-        self.run(self.segment);
+        self.update(this.data);
+
     }
 
-    prepareData()  {
+    prepareData(newData)  {
 
         let neededColumns = ['_date','_category'].concat(this.dataMapping.map( (c) => c.column ));
 
         let data = [];
         let hasEnoughData;
 
-        for (let week of this.data.slice(0,8)) {
+        for (let week of newData.slice(0,8)) {
 
             hasEnoughData = true;
 
@@ -140,13 +137,10 @@ export class CijfersLineWithoutData  {
 
         this.xScale = this.chartXScale.set(data.map(d => d[this.config.xParameter]));
 
-        this.htmlCircle.draw(data);
-        this.htmlHeader.draw();
-
         this.chartBackgroundArea.draw(data);
         this.chartLine.draw(data);
         this.chartWeekGrid.draw(data);
-        this.chartAvgLine.draw(data);
+
     }
 
     average(data) {
@@ -154,13 +148,20 @@ export class CijfersLineWithoutData  {
         return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
     }
 
-    run(newSegment) {
+    update(newData) {
 
         let self = this;
 
-        let data = self.prepareData();
+        let data = self.prepareData(newData);
         self.draw(data);
         self.redraw(data);
         window.addEventListener("resize", () => self.redraw(data), false);
+    }
+
+
+    createLink(label) {
+
+
+
     }
 }

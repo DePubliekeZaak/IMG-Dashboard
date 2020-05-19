@@ -8,8 +8,11 @@ import { ChartMultiBars } from './chart-multibar';
 import { ChartBarsIncrease } from './chart-bars-increase';
 import { ChartPie } from './chart-pie';
 import { ChartMap } from './chart-map';
+import { ChartCircles } from './chart-circles';
+import { ChartBrackets } from './chart-brackets';
 
 import { HtmlCircle } from './html-circle';
 import { HtmlHeader } from './html-header';
+import { HtmlLink } from './html-link';
 
-export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, HtmlCircle, HtmlHeader }
+export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartBrackets, HtmlCircle, HtmlHeader, HtmlLink }

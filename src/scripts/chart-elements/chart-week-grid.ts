@@ -7,7 +7,20 @@ export class ChartWeekGrid {
     constructor(
         private config,
         private svg
-    ) {}
+    ) {
+
+        if(this.config.extra.firstInLine) {
+
+            this.svg.weekLabel = this.svg.layers.data
+                .append("text")
+                .attr("class", "weekLabel")
+                .attr("font-family", "NotoSans Regular")
+                .attr("font-size", ".8rem")
+                .attr("text-anchor", "end")
+                .text("laatste 8 weken:")
+            ;
+        }
+    }
 
     //
     // let popup = function popup(d) {
@@ -31,17 +44,6 @@ export class ChartWeekGrid {
                 .append("line")
                 .attr("class", "weekLine");
 
-            if(this.config.xScaleType === 'time') {
-
-                this.svg.weekLabel = this.svg.layers.data
-                    .append("text")
-                    .attr("class", "weekLabel small-label")
-                    .attr("font-family", "NotoSans Regular")
-                    .attr("font-size", ".75rem")
-                    .text("week:")
-                ;
-            }
-
             this.svg.weekNumbers = this.svg.layers.underData.selectAll(".weekNumber")
                     .data(data);
 
@@ -57,35 +59,37 @@ export class ChartWeekGrid {
 
     redraw(xScale,yScale,dimensions,data,colour,yParameter) {
 
+            let self = this;
+
 
             this.svg.weekLines
                 .merge(this.svg.weekLinesEnter)
                 .attr("x1", function (d) {
-                    return (this.config.xScaleType === 'time') ? xScale(new Date(d[this.config.xParameter])) : -40
+                    return (self.config.xScaleType === 'time') ? xScale(new Date(d[self.config.xParameter])) : -40
                 })
                 .attr("x2", function (d) {
-                    return (this.config.xScaleType === 'time') ? xScale(new Date(d[this.config.xParameter])) + 2 : dimensions.width + 40
+                    return (self.config.xScaleType === 'time') ? xScale(new Date(d[self.config.xParameter])) : dimensions.width + 40
                 })
                 .attr("y1", function (d,i) {
 
-                    if(config.yScaleType === 'time' && i === 0) {
+                    if(self.config.yScaleType === 'time' && i === 0) {
                         return yScale(new Date(d[yParameter])) - 35;
                     } else {
-                        return (this.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : yScale(d[yParameter]) + 6;
+                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : yScale(d[yParameter]) + 6;
                     }
                 })
                 .attr("y2", (d,i) => {
 
-                    if(this.config.yScaleType === 'time' && i === 0) {
+                    if(self.config.yScaleType === 'time' && i === 0) {
 
                         return yScale(new Date(d[yParameter])) - 35;
                     } else {
-                        return (this.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height - this.config.padding.bottom + 20;
+                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height - this.config.padding.bottom + 20;
                     }
                 })
                 .attr("fill", "none")
-                .style("stroke", (this.config.useLineFill) ? colours[colour][2] : colours.lightGrey)
-                .style("stroke-width", (d,i) => (this.config.yScaleType === 'time' && i === 0) ? 0 : 1)
+                .style("stroke", (this.config.extra.useLineFill) ? colours[colour][2] : colours.lightGrey)
+                .style("stroke-width", (d,i) => (self.config.yScaleType === 'time' && i === 0) ? 0 : 1)
             // .style("stroke-dasharray", "2 4")
             ;
 
@@ -93,14 +97,14 @@ export class ChartWeekGrid {
                 .merge(this.svg.weekNumbersEnter)
 
                 .attr("x", function (d, i) {
-                    return (this.config.xScaleType === 'time') ? xScale(new Date(d[this.config.xParameter])) : -35;
+                    return (self.config.xScaleType === 'time') ? xScale(new Date(d[self.config.xParameter])) : -35;
                 })
                 .attr("y", function (d,i) {
 
-                    if (this.config.yScaleType === 'time' && i === 0) {
+                    if (self.config.yScaleType === 'time' && i === 0) {
                         return yScale(new Date(d[yParameter])) - 66;
                     } else {
-                        return (this.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height - this.config.padding.bottom + 20;
+                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height - self.config.padding.bottom + 20;
                     }
 
                 })
@@ -109,11 +113,11 @@ export class ChartWeekGrid {
                 .attr("fill", colours.grey)
                 .text(function (d, i) {
 
-                    let date = new Date(d[this.config.xParameter]);
+                    let date = new Date(d[self.config.xParameter]);
 
-                    if (this.config.xScaleType === 'time') {
+                    if (self.config.xScaleType === 'time') {
 
-                        return (i < (data.length - 1)) ? getWeek(date) : '';
+                        return getWeek(date) // (i < (data.length - 1)) ? getWeek(date) : '';
 
                     } else if (i === data.length - 1) {
 
@@ -124,15 +128,15 @@ export class ChartWeekGrid {
                         return 'week ' + getWeek(date);
                     }
                 })
-                .style("text-anchor", (this.config.xScaleType === 'time') ? "middle" : "end");
+                .style("text-anchor", (self.config.xScaleType === 'time') ? "middle" : "end");
 
             if(this.svg.weekLabel) {
 
                 this.svg.weekLabel
                     .attr("y", function (d) {
-                        return dimensions.height - this.config.padding.bottom + 31;
+                        return dimensions.height - self.config.padding.bottom + 31;
                     })
-                    .attr("x", -10)
+                    .attr("x", -40)
                 ;
             }
     }

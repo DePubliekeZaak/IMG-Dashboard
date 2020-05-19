@@ -30,7 +30,7 @@ body {
   .graph_row > .graph_container {
 
     width: calc(50% - 4rem);
-    height: 33vw;
+    height: 480px;
   }
 }
 
@@ -39,25 +39,25 @@ body {
   .graph_row > .graph_container {
 
     width: calc(50% - 4rem);
-    height: 33vw;
+    //height: 33vw;
   }
 }
 
 
-@media (min-width: 1000px) {
+@media (min-width: 1320px) {
 
   .graph_row > .graph_container {
 
     width: calc(50% - 4rem);
-    height: 33vw;
+    //height: 33vw;
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1500px) {
 
   .graph_row > .graph_container {
 
-    height: 20vw;
+    //height: 20vw;
 
     /* one item */
     &:first-of-type:nth-last-of-type(1) {
@@ -81,7 +81,11 @@ body {
     &:first-of-type:nth-last-of-type(4) ~ div {
       width: 25%;
     }
+
+
   }
+
+
 }
 
 .graph_row > .municipality_select {

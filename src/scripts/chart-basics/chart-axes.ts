@@ -92,7 +92,7 @@ export class ChartAxes {
                case 'time' :
 
                    this.axis
-                       .ticks(d3[this.config.xScaleTicks].every(1))
+                       .ticks(d3[this.config.extra.xScaleTicks].every(1))
                        .tickFormat( date => (d3.timeYear(date) < date) ? localTime.format('%b')(date) : localTime.format('%Y')(date));
 
                    break;
@@ -100,7 +100,7 @@ export class ChartAxes {
                case 'bandTime' :
 
                    this.axis
-                       .ticks(d3[this.config.xScaleTicks].every(1))
+                       .ticks(d3[this.config.extra.xScaleTicks].every(1))
                        .tickFormat( date => localTime.format('%d %b')(new Date(date)));
 
                    break;

@@ -40,15 +40,19 @@ gulp.task('watch', ['sass'], function(cb) {
     dir: 'app',             // directory to serve
     open: argv.open,        // whether to open the browser
     browserify: {
-      transform: babelify   //browserify transforms
+      transform: babelify,
+      standalone: 'img-graph-module'
     }
   }).on('exit', cb)
 })
 
 //the distribution bundle task
 gulp.task('bundle', ['sass'], function() {
-  var bundler = browserify('dist/init.js', { transform: babelify })
-        .bundle()
+  var bundler = browserify('dist/init.js', {
+      transform: babelify,
+      standalone: 'img-graph-module'
+  })
+  .bundle()
   return bundler
     .pipe(source('index.js'))
     .pipe(streamify(uglify()))

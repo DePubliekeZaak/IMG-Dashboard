@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartPie } from '../chart-elements/module';
+import { ChartPie, HtmlHeader, HtmlLink } from '../chart-elements/module';
 
 import { convertToCurrency } from '../helpers/_helpers';
 import { colours } from '../_styleguide/_colours.js';
@@ -19,7 +19,9 @@ export class PieChartSum  {
     chartSVG;
 
     chartPie;
+    htmlHeader;
     legend;
+    link;
 
     constructor(
         private data,
@@ -35,7 +37,7 @@ export class PieChartSum  {
         let self = this;
 
         let chartObjects = ChartObjects();
-        this.config = Object.assign(this.config,chartObjects.config());
+        this.config = Object.assign(chartObjects.config(),this.config);
         this.dimensions = chartObjects.dimensions();
         this.svg = chartObjects.svg();
 
@@ -52,16 +54,19 @@ export class PieChartSum  {
 
         this.update(this.data);
 
+        if (this.config.extra.header) {
+            this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
+            this.htmlHeader.draw();
+            this.link = new HtmlLink(this.element,this.config.extra.header,'');
+        }
+
+
+
     }
 
     prepareData(data) {
-        
-    //    let segmented = json.find( j => j['_category'] === segment);
 
         let preparedData = [];
-
-        // when total column = false --> add sum of previous columns
-
         let sum = 0;
 
         this.dataMapping.forEach( (array,i) => {
@@ -99,18 +104,17 @@ export class PieChartSum  {
             preparedData.push(dataArray);
         });
 
-        console.log(preparedData);
         return preparedData;
     }
 
      drawLegend(data) {
 
-        this.element.parentNode.querySelector('.legend').remove();
+        this.element.querySelector('.legend').remove();
 
         let legendContainer = document.createElement('div');
         legendContainer.classList.add('legend');
 
-        this.element.parentNode.appendChild(legendContainer);
+        this.element.appendChild(legendContainer);
 
         let chartObjects = ChartObjects();
         let newSVGObject= chartObjects.svg();
@@ -118,18 +122,16 @@ export class PieChartSum  {
         let dataLength = data[0].length;
 
         if(data[1]) {  dataLength = dataLength + data[1].length }
-
         if(data[2]) {  dataLength = dataLength + data[2].length }
 
         let rowHeight = 22;
 
          let legendDimensions = {
 
-             width : this.config.legendWidth,
+             width : this.config.extra.legendWidth,
              height : rowHeight * dataLength,
-             svgWidth : this.config.legendWidth,
+             svgWidth : this.config.extra.legendWidth,
              svgHeight : rowHeight * dataLength,
-
          }
 
         this.legend = new ChartSVG(legendContainer,this.config,legendDimensions,newSVGObject);
@@ -158,9 +160,9 @@ export class PieChartSum  {
 
             this.legend.svg.layers.legend.append("text")
                 .attr("class", "small-label")
-                .attr("dx", this.config.legendWidth)
+                .attr("dx", this.config.extra.legendWidth)
                 .attr("dy", (i * rowHeight) + 8)
-                .text( (this.config.currencyLabels) ? convertToCurrency(d['value']) : d['value'])
+                .text( (this.config.extra.currencyLabels) ? convertToCurrency(d['value']) : d['value'])
                 .attr("width", this.dimensions.svgWidth)
                 .style("opacity", 1)
                 .style("text-anchor", "end");
@@ -174,7 +176,7 @@ export class PieChartSum  {
                  .attr("class", "small-label")
                  .attr("y", ((data[0].length) * rowHeight)  - 3)
                  .attr("height", .5)
-                 .attr("width", this.config.legendWidth)
+                 .attr("width", this.config.extra.legendWidth)
                  .style("opacity", 1)
                  .style("fill", 'black');
 
@@ -187,9 +189,9 @@ export class PieChartSum  {
 
              this.legend.svg.layers.legend.append("text")
                  .attr("class", "small-label")
-                 .attr("dx", this.config.legendWidth)
+                 .attr("dx", this.config.extra.legendWidth)
                  .attr("dy", ((data[0].length) * rowHeight) + 16)
-                 .text( (this.config.currencyLabels) ? convertToCurrency(data[1][0]['value']) : data[1][0]['value'])
+                 .text( (this.config.extra.currencyLabels) ? convertToCurrency(data[1][0]['value']) : data[1][0]['value'])
                  .attr("width", this.dimensions.svgWidth)
                  .style("opacity", 1)
                  .style("text-anchor", "end");
@@ -215,23 +217,13 @@ export class PieChartSum  {
 
              this.legend.svg.layers.legend.append("text")
                  .attr("class", "small-label")
-                 .attr("dx", this.config.legendWidth)
+                 .attr("dx", this.config.extra.legendWidth)
                  .attr("dy", ((data[0].length + 1.5) * rowHeight) + 16)
-                 .text( (this.config.currencyLabels) ? convertToCurrency(data[2][0]['value']) : data[2][0]['value'])
+                 .text( (this.config.extra.currencyLabels) ? convertToCurrency(data[2][0]['value']) : data[2][0]['value'])
                  .attr("width",this.dimensions.svgWidth)
                  .style("opacity", 1)
                  .style("text-anchor", "end");
          }
-    }
-
-    redrawLegend() {
-
-
-
-     //  this.legend.redraw(this.dimensions);
-
-        // this.legendSVG.layers.legend
-        //     .attr('transform', 'translate(' + legendX + ',' + legendY + ')');
     }
 
     draw(data) {
@@ -253,7 +245,6 @@ export class PieChartSum  {
          this.dimensions = this.chartDimensions.get(this.dimensions);
          this.chartSVG.redraw(this.dimensions);
          this.chartPie.redraw(this.dimensions);
-      //   this.redrawLegend(this.dimensions,this.smallMultiple);
     }
 
     update(newData) {
@@ -264,7 +255,6 @@ export class PieChartSum  {
         this.draw(data);
         this.drawLegend(data);
         this.redraw();
-
 
         window.addEventListener("resize", function() { self.redraw() }, false);
     }
