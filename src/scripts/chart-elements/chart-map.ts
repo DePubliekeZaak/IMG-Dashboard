@@ -17,9 +17,7 @@ export class ChartMap {
 
     init() {
 
-        this.projection = d3.geoMercator()
-            .scale(1)
-            .translate([0, 0]);
+        this.projection = d3.geoMercator();
 
         this.path = d3.geoPath()
             .projection(this.projection);
@@ -28,8 +26,8 @@ export class ChartMap {
                 [0.114, -1.101],
                 [0.12022108488117365, -1.105]
             ],
-            s = .15 / Math.max((b[1][0] - b[0][0]) / this.dimensions.svgWidth, (b[1][1] - b[0][1]) / this.dimensions.height),
-            t = [((this.dimensions.svgWidth - s * (b[1][0] + b[0][0])) / 2) + 60, ((this.dimensions.height - s * (b[1][1] + b[0][1])) / 2) - 0];
+            s = .05 / Math.max((b[1][0] - b[0][0]) / this.dimensions.svgWidth, (b[1][1] - b[0][1]) / this.dimensions.height),
+            t = [((this.dimensions.svgWidth - s * (b[1][0] + b[0][0])) / 2) + 60, ((this.dimensions.height - s * (b[1][1] + b[0][1])) / 2)  - 60];
 
         this.projection
             .scale(s)

@@ -39,6 +39,7 @@ export const staafSchademeldingen : GraphObject = {
     "extra": {
         "xScaleTicks": "timeMonth",
         "barWidth": 12,
+        "muniSelect": false
     }
 },
     "endpoint": "/api/data",

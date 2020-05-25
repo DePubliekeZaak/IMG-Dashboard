@@ -50,7 +50,7 @@
   {
     "label" : "Taart Specials",
     "value" : "taart_specials",
-    "className": "img-custom-graph",
+    "className": "img-custom-graph-pie",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -58,7 +58,7 @@
   {
     "label" : "Bollen",
     "value" : "bollen",
-    "className": "img-custom-graph",
+    "className": "img-custom-graph-pie",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -66,7 +66,7 @@
   {
     "label" : "Trend in behandeling",
     "value" : "trend_in_behandeling",
-    "className": "img-custom-graph",
+    "className": "img-custom-graph-pie",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]

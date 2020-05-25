@@ -32,22 +32,10 @@ export class InitGraph {
 
         for (let el of elements) {
 
-            console.log('hi');
-
-            this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("staaf_schademeldingen")));
+            this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("data-img-graph-preset")));
         }
 
         this.htmlContainers();
-
-        if (document.querySelector('main').classList.contains('has-muni-select')) {
-
-            this.createDropdown();
-            const municipalitySelect = document.querySelector('.municipality_select') as HTMLSelectElement;
-
-            municipalitySelect.addEventListener("change", function () {
-                self.makeSingleCall(municipalitySelect.options[municipalitySelect.selectedIndex].value, true);
-            });
-        }
 
         this.makeSingleCall('all',false);
     }
@@ -64,19 +52,20 @@ export class InitGraph {
 
         document.getElementsByClassName(this.className)[0].innerHTML = '';
 
-        for (let graphObject of this.graphObjectArray) {
+        for (var i = 0; i < this.graphObjectArray.length; i++) {
 
-            for (let graph of graphObject.mapping) {
+            for (let graph of this.graphObjectArray[i].mapping) {
                 let container = document.createElement('div');
-                container.classList.add('graph_container');
-                document.querySelector('.graph_row').appendChild(container);
+                container.classList.add('img_graph_container');
+                container.style.flex = '1';
+                document.querySelector('.' + this.className + ':nth-of-type(' + (i + 1) + ')').appendChild(container);
             }
         }
     }
 
-    createDropdown() {
+    createDropdown(containerElement) {
 
-        let container = document.getElementsByClassName(this.className)[0];
+        // let container = document.getElementsByClassName(this.className)[0];
         let dropdown = document.createElement('select');
         dropdown.classList.add('municipality_select');
 
@@ -88,7 +77,7 @@ export class InitGraph {
             dropdown.appendChild(option);
         }
 
-        container.appendChild(dropdown);
+        containerElement.appendChild(dropdown);
     }
 
     createList(segment) {
@@ -129,40 +118,65 @@ export class InitGraph {
 
     makeSingleCall(segment,update) {
 
-        let url = 'https://tcmg-hub.publikaan.nl' + (this.graphObjectArray[0].endpoint || '/api/data') + '?gemeente=' + segment;
+        let self = this;
 
-        d3.json<ResponseData>(url)
-            .then((data) => {
+        let uniqueEndpoints = [... Array.from(new Set(this.graphObjectArray.map( (o) => o.endpoint)))];
 
-                for (let graphObject of this.graphObjectArray) {
+        for (let endpoint of uniqueEndpoints) {
 
-                    for (var i = 0; i < Object.values(graphObject.mapping).length; i++) {
+            const graphObjectArray = this.graphObjectArray.filter( o => o.endpoint === endpoint);
 
-                        let map = {};
-                        map[Object.entries(graphObject.mapping)[i][0]] = Object.entries(graphObject.mapping)[i][1];
+            let url = (endpoint === '/api/gemeenten') ? 'https://tcmg-hub.publikaan.nl/api/gemeenten' : 'https://tcmg-hub.publikaan.nl' + (endpoint || '/api/data') + '?gemeente=' + segment;
 
-                        // dit of met data
-                        let element = document.querySelector('.graph_container:nth-of-type(' + (i + 1) + ')');
+            d3.json<ResponseData>(url)
+                .then((data) => {
 
-                        if (update) {
+                    for (let graphObject of graphObjectArray) {
 
-                            this.graphMethods[i].update(data);
+                        let containerElement = document.querySelector('.' + this.className + '[data-img-graph-preset="' + graphObject.slug + '"]');
 
-                        } else {
+                        for (var j = 0; j < Object.values(graphObject.mapping).length; j++) {
 
-                            element.innerHTML = '';
-                            this.graphMethods[i] = new graphs[graphObject.config.graphType](data, element, graphObject.config, Object.values(map)[0], 'all');
-                            this.graphMethods[i].init();
+                            console.log('3');
+
+                            let map = {};
+                            map[Object.entries(graphObject.mapping)[j][0]] = Object.entries(graphObject.mapping)[j][1];
+
+                            // dit of met data
+                            let element = containerElement.querySelector('.img_graph_container:nth-of-type(' + (j + 1) + ')');
+
+                            if (update && endpoint === '/api/data') {
+
+                                this.graphMethods[j].update(data);
+
+                            } else if(!update) {
+
+                                element.innerHTML = '';
+                                this.graphMethods[j] = new graphs[graphObject.config.graphType](data, element, graphObject.config, Object.values(map)[0], 'all');
+                                this.graphMethods[j].init();
+                            }
+                        }
+
+                        if (graphObject.config.extra && graphObject.config.extra.muniSelect) {
+
+                            this.createDropdown(containerElement);
+                            const municipalitySelect = document.querySelector('.municipality_select') as HTMLSelectElement;
+
+                            municipalitySelect.addEventListener("change", function () {
+                                self.makeSingleCall(municipalitySelect.options[municipalitySelect.selectedIndex].value, true);
+                            });
                         }
                     }
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+            }
     }
 
     makeDashboardCall(segment,update) {
+
 
         let url = 'https://tcmg-hub.publikaan.nl' + (this.graphObjectArray[0].endpoint || '/api/data') + '?gemeente=' + segment;
 

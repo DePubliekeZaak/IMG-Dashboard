@@ -65,7 +65,7 @@ export class ChartPie {
             let offset = ( this.config.extra.maxRadius / 2)  + (this.dimensions.width - this.config.extra.maxRadius) / 2;
 
             this.svg.layers.data
-                .attr("transform", "translate(" + offset + "," + ((offset / 2) + 20) + ")");
+                .attr("transform", "translate(" + offset + "," + ((this.config.extra.maxRadius) + 20) + ")");
 
             radius = dimensions.svgWidth / 3;
 

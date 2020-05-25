@@ -10,5 +10,5 @@ export interface GraphObject {
     config : Config,
     endpoint : string,
     segment :  string,
-    publishDate : string | boolean
+    publishDate : string | boolean,
 }

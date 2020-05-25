@@ -118,6 +118,9 @@ export class PieChartSum  {
 
         let legendContainer = document.createElement('div');
         legendContainer.classList.add('legend');
+         legendContainer.style.display = 'flex';
+         legendContainer.style.flexDirection = "column";
+         legendContainer.style.alignItems = "center";
 
         this.element.appendChild(legendContainer);
 
@@ -156,9 +159,8 @@ export class PieChartSum  {
         //
         let dataLength = data[0].length;
 
-        if(data[1]) {  dataLength = dataLength + data[1].length }
-        if(data[2]) {  dataLength = dataLength + data[2].length }
-
+        if(data[1]) {  dataLength = dataLength + ( data[1].length * 2) }
+        if(data[2]) {  dataLength = dataLength + (data[2].length *  2) }
 
         let legendDimensions = {
 
