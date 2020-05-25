@@ -31,19 +31,20 @@ export const dashboardArray : GraphObject[] = [
       "yParameter" : "",
       "padding": {
         "top": 20,
-        "bottom": 60,
-        "left": 30,
-        "right": 30
+        "bottom": 80,
+        "left": 0,
+        "right": 0
       },
       "margin": {
         "top": 90,
         "bottom": 0,
-        "left": 0,
-        "right": 0
+        "left": 10,
+        "right": 10
       },
       "extra": {
           "useLineFill": true,
-          "firstInLine": true
+          "firstInLine": true,
+          // "units": "schademeldingen"
       }
     },
     "endpoint": "/api/data",
@@ -80,18 +81,19 @@ export const dashboardArray : GraphObject[] = [
       "yParameter" : "",
       "padding": {
         "top": 20,
-        "bottom": 60,
-        "left": 30,
-        "right": 30
+        "bottom": 80,
+        "left": 0,
+        "right": 0
       },
       "margin": {
         "top": 90,
         "bottom": 0,
-        "left": 0,
-        "right": 0
+        "left": 10,
+        "right": 10
       },
       "extra": {
-          "useLineFill": true
+          "useLineFill": true,
+          // "units": "schade-opnames"
       }
     },
     "endpoint": "/api/data",
@@ -129,19 +131,20 @@ export const dashboardArray : GraphObject[] = [
       "yParameter" : "",
       "padding": {
         "top": 20,
-        "bottom": 60,
-        "left": 30,
-        "right": 30
+        "bottom": 80,
+        "left": 0,
+        "right": 0
       },
       "margin": {
         "top": 90,
         "bottom": 0,
-        "left": 0,
-        "right": 0
+        "left": 10,
+        "right": 10
       },
         "extra": {
-            "useLineFill": true
-        }
+            "useLineFill": true,
+            // "units": "besluiten"
+    }
     },
     "endpoint": "/api/data",
     "segment": "all",
@@ -177,9 +180,9 @@ export const dashboardArray : GraphObject[] = [
       "yParameter" : "",
       "padding": {
         "top": 20,
-        "bottom": 60,
-        "left": 30,
-        "right": 30
+        "bottom": 80,
+        "left": 10,
+        "right": 10
       },
       "margin": {
         "top": 90,
@@ -188,13 +191,101 @@ export const dashboardArray : GraphObject[] = [
         "right": 0
       },
         "extra": {
-            "useLineFill": true
+            "useLineFill": true,
+            // "units": "afgehandeld"
       }
     },
     "endpoint": "/api/data",
     "segment": "all",
     "publishDate": false
-  },
+    },
+    {   "label": "In behandeling",
+        "slug": "trend_schademeldingen",
+        "mapping": [
+            [
+                {
+                    "label": "meldingen",
+                    "column": "nieuwe_schademeldingen",
+                    "colour": "red"
+                },
+                {
+                    "label": "Besluiten",
+                    "column": "nieuwe_besluiten_regulier",
+                    "colour": "green"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "TrendLine",
+            "xScaleType": "time",
+            "yScaleType": "linear",
+            "xParameter": "_date",
+            "yParameter": "nieuwe_schademeldingen",
+            "padding": {
+                "top": 40,
+                "bottom": 0,
+                "left": 40,
+                "right": 40
+            },
+            "margin": {
+                "top": 80,
+                "bottom": 45,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "xScaleTicks": "timeMonth",
+                "useLineFill": true,
+                "header" : "Besluiten t.o.v. nieuwe schademeldingen",
+                "link": "de voortgang",
+                "label": "label"
+            }
+        },
+        "endpoint": "/api/data",
+        "segment": "all",
+        "publishDate": false
+    },
+    {   "label": "Werkvoorraad",
+        "slug": "trend_in_behandeling",
+        "mapping": [
+            [
+                {
+                    "label": "In behandeling",
+                    "column": "WERKVOORRAAD_IN_BEHANDELING",
+                    "colour": "yellow"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "TrendLine",
+            "xScaleType": "time",
+            "yScaleType": "linear",
+            "xParameter": "_date",
+            "yParameter": "WERKVOORRAAD_IN_BEHANDELING",
+            "padding": {
+                "top": 40,
+                "bottom": 0,
+                "left": 40,
+                "right": 40
+            },
+            "margin": {
+                "top": 80,
+                "bottom": 45,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "xScaleTicks": "timeMonth",
+                "useLineFill": true,
+                "header" : "Dossiers in behandeling",
+                "link": "de voortgang",
+                "label": "value"
+            }
+        },
+        "endpoint": "/api/data",
+        "segment": "all",
+        "publishDate": false
+    },
     {
     "label": "Flow doorlooptijden",
     "slug": "flow_doorlooptijden",
@@ -207,13 +298,13 @@ export const dashboardArray : GraphObject[] = [
         "yParameter": false,
         "padding": {
             "top": 60,
-            "bottom": 0,
+            "bottom": 0, // = ruimte onder ballen
             "left": 0,
             "right": 360
         },
         "margin": {
             "top": 160,
-            "bottom": 160,
+            "bottom": 0,
             "left": 0,
             "right": 0
         },

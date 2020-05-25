@@ -84,7 +84,7 @@ export class ChartWeekGrid {
 
                         return yScale(new Date(d[yParameter])) - 35;
                     } else {
-                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height - this.config.padding.bottom + 20;
+                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height;
                     }
                 })
                 .attr("fill", "none")
@@ -104,7 +104,7 @@ export class ChartWeekGrid {
                     if (self.config.yScaleType === 'time' && i === 0) {
                         return yScale(new Date(d[yParameter])) - 66;
                     } else {
-                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height - self.config.padding.bottom + 20;
+                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height  + 4; // - self.config.padding.bottom
                     }
 
                 })
@@ -134,7 +134,7 @@ export class ChartWeekGrid {
 
                 this.svg.weekLabel
                     .attr("y", function (d) {
-                        return dimensions.height - self.config.padding.bottom + 31;
+                        return dimensions.height + 16;  // http://192.168.1.7:9966
                     })
                     .attr("x", -40)
                 ;

@@ -5,14 +5,16 @@ export class ChartBackgroundArea {
 
     constructor(
         private config,
-        private svg
+        private svg,
+        private yParameter,
+        private colour
     ){}
 
     draw(data) {
 
         if(this.config.extra.useLineFill) {
 
-            this.svg.lineFill = this.svg.layers.underData.selectAll('path.line_fill')
+            this.svg.lineFill = this.svg.layers.underData.selectAll('path.line_fill.' + this.yParameter)
                 .data((this.config.xScaleType === 'time') ? [data] : [data.slice(1,data.length)]);
 
             this.svg.lineFill.exit().remove();
@@ -20,7 +22,7 @@ export class ChartBackgroundArea {
             this.svg.lineFillEnter = this.svg.lineFill
                 .enter()
                 .append("path")
-                .attr("class", "line_fill");
+                .attr("class", "line_fill " + this.yParameter);
         }
     }
 
@@ -33,7 +35,7 @@ export class ChartBackgroundArea {
 
             area
                 .x(d => xScale(new Date(d[xParameter])))
-                .y0(dimensions.height - 45)
+                .y0(dimensions.height)
                 .y1(d => yScale(d[yParameter]))
                 .curve(d3.curveCardinal);
         }

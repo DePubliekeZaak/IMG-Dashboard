@@ -67,7 +67,7 @@ export class CijfersLine  {
         this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
         this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
         this.chartLine = new ChartRaggedLine(this.config, this.svg);
-        this.chartBackgroundArea = new ChartBackgroundArea(this.config, this.svg);
+        this.chartBackgroundArea = new ChartBackgroundArea(this.config, this.svg, false, false);
         this.chartWeekGrid = new ChartWeekGrid(this.config, this.svg);
         this.chartAvgLine = new ChartAvgLine(this.config, this.svg);
         this.htmlHeader = new HtmlHeader(this.element,this.dataMapping[0].label);

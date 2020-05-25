@@ -1,9 +1,10 @@
 import * as d3 from "d3";
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes} from "../chart-basics/module";
 
-import { ChartCircles, ChartBrackets, HtmlLink } from "../chart-elements/module"
+import { ChartCircles, ChartBrackets, ChartFlowBetweenCircles, HtmlLink } from "../chart-elements/module"
 
 export class Flow {
+
 
     element;
     dimensions;
@@ -21,15 +22,17 @@ export class Flow {
 
     chartCircles;
     chartBrackets;
+    chartFlowBetweenCircles;
 
     link;
 
+    simulation;
+
     constructor(
-        private endpoint,
+        private data,
         private elementID,
         private config,
-        private dataMapping,
-        private segment
+        private dataMapping
     ) {
         this.element = d3.select(elementID).node();
     }
@@ -58,21 +61,24 @@ export class Flow {
 
 
         // kan ik circles hergebruiken?
-        this.chartCircles = new ChartCircles(this.config,this.svg);
-        this.chartBrackets = new ChartBrackets(this.config,this.svg)
+        this.chartCircles = new ChartCircles(this.config,this.svg.layers);
+        this.chartBrackets = new ChartBrackets(this.config,this.svg);
+        this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this.config,this.svg.layers);
 
         this.xAxis.draw();
 
-        let { data } = this.prepareData();
-
-        this.draw(data);
-        this.redraw(data);
+        // let { data } = this.prepareData();
+        //
+        // this.draw(data);
+        // this.redraw(data);
         // this.legend(data,this.elementID);
+
+        this.update(this.data)
 
         this.link = new HtmlLink(this.element,'doorlooptijden','');
     }
 
-    prepareData() {
+    prepareData(newData) {
 
         let data = [
 
@@ -160,7 +166,7 @@ export class Flow {
             sum += phase.duration;
         }
 
-        return { data };
+        return data;
     }
 
 
@@ -172,11 +178,19 @@ export class Flow {
         this.xScale = this.chartXScale.set(data.map( (d) => d[self.config.xParameter] + d['duration']).concat(0));
         this.rScale = this.chartRScale.set(data.map( (d) => d.value));
 
+        this.simulation = d3.forceSimulation()
+            .velocityDecay(0.25)
+            .nodes(data);
+
+        this.chartFlowBetweenCircles.draw(data)
         this.chartCircles.draw(data);
         this.chartBrackets.draw(data);
+
     }
 
     redraw(data) {
+
+        let self = this;
 
         this.dimensions = this.chartDimensions.get(this.dimensions);
         this.chartSVG.redraw(this.dimensions);
@@ -188,6 +202,25 @@ export class Flow {
 
         this.chartCircles.redraw(data,this.dimensions,this.rScale,this.xScale)
         this.chartBrackets.redraw(data,this.dimensions,this.rScale,this.xScale)
+        this.chartFlowBetweenCircles.redraw(data,this.dimensions,this.rScale,this.xScale);
+
+        let center = {x: (this.dimensions.width / 2) , y: ((this.dimensions.height / 2) - 40) };
+        let forceStrength = 0.025;
+
+        function ticked() {
+
+            self.chartCircles.forceDirect(self.xScale, self.rScale, data);
+            self.chartFlowBetweenCircles.forceDirect(self.xScale, self.rScale, data);
+        }
+
+        this.simulation
+            .velocityDecay(0.5)
+            // .force('y', d3.forceY().strength(forceStrength).y(center.y))
+            .force('center', d3.forceCenter(center.x,center.y))
+            //   .force('charge', d3.forceManyBody().strength(cluster))
+            .force('collide', d3.forceCollide().radius((d : any) => this.rScale(d.value)))
+            .force('y', d3.forceY().strength(forceStrength).y(center.y))
+            .on('tick', ticked);
 
     }
 
@@ -229,6 +262,15 @@ export class Flow {
             legendContainer.appendChild(li);
 
             this.element.appendChild(legendContainer);
+    }
+
+    update(newData) {
+
+        let self = this;
+        let data = this.prepareData(newData);
+        this.draw(data);
+        this.redraw(data);
+        window.addEventListener("resize", () => self.redraw(data), false);
     }
 }
 

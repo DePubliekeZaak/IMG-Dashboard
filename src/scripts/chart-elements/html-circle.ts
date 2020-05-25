@@ -13,8 +13,6 @@ export class HtmlCircle {
 
         let miniContainer = document.createElement('div');
 
-        console.log(this.dataMapping);
-
         let div = document.createElement('div');
         div.classList.add('number_circle');
         div.style.backgroundColor =  colours[this.dataMapping[0].colour][0];
@@ -41,14 +39,7 @@ export class HtmlCircle {
         // number.innerText = data[0][this.property];
         div.appendChild(number);
 
-        if(this.config.units && this.config.units !== undefined) {
 
-            let units = document.createElement('span');
-            units.classList.add('units');
-            units.innerText = this.config.units;
-            units.style.color = 'white';
-            div.appendChild(units);
-        }
 
         //
         // let diff = document.createElement('span');
@@ -87,13 +78,20 @@ export class HtmlCircle {
 
         miniContainer.appendChild(div);
 
+        if(this.config.extra.units) {
 
-
-        // return miniContainer;
+            let units = document.createElement('span');
+            units.classList.add('units');
+            units.innerText = this.config.extra.units;
+            units.style.color = colours[this.dataMapping[0].colour][0];
+            units.style.fontFamily = 'Replica';
+            units.style.fontSize = '1rem';
+            units.style.display = 'block';
+            units.style.marginTop = '1rem';
+            this.element.prepend(units);
+        }
 
         this.element.prepend(miniContainer);
-
-
     }
 
 

@@ -10,9 +10,12 @@ import { ChartPie } from './chart-pie';
 import { ChartMap } from './chart-map';
 import { ChartCircles } from './chart-circles';
 import { ChartBrackets } from './chart-brackets';
+import { ChartFlowBetweenCircles } from './chart-flow-between-circles';
+import {ChartEndLabel} from "./chart-end-label";
 
 import { HtmlCircle } from './html-circle';
 import { HtmlHeader } from './html-header';
 import { HtmlLink } from './html-link';
 
-export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartBrackets, HtmlCircle, HtmlHeader, HtmlLink }
+
+export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartBrackets, ChartFlowBetweenCircles, ChartEndLabel, HtmlCircle, HtmlHeader, HtmlLink }

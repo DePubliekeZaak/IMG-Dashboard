@@ -8,6 +8,7 @@ import { taartSpecials } from './taart_specials';
 
 import { kaartSchademeldingen } from './kaart_schademeldingen';
 import { bollen } from './bollen';
+import { trendInBehandeling } from './trend_inbehandeling';
 
 import { dashboardArray } from './dashboard';
 
@@ -23,6 +24,7 @@ export const configs = [
 
     kaartSchademeldingen,
     bollen,
+    trendInBehandeling
 
 ]
 

@@ -13,24 +13,29 @@ export class InitGraph {
     graphMethods = {};
     dashBoardMap;
     dashBoardInfo;
+    className : string = "img-custom-graph";
 
     constructor(
-        private graphSlug : string,
-        private className : string,
-        private publishDate: string,
+        // private graphSlug : string,
+        // private className : string,
+        // private publishDate: string,
 
     ){
-        (this.graphSlug === 'dashboard') ? this.dashboard() : this.single();
+        (document.getElementsByTagName('main')[0].id === 'dashboard') ? this.dashboard() : this.single();
     }
 
     single() {
 
         let self = this;
 
-        this.graphObjectArray = [configs.find( c => c.slug === this.graphSlug)];
+        let elements = document.getElementsByClassName(this.className);
 
-        // straks objects mergen want className
-        //  this.graphObjectArray.push(Object.assign(config,dashboardArray.find( c => c.slug === config.slug)));
+        for (let el of elements) {
+
+            console.log('hi');
+
+            this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("staaf_schademeldingen")));
+        }
 
         this.htmlContainers();
 
@@ -40,17 +45,17 @@ export class InitGraph {
             const municipalitySelect = document.querySelector('.municipality_select') as HTMLSelectElement;
 
             municipalitySelect.addEventListener("change", function () {
-                self.makeCall(municipalitySelect.options[municipalitySelect.selectedIndex].value, true);
+                self.makeSingleCall(municipalitySelect.options[municipalitySelect.selectedIndex].value, true);
             });
         }
 
-        this.makeCall('all',false);
+        this.makeSingleCall('all',false);
     }
 
     dashboard() {
 
        this.graphObjectArray = dashboardArray;
-       this.makeCall('all',false);
+       this.makeDashboardCall('all',false);
     }
 
 
@@ -86,7 +91,8 @@ export class InitGraph {
         container.appendChild(dropdown);
     }
 
-    createList() {
+    createList(segment) {
+
 
         let container = document.querySelector('aside.selectors');
 
@@ -97,86 +103,110 @@ export class InitGraph {
 
             let li = document.createElement('li');
             li.innerText = muni.label;
-            li.onclick = () => this.makeCall(muni.value,true);
+            li.setAttribute('data-slug', muni.value);
+            li.onclick = () => this.makeSingleCall(muni.value,true);
             li.style.padding = '.125rem .25rem';
             li.style.cursor = 'pointer';
+
+            if (muni.value === segment) {
+                li.classList.add('active');
+            }
+
             ul.appendChild(li);
         }
 
         container.appendChild(ul);
     }
 
-    makeCall(segment,update) {
+    updateList(segment) {
+
+        for (let option of [].slice.call(document.querySelectorAll('aside.selectors ul li'))) {
+
+            if (option.classList.contains('active')) { option.classList.remove('active') }
+            if (option.getAttribute('data-slug') === segment) { option.classList.add('active');}
+        }
+    }
+
+    makeSingleCall(segment,update) {
 
         let url = 'https://tcmg-hub.publikaan.nl' + (this.graphObjectArray[0].endpoint || '/api/data') + '?gemeente=' + segment;
 
         d3.json<ResponseData>(url)
             .then((data) => {
 
-                switch (this.graphSlug) {
+                for (let graphObject of this.graphObjectArray) {
 
-                    case 'dashboard' :
+                    for (var i = 0; i < Object.values(graphObject.mapping).length; i++) {
 
-                        if (!update) {
-                            this.createList();
-                            this.dashBoardMap = new DashboardMap();
-                            this.dashBoardInfo = new DashboardInfo();
-                            this.dashBoardInfo.update(this.graphObjectArray[0].mapping[0]);
+                        let map = {};
+                        map[Object.entries(graphObject.mapping)[i][0]] = Object.entries(graphObject.mapping)[i][1];
 
+                        // dit of met data
+                        let element = document.querySelector('.graph_container:nth-of-type(' + (i + 1) + ')');
+
+                        if (update) {
+
+                            this.graphMethods[i].update(data);
+
+                        } else {
+
+                            element.innerHTML = '';
+                            this.graphMethods[i] = new graphs[graphObject.config.graphType](data, element, graphObject.config, Object.values(map)[0], 'all');
+                            this.graphMethods[i].init();
                         }
-
-                        for (let graphObject of this.graphObjectArray ) {
-
-                            let element = document.querySelector('[data-graph-slug=' + graphObject.slug + ']');
-
-                            if (update) {
-
-                                this.graphMethods[graphObject.slug].update(data);
-
-                            } else {
-
-                                element.innerHTML = '';
-                                this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](data, element, graphObject.config, graphObject.mapping[0], 'all');
-                                this.graphMethods[graphObject.slug].init();
-
-                                element.addEventListener('mouseenter', e => {
-
-                                    this.dashBoardMap.update(graphObject.mapping[0][2].column, graphObject.mapping[0][2].colour)
-                                    this.dashBoardInfo.update(graphObject.mapping[0]);
-
-                                }, false)
-                            }
-                        }
-
-                        break;
-
-                    default :
-
-                        let graphObject = this.graphObjectArray[0];
-
-                        for (var i = 0; i < Object.values(graphObject.mapping).length; i++) {
-
-                            let map = {};
-                            map[Object.entries(graphObject.mapping)[i][0]] = Object.entries(graphObject.mapping)[i][1];
-
-                            // dit of met data
-                            let element = document.querySelector('.graph_container:nth-of-type(' + (i + 1) + ')');
-
-                            if (update) {
-
-                                this.graphMethods[i].update(data);
-
-                            } else {
-
-                                element.innerHTML = '';
-                                this.graphMethods[i] = new graphs[graphObject.config.graphType](data, element, graphObject.config, Object.values(map)[0], 'all');
-                                this.graphMethods[i].init();
-                            }
-                        }
+                    }
                 }
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+
+    makeDashboardCall(segment,update) {
+
+        let url = 'https://tcmg-hub.publikaan.nl' + (this.graphObjectArray[0].endpoint || '/api/data') + '?gemeente=' + segment;
+
+        d3.json<ResponseData>(url)
+            .then((data) => {
+
+            if (!update) {
+
+                this.createList(segment);
+                this.dashBoardMap = new DashboardMap();
+                this.dashBoardInfo = new DashboardInfo();
+                this.dashBoardInfo.update(this.graphObjectArray[0].mapping[0]);
+            } else {
+
+                this.updateList(segment);
+            }
+
+            for (let graphObject of this.graphObjectArray ) {
+
+                let element = document.querySelector('[data-graph-slug=' + graphObject.slug + ']');
+
+                if (update) {
+
+                    this.graphMethods[graphObject.slug].update(data);
+
+                } else {
+
+                    element.innerHTML = '';
+                    this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](data, element, graphObject.config, graphObject.mapping[0], 'all');
+                    this.graphMethods[graphObject.slug].init();
+
+                    element.addEventListener('mouseenter', e => {
+
+                        this.dashBoardMap.update(graphObject.mapping[0][2].column, graphObject.mapping[0][2].colour)
+                        this.dashBoardInfo.update(graphObject.mapping[0]);
+
+                    }, false)
+                }
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
 }
+
+new InitGraph();

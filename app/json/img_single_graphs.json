@@ -2,7 +2,7 @@
   {
     "label": "Staaf schademeldingen",
     "value": "staaf_schademeldingen",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -10,7 +10,7 @@
   {
     "label" : "Staaf schade-opnames",
     "value" : "staaf_schade-opnames",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -18,7 +18,7 @@
   {
     "label" : "Multistaaf besluiten en afgehandeld",
     "value" : "multistaaf_besluiten_afgehandeld",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -26,7 +26,7 @@
   {
     "label" : "Kaart schademeldingen",
     "value" : "kaart_schademeldingen",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -34,7 +34,7 @@
   {
     "label" : "Taart Bezwaren",
     "value" : "taart_bezwaren",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -42,7 +42,7 @@
   {
     "label" : "Taart Schadevergoedingen",
     "value" : "taart_schadevergoedingen",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -50,7 +50,7 @@
   {
     "label" : "Taart Specials",
     "value" : "taart_specials",
-    "className": "graph_row",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
@@ -58,7 +58,15 @@
   {
     "label" : "Bollen",
     "value" : "bollen",
-    "className": "graph_row",
+    "className": "img-custom-graph",
+    "scripts": [
+      "https://graphs.publikaan.nl/graph-selector/bundle.js"
+    ]
+  },
+  {
+    "label" : "Trend in behandeling",
+    "value" : "trend_in_behandeling",
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
