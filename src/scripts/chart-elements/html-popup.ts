@@ -105,15 +105,6 @@ export class HtmlPopup {
             this.popupElement.style.left =  leftPos.toString() + 'px';
         }
 
-
-
-
-
-
-
-
-        // display
-
         this.popupElement.style.display = 'block';
 
     }
@@ -130,7 +121,7 @@ export class HtmlPopup {
         img.style.marginBottom = '1.5rem';
         img.style.height = "1.5rem";
         img.style.width = "1.5rem";
-        img.src = '/img/i.svg';
+        img.src = './img/i.svg';
         img.onclick = () => this.pop(this.element);
 
         // let a = document.createElement('a');
