@@ -52,7 +52,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/specials",
+        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all"
     },
     {
@@ -115,7 +115,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all"
     },
     {
@@ -178,7 +178,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all"
     },
     {
@@ -313,7 +313,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/specials",
+        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all",
         "publishDate": false
     },
@@ -371,7 +371,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/specials",
+        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all"
     },
     {
@@ -411,7 +411,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/specials?limit=60",
+        "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",
         "segment": false,
         "publishDate": false
     }

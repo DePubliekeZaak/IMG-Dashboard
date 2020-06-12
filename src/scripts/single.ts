@@ -9,6 +9,7 @@ import { InitDashboard } from "./dashboard";
 
 export class InitSingle {
 
+    elements;
     graphObjectArray : GraphObject[]  = [];
     graphMethods = {};
     dashBoardMap;
@@ -22,9 +23,9 @@ export class InitSingle {
 
         let self = this;
 
-        let elements = document.getElementsByClassName(this.className);
+        this.elements = document.getElementsByClassName(this.className);
 
-        for (let el of elements) {
+        for (let el of this.elements) {
 
             this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("data-img-graph-preset")));
         }
@@ -35,6 +36,8 @@ export class InitSingle {
 
     htmlContainers() {
 
+        console.log(this.graphObjectArray);
+
         document.getElementsByClassName(this.className)[0].innerHTML = '';
 
         for (var i = 0; i < this.graphObjectArray.length; i++) {
@@ -43,7 +46,7 @@ export class InitSingle {
                 let container = document.createElement('div');
                 container.classList.add('img_graph_container');
                 container.style.flex = '1';
-                document.querySelector('.' + this.className + ':nth-of-type(' + (i + 1) + ')').appendChild(container);
+                this.elements[i].appendChild(container);
             }
         }
     }

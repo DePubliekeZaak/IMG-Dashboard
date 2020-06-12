@@ -39,7 +39,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "Het percentage schademeldingen voor gewone woningen dat binnen een half jaar is afgehandeld. We noemen dit ook wel reguliere dossiers en die beslaan verreweg het merendeel van alle schademeldingen. De lijngrafiek eronder toont de ontwikkeling in de laatste acht weken. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het percentage wordt berekend door voor de laatste duizend besluiten te berekenen wat de doorlooptijd per dossier is geweest waarover is besloten. Als dat 182 dagen of minder is geweest (een half jaar) dan wordt dat meegenomen in het genoemde percentage. Omdat dit telkens over de laatste duizend besluiten wordt berekend, is het een voortschrijdend cijfer. Samen met de grafiek 1. 'Gerealiseerde en verwachte doorlooptijd' schets dit de voortgang van de schadeafhandeling voor reguliere dossiers in het licht van het streven om alle nieuwe reguliere schademeldingen binnen een half jaar af te handelen.",
-        "endpoint": "http://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all"
     },
     {
@@ -79,7 +79,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/meldingen?limit=60",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen?limit=60",
         "segment": false,
         "publishDate": false
     },
@@ -126,7 +126,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all"
     },
     // {
@@ -166,7 +166,7 @@ export const dashboardMeldingen : GraphObject[] = [
     //         }
     //     },
     //     "description" : "",
-    //     "endpoint": "http://img.publikaan.nl/open-data/api/meldingen?limit=60",
+    //     "endpoint": "https://img.publikaan.nl/open-data/api/meldingen?limit=60",
     //     "segment": false,
     //     "publishDate": false
     // },
@@ -222,7 +222,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "http://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all"
     }
 ]
