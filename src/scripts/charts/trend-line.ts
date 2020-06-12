@@ -1,8 +1,9 @@
 import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-import {ChartAxisGrid, ChartBackgroundArea, ChartEndLabel, HtmlHeader, HtmlLink} from "../chart-elements/module";
+import {ChartAxisGrid, ChartBackgroundArea, ChartEndLabel, HtmlHeader, HtmlLink, HtmlPopup } from "../chart-elements/module";
 import {ChartLine} from "../chart-elements/chart-line";
+import {colours} from "../_styleguide/_colours";
 
 export class TrendLine {
 
@@ -23,6 +24,7 @@ export class TrendLine {
 
      htmlHeader;
      link;
+     popup;
 
     yScale;
     xScale;
@@ -35,7 +37,8 @@ export class TrendLine {
         private data,
         private elementID,
         private config,
-        private dataMapping
+        private dataMapping,
+        private description,
     ) {
         this.element = d3.select(elementID).node();
         this.yParameter = this.dataMapping[0]['column'];
@@ -78,13 +81,61 @@ export class TrendLine {
                     this.htmlHeader.draw();
         }
 
-        if (this.config.extra.link) {
+        // if (this.config.extra.link) {
+        //
+        //     this.link = new HtmlLink(this.element,this.config.extra.link,'');
+        // }
 
-            this.link = new HtmlLink(this.element,this.config.extra.link,'');
+        this.popup = new HtmlPopup(this.element,this.description);
+
+        if( this.config.extra.legend) {
+
+            this.legend();
         }
 
         self.update(this.data);
 
+    }
+
+    legend() {
+
+        let legend = document.createElement('div');
+        legend.classList.add('legend');
+        legend.style.display = 'flex';
+        legend.style.flexDirection = 'row';
+        legend.style.justifyContent = 'center';
+        legend.style.width = '100%';
+
+
+        this.dataMapping.forEach( (d,i) => {
+
+            let item = document.createElement('div');
+            item.style.display = 'flex';
+            item.style.flexDirection = 'row';
+            item.style.alignItems = 'center';
+            item.style.marginRight = (window.innerWidth > 700) ? '2rem' : '.5rem';
+
+            let circle = document.createElement('span');
+            circle.style.width = (window.innerWidth > 700) ? '.75rem' : '.5rem';
+            circle.style.height = (window.innerWidth > 700) ? '.75rem' : '.5rem';
+            circle.style.borderRadius = '50%';
+            circle.style.marginRight = (window.innerWidth > 700) ? '.5rem' : '.25rem';
+            circle.style.display = 'inline-block';
+            circle.style.background = colours[d['colour']][0];
+            item.appendChild(circle);
+
+            let label = document.createElement('span');
+            label.style.fontFamily = "NotoSans Regular";
+            label.style.fontSize = (window.innerWidth > 700) ? '.8rem' : '.71em';
+            label.innerText = d['label'];
+            item.appendChild(label);
+
+            legend.appendChild(item);
+
+        });
+
+        this.element.insertBefore(legend,this.element.querySelector('svg'))
+        // this.element.appendChild(legend);
     }
 
     prepareData(json) {

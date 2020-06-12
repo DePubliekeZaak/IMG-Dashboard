@@ -1,32 +1,42 @@
 import { convertToCurrency } from '../helpers/_helpers';
+import { colours} from "../_styleguide/_colours";
 
 export class ChartBar {
 
+    bars;
+    barsEnter;
+
+    barLabels;
+    barLabelsEnter
+
+
     constructor(
         private config,
-        private svg
+        private svgLayers
     ){}
 
     draw(data) {
 
-        this.svg.bar = this.svg.layers.data.selectAll(".bar")
+        console.log(data);
+
+        this.bars = this.svgLayers.data.selectAll(".bar")
             .data(data);
 
-        this.svg.bar.exit().remove();
+        this.bars.exit().remove();
 
-        this.svg.barEnter = this.svg.bar
+        this.barsEnter = this.bars
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("fill", (d) => d.colour)
+            .attr("fill", (d) => colours[d.colour][0])
         ;
 
-        this.svg.barLabels = this.svg.layers.data.selectAll(".barLabel")
+        this.barLabels = this.svgLayers.data.selectAll(".barLabel")
             .data(data);
 
-        this.svg.barLabels.exit().remove();
+        this.barLabels.exit().remove();
 
-        this.svg.barLabelsEnter = this.svg.barLabels
+        this.barLabelsEnter = this.barLabels
             .enter()
             .append('text')
             .attr('class','barLabel small-label')
@@ -40,24 +50,26 @@ export class ChartBar {
 
     redraw(dimensions,xScale,yScale) {
 
-        this.svg.bar
-            .merge(this.svg.barEnter)
+        let self = this;
+
+        this.bars
+            .merge(this.barsEnter)
             .attr("x", function(d) {
 
-                if (this.config.xParameter === '_date') {
+                if (self.config.xParameter === '_date') {
 
-                    return xScale(new Date(d[this.config.xParameter]));
+                    return xScale(d[self.config.xParameter]);
 
                 } else {
 
-                    return xScale(d[this.config.xParameter]);
+                    return xScale(d[self.config.xParameter]);
                 }
             })
             .attr("y", function(d) { return dimensions.height; })
             .attr("height", 0)
             .attr("width", function(d) {
 
-                if (this.config.xParameter === '_date') {
+                if (self.config.xParameter === '_date') {
 
                     return 60;
                 } else {
@@ -68,39 +80,31 @@ export class ChartBar {
             })
             .transition()
             .duration(500)
-            .attr("y", (d) => yScale(d[this.config.yParameter]) + this.config.padding.top)
-            .attr("height", (d) => { dimensions.height - yScale(d[this.config.yParameter]) } )
+            .attr("y", (d) => yScale(d[this.config.yParameter]))
+            .attr("height", (d) => { return dimensions.height - yScale(d[self.config.yParameter]) } )
 
         ;
 
-        this.svg.barLabels
-            .merge(this.svg.barLabelsEnter)
+        this.barLabels
+            .merge(this.barLabelsEnter)
             .text(function(d) {
 
-                if(this.config.currencyLabels) {
+                if(self.config.currencyLabels) {
 
-                    return convertToCurrency(d[this.config.yParameter]);
+                    return convertToCurrency(d[self.config.yParameter]);
 
                 } else {
 
-                    return d[this.config.yParameter] ? d[this.config.yParameter] : '< 25';
+                    return d[self.config.yParameter] ? d[self.config.yParameter] : '< 25';
                 }
 
 
             })
             .attr('transform', function(d) {
 
-                if (this.config.xParameter === '_date') {
-
-                    return 'translate(' + (xScale(new Date(d[this.config.xParameter]))) + 60 + ',' +
-                        (yScale(d[this.config.yParameter]) + this.config.padding.top)
-
-                } else {
-
-                    return 'translate(' + (xScale(d[this.config.xParameter]) + (xScale.bandwidth() / 2)) + ',' +
-                        (yScale(d[this.config.yParameter]) + this.config.padding.top)
+                    return 'translate(' + (xScale(d[self.config.xParameter]) + (xScale.bandwidth() / 2)) + ',' +
+                        (yScale(d[self.config.yParameter]))
                         + ')';
-                }
             })
             .attr('fill-opacity', 0)
             .transition()

@@ -24,11 +24,12 @@ export class ChartFlowBetweenCircles {
         private config,
         private svgLayers
     ) {
+
+        this.init();
     }
 
-    draw(data) {
+    init() {
 
-        let self = this;
 
         this.startPoint = this.svgLayers.data
             .append("path")
@@ -44,6 +45,12 @@ export class ChartFlowBetweenCircles {
             .style("fill", (d) => {
                 return "#ccc";
             });
+
+    }
+
+    draw(data) {
+
+        let self = this;
 
         this.flows = this.svgLayers.data.selectAll('.flow')
             .data(data);
@@ -82,7 +89,7 @@ export class ChartFlowBetweenCircles {
             .attr("text-anchor","middle")
             .text( (d,i) => {
 
-                if (i < data.length - 1) {
+                if (i < data.length - 1 && d.turnover > 0) {
                     return d.turnover;
                 }
             })
@@ -99,227 +106,387 @@ export class ChartFlowBetweenCircles {
 
         ;
 
-
-        this.durationGroup = this.svgLayers.data.selectAll('.duration_group')
-            .data(data);
-
-        this.durationGroup.exit().remove();
-
-        this.durationGroupEnter = this.durationGroup.enter()
-            .append("g")
-            .attr("class","duration_group");
-
-        this.durationText = this.durationGroupEnter.merge(this.durationGroup)
-            .append("text")
-            .html( (d,i) => {
-
-                if (i > 0 && i < data.length - 1) {
-                    return d.duration + ' dagen';
-                }
-            })
-            .style("font-size", ".8rem")
-            .style("text-anchor", "middle");
-
-        this.durationLabel = this.svgLayers.data
-            .append('text')
-            .attr("class","small-label")
-            .text('Gem. tijd per stap:');
     }
 
     redraw(data,dimensions,rScale,xScale) {
 
         let self = this;
-
-        this.durationGroupEnter.merge(this.durationGroup)
-            .attr("transform", (d,i) => {
-
-                let halfway = data[i].cumulativeDuration + (data[i].duration / 2);
-                return "translate(" + xScale(halfway) + ", " +  (dimensions.height - 85) + ")"
-            });
-
-        this.durationLabel
-            .attr("transform", (d,i) => {
-                return "translate(" + xScale(0) + ", " +  (dimensions.height - 85) + ")"
-            });
     }
 
-    forceDirect(xScale,rScale,data) {
+    forceDirect(xScale,rScale,data,direction) {
 
         let self = this;
-        let triangleSize = 40;
+        let triangleSize = (direction === 'horizontal') ? 40 : 30;
 
-        self.flowsEnter.merge(self.flows)
-            .attr('d', (d,i) => {
+        if (direction === 'horizontal') {
 
-                if (i < 1) {
+            self.flowsEnter.merge(self.flows)
+                .attr('d', (d, i) => {
 
-                    let schuineZijde2 = rScale(data[i].value);
+                    if (i < 1) {
 
-                    let start1 = {
-                        x : xScale(data[i].cumulativeDuration),
-                        y : data[1].y + (triangleSize / 2)
+                        let schuineZijde2 = rScale(data[i].value);
+
+                        let start1 = {
+                            x: xScale(data[i].cumulativeDuration),
+                            y: data[1].y + (triangleSize / 2)
+                        }
+
+                        let start2 = {
+                            x: xScale(data[i].cumulativeDuration),
+                            y: data[1].y - (triangleSize / 2)
+                        }
+
+                        let end1 = {
+                            x: xScale(data[i + 1].cumulativeDuration),
+                            y: data[1].y - rScale(data[1].value)
+                        }
+
+                        let end2 = {
+                            x: xScale(data[i + 1].cumulativeDuration),
+                            y: data[1].y + rScale(data[1].value)
+                        }
+
+                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+
+                        let halfWay1 = {
+                            x: start2.x + ((end1.x - start2.x) / 2),
+                            y: start2.y + ((end1.y - start2.y) / 2) + knijp
+                        }
+
+                        let halfWay2 = {
+                            x: start1.x + ((end2.x - start1.x) / 2),
+                            y: start1.y + ((end2.y - start1.y) / 2) - knijp
+                        }
+
+                        return 'M' + start1.x + ' ' + start1.y +
+                            ' L' + start2.x + ' ' + start2.y +
+                            ' Q' + halfWay1.x + ' ' + halfWay1.y + ','
+                            + end1.x + ' ' + end1.y +
+                            ' L' + end2.x + ' ' + end2.y +
+                            ' Q' + halfWay2.x + ' ' + halfWay2.y  + ',' +
+                            + start1.x + ' ' + start1.y +
+                            ' Z';
+
+
+                    } else if (i < data.length - 2) {
+
+                        let xDistance = xScale(data[i + 1].cumulativeDuration) - xScale(data[i].cumulativeDuration);
+                        let yDistance = data[i + 1].y - data[i].y;
+                        let lineAngle = Math.atan(xDistance / yDistance);
+
+                        let schuineZijde1 = rScale(data[i].value);
+
+                        let xOffset1 = schuineZijde1 * Math.cos(lineAngle);
+                        let yOffset1 = schuineZijde1 * Math.sin(lineAngle);
+
+                        let schuineZijde2 = rScale(data[i + 1].value);
+
+                        let xOffset2 = schuineZijde2 * Math.cos(lineAngle);
+                        let yOffset2 = schuineZijde2 * Math.sin(lineAngle);
+
+                        let start1 = {
+                            x: xScale(data[i].cumulativeDuration) - xOffset1,
+                            y: d.y + yOffset1
+                        }
+
+                        let start2 = {
+                            x: xScale(data[i].cumulativeDuration) + xOffset1,
+                            y: d.y - yOffset1
+                        }
+
+                        let end1 = {
+                            x: xScale(data[i + 1].cumulativeDuration) + xOffset2,
+                            y: data[i + 1].y - yOffset2
+                        }
+
+                        let end2 = {
+                            x: xScale(data[i + 1].cumulativeDuration) - xOffset2,
+                            y: data[i + 1].y + yOffset2
+                        }
+
+                        let knijp = 45; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+
+                        let halfWay1 = {
+                            x: start2.x + ((end1.x - start2.x) / 2) - (knijp * Math.cos(lineAngle)),
+                            y: start2.y + ((end1.y - start2.y) / 2) + (knijp * Math.sin(lineAngle))
+                        }
+
+                        let halfWay2 = {
+                            x: start1.x + ((end2.x - start1.x) / 2) + (knijp * Math.cos(lineAngle)),
+                            y: start1.y + ((end2.y - start1.y) / 2) - (knijp * Math.sin(lineAngle))
+                        }
+
+                        return 'M' + start1.x + ' ' + start1.y +
+                            ' L' + start2.x + ' ' + start2.y +
+                            ' Q' + halfWay1.x + ' ' + halfWay1.y + ',' +
+                            end1.x + ' ' + end1.y +
+                            ' L' + end2.x + ' ' + end2.y +
+                            ' Q' + halfWay2.x + ' ' + halfWay2.y + ',' +
+                            start1.x + ' ' + start1.y +
+                            ' Z';
+
+                    } else if (i === data.length - 2) {
+
+                        let schuineZijde2 = rScale(data[i + 1].value);
+
+                        let start1 = {
+                            x: xScale(data[i].cumulativeDuration),
+                            y: d.y - rScale(data[i].value)
+                        }
+
+                        let start2 = {
+                            x: xScale(data[i].cumulativeDuration),
+                            y: d.y + rScale(data[i].value)
+                        }
+
+                        let end1 = {
+                            x: xScale(data[i + 1].cumulativeDuration),
+                            y: d.y + (triangleSize / 2)
+                        }
+
+                        let end2 = {
+                            x: xScale(data[i + 1].cumulativeDuration),
+                            y: d.y - (triangleSize / 2)
+                        }
+
+                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+
+                        let halfWay1 = {
+                            x: start2.x + ((end1.x - start2.x) / 2),
+                            y: start2.y + ((end1.y - start2.y) / 2) - knijp
+                        }
+
+                        let halfWay2 = {
+                            x: start1.x + ((end2.x - start1.x) / 2),
+                            y: start1.y + ((end2.y - start1.y) / 2) + knijp
+                        }
+
+
+                        return 'M' + start1.x + ' ' + start1.y +
+                            ' L' + start2.x + ' ' + start2.y +
+                            ' Q' + halfWay1.x + ' ' + halfWay1.y + ','
+                            + end1.x + ' ' + end1.y +
+                            ' L' + end2.x + ' ' + end2.y +
+                            ' Q' + halfWay2.x + ' ' + halfWay2.y + ',' +
+                            +start1.x + ' ' + start1.y +
+                            ' Z';
+
+                    }
+                });
+
+        } else {
+
+
+            self.flowsEnter.merge(self.flows)
+                .attr('d', (d, i) => {
+
+                    if ( i === 0) {
+
+                        let schuineZijde2 = rScale(data[i].value);
+
+                        let start1 = {
+                            x: data[1].x + (triangleSize / 2),
+                            y: xScale(data[i].cumulativeDuration)
+                        }
+
+                        let start2 = {
+                            x: data[1].x - (triangleSize / 2),
+                            y: xScale(data[i].cumulativeDuration)
+                        }
+
+                        let end1 = {
+                            x: data[1].x - (rScale(data[1].value / 8)),
+                            y: xScale(data[i + 1].cumulativeDuration)
+                        }
+
+                        let end2 = {
+                            x: data[1].x + (rScale(data[1].value / 8)),
+                            y: xScale(data[i + 1].cumulativeDuration)
+                        }
+
+                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+
+                        let halfWay1 = {
+                            x: start2.x + ((end1.x - start2.x) / 2),
+                            y: start2.y + ((end1.y - start2.y) / 2) - knijp
+                        }
+
+                        let halfWay2 = {
+                            x: start1.x + ((end2.x - start1.x) / 2),
+                            y: start1.y + ((end2.y - start1.y) / 2) + knijp
+                        }
+
+                        return 'M' + start1.x + ' ' + start1.y +
+                            ' L' + start2.x + ' ' + start2.y +
+                            ' Q' + halfWay1.x + ' ' + halfWay1.y + ','
+                            + end1.x + ' ' + end1.y +
+                            ' L' + end2.x + ' ' + end2.y +
+                            ' Q' + halfWay2.x + ' ' + halfWay2.y  + ',' +
+                            + start1.x + ' ' + start1.y +
+                            ' Z';
+
+
+                    } else if ( i < data.length - 2 ) {
+
+                        let yDistance = xScale(data[i + 1].cumulativeDuration) - xScale(data[i].cumulativeDuration);
+                        let xDistance = data[i + 1].x - data[i].x;
+                        let lineAngle = Math.atan(xDistance / yDistance);
+
+                        let schuineZijde1 = rScale(data[i].value);
+
+                        let xOffset1 = schuineZijde1 * Math.cos(lineAngle);
+                        let yOffset1 = schuineZijde1 * Math.sin(lineAngle);
+
+                        let schuineZijde2 = rScale(data[i + 1].value);
+
+                        let xOffset2 = schuineZijde2 * Math.cos(lineAngle);
+                        let yOffset2 = schuineZijde2 * Math.sin(lineAngle);
+
+                        let start1 = {
+                            x: d.x + xOffset1,
+                            y: xScale(data[i].cumulativeDuration) - yOffset1,
+                        }
+
+                        let start2 = {
+                            x: d.x - xOffset1,
+                            y: xScale(data[i].cumulativeDuration) + yOffset1
+                        }
+
+                        let end1 = {
+                            x: data[i + 1].x - xOffset2,
+                            y: xScale(data[i + 1].cumulativeDuration) + yOffset2,
+                        }
+
+                        let end2 = {
+                            x: data[i + 1].x + xOffset2,
+                            y: xScale(data[i + 1].cumulativeDuration) - yOffset2
+                        }
+
+                        let knijp = 45; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+
+                        let halfWay1 = {
+                            x: start2.x + ((end1.x - start2.x) / 2) + (knijp * Math.cos(lineAngle)),
+                            y: start2.y + ((end1.y - start2.y) / 2) - (knijp * Math.sin(lineAngle))
+                        }
+
+                        let halfWay2 = {
+                            x: start1.x + ((end2.x - start1.x) / 2) - (knijp * Math.cos(lineAngle)),
+                            y: start1.y + ((end2.y - start1.y) / 2) + (knijp * Math.sin(lineAngle))
+                        }
+
+                        return 'M' + start1.x + ' ' + start1.y +
+                            ' L' + start2.x + ' ' + start2.y +
+                            ' Q' + halfWay1.x + ' ' + halfWay1.y + ',' +
+                                end1.x + ' ' + end1.y +
+                            ' L' + end2.x + ' ' + end2.y +
+                            ' Q' + halfWay2.x + ' ' + halfWay2.y + ',' +
+                                start1.x + ' ' + start1.y +
+                            ' Z';
+                    } else if (i === data.length - 2) {
+
+                        let schuineZijde2 = rScale(data[i + 1].value);
+
+                        let start1 = {
+                            x: d.x - (rScale(data[i].value / 8)),
+                            y: xScale(data[i].cumulativeDuration)
+                        }
+
+                        let start2 = {
+                            x: d.x + (rScale(data[i].value / 8)),
+                            y: xScale(data[i].cumulativeDuration)
+                        }
+
+                        let end1 = {
+                            x: d.x + (triangleSize / 2),
+                            y: xScale(data[i + 1].cumulativeDuration)
+                        }
+
+                        let end2 = {
+                            x: d.x - (triangleSize / 2),
+                            y: xScale(data[i + 1].cumulativeDuration)
+                        }
+
+                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+
+                        let halfWay1 = {
+                            x: start2.x + ((end1.x - start2.x) / 2),
+                            y: start2.y + ((end1.y - start2.y) / 2) + knijp
+                        }
+
+                        let halfWay2 = {
+                            x: start1.x + ((end2.x - start1.x) / 2),
+                            y: start1.y + ((end2.y - start1.y) / 2) - knijp
+                        }
+
+
+                        return 'M' + start1.x + ' ' + start1.y +
+                            ' L' + start2.x + ' ' + start2.y +
+                            ' Q' + halfWay1.x + ' ' + halfWay1.y + ','
+                            + end1.x + ' ' + end1.y +
+                            ' L' + end2.x + ' ' + end2.y +
+                            ' Q' + halfWay2.x + ' ' + halfWay2.y + ',' +
+                            +start1.x + ' ' + start1.y +
+                            ' Z';
+
                     }
 
-                    let start2 = {
-                        x : xScale(data[i].cumulativeDuration),
-                        y : data[1].y - (triangleSize / 2)
-                    }
+                });
 
-                    let end1 = {
-                        x : xScale(data[i + 1].cumulativeDuration),
-                        y : data[1].y - rScale(data[1].value)
-                    }
-
-                    let end2 = {
-                        x : xScale(data[i + 1].cumulativeDuration),
-                        y : data[1].y + rScale(data[1].value)
-                    }
-
-                    let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
-
-                    let halfWay1 = {
-                        x: start2.x + ((end1.x - start2.x) / 2),
-                        y: start2.y + ((end1.y - start2.y) / 2) + knijp
-                    }
-
-                    let halfWay2 = {
-                        x: start1.x + ((end2.x - start1.x) / 2),
-                        y: start1.y + ((end2.y - start1.y) / 2) - knijp
-                    }
-
-                    return 'M' + start1.x + ' ' + start1.y +
-                        ' L' + start2.x + ' ' + start2.y +
-                        ' Q' + halfWay1.x + ' ' + halfWay1.y + ','
-                        + end1.x + ' ' + end1.y +
-                        ' L' + end2.x + ' ' + end2.y +
-                        ' Q' + halfWay2.x + ' ' + halfWay2.y  + ',' +
-                        + start1.x + ' ' + start1.y +
-                        ' Z';
-
-
-                } else if (i < data.length - 2) {
-
-                    let xDistance = xScale(data[i + 1].cumulativeDuration) - xScale(data[i].cumulativeDuration);
-                    let yDistance = data[i + 1].y - data[i].y;
-                    let lineAngle = Math.atan(xDistance / yDistance);
-
-                    let schuineZijde1 = rScale(data[i].value);
-
-                    let xOffset1 = schuineZijde1 * Math.cos(lineAngle);
-                    let yOffset1 = schuineZijde1 * Math.sin(lineAngle);
-
-                    let schuineZijde2 = rScale(data[i + 1].value);
-
-                    let xOffset2 = schuineZijde2 * Math.cos(lineAngle);
-                    let yOffset2 = schuineZijde2 * Math.sin(lineAngle);
-
-                    let start1 = {
-                        x : xScale(data[i].cumulativeDuration) - xOffset1,
-                        y : d.y + yOffset1
-                    }
-
-                    let start2 = {
-                        x : xScale(data[i].cumulativeDuration) + xOffset1,
-                        y : d.y - yOffset1
-                    }
-
-                    let end1 = {
-                        x : xScale(data[i + 1].cumulativeDuration) + xOffset2,
-                        y : data[i + 1].y - yOffset2
-                    }
-
-                    let end2 = {
-                        x : xScale(data[i + 1].cumulativeDuration) - xOffset2,
-                        y : data[i + 1].y + yOffset2
-                    }
-
-                    let knijp = 45; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
-
-                    let halfWay1 = {
-                        x: start2.x + ((end1.x - start2.x) / 2) - ( knijp * Math.cos(lineAngle)),
-                        y: start2.y + ((end1.y - start2.y) / 2) + ( knijp * Math.sin(lineAngle))
-                    }
-
-                    let halfWay2 = {
-                        x: start1.x + ((end2.x - start1.x) / 2) + ( knijp * Math.cos(lineAngle)),
-                        y: start1.y + ((end2.y - start1.y) / 2) - ( knijp * Math.sin(lineAngle))
-                    }
-
-                    return 'M' + start1.x + ' ' + start1.y +
-                        ' L' + start2.x + ' ' + start2.y +
-                        ' Q' + halfWay1.x + ' ' + halfWay1.y + ',' +
-                        end1.x + ' ' + end1.y +
-                        ' L' + end2.x + ' ' + end2.y +
-                        ' Q' + halfWay2.x + ' ' + halfWay2.y  + ',' +
-                        start1.x + ' ' + start1.y +
-                        ' Z';
-
-                } else if (i === data.length - 2) {
-
-                    let schuineZijde2 = rScale(data[i + 1].value);
-
-                    let start1 = {
-                        x : xScale(data[i].cumulativeDuration),
-                        y : d.y - rScale(data[i].value)
-                    }
-
-                    let start2 = {
-                        x : xScale(data[i].cumulativeDuration),
-                        y : d.y + rScale(data[i].value)
-                    }
-
-                    let end1 = {
-                        x : xScale(data[i + 1].cumulativeDuration),
-                        y : d.y + (triangleSize / 2)
-                    }
-
-                    let end2 = {
-                        x : xScale(data[i + 1].cumulativeDuration),
-                        y : d.y - (triangleSize / 2)
-                    }
-
-                    let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
-
-                    let halfWay1 = {
-                        x: start2.x + ((end1.x - start2.x) / 2),
-                        y: start2.y + ((end1.y - start2.y) / 2) - knijp
-                    }
-
-                    let halfWay2 = {
-                        x: start1.x + ((end2.x - start1.x) / 2),
-                        y: start1.y + ((end2.y - start1.y) / 2) + knijp
-                    }
-
-                    return 'M' + start1.x + ' ' + start1.y +
-                        ' L' + start2.x + ' ' + start2.y +
-                        ' Q' + halfWay1.x + ' ' + halfWay1.y + ','
-                        + end1.x + ' ' + end1.y +
-                        ' L' + end2.x + ' ' + end2.y +
-                        ' Q' + halfWay2.x + ' ' + halfWay2.y  + ',' +
-                        + start1.x + ' ' + start1.y +
-                        ' Z';
-                }
-            });
+        }
 
         let xPosStart = xScale(data[0].cumulativeDuration);
+        let startPoint;
 
-        let startPoint = 'M' + xPosStart + ' ' + (data[1].y - triangleSize) +
-            ' L' + (xPosStart + triangleSize) + ' ' + data[1].y +
-            ' L' + xPosStart + ' ' + (data[1].y + triangleSize) +
-            ' Z';
+        if (direction === 'horizontal') {
+
+            startPoint = 'M' + xPosStart + ' ' + (data[1].y - triangleSize) +
+                ' L' + (xPosStart + triangleSize) + ' ' + data[1].y +
+                ' L' + xPosStart + ' ' + (data[1].y + triangleSize) +
+                ' Z';
+
+        } else {
+
+            startPoint = 'M' + (data[1].x - triangleSize) + ' ' + xPosStart +
+                ' L' + data[1].x + ' ' + (xPosStart + triangleSize) +
+                ' L' + (data[1].x + triangleSize) + ' ' + xPosStart +
+                ' Z';
+
+        }
 
         self.startPoint
             .attr("d", startPoint);
 
         let xPosEnd = xScale(data[data.length - 1].cumulativeDuration);
+        let endPoint;
 
-        let endPoint = 'M' + xPosEnd + ' ' + (data[data.length - 2].y - triangleSize) +
-            ' L' + (xPosEnd + triangleSize) + ' ' + data[data.length - 2].y +
-            ' L' + xPosEnd + ' ' + (data[data.length - 2].y + triangleSize) +
-            ' Z';
+        if (direction === 'horizontal') {
+
+            endPoint = 'M' + xPosEnd + ' ' + (data[data.length - 2].y - triangleSize) +
+                ' L' + (xPosEnd + triangleSize) + ' ' + data[data.length - 2].y +
+                ' L' + xPosEnd + ' ' + (data[data.length - 2].y + triangleSize) +
+                ' Z';
+
+        } else {
+
+            endPoint = 'M' + (data[data.length - 2].x - triangleSize) + ' ' + xPosEnd +
+                ' L' + data[data.length - 2].x + ' ' + (xPosEnd + triangleSize) +
+                ' L' + (data[data.length - 2].x + triangleSize) + ' ' + xPosEnd +
+                ' Z';
+        }
 
         self.endPoint
             .attr("d", endPoint);
+
+        if (direction !== 'horizontal') {
+
+            // self.startPoint
+            //     .style("opacity",0)
+            //
+            // self.endPoint
+            //     .style("opacity",0)
+
+        }
 
         self.turnoverEnter.merge(self.turnover)
             .attr('x', (d,i) => {

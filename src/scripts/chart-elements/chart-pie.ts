@@ -42,13 +42,13 @@ export class ChartPie {
         let radius, arc, labelArc, innerRadius;
 
 
-        if(window.innerWidth < 480) {
+        if(window.innerWidth < 700) {
 
-            // radius = 66;
-            // innerRadius = 20;
+            radius = 90;
+            innerRadius = 20;
 
             this.svg.layers.data
-                .attr("transform", "translate(" + radius + ",66)");
+                .attr("transform", "translate(" + (dimensions.width / 2) + "," + 100 + ")");
 
             labelArc = d3.arc()
                 .outerRadius(radius - 0)

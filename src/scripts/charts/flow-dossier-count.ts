@@ -1,9 +1,11 @@
 import * as d3 from "d3";
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes} from "../chart-basics/module";
 
-import { ChartCircles, ChartBrackets, ChartFlowBetweenCircles, ChartFlowDuration, HtmlLink } from "../chart-elements/module"
+import { ChartCircles, ChartBrackets, ChartFlowBetweenCircles, HtmlHeader, HtmlLink, HtmlPopup } from "../chart-elements/module";
 
-export class Flow {
+import { breakpoints} from "../_styleguide/_breakpoints";
+
+export class FlowDossierCount {
 
 
     element;
@@ -23,17 +25,18 @@ export class Flow {
     chartCircles;
     chartBrackets;
     chartFlowBetweenCircles;
-    chartFlowDuration;
 
     link;
-
+    popup;
+    htmlHeader;
     simulation;
 
     constructor(
         private data,
         private elementID,
         private config,
-        private dataMapping
+        private dataMapping,
+        private description
     ) {
         this.element = d3.select(elementID).node();
     }
@@ -43,10 +46,21 @@ export class Flow {
         let self = this;
 
         let chartObjects = ChartObjects();
-        this.config = Object.assign(this.config,chartObjects.config());
+
+        this.config = Object.assign(chartObjects.config(), this.config);
 
         this.dimensions = chartObjects.dimensions();
         this.svg = chartObjects.svg();
+
+        // for mobile
+
+
+        if (window.innerWidth < breakpoints.sm) {
+            this.config.padding.left = 200;
+            this.config.padding.right = 50;
+            // this.config.extra.radiusFactor = 1;
+        }
+
 
         this.chartDimensions = new ChartDimensions(this.element,this.config);
         this.dimensions = this.chartDimensions.get(this.dimensions);
@@ -63,9 +77,8 @@ export class Flow {
 
         // kan ik circles hergebruiken?
         this.chartCircles = new ChartCircles(this.config,this.svg.layers);
-        this.chartBrackets = new ChartBrackets(this.config,this.svg);
+      //  this.chartBrackets = new ChartBrackets(this.config,this.svg);
         this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this.config,this.svg.layers);
-        this.chartFlowDuration = new ChartFlowDuration(this.config,this.svg.layers);
 
         this.xAxis.draw();
 
@@ -75,90 +88,37 @@ export class Flow {
         // this.redraw(data);
         // this.legend(data,this.elementID);
 
+
+        if (this.config.extra.header) {
+            this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
+            this.htmlHeader.draw();
+        }
+
+        this.popup = new HtmlPopup(this.element,this.description);
+
         this.update(this.data)
 
-        this.link = new HtmlLink(this.element,'doorlooptijden','');
+     //   this.link = new HtmlLink(this.element,'doorlooptijden','');
     }
 
     prepareData(newData) {
 
-        let data = [
+        let data = [];
 
+        for (let mapping of this.dataMapping) {
 
-            {
-                label: 'Nieuwe meldingen',
-                colour: "red",
-                value: 0,
-                duration: 28,
-                turnover: 750,
-                inflow: 750,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Ontvangst & Analyse',
-                colour: "red",
-                value: 2500,
-                duration: 28,
-                turnover: 650,
-                inflow: 750,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Planning schade-opname',
-                colour: "red",
-                value: 2100,
-                duration: 32,
-                turnover: 480,
-                inflow: 650,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Ingepland voor opname',
-                colour: "green",
-                value: 2230,
-                duration: 28,
-                turnover: 610,
-                inflow: 610,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Opleveren rapport',
-                colour: "green",
-                value: 3750,
+            data.push({
+
+                label: mapping.label,
+                colour: 'blue',  // de in between flows corresponderen met duration .. dus evt een kleur
+                value: this.data[0][mapping.column],
                 duration: 30,
-                turnover: 660,
-                inflow: 610,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Rapport bij bewoner',
-                colour: "red",
-                value: 1320,
-                duration: 30,
-                turnover: 510,
-                inflow: 660,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Voorbereiden besluit',
-                colour: "green",
-                value: 2300,
-                duration: 28,
-                turnover: 750,
-                inflow: 510,
-                cumulativeDuration: 0
-            },
-            {
-                label: 'Afgerond',
-                colour: "blue",
-                value: 100,
-                duration: 0,
                 turnover: 0,
-                inflow: 850,
+                inflow: 0,
                 cumulativeDuration: 0
-            }
+            })
 
-        ]
+        }
 
         let sum = 0;
 
@@ -180,14 +140,11 @@ export class Flow {
         this.xScale = this.chartXScale.set(data.map( (d) => d[self.config.xParameter] + d['duration']).concat(0));
         this.rScale = this.chartRScale.set(data.map( (d) => d.value));
 
-        this.simulation = d3.forceSimulation()
-            .velocityDecay(0.25)
-            .nodes(data);
 
-        this.chartFlowBetweenCircles.draw(data);
-        this.chartFlowDuration.draw(data);
+
+        this.chartFlowBetweenCircles.draw(data)
         this.chartCircles.draw(data);
-        this.chartBrackets.draw(data);
+     //   this.chartBrackets.draw(data);
 
     }
 
@@ -195,36 +152,42 @@ export class Flow {
 
         let self = this;
 
+        let direction = window.innerWidth > breakpoints.sm ? 'horizontal' : 'vertical-reverse';
+
         this.dimensions = this.chartDimensions.get(this.dimensions);
         this.chartSVG.redraw(this.dimensions);
 
-        this.xScale = this.chartXScale.reset('horizontal',this.dimensions,this.xScale);
+        this.xScale = this.chartXScale.reset(direction,this.dimensions,this.xScale);
         this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale)
 
       //  this.xAxis.redrawXLinearAxisBottom(this.xScale,this.dimensions);
 
-        this.chartCircles.redraw(data,this.dimensions,this.rScale,this.xScale)
-        this.chartBrackets.redraw(data,this.dimensions,this.rScale,this.xScale)
-        this.chartFlowBetweenCircles.redraw(data,this.dimensions,this.rScale,this.xScale);
-        this.chartFlowDuration.redraw(data,this.dimensions,this.rScale,this.xScale);
+        this.chartCircles.redraw(data,this.dimensions,this.rScale,this.xScale, direction);
+    //    this.chartBrackets.redraw(data,this.dimensions,this.rScale,this.xScale)
+        this.chartFlowBetweenCircles.redraw(data,this.dimensions,this.rScale,this.xScale, direction);
 
-        let center = {x: (this.dimensions.width / 2) , y: ((this.dimensions.height / 2) - 40) };
+        let center = {x: (this.dimensions.width / 2) , y: ((this.dimensions.height / 2) + 0) };
         let forceStrength = 0.025;
 
-        function ticked() {
-
-            self.chartCircles.forceDirect(self.xScale, self.rScale, data);
-            self.chartFlowBetweenCircles.forceDirect(self.xScale, self.rScale, data);
-        }
+        this.simulation = d3.forceSimulation()
+            .nodes(data);
 
         this.simulation
             .velocityDecay(0.5)
-            // .force('y', d3.forceY().strength(forceStrength).y(center.y))
             .force('center', d3.forceCenter(center.x,center.y))
-            //   .force('charge', d3.forceManyBody().strength(cluster))
             .force('collide', d3.forceCollide().radius((d : any) => this.rScale(d.value)))
-            .force('y', d3.forceY().strength(forceStrength).y(center.y))
-            .on('tick', ticked);
+            .on('tick', () => {
+
+                self.chartCircles.forceDirect(self.xScale, self.rScale, data, direction);
+                self.chartFlowBetweenCircles.forceDirect(self.xScale, self.rScale, data, direction);
+            });
+
+        if (direction === 'horizontal') {
+
+            this.simulation.force('y', d3.forceY().strength(forceStrength).y(center.y ))
+        } else {
+            this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x ))
+        }
 
     }
 

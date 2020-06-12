@@ -34,10 +34,23 @@ export class HtmlCircle {
         number.style.fontSize = '3rem';
         number.style.lineHeight = "1";
         number.style.color = 'white';
-        number.style.fontFamily = 'Replica';
+        number.style.fontFamily = "Replica";
 
         // number.innerText = data[0][this.property];
         div.appendChild(number);
+
+        if(this.config.extra.units) {
+
+            let units = document.createElement('span');
+            units.classList.add('units');
+            units.innerText = this.config.extra.units;
+            units.style.color = 'white';
+            units.style.fontFamily = 'NotoSans Regular';
+            units.style.fontSize = '0.8rem';
+            units.style.display = 'block';
+            // units.style.marginTop = '1rem';
+            div.appendChild(units);
+        }
 
 
 
@@ -78,18 +91,7 @@ export class HtmlCircle {
 
         miniContainer.appendChild(div);
 
-        if(this.config.extra.units) {
 
-            let units = document.createElement('span');
-            units.classList.add('units');
-            units.innerText = this.config.extra.units;
-            units.style.color = colours[this.dataMapping[0].colour][0];
-            units.style.fontFamily = 'Replica';
-            units.style.fontSize = '1rem';
-            units.style.display = 'block';
-            units.style.marginTop = '1rem';
-            this.element.prepend(units);
-        }
 
         this.element.prepend(miniContainer);
     }

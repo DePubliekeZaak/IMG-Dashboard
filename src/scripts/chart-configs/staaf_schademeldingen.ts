@@ -42,6 +42,7 @@ export const staafSchademeldingen : GraphObject = {
         "muniSelect": false
     }
 },
+    "description" : "",
     "endpoint": "/api/data",
     "segment": "all",
     "publishDate": false

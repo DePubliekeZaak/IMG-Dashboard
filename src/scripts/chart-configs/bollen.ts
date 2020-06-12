@@ -76,6 +76,7 @@ export const bollen: GraphObject = {
             "useLineFill": true
         }
     },
+    "description" : "",
     "endpoint": "/api/data",
     "segment": "all",
     "publishDate": false

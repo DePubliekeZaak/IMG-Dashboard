@@ -72,8 +72,6 @@ export class ChartScale {
                     ]).nice();
 
                 break;
-
-
         }
 
     }
@@ -107,8 +105,10 @@ export class ChartScale {
 
             case 'radius' :
 
+                let langsteZijde = dimensions.width > dimensions.height ? dimensions.width : dimensions.height;
+
                 return newScale
-                    .range([this.config.extra.minRadius, (dimensions.width / this.dataLength) * this.config.extra.radiusFactor]);
+                    .range([this.config.extra.minRadius, (langsteZijde / this.dataLength) * this.config.extra.radiusFactor]);
 
                 break;
 

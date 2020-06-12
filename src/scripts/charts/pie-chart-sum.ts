@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartPie, HtmlHeader, HtmlLink } from '../chart-elements/module';
+import { ChartPie, HtmlHeader, HtmlLink, HtmlPopup } from '../chart-elements/module';
 
 import { convertToCurrency } from '../helpers/_helpers';
 import { colours } from '../_styleguide/_colours.js';
@@ -22,6 +22,7 @@ export class PieChartSum  {
     htmlHeader;
     legend;
     link;
+    popup;
 
     rowHeight = 22;
 
@@ -29,7 +30,8 @@ export class PieChartSum  {
         private data,
         private elementID,
         private config,
-        private dataMapping
+        private dataMapping,
+        private description
     ) {
         this.element = d3.select(elementID).node();
     }
@@ -62,10 +64,10 @@ export class PieChartSum  {
         if (this.config.extra.header) {
             this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
             this.htmlHeader.draw();
-            this.link = new HtmlLink(this.element,this.config.extra.header,'');
+           // this.link = new HtmlLink(this.element,this.config.extra.header,'');
         }
 
-
+        this.popup = new HtmlPopup(this.element,this.description);
 
     }
 
@@ -87,9 +89,29 @@ export class PieChartSum  {
 
                 } else if (Array.isArray(mapping.column)) {
 
-                    for (let prop of mapping.column) {
-                        value += data[prop];
-                        sum += data[prop];
+                    let mathType = mapping.column[mapping.column.length - 1];
+
+                    switch (mathType) {
+
+                        case '+' :
+
+                            for (let prop of mapping.column.slice(0, mapping.column.length - 1)) {
+
+                                value += data[0][prop];
+                                sum += data[0][prop];
+                            }
+
+                            break;
+
+                        case '-' :
+
+                            let diff = data[0][mapping.column[0]] - data[0][mapping.column[1]];
+
+                            value += diff;
+                            sum += diff;
+
+                            break;
+
                     }
 
                 } else {

@@ -7,7 +7,6 @@ export class HtmlHeader {
 
     draw() {
 
-
         if (this.element.querySelector('.article_header')) { this.element.querySelector('.article_header').remove() }
 
         let headerContainer = document.createElement('div');
@@ -17,7 +16,6 @@ export class HtmlHeader {
         headerContainer.style.width = 'calc(100% - 0px)';
         headerContainer.style.paddingBottom = '.5rem';
         headerContainer.style.marginBottom = '1.5rem';
-
 
         let h = document.createElement('h3');
         h.innerText = this.label;
@@ -53,7 +51,6 @@ export class HtmlHeader {
         }
 
         this.element.prepend(headerContainer);
-
     }
 
     redraw() {

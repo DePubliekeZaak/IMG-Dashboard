@@ -1,7 +1,9 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartBar } from '../chart-elements/module';
+import { ChartBar, HtmlHeader } from '../chart-elements/module';
 import * as d3 from 'd3';
+
+
 
 export class BandBars {
 
@@ -22,17 +24,19 @@ export class BandBars {
     bottomAxis;
     leftAxis;
 
+    htmlHeader;
+
     constructor(
 
-        private elementID,
-        private config,
-        private dataMapping,
-        private segment,
-        private  data
+        private data : any,
+        private elementID : string,
+        private config : any,
+        private dataMapping : [any]
+
     ){
-        this.element = d3.select(elementID).node();
-        this.yParameter = dataMapping[0].column;
-        this.config.yParameter = dataMapping[0].column;
+        this.element = d3.select(this.elementID).node();
+        this.yParameter = this.dataMapping[0].column;
+        // this.config.yParameter = this.dataMapping[0].column;
     }
 
     init() {
@@ -42,22 +46,12 @@ export class BandBars {
         // this.radios = [].slice.call(document.querySelectorAll('.selector li input[type=radio]'));
     //    this.municipalitySelect = document.querySelector('select.municipalities');
 
+        // dit kan als je de api van de kaart pakt ..
+
         let chartObjects = ChartObjects();
-        this.config = Object.assign(this.config,chartObjects.config());
+        this.config = Object.assign(chartObjects.config(),this.config);
         this.dimensions = chartObjects.dimensions();
         this.svg = chartObjects.svg();
-
-        // this.config.margin.bottom = (window.innerWidth < 640 || this.smallMultiple) ? 125 : 50;
-        // this.config.margin.top = this.smallMultiple? 30 : 45;
-        // this.config.padding.top = 30;
-        //
-        // this.config.padding.left = 40;
-        //
-        // this.config.xParameter = 'label';
-        // this.config.yParameter = 'value';
-
-        this.config.paddingInner = 0.1;
-        this.config.paddingOuter = 0.1;
 
         // get dimensions from parent element
         this.chartDimensions = new ChartDimensions(this.elementID, this.config);
@@ -69,42 +63,42 @@ export class BandBars {
         this.chartYScale = new ChartScale(this.config.yScaleType, this.config, this.dimensions);
         this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
         this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
-        this.chartBar = new ChartBar(this.config, this.svg);
-        // this.chartLegend = ChartLegend(this.config, this.svg);
+        this.chartBar = new ChartBar(this.config, this.svg.layers);
 
-        // this.chartAxis.drawXAxis();
-        // this.chartAxis.drawYAxis();
+        this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
+        this.htmlHeader.draw();
 
-
-        self.run();
+        self.update(this.data);
     }
 
-    prepareData()  {
+    prepareData(newData)  {
 
         let data = [];
 
-        // let segmented = this.data.find( j => j['_category'] === this.segment);
+        // dit kan als je de api van de kaart pakt ..
 
-        for (let week of this.data) {
 
-            for (let mapping of this.dataMapping) {
 
-                data.push(
-                    {
-                        label:  mapping[0].label,
-                        colour: mapping[0].colour,
-                        value: week[mapping[0].column]
-                    }
-                )
-            }
+        // let segmented = newData.find( j => j['_category'] === this.segment);
+
+        for (let mapping of this.dataMapping) {
+
+            data.push(
+                {
+                    label:  mapping.label,
+                    colour: mapping.colour,
+                    value: newData[0][mapping.column]
+                }
+            )
         }
+
 
         return data;
     }
 
     redraw(data) {
 
-        this.yScale = this.chartYScale.set(data,this.config.yParameter);
+        this.yScale = this.chartYScale.set(data.map ( d => d[this.config.yParameter]));
 
         // on redraw chart gets new dimensions
         this.dimensions = this.chartDimensions.get(this.dimensions);
@@ -126,14 +120,13 @@ export class BandBars {
         this.chartBar.draw(data);
     }
 
-    run() {
+    update(newData) {
 
         let self = this;
 
-        let data = this.prepareData();
+        let data = this.prepareData(newData);
         this.draw(data);
         this.redraw(data);
-        // legend(data);
 
         window.addEventListener("resize", () => self.redraw(data), false);
     }

@@ -60,6 +60,7 @@ export const taartSchadevergoedingen : GraphObject = {
                 "innerRadius": 20
             }
         },
+        "description" : "",
         "endpoint": "/api/data",
         "segment": "all",
         "publishDate": false

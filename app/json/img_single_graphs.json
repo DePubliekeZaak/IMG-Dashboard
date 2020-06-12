@@ -70,5 +70,13 @@
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
+  },
+  {
+    "label" : "Ballenbak specials",
+    "value" : "ballenbak_specials",
+    "className": "img-custom-graph",
+    "scripts": [
+      "https://graphs.publikaan.nl/graph-selector/bundle.js"
+    ]
   }
 ]

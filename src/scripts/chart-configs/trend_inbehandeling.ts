@@ -36,6 +36,7 @@ export const trendInBehandeling : GraphObject = {
             "useLineFill": true
         }
     },
+    "description" : "",
     "endpoint": "/api/data",
     "segment": "all",
     "publishDate": false

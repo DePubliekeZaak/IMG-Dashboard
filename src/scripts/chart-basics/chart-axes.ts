@@ -91,8 +91,11 @@ export class ChartAxes {
 
                case 'time' :
 
+
+                   let tickSpread = (window.innerWidth > 700) ? 1 : 3;
+
                    this.axis
-                       .ticks(d3[this.config.extra.xScaleTicks].every(1))
+                       .ticks(d3[this.config.extra.xScaleTicks].every(tickSpread))
                        .tickFormat( date => (d3.timeYear(date) < date) ? localTime.format('%b')(date) : localTime.format('%Y')(date));
 
                    break;
@@ -170,6 +173,15 @@ export class ChartAxes {
                 .transition()
                 .duration(1000)
                 .call(this.axis.scale(scale));
+
+            if(this.config.extra.alternateTicks && this.position === 'bottom') {
+
+                this.svg.layers.axes.selectAll("g.x-axis g.tick text")
+                    .attr("dy", (d,i) => {
+
+                        return (i % 2 == 0 ) ? 16 : 32
+                    } );
+            }
     }
 
 }

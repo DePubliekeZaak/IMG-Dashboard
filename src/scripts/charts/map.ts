@@ -2,7 +2,10 @@ import * as d3 from "d3";
 import * as topojson from "topojson-client";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale} from "../chart-basics/module";
-import { ChartMap } from "../chart-elements/module";
+import {ChartMap, HtmlHeader, HtmlPopup} from "../chart-elements/module";
+
+import { geodata } from "../helpers/geodata.js";
+import { slugify} from "../utils/slugify.utils";
 
 export class Map {
 
@@ -20,11 +23,15 @@ export class Map {
     features;
     chartMap;
 
+    popup;
+    htmlHeader;
+
     constructor(
         private data,
         private elementID,
         private config,
-        private dataMapping
+        private dataMapping,
+        private description
     ) {
         this.element = d3.select(elementID).node();
         this.parameter = this.dataMapping[0]['column'];
@@ -34,15 +41,18 @@ export class Map {
 
     init() {
 
+        const container = document.createElement('section');
+        this.element.appendChild(container);
+
         let self = this;
         let chartObjects = ChartObjects();
         this.config = Object.assign(chartObjects.config(),this.config);
-        this.dimensions = new ChartDimensions(this.element,this.config);
+        this.dimensions = new ChartDimensions(container,this.config);
         this.svg = chartObjects.svg();
 
         this.chartDimensions = new ChartDimensions(this.element,this.config);
         this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartSVG = new ChartSVG(this.element,this.config,this.dimensions,this.svg);
+        this.chartSVG = new ChartSVG(container,this.config,this.dimensions,this.svg);
         this.chartScale = new ChartScale('linear',this.config,this.dimensions);
 
         this.chartSVG.redraw(this.dimensions);
@@ -51,13 +61,33 @@ export class Map {
         this.chartMap.init();
         this.update(this.data);
 
+
+        if (this.config.extra.header) {
+            this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
+            this.htmlHeader.draw();
+        }
+
+        this.popup = new HtmlPopup(this.element,this.description);
+
     }
 
-    prepareData(json)  {
+    prepareData(data)  {
 
-        let features = topojson.feature(json, json.objects.gemeenten).features;
+        let features = topojson.feature(geodata, geodata.objects.gemeenten).features;
 
         for (let feature of features) {
+
+            let muni = data.filter( (m) => {
+                return m.gemeente === slugify(feature.properties.gemeentenaam).toLowerCase();
+            })[0];
+
+            if(muni && Object.entries(muni).length > 0) {
+
+                for (let prop of Object.entries(muni)) {
+
+                    feature.properties[prop[0]] = prop[1];
+                }
+            }
 
             feature.properties.colour = this.dataMapping[0].colour;
         }
@@ -83,9 +113,9 @@ export class Map {
         this.chartMap.redraw(this.dimensions,this.parameter,this.scale);
     }
 
-    update(geoData) {
+    update(data) {
 
-        let features = this.prepareData(geoData);
+        let features = this.prepareData(data);
         this.draw(features);
         this.redraw(features);
     }

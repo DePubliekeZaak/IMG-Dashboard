@@ -4,6 +4,8 @@ import * as topojson from "topojson-client";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale} from "../chart-basics/module";
 import { ChartMap } from "../chart-elements/module";
+import {geodata} from "../helpers/geodata";
+import {slugify} from "../utils/slugify.utils";
 
 
 export class DashboardMap {
@@ -45,10 +47,11 @@ export class DashboardMap {
         },
     };
 
-    constructor() {
+    constructor(
+        private data
+    ) {
             this.init();
     }
-
 
     init() {
 
@@ -70,24 +73,19 @@ export class DashboardMap {
         this.chartMap = new ChartMap(this.config,this.svg,this.dimensions);
         this.chartMap.init();
 
-        let url = 'https://tcmg-hub.publikaan.nl/api/gemeenten';
-
-        d3.json<ResponseData>(url)
-            .then((geoData) => {
-
-                this.features = this.prepareData(geoData);
-                self.draw();
-                self.update('schademeldingen','red');
-            });
+        this.features = this.prepareData(this.data);
+        self.draw();
     }
 
-    prepareData(json)  {
+    prepareData(data)  {
 
-        let features = topojson.feature(json, json.objects.gemeenten).features;
+        let features = topojson.feature(geodata, geodata.objects.gemeenten).features;
 
         for (let feature of features) {
 
-            feature.properties.colour = 'green';
+            let muni = data.filter( (m) => {
+                return m.gemeente === slugify(feature.properties.gemeentenaam).toLowerCase();
+            })[0];
         }
 
         return features;
@@ -115,5 +113,8 @@ export class DashboardMap {
         this.redraw(parameter,colour);
     }
 
+    highlight(segment) {
 
+        this.chartMap.highlight(segment)
+    }
 }

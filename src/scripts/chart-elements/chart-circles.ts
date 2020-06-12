@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import { colours } from  '../_styleguide/_colours'
+import {breakpoints} from "../_styleguide/_breakpoints";
 
 export class ChartCircles {
 
@@ -46,17 +47,13 @@ export class ChartCircles {
             .append("g")
             .attr("class","group");
 
-        this.headerLabels = this.headerGroupEnter.merge(this.headerGroup)
+        this.headerLabels = this.headerGroupEnter
             .append('text')
-            .attr("text-anchor","middle")
             .style("font-size",".8rem")
-            .attr('dy', (d,i) => (i % 2 == 0) ? 0 : 24)
-            .text( (d) => {
-                return d.label;
-            })
+            .text( d => d.label);
 
 
-        this.headers_lines = this.headerGroupEnter.merge(this.headerGroup)
+        this.headers_lines = this.headerGroupEnter
             .append("rect")
             .attr('width',1)
             .attr("fill","transparent")
@@ -64,12 +61,12 @@ export class ChartCircles {
             .style("stroke-dasharray", "4 8")
             .style('stroke', '#ccc');
 
-        this.circles = this.groupEnter.merge(this.group)
+        this.circles = this.groupEnter
             .append("circle")
             .attr("class","circle")
-            .style("fill", d => colours[d.colour][0]);
+            .style("fill", d => { return colours[d.colour][0] });
 
-        this.circlesText = this.groupEnter.merge(this.group)
+        this.circlesText = this.groupEnter
             .append("text")
             .attr("class","small-label in-circle")
             .attr("text-anchor","middle")
@@ -79,23 +76,42 @@ export class ChartCircles {
             .style("font-size","1rem");
     }
 
-    redraw(data,dimensions,rScale,xScale) {
+    redraw(data,dimensions,rScale,xScale, direction) {
 
         let self = this;
 
         this.headerGroupEnter.merge(this.headerGroup)
             .attr("transform", (d) => {
-                return "translate(" + xScale(d.cumulativeDuration) + "," + this.config.padding.top + ")"
+
+                if(direction === 'horizontal'){
+
+                    return "translate(" + xScale(d[this.config.xParameter]) + "," + this.config.padding.top + ")"
+
+                } else {
+                    return "translate(" + -(this.config.padding.left) + "," + xScale(d[this.config.xParameter]) + ")"
+                }
             });
 
+        this.headerLabels
+            .attr("text-anchor",(direction === 'horizontal') ? "middle" : "start")
+            .attr('dy', (d,i) => {
+
+                if (direction === 'vertical-reverse') { return 5; }
+
+                return (i % 2 == 0 ) ? 0 : 24
+            })
+
         this.circles
-            .attr("r", (d) => { return rScale(d.value);  });
+            .attr("r", (d) => {  return rScale(d.value);  });
 
         this.circlesText
             .text( (d) => d.value);
 
         this.headers_lines
             .attr('height', (d,i) => {
+
+                if (direction === 'vertical-reverse') { return 0;}
+
                 return (i % 2 == 0) ? dimensions.height - 120 : dimensions.height - 154;
             })
             .attr('y', (d,i) => {
@@ -103,13 +119,27 @@ export class ChartCircles {
             });
     }
 
-    forceDirect(xScale,rScale,data) {
+    forceDirect(xScale,rScale,data, direction) {
 
         let self = this;
         let triangleSize = 40;
 
+        console.log('yo');
+
         self.groupEnter.merge(self.group)
-            .attr("transform", (d) => { if(d.x !== undefined) { return "translate(" + xScale(d.cumulativeDuration) + "," + d.y + ")" } })
+            .attr("transform", (d) => {
+
+                if(d.x !== undefined) {
+
+                    if (direction === 'horizontal') {
+
+                        return "translate(" + xScale(d.cumulativeDuration) + "," + (d.y + 0) + ")"
+                    } else {
+
+                        return "translate(" + (d.x + 0) + "," + xScale(d.cumulativeDuration) + ")"
+                    }
+                }
+            })
         ;
     }
 }

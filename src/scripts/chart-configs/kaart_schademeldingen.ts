@@ -36,6 +36,7 @@ export const kaartSchademeldingen : GraphObject =
             "currencyLabels" : false
         }
     },
+    "description" : "",
     "endpoint": "/api/gemeenten",
     "segment": "all",
     "publishDate": false

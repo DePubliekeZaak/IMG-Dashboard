@@ -6,6 +6,9 @@ import { BarProgression } from './bar-progression';
 import { PieChartSum } from './pie-chart-sum';
 import { Map } from './map';
 import { Flow } from './flow';
+import { FlowDossierCount } from './flow-dossier-count';
+import { Ballenbak } from './ballenbak';
+import { StackedArea } from './stacked-area';
 
 
 export const graphs  = {
@@ -17,5 +20,8 @@ export const graphs  = {
     BarProgression,
     PieChartSum,
     Map,
-    Flow
+    Flow,
+    FlowDossierCount,
+    Ballenbak,
+    StackedArea
 };

@@ -40,6 +40,7 @@ export const staafSchadeopnames : GraphObject = {
             "barWidth" : 12
         }
     },
+    "description" : "",
     "endpoint": "/api/data",
         "segment": "all",
         "publishDate": false

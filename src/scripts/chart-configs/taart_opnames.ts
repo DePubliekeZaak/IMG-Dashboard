@@ -1,28 +1,41 @@
 import { GraphObject} from '../types/graphObject';
 
-export const taartSpecials : GraphObject = {
-    "label" : "Taart Specials",
-    "slug" : "taart_specials",
+export const taartOpnames : GraphObject = {
+    "label" : "Taart opnames",
+    "slug" : "taart_opnames",
     "mapping": [[
         [
             {
-                "label": "Afgehandelde specials",
-                "column": "SPECIALS_AFGEHANDELD_TOTAAL",
-                "colour": "green"
+                'label': 'Aannemersvariant',
+                'column': 'OPNAME_AANNEMERSVARIANT',
+                'colour': 'green'
             },
             {
-                "label": "Specials in behandeling",
-                "column": "SPECIALS_WERKVOORRAAD_IN_BEH",
-                "colour": "yellow"
+                'label': 'Schade-opnemers',
+                'column': 'OPNAMES_OPNEMERSVARIANT',
+                'colour': 'violet'
+            },
+            {
+                'label': 'CVW 2000',
+                'column': 'OPNAMES_CVW2000',
+                'colour': 'blue'
+            },
+            {
+                'label': 'Wooncorporaties',
+                'column': 'OPNAMES_WOCO',
+                'colour': 'yellow'
+            },
+            {
+                'label': 'Regulier',
+                'column': ['OPNAMES_REGULIER','OPNAMES_SMR','+'],
+                'colour': 'red'
             }
         ],
         [
             {
-                "label": "Totaal",
-                "column": false,
-                "colour": false
+                'label': 'Totaal',
+                'column': false
             }
-
         ]
     ]],
     "config": {
@@ -55,4 +68,4 @@ export const taartSpecials : GraphObject = {
     "endpoint": "/api/data",
     "segment": "all",
     "publishDate": false
-}
+};

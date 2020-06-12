@@ -1,6 +1,6 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, HtmlCircle, HtmlHeader, HtmlLink } from '../chart-elements/module';
+import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup } from '../chart-elements/module';
 import * as d3 from "d3";
 
 export class CijfersLine  {
@@ -28,6 +28,7 @@ export class CijfersLine  {
     htmlCircle;
 
     link;
+    popup;
 
     constructor(
 
@@ -35,8 +36,8 @@ export class CijfersLine  {
         private elementID : string,
         private config : any,
         private dataMapping : [any],
+        private description,
         private segment
-
     ){
 
         this.element = d3.select(this.elementID).node();
@@ -78,7 +79,9 @@ export class CijfersLine  {
         this.htmlCircle.draw();
         this.htmlHeader.draw();
         this.chartAvgLine.draw();
-        this.link = new HtmlLink(this.element,this.dataMapping[0].label,'');
+        // this.link = new HtmlLink(this.element,this.config.extra.link,'');
+
+        this.popup = new HtmlPopup(this.element,this.description);
 
         self.update(this.data);
 

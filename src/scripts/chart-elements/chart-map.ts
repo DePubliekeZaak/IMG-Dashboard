@@ -26,7 +26,7 @@ export class ChartMap {
                 [0.114, -1.101],
                 [0.12022108488117365, -1.105]
             ],
-            s = .05 / Math.max((b[1][0] - b[0][0]) / this.dimensions.svgWidth, (b[1][1] - b[0][1]) / this.dimensions.height),
+            s = .125 / Math.max((b[1][0] - b[0][0]) / this.dimensions.svgWidth, (b[1][1] - b[0][1]) / this.dimensions.height),
             t = [((this.dimensions.svgWidth - s * (b[1][0] + b[0][0])) / 2) + 60, ((this.dimensions.height - s * (b[1][1] + b[0][1])) / 2)  - 60];
 
         this.projection
@@ -83,7 +83,8 @@ export class ChartMap {
             .merge(this.svg.map)
             .attr("fill", d => {
                 const c = (colour) ? colour : d.properties.colour;
-                return (d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
+
+                return (property !== undefined && d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
             } )
             .attr("fill-opacity", d => (d.properties[property] > 0) ? scale(d.properties[property]) : 1)
             .on("mouseover", function (d) {
@@ -139,6 +140,18 @@ export class ChartMap {
                         }
                     }
                 });
+
+    }
+
+    highlight(segment) {
+
+        let self = this;
+
+        this.svg.map
+            .merge(this.svg.map)
+            .attr("fill", d => {
+                return (segment === d.properties.gemeenteSlug) ? '#595959' : '#eee'
+            } )
 
     }
 }
