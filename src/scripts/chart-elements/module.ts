@@ -20,6 +20,8 @@ import { HtmlCircle } from './html-circle';
 import { HtmlHeader } from './html-header';
 import { HtmlLink } from './html-link';
 import { HtmlPopup } from './html-popup';
+import { HtmlSegment } from './html-segment';
+import {HtmlMuniSelector} from "./html-muniSelector";
 
 
-export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartCircleGroups, ChartBrackets, ChartFlowBetweenCircles, ChartEndLabel, ChartStackedArea, ChartFlowDuration, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup }
+export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartCircleGroups, ChartBrackets, ChartFlowBetweenCircles, ChartEndLabel, ChartStackedArea, ChartFlowDuration, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment, HtmlMuniSelector }

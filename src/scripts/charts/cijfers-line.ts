@@ -1,6 +1,6 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup } from '../chart-elements/module';
+import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../chart-elements/module';
 import * as d3 from "d3";
 
 export class CijfersLine  {
@@ -26,6 +26,7 @@ export class CijfersLine  {
     chartAvgLine;
     htmlHeader;
     htmlCircle;
+    htmlSegment;
 
     link;
     popup;
@@ -73,6 +74,10 @@ export class CijfersLine  {
         this.chartAvgLine = new ChartAvgLine(this.config, this.svg);
         this.htmlHeader = new HtmlHeader(this.element,this.dataMapping[0].label);
         this.htmlCircle = new HtmlCircle(this.config,this.dataMapping,this.element,this.dataMapping[0].label);
+        this.htmlSegment = new HtmlSegment(this.element);
+
+
+
 
         this.bottomAxis.draw();
         this.leftAxis.draw();
@@ -81,9 +86,10 @@ export class CijfersLine  {
         this.chartAvgLine.draw();
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
+
         this.popup = new HtmlPopup(this.element,this.description);
 
-        self.update(this.data);
+        self.update(this.data,this.segment);
 
     }
 
@@ -151,7 +157,7 @@ export class CijfersLine  {
         return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
     }
 
-    update(newData) {
+    update(newData,segment) {
 
         let self = this;
 
@@ -159,6 +165,10 @@ export class CijfersLine  {
         self.draw(data);
         self.redraw(data);
         window.addEventListener("resize", () => self.redraw(data), false);
+
+        if(this.config.extra.segmentIndicator) {
+            this.htmlSegment.draw(segment);
+        }
     }
 
 

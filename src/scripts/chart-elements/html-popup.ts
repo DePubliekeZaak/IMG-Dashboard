@@ -62,7 +62,7 @@ export class HtmlPopup {
                     <rect id="Rectangle" x="0" y="1" width="52" height="43"></rect>
                     <rect id="Rectangle-2" transform="translate(52.366745, 22.463203) rotate(45.000000) translate(-52.366745, -22.463203) " x="37.1167446" y="7.21320344" width="30.5" height="30.5"></rect>
                 </g>
-            </svg><a href="/dashboard/?topic=meldingen" style="display:inline-block;margin-left:.75rem;line-height: 2">Meer over schademeldingen en AOS meldingen</a>
+            </svg><a href="/dashboard/?topic=meldingen" style="display:inline-block;margin-left:.75rem;line-height: 2">Meer over ...</a>
         
         `;
 

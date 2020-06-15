@@ -4,8 +4,7 @@ import * as d3 from 'd3';
 import {GraphObject} from "./types/graphObject";
 import {ResponseData} from "./types/responseData";
 import {DashboardMap} from "./dashboard/dashboard_map";
-import {DashboardInfo} from "./dashboard/dashboard_info";
-import {configs, dashboardMain, dashboardMeldingen, dashboardSpecials } from "./chart-configs/module";
+import {dashboardMain, dashboardMeldingen, dashboardSpecials } from "./chart-configs/module";
 import { breakpoints} from "./_styleguide/_breakpoints";
 
 export class InitDashboard {
@@ -14,6 +13,7 @@ export class InitDashboard {
     graphMethods = {};
     dashBoardMap;
     dashBoardInfo;
+    htmlContainer;
 
     constructor(){
     }
@@ -22,6 +22,7 @@ export class InitDashboard {
 
         let segment = 'all';
         let dashboardArray = dashboardMain;
+        this.htmlContainer = document.getElementById('img-dashboard');
         const params : any = this.getParams(window.location.href);
 
         // segment
@@ -43,7 +44,41 @@ export class InitDashboard {
             dashboardArray = dashboardSpecials;
         }
 
-       this.makeDashboardCall(dashboardArray, segment,false);
+        if (!params.topic) {
+            this.createSideBar();
+            this.htmlContainer.classList.add('has_sidebar');
+            this.createList(segment);
+
+            if(window.innerWidth > breakpoints.sm ) {
+                this.dashBoardMap = new DashboardMap(munis);
+                this.dashBoardMap.update(false, "red")
+            }
+        }
+
+        this.createPopupElement();
+        this.makeDashboardCall(dashboardArray, segment,false);
+
+
+    }
+
+    createSideBar() {
+
+            let aside = document.createElement('aside');
+            aside.classList.add('selectors');
+
+            let mapContainer = document.createElement('div');
+            mapContainer.id = "img-graph-dashboard-map";
+            aside.appendChild(mapContainer);
+
+            this.htmlContainer.appendChild(aside);
+
+    }
+
+    createPopupElement() {
+
+        let popup = document.createElement('div');
+        popup.id = 'img-dashboard_popup';
+        document.getElementsByTagName('body')[0].appendChild(popup);
     }
 
     createList(segment) {
@@ -127,7 +162,6 @@ export class InitDashboard {
 
                             let objectToMerge = arraysWithMunis[i].find(object => object._date === item._date);
                             o = Object.assign(o, item, objectToMerge)
-
                         }
 
                     } else {
@@ -178,19 +212,7 @@ export class InitDashboard {
 
             let { weeks, munis } = this.mergeArrayObjects(haveData);
 
-            if (!update) {
-
-                this.createList(segment);
-
-                // this.dashBoardInfo = new DashboardInfo();
-                // this.dashBoardInfo.update(dashboardArray[0].mapping[0]);
-
-                if(window.innerWidth > breakpoints.sm ) {
-                    self.dashBoardMap = new DashboardMap(munis);
-                    self.dashBoardMap.update(false, "red")
-                }
-
-            } else {
+            if (update) {
 
                 this.updateList(segment);
                 //  highlight path in map
@@ -201,35 +223,41 @@ export class InitDashboard {
 
             for (let graphObject of dashboardArray ) {
 
-                let element = document.querySelector('[data-graph-slug=' + graphObject.slug + ']');
+                let element = document.createElement('article');
+
+                if (graphObject.config.extra.largeHeader) {
+
+                    let header = document.createElement('h2');
+                    header.innerText = graphObject.label;
+                    header.style.fontFamily = 'Replica';
+                    header.style.fontSize = '2.4rem';
+                    header.style.fontWeight = '500';
+                    header.style.width = '100%';
+                    header.style.margin = '3rem 0 1rem 0';
+
+                    this.htmlContainer.appendChild(header);
+                }
+
+                for (let className of graphObject.elementClasslist) {
+                    element.classList.add(className);
+                }
+
+                this.htmlContainer.appendChild(element);
 
                 let data = graphObject.segment ? weeks : munis;
 
 
                 if (update) {
 
-                    this.graphMethods[graphObject.slug].update(data);
+                    this.graphMethods[graphObject.slug].update(data,segment);
 
                 } else {
 
                     element.innerHTML = '';
-                    this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](data, element, graphObject.config, graphObject.mapping[0],graphObject.description, 'all');
+                    this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](data, element, graphObject.config, graphObject.mapping[0],graphObject.description, segment);
                     this.graphMethods[graphObject.slug].init();
-
-                    element.addEventListener('mouseenter', e => {
-
-                        // if(graphObject.mapping[0][0]) {
-                        //     this.dashBoardMap.update(graphObject.mapping[0][0].column, graphObject.mapping[0][0].colour)
-                        // }
-
-                        this.dashBoardInfo.update(graphObject.mapping[0],graphObject.description);
-
-                    }, false)
                 }
             }
-
-
-
 
         });
     }

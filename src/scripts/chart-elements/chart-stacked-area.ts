@@ -50,12 +50,14 @@ export class ChartStackedArea {
         let newArea = d3.area()
             .x(function(d : any) { return xScale(new Date(d.data._date)); })
             .y0(d => yScale(d[0]))
-            .y1(d => yScale(d[0]));
+            .y1(d => yScale(d[0]))
+            .curve(d3.curveCatmullRom);
 
         let area = d3.area()
             .x(function(d : any ) { return xScale(new Date(d.data._date)); })
             .y0(d => yScale(d[0]))
-            .y1(d => yScale(d[1]));
+            .y1(d => yScale(d[1]))
+            .curve(d3.curveCatmullRom);
 
         this.prevArea = area;
 

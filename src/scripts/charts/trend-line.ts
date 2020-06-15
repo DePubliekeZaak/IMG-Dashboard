@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-import {ChartAxisGrid, ChartBackgroundArea, ChartEndLabel, HtmlHeader, HtmlLink, HtmlPopup } from "../chart-elements/module";
+import {ChartAxisGrid, ChartBackgroundArea, ChartEndLabel, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from "../chart-elements/module";
 import {ChartLine} from "../chart-elements/chart-line";
 import {colours} from "../_styleguide/_colours";
 
@@ -25,6 +25,7 @@ export class TrendLine {
      htmlHeader;
      link;
      popup;
+    htmlSegment;
 
     yScale;
     xScale;
@@ -39,6 +40,7 @@ export class TrendLine {
         private config,
         private dataMapping,
         private description,
+        private segment
     ) {
         this.element = d3.select(elementID).node();
         this.yParameter = this.dataMapping[0]['column'];
@@ -87,13 +89,14 @@ export class TrendLine {
         // }
 
         this.popup = new HtmlPopup(this.element,this.description);
+        this.htmlSegment = new HtmlSegment(this.element);
 
         if( this.config.extra.legend) {
 
             this.legend();
         }
 
-        self.update(this.data);
+        self.update(this.data,this.segment);
 
     }
 
@@ -218,13 +221,17 @@ export class TrendLine {
         })
     }
 
-    update(newData) {
+    update(newData,segment) {
 
         let self = this;
         let data = this.prepareData(newData);
         this.draw(data);
         this.redraw(data);
         window.addEventListener("resize", () => self.redraw(data), false);
+
+        if(this.config.extra.segmentIndicator) {
+            this.htmlSegment.draw(segment);
+        }
 
     }
 }

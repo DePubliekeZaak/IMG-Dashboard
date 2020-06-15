@@ -5,7 +5,8 @@ export class InitGraph {
 
     constructor(){
 
-        (document.getElementsByTagName('main')[0].id === 'dashboard') ? this.dashboard() : this.single();
+        document.getElementById('img-dashboard') ? this.dashboard() : this.single();
+
     }
 
     single() {

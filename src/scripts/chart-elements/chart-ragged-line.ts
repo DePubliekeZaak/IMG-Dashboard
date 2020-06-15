@@ -90,7 +90,7 @@ export class ChartRaggedLine {
             let line = d3.line()
                 .x(d =>  (this.config.xScaleType === 'time') ?  xScale(new Date(d[this.config.xParameter])) : xScale(d[xParameter]))
                 .y(d => (this.config.yScaleType === 'time') ? yScale(new Date (d[yParameter])) : yScale(d[yParameter]) )
-                .curve(d3.curveCardinal);
+                .curve(d3.curveCatmullRom);
 
             this.svg.line.merge(this.svg.lineEnter)
                 .transition()

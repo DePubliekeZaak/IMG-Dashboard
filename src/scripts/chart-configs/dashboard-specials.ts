@@ -53,7 +53,8 @@ export const dashboardSpecials : GraphObject[] = [
         },
         "description" : "",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials",
-        "segment": "all"
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
         "label": "Taart Schademeldingen",
@@ -116,7 +117,8 @@ export const dashboardSpecials : GraphObject[] = [
         },
         "description" : "",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
-        "segment": "all"
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
         "label": "Taart In behandeling",
@@ -179,7 +181,8 @@ export const dashboardSpecials : GraphObject[] = [
         },
         "description" : "",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
-        "segment": "all"
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
 
@@ -315,7 +318,8 @@ export const dashboardSpecials : GraphObject[] = [
         "description" : "",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all",
-        "publishDate": false
+        "publishDate": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
         "label" : "Statussen met gemeenteselectie",
@@ -366,13 +370,15 @@ export const dashboardSpecials : GraphObject[] = [
                 "currencyLabels" : false,
                 "paddingInner" : .1,
                 "paddingOuter" : .1,
+                "municipalitySelect": true,
                 "alternateTicks" : true,
                 "header" : "Specials per status naar gemeente"
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
-        "segment": "all"
+        "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",  // ivm in-graph gemeentekiezer
+        "segment": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium']
     },
     {
         "label" : "Kaart specials",
@@ -413,6 +419,7 @@ export const dashboardSpecials : GraphObject[] = [
         "description" : "",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",
         "segment": false,
-        "publishDate": false
+        "publishDate": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
     }
 ]

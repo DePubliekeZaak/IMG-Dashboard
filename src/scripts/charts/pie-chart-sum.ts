@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartPie, HtmlHeader, HtmlLink, HtmlPopup } from '../chart-elements/module';
+import { ChartPie, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../chart-elements/module';
 
 import { convertToCurrency } from '../helpers/_helpers';
 import { colours } from '../_styleguide/_colours.js';
@@ -23,6 +23,7 @@ export class PieChartSum  {
     legend;
     link;
     popup;
+    htmlSegment;
 
     rowHeight = 22;
 
@@ -31,7 +32,8 @@ export class PieChartSum  {
         private elementID,
         private config,
         private dataMapping,
-        private description
+        private description,
+        private segment
     ) {
         this.element = d3.select(elementID).node();
     }
@@ -59,7 +61,7 @@ export class PieChartSum  {
         let data = this.prepareData(this.data);
         this.drawLegend(data);
 
-        this.update(this.data);
+        this.update(this.data,this.segment);
 
         if (this.config.extra.header) {
             this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
@@ -68,6 +70,7 @@ export class PieChartSum  {
         }
 
         this.popup = new HtmlPopup(this.element,this.description);
+        this.htmlSegment = new HtmlSegment(this.element);
 
     }
 
@@ -303,7 +306,7 @@ export class PieChartSum  {
          this.chartPie.redraw(this.dimensions);
     }
 
-    update(newData) {
+    update(newData,segment) {
 
         let self = this;
 
@@ -312,6 +315,10 @@ export class PieChartSum  {
 
         this.redrawLegend(data);
         this.redraw();
+
+        if(this.config.extra.segmentIndicator   ) {
+            this.htmlSegment.draw(segment);
+        }
 
         window.addEventListener("resize", function() { self.redraw() }, false);
     }

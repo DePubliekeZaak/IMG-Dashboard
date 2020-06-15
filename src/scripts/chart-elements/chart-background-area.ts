@@ -37,7 +37,7 @@ export class ChartBackgroundArea {
                 .x(d => xScale(new Date(d[xParameter])))
                 .y0(dimensions.height)
                 .y1(d => yScale(d[yParameter]))
-                .curve(d3.curveCardinal);
+                .curve(d3.curveCatmullRom);
         }
 
         if(this.config.yScaleType === 'time') {

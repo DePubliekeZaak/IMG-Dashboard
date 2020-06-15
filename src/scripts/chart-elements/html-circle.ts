@@ -101,7 +101,7 @@ export class HtmlCircle {
 
         let value =  Math.round(data[0][parameter]);
 
-        if (this.config.extra.suspended) {
+        if (this.config.extra.notNull && value === 0) {
 
             this.element.querySelector('.number').innerText = '---';
 

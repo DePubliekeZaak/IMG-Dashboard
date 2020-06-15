@@ -124,8 +124,6 @@ export class ChartCircles {
         let self = this;
         let triangleSize = 40;
 
-        console.log('yo');
-
         self.groupEnter.merge(self.group)
             .attr("transform", (d) => {
 

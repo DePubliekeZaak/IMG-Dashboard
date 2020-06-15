@@ -150,7 +150,7 @@ export class ChartMap {
         this.svg.map
             .merge(this.svg.map)
             .attr("fill", d => {
-                return (segment === d.properties.gemeenteSlug) ? '#595959' : '#eee'
+                return (segment === d.properties.gemeenteSlug) ? colours['red'][0] : '#eee'
             } )
 
     }

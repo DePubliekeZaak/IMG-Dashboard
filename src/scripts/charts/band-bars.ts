@@ -1,6 +1,6 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartBar, HtmlHeader } from '../chart-elements/module';
+import { ChartBar, HtmlHeader, HtmlMuniSelector } from '../chart-elements/module';
 import * as d3 from 'd3';
 
 
@@ -25,6 +25,7 @@ export class BandBars {
     leftAxis;
 
     htmlHeader;
+    htmlMuniSelector;
 
     constructor(
 
@@ -42,12 +43,6 @@ export class BandBars {
     init() {
 
         let self = this;
-
-        // this.radios = [].slice.call(document.querySelectorAll('.selector li input[type=radio]'));
-    //    this.municipalitySelect = document.querySelector('select.municipalities');
-
-        // dit kan als je de api van de kaart pakt ..
-
         let chartObjects = ChartObjects();
         this.config = Object.assign(chartObjects.config(),this.config);
         this.dimensions = chartObjects.dimensions();
@@ -68,26 +63,34 @@ export class BandBars {
         this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
         this.htmlHeader.draw();
 
-        self.update(this.data);
+        this.htmlMuniSelector = new HtmlMuniSelector(this.element,'specials_band_bars'); // later koppelen aan GraphObject.slug
+
+        if(this.config.extra.municipalitySelect) {
+            this.htmlMuniSelector.draw();
+
+            const municipalitySelect = document.querySelector('.municipality_select_' + 'specials_band_bars' ) as HTMLSelectElement;
+
+            municipalitySelect.addEventListener("change", function () {
+                self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
+            });
+        }
+
+        self.update(this.data,'all');
     }
 
-    prepareData(newData)  {
+    prepareData(newData,segment)  {
 
         let data = [];
 
-        // dit kan als je de api van de kaart pakt ..
-
-
-
-        // let segmented = newData.find( j => j['_category'] === this.segment);
+        let d = (this.config.extra.municipalitySelect) ? this.data.find( j => j['gemeente'] === segment) : newData[0];
 
         for (let mapping of this.dataMapping) {
 
             data.push(
                 {
-                    label:  mapping.label,
+                    label: mapping.label,
                     colour: mapping.colour,
-                    value: newData[0][mapping.column]
+                    value: d[mapping.column]
                 }
             )
         }
@@ -115,16 +118,19 @@ export class BandBars {
 
     draw(data) {
 
+        let self = this;
+
         this.xScale = this.chartXScale.set(data.map(d => d[this.config.xParameter]));
 
         this.chartBar.draw(data);
     }
 
-    update(newData) {
+    update(newData,segment) {
+
 
         let self = this;
 
-        let data = this.prepareData(newData);
+        let data = this.prepareData(newData,segment);
         this.draw(data);
         this.redraw(data);
 
