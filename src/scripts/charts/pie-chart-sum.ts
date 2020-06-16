@@ -60,9 +60,7 @@ export class PieChartSum  {
 
         let data = this.prepareData(this.data);
         this.drawLegend(data);
-
-        this.update(this.data,this.segment);
-
+        
         if (this.config.extra.header) {
             this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
             this.htmlHeader.draw();
@@ -71,6 +69,8 @@ export class PieChartSum  {
 
         this.popup = new HtmlPopup(this.element,this.description);
         this.htmlSegment = new HtmlSegment(this.element);
+
+        this.update(this.data,this.segment);
 
     }
 
@@ -316,7 +316,7 @@ export class PieChartSum  {
         this.redrawLegend(data);
         this.redraw();
 
-        if(this.config.extra.segmentIndicator   ) {
+        if(this.config.extra.segmentIndicator) {
             this.htmlSegment.draw(segment);
         }
 
