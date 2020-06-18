@@ -48,7 +48,7 @@ export class InitSingle {
                 container.classList.add('column');
                 container.classList.add('is-9');
                 // container.style.flex = '1';
-                container.style.height = this.graphObjectArray[i].config.extra.elHeight + 'px' || '600px';
+                container.style.height = '600px';
                 this.elements[i].appendChild(container);
 
             }
