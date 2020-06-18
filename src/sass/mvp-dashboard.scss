@@ -11,7 +11,7 @@ main {
   justify-content: flex-start;
 }
 
-section#img-dashboard  {
+*[data-img-graph-preset='dashboard'] {
 
   display: flex;
   flex-direction: row;

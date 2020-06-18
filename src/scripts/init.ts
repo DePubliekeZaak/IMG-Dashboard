@@ -6,9 +6,8 @@ export class InitGraph {
 
     constructor(){
 
+        this.addStylesheets();
         document.querySelector("[data-img-graph-preset='dashboard']") ? this.dashboard() : this.single();
-
-        this.addStylesheets()
     }
 
     single() {
