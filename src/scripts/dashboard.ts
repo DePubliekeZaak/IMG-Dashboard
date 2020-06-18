@@ -22,7 +22,7 @@ export class InitDashboard {
 
         let segment = 'all';
         let dashboardArray = dashboardMain;
-        this.htmlContainer = document.getElementById('img-dashboard');
+        this.htmlContainer = document.getElementsByClassName('img-dashboard')[0];
         const params : any = this.getParams(window.location.href);
 
         // segment

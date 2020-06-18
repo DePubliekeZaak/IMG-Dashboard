@@ -78,5 +78,13 @@
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]
+  },
+  {
+    "label" : "Dashboard",
+    "value" : "dashboard",
+    "className": "img-dashboard",
+    "scripts": [
+      "https://graphs.publikaan.nl/graph-selector/bundle.js"
+    ]
   }
 ]
