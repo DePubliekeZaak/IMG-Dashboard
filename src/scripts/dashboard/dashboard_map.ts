@@ -60,7 +60,10 @@ export class DashboardMap {
         this.config = Object.assign(chartObjects.config(),this.config);
 
         this.element = d3.select('#img-graph-dashboard-map').node();
+        this.element.style.width = '320px';
+        this.element.style.height = '320px';
         this.dimensions = new ChartDimensions(this.element,this.config);
+        // console.log(this.dimensions);
         this.svg = chartObjects.svg();
 
         this.chartDimensions = new ChartDimensions(this.element,this.config);

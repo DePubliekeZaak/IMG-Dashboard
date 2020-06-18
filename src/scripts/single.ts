@@ -36,17 +36,21 @@ export class InitSingle {
 
     htmlContainers() {
 
-        console.log(this.graphObjectArray);
-
         document.getElementsByClassName(this.className)[0].innerHTML = '';
 
         for (var i = 0; i < this.graphObjectArray.length; i++) {
 
             for (let graph of this.graphObjectArray[i].mapping) {
+                this.elements[i].parentNode.add('container');
+                this.elements[i].classList.add('columns');
                 let container = document.createElement('div');
                 container.classList.add('img_graph_container');
+                container.classList.add('column');
+                container.classList.add('is-9');
                 container.style.flex = '1';
+                container.style.height = this.graphObjectArray[i].config.extra.elHeight + 'px' || '600px';
                 this.elements[i].appendChild(container);
+
             }
         }
     }
