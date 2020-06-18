@@ -13,14 +13,11 @@ export class InitGraph {
 
     single() {
 
-        console.log('s');
         const single = new InitSingle();
         single.init();
     }
 
     dashboard() {
-
-        console.log('d');
         const dashboard = new InitDashboard();
         dashboard.init();
     }
