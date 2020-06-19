@@ -238,8 +238,11 @@ export class InitDashboard {
                     this.htmlContainer.appendChild(header);
                 }
 
-                for (let className of graphObject.elementClasslist) {
-                    element.classList.add(className);
+                if(graphObject.elementClasslist) {
+
+                    for (let className of graphObject.elementClasslist) {
+                        element.classList.add(className);
+                    }
                 }
 
                 this.htmlContainer.appendChild(element);

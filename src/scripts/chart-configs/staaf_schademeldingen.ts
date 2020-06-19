@@ -45,6 +45,7 @@ export const staafSchademeldingen : GraphObject = {
     "description" : "",
     "endpoint": "/api/data",
     "segment": "all",
+    "elementClasslist" : ["is-9"],
     "publishDate": false
 };
 

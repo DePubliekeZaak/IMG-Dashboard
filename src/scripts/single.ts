@@ -35,8 +35,6 @@ export class InitSingle {
 
     htmlContainers() {
 
-        console.log(this.graphObjectArray);
-
         for (let i = 0; i < this.graphObjectArray.length; i++) {
 
             for (let graph of this.graphObjectArray[i].mapping) {
@@ -46,8 +44,12 @@ export class InitSingle {
                 container.classList.add('img_graph_container');
                 container.classList.add('column');
 
-                for (let className of this.graphObjectArray[i].elementClasslist) {
-                    container.classList.add(className);
+                if(this.graphObjectArray[i].elementClasslist) {
+
+                    for (let className of this.graphObjectArray[i].elementClasslist) {
+                        container.classList.add(className);
+                    }
+
                 }
 
                 // container.style.flex = '1';

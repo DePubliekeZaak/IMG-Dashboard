@@ -42,6 +42,7 @@ export const staafSchadeopnames : GraphObject = {
     },
     "description" : "",
     "endpoint": "/api/data",
-        "segment": "all",
-        "publishDate": false
+    "segment": "all",
+    "elementClasslist" : ["is-9"],
+    "publishDate": false
 }
