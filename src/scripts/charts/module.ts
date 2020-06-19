@@ -1,4 +1,5 @@
 import { CijfersLine } from './cijfers-line';
+import { Ticker } from './ticker';
 import { TrendLine } from './trend-line';
 import { BandBars } from './band-bars';
 import { MultiBarProgression } from './multibar-progression';
@@ -14,6 +15,7 @@ import { StackedArea } from './stacked-area';
 export const graphs  = {
 
     CijfersLine,
+    Ticker,
     TrendLine,
     BandBars,
     MultiBarProgression,

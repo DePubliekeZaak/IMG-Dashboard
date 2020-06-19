@@ -80,6 +80,14 @@
     ]
   },
   {
+    "label" : "Ticker",
+    "value" : "ticker",
+    "className": ["column","is-3"],
+    "scripts": [
+      "https://graphs.publikaan.nl/graph-selector/bundle.js"
+    ]
+  },
+  {
     "label" : "Dashboard",
     "value" : "dashboard",
     "className": "img-dashboard",

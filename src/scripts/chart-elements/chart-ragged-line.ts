@@ -36,13 +36,17 @@ export class ChartRaggedLine {
                 .append("path")
                 .attr("class", "line");
 
-            this.svg.circles = this.svg.layers.data.selectAll('circle')
-                .data(data);
 
-            this.svg.circles.exit().remove();
+            if(!this.config.extra.noDots) {
 
-            this.svg.circlesEnter = this.svg.circles.enter()
-                .append("circle");
+                this.svg.circles = this.svg.layers.data.selectAll('circle')
+                    .data(data);
+
+                this.svg.circles.exit().remove();
+
+                this.svg.circlesEnter = this.svg.circles.enter()
+                    .append("circle");
+            }
 
             if(this.config.dateLabels) {
 
@@ -101,6 +105,8 @@ export class ChartRaggedLine {
                 .attr("stroke-width", 4)
             ;
 
+            if(this.svg.circles) {
+
             this.svg.circles.merge(this.svg.circlesEnter)
                 .attr("cx", function (d, i) {
                     return (self.config.xScaleType === 'time') ?  xScale(new Date(d[xParameter])) : xScale(d[xParameter])
@@ -125,14 +131,14 @@ export class ChartRaggedLine {
                     d3.select('.tooltip')
                         .html(() => {
 
-                            if(self.config.xScaleType === 'time') {
+                            if (self.config.xScaleType === 'time') {
 
                                 return 'Gerapporteerd op ' + displayDate(date) + '<br/><b>'
                                     + d[yParameter] + '</b><br/>'
 
                             } else {
 
-                                return 'Aantal voor week ' + displayDate(date) + '<br/><span style="font-size:1.6rem;font-family:Replica,sans-serif;">' + d[xParameter] + '</span><br/>' + 'gerapporteerd op ' + displayDate(date) ;
+                                return 'Aantal voor week ' + displayDate(date) + '<br/><span style="font-size:1.6rem;font-family:Replica,sans-serif;">' + d[xParameter] + '</span><br/>' + 'gerapporteerd op ' + displayDate(date);
                             }
                         })
                         .style("left", (d3.event.pageX) + "px")
@@ -149,9 +155,11 @@ export class ChartRaggedLine {
                         .style("opacity", 0);
                 });
 
+            }
+
             let av = (data.reduce((a, b) => a + parseInt(b[yParameter]), 0)) / data.length;
 
-            if(this.config.dateLabels) {
+            if(this.config.extra.dateLabels) {
 
                 this.svg.dateLabels
                     .merge(this.svg.dateLabelsEnter)

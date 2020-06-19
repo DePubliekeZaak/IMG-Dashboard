@@ -5,15 +5,12 @@ import {GraphObject} from "./types/graphObject";
 import {ResponseData} from "./types/responseData";
 import { configs } from "./chart-configs/module";
 
-import { InitDashboard } from "./dashboard";
 
 export class InitSingle {
 
     elements;
     graphObjectArray : GraphObject[]  = [];
     graphMethods = {};
-    dashBoardMap;
-    dashBoardInfo;
     className : string = "img-custom-graph";
 
     constructor(){
@@ -23,9 +20,11 @@ export class InitSingle {
 
         let self = this;
 
-        this.elements = document.getElementsByClassName(this.className);
+        this.elements = [].slice.call(document.querySelectorAll("[data-img-graph-preset]"));
 
         for (let el of this.elements) {
+
+            el.innerHTML = '';
 
             this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("data-img-graph-preset")));
         }
@@ -36,9 +35,9 @@ export class InitSingle {
 
     htmlContainers() {
 
-        document.getElementsByClassName(this.className)[0].innerHTML = '';
+        console.log(this.graphObjectArray);
 
-        for (var i = 0; i < this.graphObjectArray.length; i++) {
+        for (let i = 0; i < this.graphObjectArray.length; i++) {
 
             for (let graph of this.graphObjectArray[i].mapping) {
                 this.elements[i].parentNode.classList.add('container');
@@ -46,7 +45,11 @@ export class InitSingle {
                 let container = document.createElement('div');
                 container.classList.add('img_graph_container');
                 container.classList.add('column');
-                container.classList.add('is-9');
+
+                for (let className of this.graphObjectArray[i].elementClasslist) {
+                    container.classList.add(className);
+                }
+
                 // container.style.flex = '1';
                 container.style.height = '400px';
                 this.elements[i].appendChild(container);
@@ -89,7 +92,7 @@ export class InitSingle {
 
                     for (let graphObject of graphObjectArray) {
 
-                        let containerElement = document.querySelector('.' + this.className + '[data-img-graph-preset="' + graphObject.slug + '"]');
+                        let containerElement = document.querySelector('[data-img-graph-preset="' + graphObject.slug + '"]');
 
                         for (var j = 0; j < Object.values(graphObject.mapping).length; j++) {
 

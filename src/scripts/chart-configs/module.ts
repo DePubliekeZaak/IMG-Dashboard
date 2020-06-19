@@ -14,6 +14,8 @@ import { ballenbakStatus } from './ballenbak_status';
 import { stackedAreaDoorlooptijden } from './stacked_area_doorlooptijden';
 import { stackedAreaInBehandeling } from './stacked_area_in_behandeling';
 
+import { ticker } from './ticker';
+
 import { dashboardMain } from './dashboard';
 import { dashboardMeldingen } from './dashboard-meldingen';
 import { dashboardOpnames } from './dashboard-opnames';
@@ -41,5 +43,7 @@ export { dashboardMain }
 export { dashboardMeldingen }
 export { dashboardOpnames }
 export { dashboardSpecials }
+
+export { ticker}
 
 
