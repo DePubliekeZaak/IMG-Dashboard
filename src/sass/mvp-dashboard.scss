@@ -1,5 +1,3 @@
-$breakpoint-md : 1320px;
-$breakpoint-lg : 1500px;
 
 main {
 
@@ -34,13 +32,19 @@ main {
   &.has_sidebar {
 
     @media (min-width: $breakpoint-sm) {
-      margin: 0 0 0 2rem;
+      padding: 0rem 2rem 0rem 2rem;
+      margin: 0;
     }
 
     @media (min-width: $breakpoint-md) {
-      padding: 0rem 0rem 0rem calc(0rem + 300px);
+      padding: 0 2rem 0 240px;
       margin: 0;
-      width : 100%; //calc(100% - 4rem - 300px);
+    }
+
+    @media (min-width: $breakpoint-bax) {
+      padding: 0rem 0rem 0rem 240px;
+      margin: 0;
+      width : calc(100% - 0px); //calc(100% - 4rem - 300px);
     }
   }
 }
@@ -48,48 +52,92 @@ main {
 
 aside {
 
-  position: absolute;
+
+
 
   &.selectors {
 
-    width: 0rem;
+    position: relative;
     background: #fff;
-    left: 0;
-    min-height: 100vh;
+    padding: 2rem 0 2rem 1rem;
+    order: 1;
 
-    ul.municipalities {
-      display: none;
+    //left: 0;
+
+    h3 {
+
+
+
+      @media (min-width: $breakpoint-md) {
+        display: none;
+      }
+    }
+
+    ul {
 
       > li {
-        line-height: 1.5;
-
         &.active {
-          font-weight: 700;
+
+          display: none;
+          @media (min-width: $breakpoint-md) {
+            display: block;
+            font-weight: 700;
+          }
         }
       }
     }
 
+    ul.municipalities {
+      display: none;
+    }
+
     @media (min-width: $breakpoint-sm) {
       //padding: 1rem;
+      width: calc(240px - 2rem);
+
     }
 
     @media (min-width: $breakpoint-md) {
-      width: calc(300px - 2rem);
+      position: absolute;
+      left: 0;
+      min-height: 100vh;
+      padding: 1rem;
+      width: calc(240px - 2rem);
+      overflow: visible;
 
       ul.municipalities {
         display: block;
       }
+    }
+
+    @media (min-width: $breakpoint-bax) {
+      padding: 0;
     }
   }
 }
 
 #img-graph-dashboard-map {
 
-  @media (min-width: $breakpoint-md ) {
+  display: none;
 
+  @media (min-width: $breakpoint-sm ) {
+
+  }
+
+  @media (min-width: $breakpoint-md ) {
+    display: block;
+    width: 300px;
+    height: 300px;
+    margin-left: -100px;
+    margin-top: 40px;
+  }
+
+  @media (min-width: $breakpoint-bax ) {
     width: 320px;
     height: 320px;
     margin-left: -60px;
+    margin-top: 0;
+
   }
 }
 
@@ -113,12 +161,16 @@ aside {
   margin-bottom: 6rem;
   height: 280px;
 
+  @media (min-width : $breakpoint-sm) {
+    width: calc(50% - (4rem / 3));
+    height: 260px;
+    margin-bottom: 8rem;
+  }
 
-  @media (min-width : $breakpoint-md) {
+  @media (min-width : $breakpoint-bax) {
     width: calc(25% - (4rem / 3));
     height: 280px;
     margin-bottom: 4rem;
-
   }
 }
 
@@ -130,8 +182,17 @@ aside {
     height: 60vw;
   }
 
-
   @media (min-width : $breakpoint-md) {
+
+    width: calc(33% - (3rem/2));
+
+    > svg {
+      height: auto;
+    }
+  }
+
+
+  @media (min-width : $breakpoint-bax) {
 
     width: calc(33% - (3rem/2));
 
@@ -150,7 +211,7 @@ aside {
 
   width: 100%;
 
-  @media (min-width : $breakpoint-md) {
+  @media (min-width : $breakpoint-bax) {
 
     width: calc(50% - 2rem/2);
   }
@@ -168,7 +229,13 @@ aside {
   margin: 0rem auto 2rem auto;
   height: 120vh;
 
-  @media (min-width : $breakpoint-md) {
+  @media (min-width : $breakpoint-sm) {
+
+    width: calc(100% - 4rem);
+    height: 460px;
+  }
+
+  @media (min-width : $breakpoint-bax) {
 
     width: calc(100% - 4rem);
     height: 500px;
@@ -187,7 +254,18 @@ aside {
 
 .img-graph-container-trendline {
 
-  height: calc(428px - 4rem);
+
+  @media (min-width : $breakpoint-sm) {
+    height: calc(400px - 4rem);
+  }
+
+  @media (min-width : $breakpoint-md) {
+    height: calc(400px - 4rem);
+  }
+
+  @media (min-width : $breakpoint-bax) {
+    height: calc(428px - 4rem);
+  }
 
 }
 
@@ -196,6 +274,11 @@ aside {
   padding: 2rem 0 0rem 0;
 
   @media (min-width : $breakpoint-md) {
+
+    padding: 0;
+  }
+
+  @media (min-width : $breakpoint-bax) {
     padding: 2rem 0 2rem 0;
   }
 }

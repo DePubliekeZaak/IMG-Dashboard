@@ -71,10 +71,21 @@ export class InitDashboard {
             this.htmlContainer.appendChild(aside);
 
             return aside;
-
     }
 
     createMenu() {
+
+        let div = document.createElement('div');
+
+        let header = document.createElement('h3');
+
+        header.style.fontSize = '1rem';
+        header.style.lineHeight = '1.5';
+        header.style.fontWeight = '700';
+
+        header.innerText = "Meer grafieken";
+
+        div.appendChild(header);
 
         let c = [
             {
@@ -99,9 +110,10 @@ export class InitDashboard {
 
         let li = document.createElement('li');
         li.innerText = 'Actueel';
-        li.style.padding = '.125rem .25rem';
+        li.style.padding = '.125rem 0';
         li.style.lineHeight = '1.5';
         li.style.cursor = 'pointer';
+        li.classList.add('active');
         li.onclick = () =>  this.switchTopic('','all');
         ul.appendChild(li);
 
@@ -109,14 +121,17 @@ export class InitDashboard {
 
             let li = document.createElement('li');
             li.innerText = i.label;
-            li.style.padding = '.125rem .25rem';
+            li.style.padding = '.125rem 0';
             li.style.lineHeight = '1.5';
             li.style.cursor = 'pointer';
+            li.setAttribute('data-slug', i.topic);
             li.onclick = () =>  this.switchTopic(i.topic,'all');
             ul.appendChild(li);
         }
-        
-        return ul;
+
+        div.appendChild(ul);
+
+        return div;
     }
 
 
@@ -140,7 +155,7 @@ export class InitDashboard {
             li.innerText = muni.label;
             li.setAttribute('data-slug', muni.value);
             li.onclick = () => this.makeDashboardCall(dashboardMain,muni.value,true);
-            li.style.padding = '.125rem .25rem';
+            li.style.padding = '.125rem 0';
             li.style.lineHeight = '1.5';
             li.style.cursor = 'pointer';
 
@@ -154,9 +169,18 @@ export class InitDashboard {
         container.appendChild(ul);
     }
 
-    updateList(segment) {
+    updateMenuList(topic) {
 
-        for (let option of [].slice.call(document.querySelectorAll('aside.selectors ul li'))) {
+        for (let option of [].slice.call(document.querySelectorAll('aside.selectors ul.municipalities li'))) {
+
+            if (option.classList.contains('active')) { option.classList.remove('active') }
+            if (option.getAttribute('data-slug') === topic) { option.classList.add('active');}
+        }
+    }
+
+    updateMuniList(segment) {
+
+        for (let option of [].slice.call(document.querySelectorAll('aside.selectors ul.municipalities li'))) {
 
             if (option.classList.contains('active')) { option.classList.remove('active') }
             if (option.getAttribute('data-slug') === segment) { option.classList.add('active');}
@@ -237,6 +261,8 @@ export class InitDashboard {
 
         this.makeDashboardCall(newConfig, segment,false);
 
+        this.updateMenuList(topic);
+
         if (history.pushState) {
             const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?topic=' + topic;
             window.history.pushState({path:newurl},'',newurl);
@@ -312,7 +338,7 @@ export class InitDashboard {
 
             if (update) {
 
-                this.updateList(segment);
+                this.updateMuniList(segment);
                 //  highlight path in map
                 if (window.innerWidth > breakpoints.sm ) {
                     this.dashBoardMap.highlight(segment);

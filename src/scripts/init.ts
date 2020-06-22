@@ -62,7 +62,7 @@ export class InitGraph {
         const link  = document.createElement('link');
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'https://graphs.publikaan.nl/graph-selector/main.css'; // graphObject
+        link.href = 'https://graphs.publikaan.nl/graph-selector/main.css'; // ../main.css'; // ; //  graphObject
         link.media = 'all';
         head.appendChild(link);
     }
