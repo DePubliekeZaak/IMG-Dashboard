@@ -1,7 +1,7 @@
 import { GraphObject} from '../types/graphObject';
 
 export const dashboardSpecials : GraphObject[] = [
-    {   "label": "Schademeldingen",
+    {   "label": "Specials",
         "slug": "specials_stacked_schademeldingen",
         "mapping": [
             [
@@ -48,7 +48,8 @@ export const dashboardSpecials : GraphObject[] = [
             },
             "extra": {
                 "xScaleTicks": "timeMonth",
-                "header" : "Schademeldingen per week"
+                "header" : "Schademeldingen per week",
+                "largeHeader" : true,
             }
         },
         "description" : "",

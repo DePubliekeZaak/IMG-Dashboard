@@ -18,7 +18,8 @@ import { ticker } from './ticker';
 
 import { dashboardMain } from './dashboard';
 import { dashboardMeldingen } from './dashboard-meldingen';
-import { dashboardOpnames } from './dashboard-opnames';
+import { dashboardVergoedingen } from './dashboard-vergoedingen';
+import { dashboardVoortgang } from './dashboard-voortgang';
 import { dashboardSpecials} from './dashboard-specials';
 
 export const configs = [
@@ -41,7 +42,8 @@ export const configs = [
 
 export { dashboardMain }
 export { dashboardMeldingen }
-export { dashboardOpnames }
+export { dashboardVergoedingen }
+export { dashboardVoortgang }
 export { dashboardSpecials }
 
 export { ticker}

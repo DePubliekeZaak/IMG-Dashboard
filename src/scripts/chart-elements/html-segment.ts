@@ -8,7 +8,9 @@ export class HtmlSegment {
 
     draw(segment) {
 
-        if (this.element.querySelector('.article_category')) { this.element.querySelector('.article_category').remove() }
+        let segmentEl = this.element.querySelector('.article_category');
+
+        if (segmentEl) { segmentEl.parentNode.removeChild(segmentEl)}
 
         if (segment !== 'all') {
 

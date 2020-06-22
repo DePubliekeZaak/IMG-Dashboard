@@ -1,5 +1,4 @@
 import {colours} from "../_styleguide/_colours";
-import {dashboardOpnames} from "../chart-configs/dashboard-opnames";
 import {munis} from "../helpers/municipalities";
 
 export class HtmlMuniSelector {
@@ -11,7 +10,9 @@ export class HtmlMuniSelector {
 
     draw(segment) {
 
-        if (this.element.querySelector('.municipality_select' + this.graphSlug)) { this.element.querySelector('.municipality_select'  + this.graphSlug).remove() }
+        let selectEl = this.element.querySelector('.municipality_select' + this.graphSlug);
+
+        if(selectEl) { selectEl.parentNode.removeChild(selectEl) }
 
         let dropdown = document.createElement('select');
         dropdown.classList.add('municipality_select_' + this.graphSlug);

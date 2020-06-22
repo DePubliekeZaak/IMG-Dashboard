@@ -26,10 +26,10 @@ main {
   width : 100%; // calc(100vw - 4rem);
   overflow: hidden;
 
-  @media (min-width: $breakpoint-lg ) {
-
-    max-width : 1600px;
-  }
+  //@media (min-width: $breakpoint-lg ) {
+  //
+  //  max-width : 1600px;
+  //}
 
   &.has_sidebar {
 
@@ -40,7 +40,7 @@ main {
     @media (min-width: $breakpoint-md) {
       padding: 2rem 2rem 2rem calc(2rem + 300px);
       margin: 0;
-      width : calc(100vw - 4rem - 300px);
+      width : 100%; //calc(100% - 4rem - 300px);
     }
   }
 }
@@ -70,7 +70,7 @@ aside {
     }
 
     @media (min-width: $breakpoint-sm) {
-      padding: 1rem;
+      //padding: 1rem;
     }
 
     @media (min-width: $breakpoint-md) {
@@ -233,7 +233,7 @@ aside {
 #img-dashboard_popup {
 
   background: white;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 4.5rem 1.5rem;
   border: 1px solid black;
   display: none;
   position: fixed;

@@ -139,7 +139,11 @@ export class PieChartSum  {
 
      drawLegend(data) {
 
-        this.element.querySelector('.legend').remove();
+        let legendEl = this.element.querySelector('.legend');
+
+         if (legendEl) {
+             legendEl.parentNode.removeChild(legendEl)
+         }
 
         let legendContainer = document.createElement('div');
         legendContainer.classList.add('legend');

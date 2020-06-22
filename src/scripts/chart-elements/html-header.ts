@@ -7,7 +7,11 @@ export class HtmlHeader {
 
     draw() {
 
-        if (this.element.querySelector('.article_header')) { this.element.querySelector('.article_header').remove() }
+        let headerEelement = this.element.querySelector('.article_header')
+
+        if (headerEelement) {
+            headerEelement.parentNode.removeChild(headerEelement)
+        }
 
         let headerContainer = document.createElement('div');
         headerContainer.classList.add('article_header');

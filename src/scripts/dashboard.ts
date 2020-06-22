@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import {GraphObject} from "./types/graphObject";
 import {ResponseData} from "./types/responseData";
 import {DashboardMap} from "./dashboard/dashboard_map";
-import {dashboardMain, dashboardMeldingen, dashboardSpecials } from "./chart-configs/module";
+import {dashboardMain, dashboardMeldingen, dashboardVergoedingen, dashboardVoortgang, dashboardSpecials } from "./chart-configs/module";
 import { breakpoints} from "./_styleguide/_breakpoints";
 
 export class InitDashboard {
@@ -21,8 +21,9 @@ export class InitDashboard {
     init() {
 
         let segment = 'all';
-        let dashboardArray = dashboardMain;
+
         this.htmlContainer = document.querySelector("[data-img-graph-preset='dashboard']");
+        this.htmlContainer.parentNode.classList.add('container');
         const params : any = this.getParams(window.location.href);
 
         // segment
@@ -36,30 +37,23 @@ export class InitDashboard {
             }
         }
 
-        if (params.topic && params.topic === 'meldingen') {
-            dashboardArray = dashboardMeldingen;
-
-        } else if(params.topic && params.topic === 'specials') {
-
-            dashboardArray = dashboardSpecials;
-        }
+        let dashboardArray = this.matchConfig(params.topic);
 
         let aside = this.createSideBar();
         this.htmlContainer.classList.add('has_sidebar');
-
-        aside.appendChild(this.createMenu());
 
         if (!params.topic) {
 
             this.createList(segment);
 
-            if(window.innerWidth > breakpoints.sm ) {
+            if (window.innerWidth > breakpoints.sm ) {
                 this.dashBoardMap = new DashboardMap(munis);
                 this.dashBoardMap.update(false, "red")
             }
         }
 
         this.createPopupElement();
+        aside.insertBefore(this.createMenu(),aside.childNodes[0]);
         this.makeDashboardCall(dashboardArray, segment,false);
 
 
@@ -85,7 +79,7 @@ export class InitDashboard {
         let c = [
             {
                 topic: 'meldingen',
-                label: 'Schademeldingen en opnames'
+                label: 'Meldingen en opnames'
             },
             {
                 topic: 'voortgang',
@@ -98,24 +92,27 @@ export class InitDashboard {
             {
                 topic: 'specials',
                 label: 'Specials'
-            },
-
-
-
+            }
         ]
 
         let ul = document.createElement('ul');
 
         let li = document.createElement('li');
-        li.innerText = 'actueel';
-        li.onclick = () =>  window.location.href = '/dashboard';
+        li.innerText = 'Actueel';
+        li.style.padding = '.125rem .25rem';
+        li.style.lineHeight = '1.5';
+        li.style.cursor = 'pointer';
+        li.onclick = () =>  this.switchTopic('','all');
         ul.appendChild(li);
 
         for (let i of c) {
 
             let li = document.createElement('li');
             li.innerText = i.label;
-            li.onclick = () =>  window.location.href = '/dashboard?topic=' + i.topic;
+            li.style.padding = '.125rem .25rem';
+            li.style.lineHeight = '1.5';
+            li.style.cursor = 'pointer';
+            li.onclick = () =>  this.switchTopic(i.topic,'all');
             ul.appendChild(li);
         }
         
@@ -144,6 +141,7 @@ export class InitDashboard {
             li.setAttribute('data-slug', muni.value);
             li.onclick = () => this.makeDashboardCall(dashboardMain,muni.value,true);
             li.style.padding = '.125rem .25rem';
+            li.style.lineHeight = '1.5';
             li.style.cursor = 'pointer';
 
             if (muni.value === segment) {
@@ -226,7 +224,54 @@ export class InitDashboard {
         return { weeks, munis };
     }
 
+    switchTopic(topic,segment) {
+
+
+        let newConfig = this.matchConfig(topic);
+
+        let graphEls = [].slice.call(document.querySelectorAll('.img-graph-container, h2'));
+
+        for (let el of graphEls) {
+            el.parentNode.removeChild(el);
+        }
+
+        this.makeDashboardCall(newConfig, segment,false);
+
+        if (history.pushState) {
+            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?topic=' + topic;
+            window.history.pushState({path:newurl},'',newurl);
+        }
+    }
+
+    matchConfig(topic) {
+
+        switch (topic) {
+
+            case 'meldingen' :
+
+                return dashboardMeldingen;
+
+            case 'voortgang' :
+
+                return dashboardVoortgang;
+
+            case 'vergoedingen' :
+
+                return dashboardVergoedingen;
+
+            case 'specials' :
+
+                return dashboardSpecials;
+
+            default :
+
+                return dashboardMain;
+        }
+    }
+
     makeDashboardCall(dashboardArray, segment, update) {
+
+        console.log(dashboardArray);
 
         let self = this;
         let promises = [];

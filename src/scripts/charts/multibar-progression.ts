@@ -73,7 +73,11 @@ export class MultiBarProgression  {
 
     legend() {
 
-        this.element.parentNode.querySelector('.legend').remove();
+        let legendEl = this.element.parentNode.querySelector('.legend').remove();
+
+        if (legendEl) {
+            legendEl.parentNode.removeChild(legendEl)
+        }
 
         let legendContainer = document.createElement('ul');
         legendContainer.classList.add('legend');

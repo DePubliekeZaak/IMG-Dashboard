@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import "isomorphic-fetch";
+import 'isomorphic-fetch';
 
 import { InitDashboard } from "./dashboard";
 import { InitTicker } from "./ticker";
