@@ -38,7 +38,7 @@ main {
     }
 
     @media (min-width: $breakpoint-md) {
-      padding: 2rem 2rem 2rem calc(2rem + 300px);
+      padding: 0rem 0rem 0rem calc(0rem + 300px);
       margin: 0;
       width : 100%; //calc(100% - 4rem - 300px);
     }
