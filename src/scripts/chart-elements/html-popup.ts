@@ -18,9 +18,6 @@ export class HtmlPopup {
 
         const popupWidth = 400;
 
-        // clear
-
-
         this.popupElement.innerHTML = '';
 
         // html
@@ -50,23 +47,23 @@ export class HtmlPopup {
 
         // linkje
 
-        const link = document.createElement('div');
-        link.classList.add('popup_more_link');
-        link.style.display = 'flex';
-        link.style.flexDirection = 'row';
-        link.style.alignItems = 'center';
-        link.style.marginTop = '1rem';
-
-        link.innerHTML = `<svg width="32px" height="16px" viewBox="0 0 74 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <g id="Group" fill="#000000">
-                    <rect id="Rectangle" x="0" y="1" width="52" height="43"></rect>
-                    <rect id="Rectangle-2" transform="translate(52.366745, 22.463203) rotate(45.000000) translate(-52.366745, -22.463203) " x="37.1167446" y="7.21320344" width="30.5" height="30.5"></rect>
-                </g>
-            </svg><a href="/dashboard/?topic=meldingen" style="display:inline-block;margin-left:.75rem;line-height: 2">Meer over ...</a>
-        
-        `;
-
-        this.popupElement.append(link);
+        // const link = document.createElement('div');
+        // link.classList.add('popup_more_link');
+        // link.style.display = 'flex';
+        // link.style.flexDirection = 'row';
+        // link.style.alignItems = 'center';
+        // link.style.marginTop = '1rem';
+        //
+        // link.innerHTML = `<svg width="32px" height="16px" viewBox="0 0 74 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        //         <g id="Group" fill="#000000">
+        //             <rect id="Rectangle" x="0" y="1" width="52" height="43"></rect>
+        //             <rect id="Rectangle-2" transform="translate(52.366745, 22.463203) rotate(45.000000) translate(-52.366745, -22.463203) " x="37.1167446" y="7.21320344" width="30.5" height="30.5"></rect>
+        //         </g>
+        //     </svg><a href="/dashboard/?topic=meldingen" style="display:inline-block;margin-left:.75rem;line-height: 2">Meer over ...</a>
+        //
+        // `;
+        //
+        // this.popupElement.append(link);
 
         // sluit knop
         const closeButton = document.createElement('div');
@@ -86,14 +83,12 @@ export class HtmlPopup {
 
         this.popupElement.append(closeButton);
 
-
         if (window.innerWidth > 700) {
             // position
             const rect = el.querySelector('.popup_link').getBoundingClientRect();
             this.popupElement.style.top = (44 + rect.top + window.scrollY).toString() + 'px';
             let leftPos = rect.x - (popupWidth / 2);
             let maxLeft = window.innerWidth - popupWidth - 60;
-
 
             // litteral edge case
             if (leftPos > maxLeft) {
@@ -105,8 +100,7 @@ export class HtmlPopup {
             this.popupElement.style.left =  leftPos.toString() + 'px';
         }
 
-        this.popupElement.style.display = 'block';
-
+        this.popupElement.style.display = (this.popupElement.style.display === 'none') ? "block" : "none";
     }
 
     close() {

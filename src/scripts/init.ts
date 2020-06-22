@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import { InitDashboard } from "./dashboard";
 import { InitTicker } from "./ticker";
 import { InitSingle} from "./single";
@@ -59,7 +61,7 @@ export class InitGraph {
         const link  = document.createElement('link');
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = '../main.css'; // https://graphs.publikaan.nl/graph-selector/main.css';
+        link.href = 'https://graphs.publikaan.nl/graph-selector/main.css'; // graphObject
         link.media = 'all';
         head.appendChild(link);
     }

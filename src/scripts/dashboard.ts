@@ -44,9 +44,13 @@ export class InitDashboard {
             dashboardArray = dashboardSpecials;
         }
 
+        this.createSideBar();
+        let aside = this.htmlContainer.classList.add('has_sidebar');
+
+        aside.appendChild(this.createMenu());
+
         if (!params.topic) {
-            this.createSideBar();
-            this.htmlContainer.classList.add('has_sidebar');
+
             this.createList(segment);
 
             if(window.innerWidth > breakpoints.sm ) {
@@ -72,7 +76,52 @@ export class InitDashboard {
 
             this.htmlContainer.appendChild(aside);
 
+            return aside;
+
     }
+
+    createMenu() {
+
+        let c = [
+            {
+                topic: 'meldingen',
+                label: 'Schademeldingen en opnames'
+            },
+            {
+                topic: 'voortgang',
+                label: 'Voortgang'
+            },
+            {
+                topic: 'vergoedingen',
+                label: 'Vergoedingen'
+            },
+            {
+                topic: 'specials',
+                label: 'Specials'
+            },
+
+
+
+        ]
+
+        let ul = document.createElement('ul');
+
+        let li = document.createElement('li');
+        li.innerText = 'actueel';
+        li.onclick = () =>  window.location.href = '/dashboard';
+        ul.appendChild(li);
+
+        for (let i of c) {
+
+            let li = document.createElement('li');
+            li.innerText = i.label;
+            li.onclick = () =>  window.location.href = '/dashboard?topic=' + i.topic;
+            ul.appendChild(li);
+        }
+        
+        return ul;
+    }
+
 
     createPopupElement() {
 
@@ -192,7 +241,11 @@ export class InitDashboard {
                     d3.json<ResponseData>(url)
                         .then((data) => {
                             resolve(data)
-                        });
+                        })
+                        .catch( (err)=> {
+                            console.log('api call failed');
+                            console.log(err);
+                        })
                 })
             )
         }
