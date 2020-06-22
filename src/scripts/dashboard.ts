@@ -44,8 +44,8 @@ export class InitDashboard {
             dashboardArray = dashboardSpecials;
         }
 
-        this.createSideBar();
-        let aside = this.htmlContainer.classList.add('has_sidebar');
+        let aside = this.createSideBar();
+        this.htmlContainer.classList.add('has_sidebar');
 
         aside.appendChild(this.createMenu());
 

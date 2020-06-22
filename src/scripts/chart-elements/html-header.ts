@@ -50,7 +50,7 @@ export class HtmlHeader {
             headerContainer.appendChild(span);
         }
 
-        this.element.prepend(headerContainer);
+        this.element.insertBefore(headerContainer,this.element.childNodes[0]);
     }
 
     redraw() {

@@ -249,7 +249,7 @@ export class Flow {
             let circle = document.createElement("span");
             circle.classList.add("circle");
             circle.classList.add("orange");
-            li.prepend(circle);
+            li.insertBefore(circle,li.childNodes[0])
 
             legendContainer.appendChild(li);
 
@@ -262,7 +262,7 @@ export class Flow {
             tween.classList.add("tween");
             tween.classList.add("light-grey");
 
-            li.prepend(tween);
+            li.insertBefore(tween,li.childNodes[0])
             legendContainer.appendChild(li);
 
             this.element.appendChild(legendContainer);

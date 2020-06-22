@@ -91,9 +91,7 @@ export class HtmlCircle {
 
         miniContainer.appendChild(div);
 
-
-
-        this.element.prepend(miniContainer);
+        this.element.insertBefore(miniContainer,this.element.childNodes[0])
     }
 
 
