@@ -42,7 +42,7 @@ main {
     }
 
     @media (min-width: $breakpoint-bax) {
-      padding: 0rem 0rem 0rem 240px;
+      padding: 2rem 0rem 0rem 240px;
       margin: 0;
       width : calc(100% - 0px); //calc(100% - 4rem - 300px);
     }

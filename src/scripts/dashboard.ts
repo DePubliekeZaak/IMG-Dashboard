@@ -42,21 +42,19 @@ export class InitDashboard {
         let aside = this.createSideBar();
         this.htmlContainer.classList.add('has_sidebar');
 
-        if (!params.topic) {
+        // if (!params.topic) {
 
-            this.createList(segment);
+        this.createList(segment);
 
-            if (window.innerWidth > breakpoints.sm ) {
-                this.dashBoardMap = new DashboardMap(munis);
-                this.dashBoardMap.update(false, "red")
-            }
+        if (window.innerWidth > breakpoints.md ) {
+            this.dashBoardMap = new DashboardMap(munis);
+            this.dashBoardMap.update(false, "red")
         }
+        // }
 
         this.createPopupElement();
         aside.insertBefore(this.createMenu(),aside.childNodes[0]);
         this.makeDashboardCall(dashboardArray, segment,false);
-
-
     }
 
     createSideBar() {
@@ -107,6 +105,7 @@ export class InitDashboard {
         ]
 
         let ul = document.createElement('ul');
+        ul.classList.add('dashboard_nav');
 
         let li = document.createElement('li');
         li.innerText = 'Actueel';
@@ -114,6 +113,7 @@ export class InitDashboard {
         li.style.lineHeight = '1.5';
         li.style.cursor = 'pointer';
         li.classList.add('active');
+        li.setAttribute('data-slug', '');
         li.onclick = () =>  this.switchTopic('','all');
         ul.appendChild(li);
 
@@ -171,7 +171,7 @@ export class InitDashboard {
 
     updateMenuList(topic) {
 
-        for (let option of [].slice.call(document.querySelectorAll('aside.selectors ul.municipalities li'))) {
+        for (let option of [].slice.call(document.querySelectorAll('aside.selectors ul.dashboard_nav li'))) {
 
             if (option.classList.contains('active')) { option.classList.remove('active') }
             if (option.getAttribute('data-slug') === topic) { option.classList.add('active');}
@@ -262,6 +262,18 @@ export class InitDashboard {
         this.makeDashboardCall(newConfig, segment,false);
 
         this.updateMenuList(topic);
+
+        if(!topic || topic === undefined || topic === '') {
+            let menuList : any = document.querySelector('ul.municipalities');
+            menuList.style.display = 'block';
+            let map : any = document.getElementById('img-graph-dashboard-map');
+            map.style.display = 'block';
+        } else {
+            let menuList : any = document.querySelector('ul.municipalities');
+            menuList.style.display = 'none';
+            let map : any = document.getElementById('img-graph-dashboard-map');
+            map.style.display = 'none';
+        }
 
         if (history.pushState) {
             const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?topic=' + topic;
@@ -354,10 +366,10 @@ export class InitDashboard {
                     let header = document.createElement('h2');
                     header.innerText = graphObject.label;
                     header.style.fontFamily = 'Replica';
-                    header.style.fontSize = '2.4rem';
+                    header.style.fontSize = '1.8rem';
                     header.style.fontWeight = '500';
                     header.style.width = '100%';
-                    header.style.margin = '3rem 0 1rem 0';
+                    header.style.margin = '0'; // '3rem 0 1rem 0';
 
                     this.htmlContainer.appendChild(header);
                 }
