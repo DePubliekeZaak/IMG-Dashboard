@@ -26,8 +26,8 @@ export class ChartMap {
                 [0.114, -1.101],
                 [0.12022108488117365, -1.105]
             ],
-            s = .125 / Math.max((b[1][0] - b[0][0]) / this.dimensions.svgWidth, (b[1][1] - b[0][1]) / this.dimensions.height),
-            t = [((this.dimensions.svgWidth - s * (b[1][0] + b[0][0])) / 2) + 60, ((this.dimensions.height - s * (b[1][1] + b[0][1])) / 2)  - 60];
+            s = .17 / Math.max((b[1][0] - b[0][0]) / this.dimensions.svgWidth, (b[1][1] - b[0][1]) / this.dimensions.height),
+            t = [((this.dimensions.svgWidth - s * (b[1][0] + b[0][0])) / 2) + 100, ((this.dimensions.height - s * (b[1][1] + b[0][1])) / 2)  - 60];
 
         this.projection
             .scale(s)
@@ -91,7 +91,7 @@ export class ChartMap {
 
                 let html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + d.properties[property] + "</div>";
 
-                if (property === 'TOTAAL_VERLEEND') {
+                if (self.config.extra.currencyLabels) {
                     html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + convertToCurrency(d.properties[property]) + "</div>";
                 }
 
@@ -128,7 +128,7 @@ export class ChartMap {
 
                     if (d.properties[property] > 0) {
 
-                        if (property === 'TOTAAL_VERLEEND' || property === 'bedrag_stuwmeer') {
+                        if (self.config.extra.currencyLabels) {
                             return shortenCurrency(convertToCurrency(d.properties[property]));
 
                         } else if (property === 'percentage_stuwmeer') {

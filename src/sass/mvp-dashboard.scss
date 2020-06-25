@@ -22,7 +22,7 @@ main {
   flex: 1;
   padding: 2rem 1rem 2rem 1rem;
   width : 100%; // calc(100vw - 4rem);
-  overflow: hidden;
+  overflow: visible;
 
   //@media (min-width: $breakpoint-lg ) {
   //
@@ -135,8 +135,9 @@ aside {
   @media (min-width: $breakpoint-bax ) {
     width: 320px;
     height: 320px;
-    margin-left: -60px;
-    margin-top: 0;
+    margin-left: -120px;
+    margin-top: 60px;
+    margin-top: 30px;
 
   }
 }
@@ -178,9 +179,7 @@ aside {
 
   width : 100%;
   margin-bottom: 4rem;
-  > svg {
-    height: 60vw;
-  }
+
 
   @media (min-width : $breakpoint-md) {
 
@@ -231,6 +230,33 @@ aside {
 
   @media (min-width : $breakpoint-sm) {
 
+    //width: calc(100% - 4rem);
+    height: 460px;
+  }
+
+  @media (min-width : $breakpoint-bax) {
+
+    //width: calc(100% - 4rem);
+    height: 500px;
+  }
+
+  @media (min-width : $breakpoint-lg) {
+
+    //height: 600px;
+  }
+
+  > svg {
+    margin-top: 2rem;
+
+  }
+}
+
+.img-graph-container-flow {
+
+  height: 120vh;
+
+  @media (min-width : $breakpoint-sm) {
+
     width: calc(100% - 4rem);
     height: 460px;
   }
@@ -240,17 +266,8 @@ aside {
     width: calc(100% - 4rem);
     height: 500px;
   }
-
-  @media (min-width : $breakpoint-lg) {
-
-    height: 600px;
-  }
-
-  > svg {
-    margin-top: 2rem;
-
-  }
 }
+
 
 .img-graph-container-trendline {
 
@@ -280,6 +297,27 @@ aside {
 
   @media (min-width : $breakpoint-bax) {
     padding: 2rem 0 2rem 0;
+  }
+}
+
+.img-grap-container-bol {
+
+  > svg {
+    height: 60vw;
+  }
+
+  @media (min-width : $breakpoint-md) {
+
+    > svg {
+      height: auto;
+    }
+  }
+
+  @media (min-width : $breakpoint-bax) {
+
+    > svg {
+      height: calc((100vw - 300px - 10rem) / 4);
+    }
   }
 }
 

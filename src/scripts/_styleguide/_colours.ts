@@ -14,6 +14,9 @@ const yellow = ['rgb(255,182,18)','rgb(255,233,183)','rgb(255,244,220)'];
 const brown = ['rgb(103,51,39)','rgb(209,193,190)','rgb(232,225,223)'];
 const violet = ['rgb(169,0,97)','rgb(229,178,207)','rgb(242,217,231)'];
 
+const orange = ['rgb(225,112,0)','rgb(246,212,178)','rgb(251,234,217)'];
+const moss = ['rgb(119,124,0)','rgb(214,215,178)','rgb(235,235,217)'];
+
 const colours = {
 
     darkblue,
@@ -26,7 +29,9 @@ const colours = {
     blue,
     purple,
     brown,
-    violet
+    violet,
+    orange,
+    moss
 };
 
 export { colours };

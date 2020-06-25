@@ -82,7 +82,7 @@
   {
     "label" : "Ticker",
     "value" : "ticker",
-    "className": ["img-custom-graph"],
+    "className": "img-custom-graph",
     "scripts": [
       "https://graphs.publikaan.nl/graph-selector/bundle.js"
     ]

@@ -32,6 +32,11 @@ export class InitTicker {
         this.makeTickerCall(array, segment,false);
 
 
+        // overrule min-height on parent el
+
+        this.htmlContainer.parentNode.style.minHeight = '0';
+
+
     }
 
 
@@ -155,11 +160,12 @@ export class InitTicker {
             const link = document.createElement('a');
             link.href = '/dashboard';
             link.innerHTML = `<span style="padding-right:.5rem;line-height: 1.25;">Meer cijfers en grafieken</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30"><path d="M20.4 7H1v15.9h19.4l9.6-8L20.4 7z" fill="#000"></path></svg>`;
-            link.style.alignSelf = 'flex-end';
+            link.style.justifyContent = 'flex-end';
             link.style.color = 'black';
             link.style.textDecoration = 'none';
             link.style.display = 'flex';
-            link.style.padding = '.75rem 0 0 0';
+            link.style.flexDirection = 'row';
+            link.style.padding = '2rem 0 0 0';
 
 
 

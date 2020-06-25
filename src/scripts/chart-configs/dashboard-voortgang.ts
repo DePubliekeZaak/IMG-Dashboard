@@ -1,295 +1,344 @@
 import { GraphObject} from '../types/graphObject';
 
 export const dashboardVoortgang : GraphObject[] = [
-    {   "label": "Schademeldingen",
-        "slug": "meldingen_trend_schademeldingen",
+    {   "label": "Voortgang",
+        'slug': 'stacked_area_in_behandeling',
+        'mapping': [
+            [
+                {
+                    'label': 'Open meldingen CVW',
+                    'column': 'schademeldingen_cvw',
+                    'colour': 'blue'
+                },
+                {
+                    'label': 'Open meldingen voor Westerwijtwerd',
+                    'column': 'schademeldingen_voor_westerwijtwerd',
+                    'colour': 'green'
+                },
+                {
+                    'label': 'Open meldingen na Westerwijtwerd',
+                    'column': 'schademeldingen_na_westerwijtwerd',
+                    'colour': 'yellow'
+                }
+            ]
+        ],
+        'config': {
+            'graphType': 'StackedArea',
+            'xScaleType': 'time',
+            'yScaleType': 'linear',
+            'xParameter': '_date',
+            'yParameter': 'MELDING_NA_WESTERWIJTWERD',
+            'padding': {
+                'top': 20,
+                'bottom': 80,
+                'left': 60,
+                'right': 30
+            },
+            'margin': {
+                'top': 60,
+                'bottom': 45,
+                'left': 0,
+                'right': 0
+            },
+            'extra': {
+                'xScaleTicks': 'timeMonth',
+                'header': 'Voortgang afhandeling schademeldingen'
+            }
+        },
+        "description" : "",
+        'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
+        'segment': 'all',
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+    },
+    {
+        "label": "Doorlooptijd afhandeling schademeldingen",
+        "slug": "stacked_area_doorlooptijden",
         "mapping": [
             [
                 {
-                    "label": "Nieuw",
-                    "column": "nieuw_schademeldingen",
-                    "colour": "red"
+                    "label": '2 jaar en ouder',
+                    "column": 'langer_dan_twee_jaar_in_procedure',
+                    "colour": "blue"
+                },
+                {
+                    "label": '1-2 jaar oud',
+                    "column": 'tussen_jaar_en_twee_jaar_in_procedure',
+                    "colour": "brown"
+                },
+                {
+                    "label": '0,5-1 jaar oud',
+                    "column": 'tussen_half_jaar_en_jaar_in_procedure',
+                    "colour": "green"
+                },
+                {
+                    "label": '0,5 jaar oud',
+                    "column": 'minder_dan_half_jaar_in_procedure',
+                    "colour": "yellow"
                 }
             ]
         ],
         "config": {
-            "graphType": "TrendLine",
+            "graphType": "StackedArea",
             "xScaleType": "time",
             "yScaleType": "linear",
             "xParameter": "_date",
-            "yParameter": "nieuw_schademeldingen",
+            "yParameter": "TUSSEN_12_EN_1_JAAR",
             "padding": {
                 "top": 20,
-                "bottom": 40,
-                "left": 40,
-                "right": 0
+                "bottom": 80,
+                "left": 60,
+                "right": 30
             },
             "margin": {
-                "top": 80,
-                "bottom": 100,
+                "top": 60,
+                "bottom": 45,
                 "left": 0,
                 "right": 0
             },
             "extra": {
                 "xScaleTicks": "timeMonth",
-                "useLineFill": true,
-                "largeHeader" : true,
-                "header" : "Schademeldingen per week",
-                "link": "meldingen",
-                "legend" : true,
+                "header": "Doorlooptijd afhandeling schademeldingen"
             }
         },
-        "description" : "Het percentage schademeldingen voor gewone woningen dat binnen een half jaar is afgehandeld. We noemen dit ook wel reguliere dossiers en die beslaan verreweg het merendeel van alle schademeldingen. De lijngrafiek eronder toont de ontwikkeling in de laatste acht weken. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het percentage wordt berekend door voor de laatste duizend besluiten te berekenen wat de doorlooptijd per dossier is geweest waarover is besloten. Als dat 182 dagen of minder is geweest (een half jaar) dan wordt dat meegenomen in het genoemde percentage. Omdat dit telkens over de laatste duizend besluiten wordt berekend, is het een voortschrijdend cijfer. Samen met de grafiek 1. 'Gerealiseerde en verwachte doorlooptijd' schets dit de voortgang van de schadeafhandeling voor reguliere dossiers in het licht van het streven om alle nieuwe reguliere schademeldingen binnen een half jaar af te handelen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "publishDate": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
     {
-        "label" : "Kaart schademeldingen",
-        "slug" : "meldingen_kaart_schademeldingen",
+        "label" : "Bol percentage binnen half jaar",
+        "slug" : "bol_binnen_half_jaar",
         "mapping": [
             [
                 {
-                    "label": "Schademeldingen",
-                    "column": "schademeldingen",
-                    "colour": "red"
+                    "label": "In half jaar afgehandeld",
+                    "column": "percentage_binnen_half_jaar",
+                    "colour": "green"
                 }
             ]
         ],
         "config": {
-            "graphType": "Map",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
+            "graphType": "CijfersLine",
+            "xScaleType" : "time",
+            "yScaleType" : "linear",
+            "xParameter" : "_date",
+            "yParameter" : "",
             "padding": {
-                "top": 0,
-                "bottom": 0,
+                "top": 20,
+                "bottom": 80,
                 "left": 0,
                 "right": 0
             },
             "margin": {
-                "top": 0,
-                "bottom":0,
-                "left": 0,
-                "right": 0
+                "top": 90,
+                "bottom": 120,
+                "left": 10,
+                "right": 10
             },
-            "extra" : {
-                "legendWidth" : 240,
-                "currencyLabels" : false,
-                "header" : "Spreiding van schademeldingen"
+            "extra": {
+                "useLineFill": true,
+                "units": "%"
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen?limit=60",
-        "segment": false,
-        "publishDate": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
-    {   "label": "Acuut onveilige situaties",
-        "slug": "meldingen_trend_aos_meldingen",
+    {
+        "label" : "Bol percentage binnen half jaar",
+        "slug" : "bol_binnen_half_jaar",
         "mapping": [
             [
                 {
-                    "label": "AOS Meldingen",
-                    "column": "nieuw_aos_meldingen",
-                    "colour": "green"
-                },
-                {
-                    "label": "Acuut onveilige situaties",
-                    "column": "nieuw_aos_meldingen_gegrond",
+                    "label": "Gem. tijd tot besluit",
+                    "column": "mediaan_doorlooptijd",
                     "colour": "purple"
                 }
             ]
         ],
         "config": {
-            "graphType": "TrendLine",
-            "xScaleType": "time",
-            "yScaleType": "linear",
-            "xParameter": "_date",
-            "yParameter": "nieuw_aos_meldingen",
+            "graphType": "CijfersLine",
+            "xScaleType" : "time",
+            "yScaleType" : "linear",
+            "xParameter" : "_date",
+            "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 40,
-                "left": 40,
-                "right": 0
-            },
-            "margin": {
-                "top": 80,
-                "bottom": 100,
+                "bottom": 80,
                 "left": 0,
                 "right": 0
             },
+            "margin": {
+                "top": 90,
+                "bottom": 120,
+                "left": 10,
+                "right": 10
+            },
             "extra": {
-                "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "largeHeader" : true,
-                "header" : "AOS meldingen",
-                "link": "de voortgang",
-                "legend": true,
+                "units": "%"
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
-
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
     {
-        "label": "Taart AOS Gegrond",
-        "slug": "meldingen_taart_aos_meldingen",
-        "mapping":  [[
-            [
-                {
-                    "label": "Wel",
-                    "column": "aos_meldingen_gegrond",
-                    "colour": "yellow"
-                },
-                {
-                    "label": "Niet",
-                    "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
-                    "colour": "green"
-                }
-            ],
-            [
-                {
-                    "label": "Totaal",
-                    "column": "aos_meldingen",
-                    "colour": "yellow"
-                }
-            ]
-        ]],
-        "config": {
-
-            "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 15,
-                "left": 0,
-                "right": 0
-            },
-            "extra" :{
-                "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Wel/niet acuut onveilige situatie"
-            }
-        },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
-    },
-    {   "label": "Schade opnames",
-        "slug": "meldingen_trend_aos_meldingen",
+        "label" : "Bol percentage binnen half jaar",
+        "slug" : "bol_binnen_half_jaar",
         "mapping": [
             [
                 {
-                    "label": "Schade opnames",
-                    "column": "nieuw_schade_opnames",
-                    "colour": "blue"
-                },
-                {
-                    "label": "Nulmetingen",
-                    "column": "nieuw_nulmetingen",
-                    "colour": "yellow"
+                    "label": "Verwachte tijd melding tot besluit",
+                    "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
+                    "colour": "red"
                 }
             ]
         ],
         "config": {
-            "graphType": "TrendLine",
-            "xScaleType": "time",
-            "yScaleType": "linear",
-            "xParameter": "_date",
-            "yParameter": "nieuw_schade_opnames",
+            "graphType": "CijfersLine",
+            "xScaleType" : "time",
+            "yScaleType" : "linear",
+            "xParameter" : "_date",
+            "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 40,
-                "left": 40,
-                "right": 0
-            },
-            "margin": {
-                "top": 80,
-                "bottom": 100,
+                "bottom": 80,
                 "left": 0,
                 "right": 0
             },
+            "margin": {
+                "top": 90,
+                "bottom": 120,
+                "left": 10,
+                "right": 10
+            },
             "extra": {
-                "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "largeHeader" : true,
-                "header" : "AOS meldingen",
-                "link": "de voortgang",
-                "legend": true,
+                "units": "dagen"
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
     {
-        "label": "Taart opnames",
-        "slug": "meldingen_taart_opnames",
-        "mapping":  [[
-            [
-                {
-                    "label": "Aannemersvariant",
-                    "column": "schadeopnames_via_aannemersvariant",
-                    "colour": "gray"
-                },
-                {
-                    "label": "Schade-opnemers",
-                    "column": "schadeopnames_via_opnemersvariant",
-                    "colour": "green"
-                },
-                {
-                    "label": "CVW 2000",
-                    "column": "schadeopnames_door_cvw2000",
-                    "colour": "yellow"
-                },
-                {
-                    "label": "Wooncorporaties",
-                    "column": "schadeopnames_door_wooncorporaties",
-                    "colour": "blue"
-                },
-                {
-                    "label": "Regulier",
-                    "column": "schadeopnames_regulier",
-                    "colour": "red"
-                }
-            ],
-            [
-                {
-                    "label": "Totaal",
-                    "column": false,
-                    "colour": false
-                }
 
-            ]
+        "label": "Status naar doorlooptijd",
+        "slug": "ballenbak_status",
+        "mapping": [[
 
-        ]],
+            {
+                "label": 'Minder dan een half jaar',
+                "column" : 'minder_dan_half_jaar_in_fase_ontvangst',
+                "colour" : "yellow",
+                "group" : 'Ontvangst en analyse'
+            },
+            {
+                "label": 'Tussen een half jaar en jaar',
+                "column" : 'tussen_half_jaar_en_jaar_in_fase_ontvangst',
+                "colour" : "green",
+                "group" : 'Ontvangst en analyse'
+            },
+            {
+                "label": 'Tussen een jaar en twee jaar',
+                "column" : 'tussen_jaar_en_twee_jaar_in_fase_ontvangst',
+                "colour" : "brown",
+                "group" : 'Ontvangst en analyse'
+            },
+            {
+                "label": 'Langer dan twee jaar',
+                "column" : 'langer_dan_twee_jaar_in_fase_ontvangst',
+                "colour" : "blue",
+                "group" : 'Ontvangst en analyse'
+            },
+            {
+                "label": 'Minder dan een half jaar',
+                "column" : 'minder_dan_half_jaar_in_fase_planning_opname',
+                "colour" : "yellow",
+                "group" : 'Schade-opname wordt ingepland'
+            },
+            {
+                "label": 'Tussen een half jaar en jaar',
+                "column" : 'tussen_half_jaar_in_fase_planning_opname',
+                "colour" : "green",
+                "group" : 'Schade-opname wordt ingepland'
+            },
+            {
+                "label": 'Tussen een jaar en twee jaar',
+                "column" : 'tussen_jaar_en_twee_jaar_in_fase_planning_opname',
+                "colour" : "brown",
+                "group" : 'Schade-opname wordt ingepland'
+            },
+            {
+                "label": 'Langer dan twee jaar',
+                "column" : 'langer_dan_twee_jaar_in_fase_planning_opname',
+                "colour" : "blue",
+                "group" : 'Schade-opname wordt ingepland'
+            },
+            {
+                "label": 'Minder dan een half jaar',
+                "column" : 'minder_dan_half_jaar_in_fase_opleveren_schaderapport',
+                "colour" : "yellow",
+                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+            },
+            {
+                "label": 'Tussen een half jaar en jaar',
+                "column" : 'tussen_half_jaar_en_jaar_in_fase_opleveren_schaderapport',
+                "colour" : "green",
+                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+            },
+            {
+                "label": 'Tussen een jaar en twee jaar',
+                "column" : 'tussen_jaar_en_twee_jaar_in_fase_opleveren_schaderapport',
+                "colour" : "brown",
+                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+            },
+            {
+                "label": 'Langer dan twee jaar',
+                "column" : 'langer_dan_twee_jaar_in_fase_opleveren_schaderapport',
+                "colour" : "blue",
+                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+            },
+            {
+                "label": 'Minder dan een half jaar',
+                "column" : 'minder_dan_half_jaar_in_fase_voorbereiding_besluit',
+                "colour" : "yellow",
+                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+            },
+            {
+                "label": 'Tussen een half jaar en jaar',
+                "column" : 'tussen_half_jaar_en_jaar_in_fase_voorbereiding_besluit',
+                "colour" : "green",
+                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+            },
+            {
+                "label": 'Tussen een jaar en twee jaar',
+                "column" : 'tussen_jaar_en_twee_jaar_in_fase_voorbereiding_besluit',
+                "colour" : "brown",
+                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+            },
+            {
+                "label": 'Langer dan twee jaar',
+                "column" : 'langer_dan_twee_jaar_in_fase_voorbereiding_besluit',
+                "colour" : "blue",
+                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+            }
+        ]
+        ],
         "config": {
-
-            "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
+            "graphType": "Ballenbak",
+            "xScaleType": "band",
+            "yScaleType": "linear",
+            "xParameter": "label",
+            "yParameter": "value",
             "padding": {
-                "top": 0,
-                "bottom": 0,
+                "top": 20,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
@@ -299,17 +348,20 @@ export const dashboardVoortgang : GraphObject[] = [
                 "left": 0,
                 "right": 0
             },
-            "extra" :{
-                "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Opname varianten"
+            "extra": {
+                "header" : "Status naar doorlooptijd",
+                "paddingInner" : 1,
+                "paddingOuter" : 1,
+                "minRadius" : 4,
+                "radiusOffset" : 1.8,
+                "radiusFactor": 1.25
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
+        "publishDate": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     }
+
 ]

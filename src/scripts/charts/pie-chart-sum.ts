@@ -11,6 +11,7 @@ export class PieChartSum  {
 
 
     element;
+    graphEl;
     yParameter;
     dimensions;
     svg;
@@ -42,6 +43,12 @@ export class PieChartSum  {
 
         let self = this;
 
+        // create extra div to house graph -- so that legend does not influence height of graphContainer
+        this.graphEl = document.createElement('div');
+        this.graphEl.classList.add('graph_element');
+        this.graphEl.style.height = '260px';
+        this.element.appendChild(this.graphEl);
+
         let chartObjects = ChartObjects();
         this.config = Object.assign(chartObjects.config(),this.config);
         this.dimensions = chartObjects.dimensions();
@@ -50,11 +57,11 @@ export class PieChartSum  {
         this.config.colours = d3.scaleOrdinal()
             .range(this.dataMapping[0].map( d => d.colours));
 
-        this.chartDimensions = new ChartDimensions(this.element,this.config);
+        this.chartDimensions = new ChartDimensions(this.graphEl,this.config);
         this.dimensions = this.chartDimensions.get(this.dimensions);
 
         // create svg elements without data
-        this.chartSVG = new ChartSVG(this.element,this.config,this.dimensions,this.svg);
+        this.chartSVG = new ChartSVG(this.graphEl,this.config,this.dimensions,this.svg);
 
         this.chartPie = new ChartPie(this.config,this.svg,this.dimensions);
 

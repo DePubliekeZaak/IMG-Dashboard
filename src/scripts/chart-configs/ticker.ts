@@ -9,17 +9,17 @@ export const ticker : GraphObject[] = [
                 {
                     "label": "Vorige week: nieuw",
                     "column": "nieuw_schademeldingen",
-                    "colour": "red"
+                    "colour": "orange"
                 },
                 {
                     "label": "Schade-meldingen",
                     "column": "gem_MELDING",
-                    "colour": "red"
+                    "colour": "orange"
                 },
                 {
                     "label": "Schade-meldingen",
                     "column": "schademeldingen",
-                    "colour": "red"
+                    "colour": "orange"
                 }
             ]
         ],
@@ -61,17 +61,17 @@ export const ticker : GraphObject[] = [
                 {
                     "label": "Vorige week: afgehandeld",
                     "column": "nieuw_afgehandeld",
-                    "colour": "blue"
+                    "colour": "moss"
                 },
                 {
                     "label": "Afgehandelde schade-meldingen",
                     "column": "gem_afgehandeld",
-                    "colour": "blue"
+                    "colour": "moss"
                 },
                 {
                     "label": "Afgehandelde schade-meldingen",
                     "column": "afgehandeld",
-                    "colour": "blue"
+                    "colour": "moss"
                 }
             ]
         ],
@@ -114,7 +114,7 @@ export const ticker : GraphObject[] = [
                 {
                     "label": "In half jaar afgehandeld",
                     "column": "percentage_binnen_half_jaar",
-                    "colour": "green"
+                    "colour": "moss"
                 }
             ]
         ],
@@ -156,7 +156,7 @@ export const ticker : GraphObject[] = [
                 {
                     "label": "Gem. tijd tot besluit",
                     "column": "mediaan_doorlooptijd",
-                    "colour": "purple"
+                    "colour": "orange"
                 }
             ]
         ],
