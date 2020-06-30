@@ -1,55 +1,7 @@
 import { GraphObject} from '../types/graphObject';
 
 export const dashboardVoortgang : GraphObject[] = [
-    {   "label": "Voortgang",
-        'slug': 'stacked_area_in_behandeling',
-        'mapping': [
-            [
-                {
-                    'label': 'Open meldingen CVW',
-                    'column': 'schademeldingen_cvw',
-                    'colour': 'blue'
-                },
-                {
-                    'label': 'Open meldingen voor Westerwijtwerd',
-                    'column': 'schademeldingen_voor_westerwijtwerd',
-                    'colour': 'green'
-                },
-                {
-                    'label': 'Open meldingen na Westerwijtwerd',
-                    'column': 'schademeldingen_na_westerwijtwerd',
-                    'colour': 'yellow'
-                }
-            ]
-        ],
-        'config': {
-            'graphType': 'StackedArea',
-            'xScaleType': 'time',
-            'yScaleType': 'linear',
-            'xParameter': '_date',
-            'yParameter': 'MELDING_NA_WESTERWIJTWERD',
-            'padding': {
-                'top': 20,
-                'bottom': 80,
-                'left': 60,
-                'right': 30
-            },
-            'margin': {
-                'top': 60,
-                'bottom': 45,
-                'left': 0,
-                'right': 0
-            },
-            'extra': {
-                'xScaleTicks': 'timeMonth',
-                'header': 'Voortgang afhandeling schademeldingen'
-            }
-        },
-        "description" : "",
-        'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
-        'segment': 'all',
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
-    },
+
     {
         "label": "Doorlooptijd afhandeling schademeldingen",
         "slug": "stacked_area_doorlooptijden",
@@ -63,17 +15,17 @@ export const dashboardVoortgang : GraphObject[] = [
                 {
                     "label": '1-2 jaar oud',
                     "column": 'tussen_jaar_en_twee_jaar_in_procedure',
-                    "colour": "brown"
+                    "colour": "orange"
                 },
                 {
                     "label": '0,5-1 jaar oud',
                     "column": 'tussen_half_jaar_en_jaar_in_procedure',
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": '0,5 jaar oud',
                     "column": 'minder_dan_half_jaar_in_procedure',
-                    "colour": "yellow"
+                    "colour": "lightBlue"
                 }
             ]
         ],
@@ -85,7 +37,7 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter": "TUSSEN_12_EN_1_JAAR",
             "padding": {
                 "top": 20,
-                "bottom": 80,
+                "bottom": 100,
                 "left": 60,
                 "right": 30
             },
@@ -114,7 +66,7 @@ export const dashboardVoortgang : GraphObject[] = [
                 {
                     "label": "In half jaar afgehandeld",
                     "column": "percentage_binnen_half_jaar",
-                    "colour": "green"
+                    "colour": "moss"
                 }
             ]
         ],
@@ -154,7 +106,7 @@ export const dashboardVoortgang : GraphObject[] = [
                 {
                     "label": "Gem. tijd tot besluit",
                     "column": "mediaan_doorlooptijd",
-                    "colour": "purple"
+                    "colour": "orange"
                 }
             ]
         ],
@@ -194,7 +146,7 @@ export const dashboardVoortgang : GraphObject[] = [
                 {
                     "label": "Verwachte tijd melding tot besluit",
                     "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
-                    "colour": "red"
+                    "colour": "blue"
                 }
             ]
         ],
@@ -235,97 +187,97 @@ export const dashboardVoortgang : GraphObject[] = [
             {
                 "label": 'Minder dan een half jaar',
                 "column" : 'minder_dan_half_jaar_in_fase_ontvangst',
-                "colour" : "yellow",
+                "colour" : "lightBlue",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Tussen een half jaar en jaar',
                 "column" : 'tussen_half_jaar_en_jaar_in_fase_ontvangst',
-                "colour" : "green",
+                "colour" : "orange",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Tussen een jaar en twee jaar',
                 "column" : 'tussen_jaar_en_twee_jaar_in_fase_ontvangst',
-                "colour" : "brown",
+                "colour" : "moss",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Langer dan twee jaar',
                 "column" : 'langer_dan_twee_jaar_in_fase_ontvangst',
-                "colour" : "blue",
+                "colour" : "brown",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Minder dan een half jaar',
                 "column" : 'minder_dan_half_jaar_in_fase_planning_opname',
-                "colour" : "yellow",
+                "colour" : "lightBlue",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Tussen een half jaar en jaar',
                 "column" : 'tussen_half_jaar_in_fase_planning_opname',
-                "colour" : "green",
+                "colour" : "orange",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Tussen een jaar en twee jaar',
                 "column" : 'tussen_jaar_en_twee_jaar_in_fase_planning_opname',
-                "colour" : "brown",
+                "colour" : "moss",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Langer dan twee jaar',
                 "column" : 'langer_dan_twee_jaar_in_fase_planning_opname',
-                "colour" : "blue",
+                "colour" : "brown",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Minder dan een half jaar',
                 "column" : 'minder_dan_half_jaar_in_fase_opleveren_schaderapport',
-                "colour" : "yellow",
+                "colour" : "lightBlue",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Tussen een half jaar en jaar',
                 "column" : 'tussen_half_jaar_en_jaar_in_fase_opleveren_schaderapport',
-                "colour" : "green",
+                "colour" : "orange",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Tussen een jaar en twee jaar',
                 "column" : 'tussen_jaar_en_twee_jaar_in_fase_opleveren_schaderapport',
-                "colour" : "brown",
+                "colour" : "moss",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Langer dan twee jaar',
                 "column" : 'langer_dan_twee_jaar_in_fase_opleveren_schaderapport',
-                "colour" : "blue",
+                "colour" : "brown",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Minder dan een half jaar',
                 "column" : 'minder_dan_half_jaar_in_fase_voorbereiding_besluit',
-                "colour" : "yellow",
+                "colour" : "lightBlue",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
             {
                 "label": 'Tussen een half jaar en jaar',
                 "column" : 'tussen_half_jaar_en_jaar_in_fase_voorbereiding_besluit',
-                "colour" : "green",
+                "colour" : "orange",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
             {
                 "label": 'Tussen een jaar en twee jaar',
                 "column" : 'tussen_jaar_en_twee_jaar_in_fase_voorbereiding_besluit',
-                "colour" : "brown",
+                "colour" : "moss",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
             {
                 "label": 'Langer dan twee jaar',
                 "column" : 'langer_dan_twee_jaar_in_fase_voorbereiding_besluit',
-                "colour" : "blue",
+                "colour" : "brown",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             }
         ]

@@ -9,17 +9,17 @@ export const dashboardMain : GraphObject[] = [
           {
             "label": "Vorige week: nieuw",
             "column": "nieuw_schademeldingen",
-            "colour": "red"
+            "colour": "orange"
           },
           {
             "label": "Schade-meldingen",
             "column": "gem_MELDING",
-            "colour": "red"
+            "colour": "orange"
           },
           {
             "label": "Schade-meldingen",
             "column": "schademeldingen",
-            "colour": "red"
+            "colour": "orange"
           }
         ]
     ],
@@ -43,7 +43,6 @@ export const dashboardMain : GraphObject[] = [
       },
       "extra": {
           "useLineFill": true,
-          "firstInLine": false,
           "units": "meldingen",
           "segmentIndicator": true,
           "link": "meldingen",
@@ -85,20 +84,19 @@ export const dashboardMain : GraphObject[] = [
             "padding": {
                 "top": 20,
                 "bottom": 80,
-                "left": 10,
-                "right": 10
+                "left": 0,
+                "right": 0
             },
             "margin": {
                 "top": 90,
                 "bottom": 0,
-                "left": 0,
-                "right": 0
+                "left": 10,
+                "right": 10
             },
             "extra": {
                 "useLineFill": true,
                 "units": "meldingen",
                 "segmentIndicator": true
-                // "units": "afgehandeld"
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
@@ -115,7 +113,7 @@ export const dashboardMain : GraphObject[] = [
         {
           "label": "In half jaar afgehandeld",
           "column": "percentage_binnen_half_jaar",
-          "colour": "green"
+          "colour": "moss"
         }
       ]
     ],
@@ -157,7 +155,7 @@ export const dashboardMain : GraphObject[] = [
         {
           "label": "Gem. tijd tot besluit",
           "column": "mediaan_doorlooptijd",
-          "colour": "purple"
+          "colour": "brown"
         }
       ]
     ],
@@ -198,7 +196,7 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Nieuw",
                     "column": "nieuw_schademeldingen",
-                    "colour": "red"
+                    "colour": "orange"
                 },
                 {
                     "label": "Afgehandeld",
@@ -245,7 +243,7 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Schade-opnames",
                     "column": "nieuw_schade_opnames",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Adviesrapporten",
@@ -299,41 +297,56 @@ export const dashboardMain : GraphObject[] = [
         {
             "label" : "Nieuwe meldingen",
             "column" : "nieuw_schademeldingen",
-
+            "inflow" : "nieuw_schademeldingen",
+            "duration" : ""
         },
         {
             "label" : "Ontvangst & Analyse",
-            "column" : "PRODUCTIE_ONTVANGST_ANALYSE",
+            "column" : "in_fase_ontvangst",
+            "inflow" : "instroom_fase_ingepland_voor_opname",
+            "duration" : "",
             "colour": "brown"
         },
         {
             "label" : "Planning schade-opname",
-            "column" : "PRODUCTIE_GEREED_INPLANNING",
-            "colour": "blue"
+            "column" : "in_fase_planning_opname",
+            "inflow" : "instroom_fase_opleveren_rapport_bewoner",
+            "duration" : "",
+            "colour": "yellow"
         },
         {
             "label" : "Ingepland voor opname",
-            "column" : "PRODUCTIE_INGEPLAND_OPNAME",
+            "column" : "in_fase_ingepland_voor_opname",
+            "inflow" : "instroom_fase_rapport_bij_bewoner",
+            "duration" : "",
             "colour": "violet"
         },
         {
             "label" : "Opleveren rapport",
-            "column" : "PRODUCTIE_OPLEVEREN_RAPPORT",
+            "column" : "in_fase_opleveren_rapport_bewoner",
+            "inflow" : "instroom_fase_voorbereiden_besluit",
+            "duration" : "",
             "colour": "purple"
         },
         {
             "label" : "Rapport bij bewoner",
-            "column" : "PRODUCTIE_RAPPORT_BEWONER",
+            "column" : "in_fase_rapport_bij_bewoner",
+            "inflow" : "PRODUCTIE_RAPPORT_BEWONER",
+            "duration" : "",
             "colour": "green"
         },
         {
             "label" : "Voorbereiden besluit",
-            "column" : "PRODUCTIE_VOORBEREIDEN_BESLUIT",
-            "colour": "yellow"
+            "column" : "in_fase_voorbereiden_besluit",
+            "inflow" : "",
+            "duration" : "",
+            "colour": "blue"
         },
         {
             "label" : "Afgerond",
             "column" : "nieuw_afgehandeld",
+            "inflow" : "",
+            "duration" : "",
         }
     ]
     ],
@@ -375,7 +388,7 @@ export const dashboardMain : GraphObject[] = [
             {
                 "label": "Mijnbouwschade",
                 "column": "schadevergoeding_schadebedrag",
-                "colour": "yellow"
+                "colour": "brown"
             },
             {
                 "label": "Stuwmeerregeling",
@@ -385,19 +398,19 @@ export const dashboardMain : GraphObject[] = [
             {
                 "label": "Bijkomende kosten",
                 "column": "schadevergoeding_bijkomende_kosten_bedrag",
-                "colour": "green"
+                "colour": "moss"
             },
             {
                 "label": "Wettelijke rente",
                 "column": "schadevergoeding_wettelijke_rente_bedrag",
-                "colour": "red"
+                "colour": "orange"
             }
         ],
         [
             {
                 "label": "Totaal",
                 "column": "TOTAAL_VERLEEND",
-                "colour": "yellow"
+                "colour": "gray"
             }
         ]
     ]],
@@ -443,17 +456,17 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Gegrond",
                     "column": "bezwaren_gegrond",
-                    "colour": "brown"
+                    "colour": "moss"
                 },
                 {
                     "label": "Deels gegrond",
                     "column": "bezwaren_deels_gegrond",
-                    "colour": "blue"
+                    "colour": "orange"
                 },
                 {
                     "label": "Ongegrond",
                     "column": "bezwaren_ongegrond",
-                    "colour": "violet"
+                    "colour": "blue"
                 },
                 {
                     "label": "Niet ontvankelijk",
@@ -463,12 +476,12 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Ingetrokken",
                     "column": "bezwaren_ingetrokken",
-                    "colour": "green"
+                    "colour": "brown"
                 },
                 {
                     "label": "Naar schadeprocedure",
                     "column": "bezwaren_doorgezet",
-                    "colour": "red"
+                    "colour": "orange"
                 }
             ],
             [
@@ -482,7 +495,7 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "In behandeling",
                     "column": "bezwaren_in_behandeling",
-                    "colour": "yellow"
+                    "colour": "gray"
                 }
             ]
         ]],
@@ -527,12 +540,12 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Afgehandelde specials",
                     "column": "specials_afgehandeld",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Specials in behandeling",
                     "column": "specials_in_behandeling",
-                    "colour": "yellow"
+                    "colour": "blue"
                 }
             ],
             [
@@ -541,7 +554,6 @@ export const dashboardMain : GraphObject[] = [
                     "column": false,
                     "colour": false
                 }
-
             ]
         ]],
         "config": {
@@ -577,5 +589,4 @@ export const dashboardMain : GraphObject[] = [
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     }
-
 ]

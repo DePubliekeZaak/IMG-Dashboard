@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import { colours } from  '../_styleguide/_colours'
 import {breakpoints} from "../_styleguide/_breakpoints";
+import { thousands } from "../helpers/_helpers";
 
 export class ChartCircles {
 
@@ -105,7 +106,7 @@ export class ChartCircles {
             .attr("r", (d) => {  return rScale(d.value);  });
 
         this.circlesText
-            .text( (d) => d.value);
+            .text( (d) => { console.log(d); return thousands(d.value)});
 
         this.headers_lines
             .attr('height', (d,i) => {

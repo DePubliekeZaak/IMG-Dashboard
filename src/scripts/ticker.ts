@@ -23,6 +23,11 @@ export class InitTicker {
         this.htmlContainer.classList.add('container');
         this.htmlContainer.style.flexDirection = 'column';
 
+        if (window.innerWidth < breakpoints.sm) {
+
+            this.htmlContainer.style.marginBottom = '2rem';
+        }
+
         // const firstColumn = document.createElement('div');
         // firstColumn.classList.add('column');
         // firstColumn.classList.add('is-2');
@@ -137,6 +142,24 @@ export class InitTicker {
             const row = document.createElement('div');
             row.classList.add('columns');
             row.style.position = 'relative';
+
+
+
+            if(window.innerWidth < breakpoints.sm) {
+
+                row.style.display = 'flex';
+                row.style.flexDirection = 'column';
+                row.style.justifyContent = 'space-between';
+                row.style.flexWrap = 'wrap';
+                row.style.height = '36rem';
+
+            } else if (window.innerWidth < breakpoints.md) {
+
+                row.style.display = 'flex';
+                row.style.flexDirection = 'row';
+                row.style.flexWrap = 'wrap';
+            }
+
             this.htmlContainer.appendChild(row);
 
             for (let graphObject of dashboardArray ) {

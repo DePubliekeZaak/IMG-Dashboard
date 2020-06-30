@@ -8,7 +8,7 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Nieuw",
                     "column": "nieuw_schademeldingen",
-                    "colour": "red"
+                    "colour": "blue"
                 }
             ]
         ],
@@ -52,7 +52,7 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Schademeldingen",
                     "column": "schademeldingen",
-                    "colour": "red"
+                    "colour": "lightBlue"
                 }
             ]
         ],
@@ -86,6 +86,55 @@ export const dashboardMeldingen : GraphObject[] = [
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
     },
+    {   "label": "Voortgang",
+        'slug': 'stacked_area_in_behandeling',
+        'mapping': [
+            [
+                {
+                    'label': 'Open meldingen CVW',
+                    'column': 'schademeldingen_cvw',
+                    'colour': 'lightBlue'
+                },
+                {
+                    'label': 'Open meldingen voor Westerwijtwerd',
+                    'column': 'schademeldingen_voor_westerwijtwerd',
+                    'colour': 'moss'
+                },
+                {
+                    'label': 'Open meldingen na Westerwijtwerd',
+                    'column': 'schademeldingen_na_westerwijtwerd',
+                    'colour': 'orange'
+                }
+            ]
+        ],
+        'config': {
+            'graphType': 'StackedArea',
+            'xScaleType': 'time',
+            'yScaleType': 'linear',
+            'xParameter': '_date',
+            'yParameter': 'MELDING_NA_WESTERWIJTWERD',
+            'padding': {
+                'top': 20,
+                'bottom': 100,
+                'left': 60,
+                'right': 30
+            },
+            'margin': {
+                'top': 60,
+                'bottom': 45,
+                'left': 0,
+                'right': 0
+            },
+            'extra': {
+                'xScaleTicks': 'timeMonth',
+                'header': 'Voortgang afhandeling schademeldingen'
+            }
+        },
+        "description" : "",
+        'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
+        'segment': 'all',
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+    },
     {   "label": "Acuut onveilige situaties",
         "slug": "meldingen_trend_aos_meldingen",
         "mapping": [
@@ -93,12 +142,12 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "AOS Meldingen",
                     "column": "nieuw_aos_meldingen",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Acuut onveilige situaties",
                     "column": "nieuw_aos_meldingen_gegrond",
-                    "colour": "purple"
+                    "colour": "orange"
                 }
             ]
         ],
@@ -143,19 +192,19 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Wel",
                     "column": "aos_meldingen_gegrond",
-                    "colour": "yellow"
+                    "colour": "moss"
                 },
                 {
                     "label": "Niet",
                     "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
-                    "colour": "green"
+                    "colour": "blue"
                 }
             ],
             [
                 {
                     "label": "Totaal",
                     "column": "aos_meldingen",
-                    "colour": "yellow"
+                    "colour": "gray"
                 }
             ]
         ]],
@@ -203,7 +252,7 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Nulmetingen",
                     "column": "nieuw_nulmetingen",
-                    "colour": "yellow"
+                    "colour": "orange"
                 }
             ]
         ],
@@ -247,17 +296,17 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Aannemersvariant",
                     "column": "schadeopnames_via_aannemersvariant",
-                    "colour": "gray"
+                    "colour": "orange"
                 },
                 {
                     "label": "Schade-opnemers",
                     "column": "schadeopnames_via_opnemersvariant",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "CVW 2000",
                     "column": "schadeopnames_door_cvw2000",
-                    "colour": "yellow"
+                    "colour": "brown"
                 },
                 {
                     "label": "Wooncorporaties",
@@ -267,7 +316,7 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Regulier",
                     "column": "schadeopnames_regulier",
-                    "colour": "red"
+                    "colour": "gray"
                 }
             ],
             [

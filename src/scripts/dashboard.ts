@@ -48,7 +48,7 @@ export class InitDashboard {
 
         if (window.innerWidth > breakpoints.md ) {
             this.dashBoardMap = new DashboardMap(munis);
-            this.dashBoardMap.update(false, "red")
+            this.dashBoardMap.update(false, "orange")
         }
         // }
 
@@ -80,6 +80,7 @@ export class InitDashboard {
         header.style.fontSize = '1rem';
         header.style.lineHeight = '1.5';
         header.style.fontWeight = '700';
+        // header.style.fontFamily = 'Noto Sans';
 
         header.innerText = "Meer grafieken";
 
@@ -133,7 +134,6 @@ export class InitDashboard {
 
         return div;
     }
-
 
     createPopupElement() {
 

@@ -84,6 +84,8 @@ export class ChartMap {
             .attr("fill", d => {
                 const c = (colour) ? colour : d.properties.colour;
 
+                console.log(c);
+
                 return (property !== undefined && d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
             } )
             .attr("fill-opacity", d => (d.properties[property] > 0) ? scale(d.properties[property]) : 1)

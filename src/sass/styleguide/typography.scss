@@ -1,5 +1,5 @@
 body {
-  font-family: RO Sans, sans-serif;
+  font-family: Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 1rem;
   line-height: 1.225;
 }
@@ -7,7 +7,7 @@ body {
 
 @mixin uppercase() {
 
-  font-family: 'RO Sans';
+  font-family: Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: .85rem;
@@ -17,7 +17,7 @@ body {
 
 @mixin uppercase-small() {
 
-  font-family: 'RO Sans';
+  font-family: Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   font-size: .75rem;
@@ -27,7 +27,7 @@ body {
 
 
 h3 {
-  font-family: 'RO Sans';
+  font-family: Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-weight: normal;
   color: black;
   font-size: 1.5rem;

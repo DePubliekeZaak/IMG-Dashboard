@@ -83,11 +83,6 @@ export class TrendLine {
                     this.htmlHeader.draw();
         }
 
-        // if (this.config.extra.link) {
-        //
-        //     this.link = new HtmlLink(this.element,this.config.extra.link,'');
-        // }
-
         this.popup = new HtmlPopup(this.element,this.description);
         this.htmlSegment = new HtmlSegment(this.element);
 
@@ -148,6 +143,7 @@ export class TrendLine {
         let data = [];
 
         for (let week of json) {
+
             let o = {
                 colour : this.dataMapping[0].colour
             };
@@ -156,6 +152,7 @@ export class TrendLine {
                     o[p[0]] = p[1];
                 }
             }
+
             data.push(o);
         }
 
@@ -163,8 +160,11 @@ export class TrendLine {
             return new Date(a._date).getTime() - new Date(b._date).getTime();
         });
 
-        return data.slice(1,data.length);
+        if(this.config.extra.startDate) {
+            data = data.filter( (week) => new Date(week._date) > new Date(this.config.extra.startDate));
+        }
 
+        return data.slice(1,data.length);
     }
 
     redraw(data) {
@@ -211,7 +211,6 @@ export class TrendLine {
         }
 
         for (let line of this.chartLines) {
-
             line.draw(data)
         }
 

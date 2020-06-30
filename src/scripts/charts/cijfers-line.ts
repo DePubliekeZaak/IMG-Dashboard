@@ -163,7 +163,12 @@ export class CijfersLine  {
 
         let data = self.prepareData(newData);
         self.draw(data);
-        self.redraw(data);
+
+        // onverklaarbaar ding met breedte van element
+        setTimeout( () => {
+            self.redraw(data);
+        }, 500);
+
         window.addEventListener("resize", () => self.redraw(data), false);
 
         if(this.config.extra.segmentIndicator) {

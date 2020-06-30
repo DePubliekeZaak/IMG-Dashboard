@@ -91,6 +91,8 @@ export class ChartRaggedLine {
             //         return (self.config.yScaleType === 'time') ? "translate(" + -(xScale(data[0][xParameter]) - (dimensions.width / 2)) + ",0)" : "translate(0,0)"
             //     });
 
+
+
             let line = d3.line()
                 .x(d =>  (this.config.xScaleType === 'time') ?  xScale(new Date(d[this.config.xParameter])) : xScale(d[xParameter]))
                 .y(d => (this.config.yScaleType === 'time') ? yScale(new Date (d[yParameter])) : yScale(d[yParameter]) )
@@ -101,8 +103,30 @@ export class ChartRaggedLine {
                 .duration(250)
                 .attr("d", line)
                 .attr("fill", 'transparent')
-                .attr("stroke", colours[colour][0])
-                .attr("stroke-width", 4)
+                .attr("stroke", () => {
+
+                    if (this.config.extra.smartColours === 'up') {
+
+                        if (data[0][xParameter] > data[1][xParameter]) {
+                            return colours['orange'][0];
+                        } else {
+                            return colours['moss'][0];
+                        }
+
+                    } else if (this.config.extra.smartColours === 'down') {
+
+                        if(data[0][xParameter] < data[1][xParameter]) {
+
+                            return colours['moss'][0];
+                        } else {
+                            return colours['orange'][0];
+                        }
+
+                    } else {
+                        return colours[colour][0];
+                    }
+                })
+                .attr("stroke-width", (this.config.extra.thinLines) ? 1 : 4)
             ;
 
             if(this.svg.circles) {
@@ -116,7 +140,28 @@ export class ChartRaggedLine {
                 })
                 .attr("r", 1)
                 .attr("fill", 'white')
-                .attr("stroke", colours[colour][0])
+                .attr("stroke", () => {
+
+                    if (this.config.extra.smartColours === 'up') {
+
+                        if (data[0][xParameter] > data[1][xParameter]) {
+                            return colours['green'][0];
+                        } else {
+                            return colours['orange'][0];
+                        }
+
+                    } else if (this.config.extra.smartColours === 'down') {
+
+                            if(data[0][xParameter] > data[1][xParameter]) {
+                                return colours['orange'][0];
+                            } else {
+                                return colours['green'][0];
+                            }
+
+                    } else {
+                        return colours[colour][0];
+                    }
+                })
                 .attr("stroke-width", 4)
                 .transition()
                 .duration(250)

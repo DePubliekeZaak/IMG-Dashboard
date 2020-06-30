@@ -104,6 +104,7 @@ export class FlowDossierCount {
     prepareData(newData) {
 
         let data = [];
+        console.log(this.data);
 
         for (let mapping of this.dataMapping) {
 

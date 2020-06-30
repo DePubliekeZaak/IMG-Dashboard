@@ -55,7 +55,29 @@ export class ChartBackgroundArea {
             this.svg.lineFill
                 .merge(this.svg.lineFillEnter)
                 .attr("d", area)
-                .attr("fill", colours[colour][1])
+                // .attr("fill", colours[colour][1])
+                .attr("fill", () => {
+
+                    if (this.config.extra.smartColours === 'up') {
+
+                        if (data[0][xParameter] > data[1][xParameter]) {
+                            return colours['orange'][1];
+                        } else {
+                            return colours['moss'][1];
+                        }
+
+                    } else if (this.config.extra.smartColours === 'down') {
+
+                        if(data[0][xParameter] < data[1][xParameter]) {
+                            return colours['moss'][1];
+                        } else {
+                            return colours['orange'][1];
+                        }
+
+                    } else {
+                        return colours[colour][1];
+                    }
+                })
                 .attr("stroke", "none")
                 .attr("transform", function () {
                     return (self.config.yScaleType === 'time') ? "translate(" + -(xScale(data[0][xParameter]) - (dimensions.width / 2)) + ",0)" : "translate(0,0)"

@@ -9,19 +9,19 @@ export const dashboardVergoedingen : GraphObject[] = [
                 {
                     label: "< €1K",
                     column: "schadevergoedingen_lager_dan_1000",
-                    colour: 'green'
+                    colour: 'lightBlue'
                 },
                 {   label : "€1K t/m €4K",
                     column : "schadevergoedingen_tussen_1000_en_4000",
-                    colour :'blue'
+                    colour :'orange'
                 },
                 {   label : "€4K t/m €10K",
                     column : "schadevergoedingen_tussen_4000_en_10000",
-                    colour: 'yellow'
+                    colour: 'moss'
                 },
                 {   label : "> €10K",
                     column : "schadevergoedingen_hoger_dan_10000",
-                    colour: 'red'
+                    colour: 'brown'
                 }
             ]
         ],
@@ -45,14 +45,15 @@ export const dashboardVergoedingen : GraphObject[] = [
             },
             "extra" : {
                 "currencyLabels" : false,
+                "privacySensitive" : true,
                 "paddingInner" : .1,
                 "paddingOuter" : .1,
                 "municipalitySelect": true,
-                "alternateTicks" : true,
+                "alternateTicks" : false,
                 "header" : "Ordegrootte van schadevergoedingen"
             }
         },
-        "description" : "",
+        "description" : "Lorem flipsum",
         "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",  // ivm in-graph gemeentekiezer
         "segment": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium']
@@ -65,7 +66,7 @@ export const dashboardVergoedingen : GraphObject[] = [
                 {
                     "label": "Specials",
                     "column": "schadevergoeding_totaal_verleend",
-                    "colour": "yellow"
+                    "colour": "moss"
                 }
             ]
         ],
@@ -93,20 +94,20 @@ export const dashboardVergoedingen : GraphObject[] = [
                 "header" : "Totaal uitgekeerde schadebedragen per gemeente"
             }
         },
-        "description" : "",
+        "description" : "Kip",
         "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
         "segment": false,
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
     },
-    {   "label": "Schademeldingen",
+    {   "label": "Gemiddeld schadebedrag",
         "slug": "meldingen_trend_schademeldingen",
         "mapping": [
             [
                 {
-                    "label": "Nieuw",
-                    "column": "nieuw_schademeldingen",
-                    "colour": "red"
+                    "label": "Gemiddeld schadebedrag",
+                    "column": "schadevergoedingen_gemiddeld_schadebedrag",
+                    "colour": "moss"
                 }
             ]
         ],
@@ -129,10 +130,12 @@ export const dashboardVergoedingen : GraphObject[] = [
                 "right": 0
             },
             "extra": {
+                "startDate" : '10-01-2019',
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
                 "header" : "Ontwikkeling gemiddeld schadebedrag",
                 "legend" : true,
+
             }
         },
         "description" : "Het percentage schademeldingen voor gewone woningen dat binnen een half jaar is afgehandeld. We noemen dit ook wel reguliere dossiers en die beslaan verreweg het merendeel van alle schademeldingen. De lijngrafiek eronder toont de ontwikkeling in de laatste acht weken. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het percentage wordt berekend door voor de laatste duizend besluiten te berekenen wat de doorlooptijd per dossier is geweest waarover is besloten. Als dat 182 dagen of minder is geweest (een half jaar) dan wordt dat meegenomen in het genoemde percentage. Omdat dit telkens over de laatste duizend besluiten wordt berekend, is het een voortschrijdend cijfer. Samen met de grafiek 1. 'Gerealiseerde en verwachte doorlooptijd' schets dit de voortgang van de schadeafhandeling voor reguliere dossiers in het licht van het streven om alle nieuwe reguliere schademeldingen binnen een half jaar af te handelen.",

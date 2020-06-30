@@ -12,32 +12,32 @@ export class InitGraph {
 
         this.addStylesheets();
 
-        const graphElements = [].slice.call(document.querySelectorAll("[data-img-graph-preset]"));
+            const graphElements = [].slice.call(document.querySelectorAll("[data-img-graph-preset]"));
 
-        for (let el of graphElements) {
+            for (let el of graphElements) {
 
-            const graph = el.getAttribute('data-img-graph-preset');
+                const graph = el.getAttribute('data-img-graph-preset');
 
-            switch (graph) {
+                switch (graph) {
 
-                case 'dashboard' :
+                    case 'dashboard' :
 
-                    this.dashboard();
+                        this.dashboard();
 
-                    break;
+                        break;
 
-                case 'ticker' :
+                    case 'ticker' :
 
-                    this.ticker();
+                        this.ticker();
 
-                    break;
+                        break;
 
-                default :
+                    default :
 
-                    this.single();
+                        this.single();
 
+                }
             }
-        }
     }
 
     single() {
@@ -62,10 +62,15 @@ export class InitGraph {
         const link  = document.createElement('link');
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = '../main.css'; //https://graphs.publikaan.nl/graph-selector/main.css'; //  ; //  graphObject
+        link.href = 'https://graphs.publikaan.nl/graph-selector/main.css'; //; //  ; //  graphObject
         link.media = 'all';
         head.appendChild(link);
     }
 }
 
 new InitGraph();
+
+
+window.addEventListener('graph_ready', function (e) {
+    new InitGraph();
+}, false);

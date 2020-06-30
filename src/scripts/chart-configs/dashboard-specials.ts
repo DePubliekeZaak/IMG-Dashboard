@@ -9,12 +9,12 @@ export const dashboardSpecials : GraphObject[] = [
                 {
                     "label": "Agro",
                     "column": "nieuw_agro_schademeldingen",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Erfgoed",
                     "column": "nieuw_erfgoed_schademeldingen",
-                    "colour": "yellow"
+                    "colour": "lightBlue"
                 },
                 {
                     "label": "MKB",
@@ -24,7 +24,7 @@ export const dashboardSpecials : GraphObject[] = [
                 {
                     "label": "Overig en AOS",
                     "column": "nieuw_aos_overig_schademeldingen",
-                    "colour": "red"
+                    "colour": "orange"
                 }
             ]
         ],
@@ -70,22 +70,22 @@ export const dashboardSpecials : GraphObject[] = [
                 {
                     "label": "Agro",
                     "column": "agro_schademeldingen",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Erfgoed",
                     "column": "erfgoed_schademeldingen",
-                    "colour": "yellow"
+                    "colour": "brown"
                 },
                 {
                     "label": "MKB",
                     "column": "mkb_schademeldingen",
-                    "colour": "blue"
+                    "colour": "lightBlue"
                 },
                 {
                     "label": "Overig en AOS",
                     "column": "aos_overig_schademeldingen",
-                    "colour": "red"
+                    "colour": "orange"
                 }
             ]
         ]],
@@ -134,22 +134,22 @@ export const dashboardSpecials : GraphObject[] = [
                 {
                     "label": "Agro",
                     "column": "agro_in_behandeling",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Erfgoed",
                     "column": "erfgoed_in_behandeling",
-                    "colour": "yellow"
+                    "colour": "brown"
                 },
                 {
                     "label": "MKB",
                     "column": "mkb_in_behandeling",
-                    "colour": "blue"
+                    "colour": "lightBlue"
                 },
                 {
                     "label": "Overig en AOS",
                     "column": "aos_in_behandeling",
-                    "colour": "red"
+                    "colour": "orange"
                 }
             ]
         ]],
@@ -194,97 +194,97 @@ export const dashboardSpecials : GraphObject[] = [
             {
                 "label": 'Agro',
                 "column" : 'agro_in_fase_ontvangst',
-                "colour" : "green",
+                "colour" : "moss",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Erfgoed',
                 "column" : 'erfgoed_in_fase_ontvangst',
-                "colour" : "yellow",
+                "colour" : "brown",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'MKB',
                 "column" : 'mkb_in_fase_ontvangst',
-                "colour" : "blue",
+                "colour" : "lightBlue",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Overig en AOS',
                 "column" : 'overig_aos_in_fase_ontvangst',
-                "colour" : "red",
+                "colour" : "orange",
                 "group" : 'Ontvangst en analyse'
             },
             {
                 "label": 'Agro',
                 "column" : 'agro_in_fase_planning_opname',
-                "colour" : "green",
+                "colour" : "moss",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Erfgoed',
                 "column" : 'erfgoed_in_fase_planning_opname',
-                "colour" : "yellow",
+                "colour" : "brown",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'MKB',
                 "column" : 'mkb_in_fase_planning_opname',
-                "colour" : "blue",
+                "colour" : "lightBlue",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Overig en AOS',
                 "column" : 'aos_overig_in_fase_planning_opname',
-                "colour" : "red",
+                "colour" : "orange",
                 "group" : 'Schade-opname wordt ingepland'
             },
             {
                 "label": 'Agro',
                 "column" : 'agro_in_fase_oplevering_schaderapport',
-                "colour" : "green",
+                "colour" : "moss",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Erfgoed',
                 "column" : 'erfgoed_in_fase_oplevering_schaderapport',
-                "colour" : "yellow",
+                "colour" : "brown",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'MKB',
                 "column" : 'mkb_in_fase_oplevering_schaderapport',
-                "colour" : "blue",
+                "colour" : "lightBlue",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Overig en AOS',
                 "column" : 'aos_overig_in_fase_oplevering_schaderapport',
-                "colour" : "red",
+                "colour" : "orange",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
             {
                 "label": 'Agro',
                 "column" : 'agro_in_fase_voorbereiding_besluit',
-                "colour" : "green",
+                "colour" : "moss",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
             {
                 "label": 'Erfgoed',
                 "column" : 'erfgoed_in_fase_voorbereiding_besluit',
-                "colour" : "yellow",
+                "colour" : "brown",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
             {
                 "label": 'MKB',
                 "column" : 'mkb_in_fase_voorbereiding_besluit',
-                "colour" : "blue",
+                "colour" : "lightBlue",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
             {
                 "label": 'Overig en AOS',
                 "column" : 'aos_overig_in_fase_voorbereiding_besluit',
-                "colour" : "red",
+                "colour" : "orange",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             }
         ]
@@ -330,22 +330,22 @@ export const dashboardSpecials : GraphObject[] = [
                 {
                     "label": "Ontvangst en analyse",
                     "column": "specials_in_fase_ontvangst",
-                    "colour": "blue"
+                    "colour": "lightBlue"
                 },
                 {
                     "label": "Schade-opname wordt ingepland",
                     "column": "specials_in_fase_planning_opname",
-                    "colour": "red"
+                    "colour": "orange"
                 },
                 {
                     "label": "Schade-opname uitgevoerd, adviesrapport opleveren",
                     "column": "specials_in_fase_oplevering_schaderapport",
-                    "colour": "green"
+                    "colour": "moss"
                 },
                 {
                     "label": "Adviesrapport opgeleverd, besluit voorbereiden",
                     "column": "specials_in_fase_voorbereiding_besluit",
-                    "colour": "purple"
+                    "colour": "brown"
                 }
             ]
         ],
@@ -389,7 +389,7 @@ export const dashboardSpecials : GraphObject[] = [
                 {
                     "label": "Specials",
                     "column": "specials_schademeldingen",
-                    "colour": "yellow"
+                    "colour": "lightBlue"
                 }
             ]
         ],

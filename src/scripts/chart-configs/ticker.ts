@@ -44,6 +44,8 @@ export const ticker : GraphObject[] = [
             "extra": {
                 "useLineFill": true,
                 "noDots": true,
+                "smartColours" : 'down',
+                "thinLines" : true,
                 "units": "meldingen",
                 "link": "meldingen",
             }
@@ -51,7 +53,7 @@ export const ticker : GraphObject[] = [
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','column','is-3']
+        "elementClasslist": ['img-graph-container','column']
     },
     {
         "label" : "Bol afgehandelde meldingen",
@@ -96,14 +98,17 @@ export const ticker : GraphObject[] = [
             "extra": {
                 "useLineFill": true,
                 "noDots": true,
+                "smartColours" : 'up',
+                "thinLines" : true,
                 "units": "meldingen"
+
                 // "units": "afgehandeld"
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','column','is-3']
+        "elementClasslist": ['img-graph-container','column']
 
     },
     {
@@ -140,13 +145,15 @@ export const ticker : GraphObject[] = [
                 "useLineFill": true,
                 "units": "%",
                 "noDots": true,
-                "notNull": true
+                "notNull": true,
+                "smartColours" : 'up',
+                "thinLines" : true,
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','column','is-3']
+        "elementClasslist": ['img-graph-container','column']
     },
     {
         "label" : "Bol gerealiseerde doorlooptijd",
@@ -182,12 +189,14 @@ export const ticker : GraphObject[] = [
                 "useLineFill": true,
                 "units": "dagen",
                 "noDots": true,
-                "notNull": true
+                "notNull": true,
+                "smartColours" : 'down',
+                "thinLines" : true,
             }
         },
         "description" : "In de paarse bol is te zien hoe lang het duurt voor een schademelding voor een gewoon woonhuis (regulier dossier) is afgehandeld. Het gaat om het verschil in kalenderdagen van schademelding tot besluit. De lijngrafiek onder de bollen toont de ontwikkeling over de afgelopen acht week. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het gaat hier om een getal bij benadering (de mediaan), berekend over de laatste duizend besluiten. Het is daarmee ook een voortschrijdend cijfer. Het betekent dat bij de laatste duizend besluiten vijftig procent van de dossiers meer doorlooptijd in dagen hadden en 50 procent minder doorlooptijd tot het besluit. De mediaan is voor dit onderwerp een realistische getal dan het gemiddelde dat soms extreem wordt beïnvloed door slechts enkele zeer positieve of zeer negatieve dossiers waar het gaat om de doorlooptijd. ",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','column','is-3']
+        "elementClasslist": ['img-graph-container','column']
     }
 ]

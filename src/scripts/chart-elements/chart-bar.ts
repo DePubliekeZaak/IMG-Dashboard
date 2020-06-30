@@ -80,8 +80,8 @@ export class ChartBar {
             })
             .transition()
             .duration(500)
-            .attr("y", (d) => yScale(d[this.config.yParameter]))
-            .attr("height", (d) => { return dimensions.height - yScale(d[self.config.yParameter]) } )
+            .attr("y", (d) => (this.config.extra.privacySensitive && d[self.config.yParameter] < 25) ? dimensions.height : yScale(d[self.config.yParameter]))
+            .attr("height", (d) => (this.config.extra.privacySensitive && d[self.config.yParameter] < 25) ? 0 : dimensions.height - yScale(d[self.config.yParameter]))
 
         ;
 
@@ -90,20 +90,15 @@ export class ChartBar {
             .text(function(d) {
 
                 if(self.config.currencyLabels) {
-
                     return convertToCurrency(d[self.config.yParameter]);
-
                 } else {
-
-                    return d[self.config.yParameter] ? d[self.config.yParameter] : '< 25';
+                    return (self.config.extra.privacySensitive && d[self.config.yParameter] < 25) ? '< 25' : d[self.config.yParameter] ;
                 }
-
-
             })
             .attr('transform', function(d) {
 
                     return 'translate(' + (xScale(d[self.config.xParameter]) + (xScale.bandwidth() / 2)) + ',' +
-                        (yScale(d[self.config.yParameter]))
+                        ((self.config.extra.privacySensitive && d[self.config.yParameter] < 25) ? dimensions.height : yScale(d[self.config.yParameter]))
                         + ')';
             })
             .attr('fill-opacity', 0)

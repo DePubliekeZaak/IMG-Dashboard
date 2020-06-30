@@ -73,10 +73,10 @@ export class ChartAxes {
 
                case 'band' :
 
-                   this.axis
-                       .tickFormat( (d,i) => {
-                           return (window.innerWidth < 640) ? (i + 1) : d;
-                       });
+                   // this.axis
+                   //     .tickFormat( (d,i) => {
+                   //         return (window.innerWidth < 640) ? (i + 1) : d;
+                   //     });
 
                    break;
 

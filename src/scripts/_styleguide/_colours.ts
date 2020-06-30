@@ -7,15 +7,26 @@ const lightGrey = '#c7c7c7';
 const gray = ['#595959','#595959','#595959'];
 const red = ['rgb(213,43,30)','rgb(242,191,187)','rgb(249,223,221)'];
 const green = ['rgb(57,135,12)','rgb(195,219,182)','rgb(225,237,219)'];
-const blue = ['rgb(0,123,199)','rgb(178,215,238)','rgb(217,235,247)'];
+
+
+const blue = ['rgb(1,104,155)','rgb(204,224,241)','rgb(229,240,249)'];
+// const blue = ['rgb(0,123,199)','rgb(178,215,238)','rgb(217,235,247)'];
+
+
 const purple = ['rgb(66,20,95)','rgb(198,184,207)','rgb(227,220,231)'];
 
-const yellow = ['rgb(255,182,18)','rgb(255,233,183)','rgb(255,244,220)'];
-const brown = ['rgb(103,51,39)','rgb(209,193,190)','rgb(232,225,223)'];
+const yellow = ['rgb(249,225,30)','rgb(253,246,187)','rgb(254,251,221)'];
+// const yellow = ['rgb(255,182,18)','rgb(255,233,183)','rgb(255,244,220)'];
+
+
+const brown = ['rgb(148,113,0)','rgb(223,212,181)','rgb(239,234,218)'];
+// const brown = ['rgb(103,51,39)','rgb(209,193,190)','rgb(232,225,223)'];
+
 const violet = ['rgb(169,0,97)','rgb(229,178,207)','rgb(242,217,231)'];
 
 const orange = ['rgb(225,112,0)','rgb(246,212,178)','rgb(251,234,217)'];
 const moss = ['rgb(119,124,0)','rgb(214,215,178)','rgb(235,235,217)'];
+const lightBlue = ['rgb(143,202,231)','rgb(221,239,248)','rgb(238,247,251)'];
 
 const colours = {
 
@@ -31,7 +42,8 @@ const colours = {
     brown,
     violet,
     orange,
-    moss
+    moss,
+    lightBlue
 };
 
 export { colours };

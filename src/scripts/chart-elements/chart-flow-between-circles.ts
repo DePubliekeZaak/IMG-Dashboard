@@ -34,7 +34,7 @@ export class ChartFlowBetweenCircles {
         this.startPoint = this.svgLayers.data
             .append("path")
             .style("fill", (d) => {
-                return "#ccc";
+                return colours.blue[0];
             });
         // .style("opacity", (d) => {
         //     return .75;
@@ -43,7 +43,7 @@ export class ChartFlowBetweenCircles {
         this.endPoint = this.svgLayers.data
             .append("path")
             .style("fill", (d) => {
-                return "#ccc";
+                return colours.blue[0];
             });
 
     }
@@ -61,7 +61,7 @@ export class ChartFlowBetweenCircles {
             .enter()
             .append("path")
             .attr("class","flow")
-            .style("fill","hsla(0,0%,80%,.5)")
+            .style("fill", colours.lightBlue[0]) // "hsla(0,0%,80%,.5)")
             .on("mouseover", function(d) {
 
                 self.svgLayers.data
