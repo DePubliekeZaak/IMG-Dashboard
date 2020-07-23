@@ -84,8 +84,6 @@ export class ChartMap {
             .attr("fill", d => {
                 const c = (colour) ? colour : d.properties.colour;
 
-                console.log(c);
-
                 return (property !== undefined && d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
             } )
             .attr("fill-opacity", d => (d.properties[property] > 0) ? scale(d.properties[property]) : 1)
@@ -95,7 +93,10 @@ export class ChartMap {
 
                 if (self.config.extra.currencyLabels) {
                     html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + convertToCurrency(d.properties[property]) + "</div>";
+                } else if (self.config.extra.percentage) {
+                    html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + d.properties[property] + "%</div>";
                 }
+
 
                 if(d.properties[property] && d.properties[property] > 0) {
 
@@ -133,7 +134,7 @@ export class ChartMap {
                         if (self.config.extra.currencyLabels) {
                             return shortenCurrency(convertToCurrency(d.properties[property]));
 
-                        } else if (property === 'percentage_stuwmeer') {
+                        } else if (self.config.extra.percentage) {
 
                             return parseInt(d.properties[property]).toString() + '%';
                         } else {

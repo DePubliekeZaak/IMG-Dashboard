@@ -33,13 +33,13 @@ export const dashboardMeldingen : GraphObject[] = [
             "extra": {
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "largeHeader" : true,
+                "largeHeader" : false,
                 "header" : "Schademeldingen per week",
                 "link": "meldingen",
                 "legend" : true,
             }
         },
-        "description" : "Het percentage schademeldingen voor gewone woningen dat binnen een half jaar is afgehandeld. We noemen dit ook wel reguliere dossiers en die beslaan verreweg het merendeel van alle schademeldingen. De lijngrafiek eronder toont de ontwikkeling in de laatste acht weken. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het percentage wordt berekend door voor de laatste duizend besluiten te berekenen wat de doorlooptijd per dossier is geweest waarover is besloten. Als dat 182 dagen of minder is geweest (een half jaar) dan wordt dat meegenomen in het genoemde percentage. Omdat dit telkens over de laatste duizend besluiten wordt berekend, is het een voortschrijdend cijfer. Samen met de grafiek 1. 'Gerealiseerde en verwachte doorlooptijd' schets dit de voortgang van de schadeafhandeling voor reguliere dossiers in het licht van het streven om alle nieuwe reguliere schademeldingen binnen een half jaar af te handelen.",
+        "description" : "Het aantal nieuwe schademeldingen per week door de tijd heen. De grote piek komt overeen met de beving van Westerwijtwerd in mei 2019.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
@@ -77,10 +77,10 @@ export const dashboardMeldingen : GraphObject[] = [
             "extra" : {
                 "legendWidth" : 240,
                 "currencyLabels" : false,
-                "header" : "Spreiding van schademeldingen"
+                "header" : "Spreiding schademeldingen totaal"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Het totaal aantal schademeldingen dat per gemeente is binnengekomen sinds 19 maart 2018, de start van de TCMG. Het IMG zet het werk van de TCMG (die tijdelijk was) structureel voort sinds 1 juli 2020.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen?limit=60",
         "segment": false,
         "publishDate": false,
@@ -115,25 +115,25 @@ export const dashboardMeldingen : GraphObject[] = [
             'yParameter': 'MELDING_NA_WESTERWIJTWERD',
             'padding': {
                 'top': 20,
-                'bottom': 100,
+                'bottom': 120,
                 'left': 60,
                 'right': 30
             },
             'margin': {
                 'top': 60,
-                'bottom': 45,
+                'bottom': 100,
                 'left': 0,
                 'right': 0
             },
             'extra': {
                 'xScaleTicks': 'timeMonth',
-                'header': 'Voortgang afhandeling schademeldingen'
+                'header': 'Openstaande schademeldingen Westerwijtwerd'
             }
         },
-        "description" : "",
+        "description" : "Het aantal schademeldingen dat nog in behandeling is voor de beving van Westerwijtwerd van mei 2019 en van na die beving. Bij de start van de TCMG op 19 maart 2018 kwamen ook ruim 13.000 openstaande schademeldingen binnen van het Centrum Veilig Wonen (CVW) dat voor de NAM de schadeafhandeling verzorgde. De schademeldingen die daarvan nog openstaan, worden hier ook getoond.",
         'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
         'segment': 'all',
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
     },
     {   "label": "Acuut onveilige situaties",
         "slug": "meldingen_trend_aos_meldingen",
@@ -173,12 +173,11 @@ export const dashboardMeldingen : GraphObject[] = [
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
                 "largeHeader" : true,
-                "header" : "AOS meldingen",
-                "link": "de voortgang",
+                "header" : "Trend AOS-meldingen",
                 "legend": true,
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie door de tijd heen, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
@@ -235,129 +234,8 @@ export const dashboardMeldingen : GraphObject[] = [
                 "header" : "Wel/niet acuut onveilige situatie"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
-    },
-    {   "label": "Schade opnames",
-        "slug": "meldingen_trend_aos_meldingen",
-        "mapping": [
-            [
-                {
-                    "label": "Schade opnames",
-                    "column": "nieuw_schade_opnames",
-                    "colour": "blue"
-                },
-                {
-                    "label": "Nulmetingen",
-                    "column": "nieuw_nulmetingen",
-                    "colour": "orange"
-                }
-            ]
-        ],
-        "config": {
-            "graphType": "TrendLine",
-            "xScaleType": "time",
-            "yScaleType": "linear",
-            "xParameter": "_date",
-            "yParameter": "nieuw_schade_opnames",
-            "padding": {
-                "top": 20,
-                "bottom": 40,
-                "left": 40,
-                "right": 0
-            },
-            "margin": {
-                "top": 80,
-                "bottom": 100,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "xScaleTicks": "timeMonth",
-                "useLineFill": true,
-                "largeHeader" : true,
-                "header" : "AOS meldingen",
-                "link": "de voortgang",
-                "legend": true,
-            }
-        },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
-    },
-    {
-        "label": "Taart opnames",
-        "slug": "meldingen_taart_opnames",
-        "mapping":  [[
-            [
-                {
-                    "label": "Aannemersvariant",
-                    "column": "schadeopnames_via_aannemersvariant",
-                    "colour": "orange"
-                },
-                {
-                    "label": "Schade-opnemers",
-                    "column": "schadeopnames_via_opnemersvariant",
-                    "colour": "moss"
-                },
-                {
-                    "label": "CVW 2000",
-                    "column": "schadeopnames_door_cvw2000",
-                    "colour": "brown"
-                },
-                {
-                    "label": "Wooncorporaties",
-                    "column": "schadeopnames_door_wooncorporaties",
-                    "colour": "blue"
-                },
-                {
-                    "label": "Regulier",
-                    "column": "schadeopnames_regulier",
-                    "colour": "gray"
-                }
-            ],
-            [
-                {
-                    "label": "Totaal",
-                    "column": false,
-                    "colour": false
-                }
-
-            ]
-
-        ]],
-        "config": {
-
-            "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 15,
-                "left": 0,
-                "right": 0
-            },
-            "extra" :{
-                "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Opname varianten"
-            }
-        },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
     }

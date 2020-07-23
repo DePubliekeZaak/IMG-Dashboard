@@ -141,6 +141,7 @@ export class ChartCircleGroups {
             .on("mouseout", function(d) {
 
                 self.tooltip
+                    .transition()
                     .duration(250)
                     .style("opacity", 0);
             })

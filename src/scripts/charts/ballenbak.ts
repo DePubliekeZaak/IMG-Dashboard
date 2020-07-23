@@ -3,7 +3,8 @@ import { colours} from "../_styleguide/_colours";
 
 import {
     ChartCircleGroups,
-    HtmlHeader
+    HtmlHeader,
+    HtmlPopup
 } from '../chart-elements/module';
 
 
@@ -32,12 +33,14 @@ export class Ballenbak {
     link;
     simulation = {};
     groupCount;
+    popup;
 
     constructor(
         private data : any,
         private elementID : string,
         private config : any,
-        private dataMapping : [any]
+        private dataMapping : [any],
+        private description : string
     ) {
         this.element = d3.select(this.elementID).node();
         this.yParameter = this.dataMapping[0].column;
@@ -117,6 +120,7 @@ export class Ballenbak {
             legend.style.justifyContent = 'center';
 
             legend.style.width = '100%';
+            legend.style.marginBottom = '2rem';
 
 
             data[0].forEach( (d,i) => {
@@ -239,13 +243,12 @@ export class Ballenbak {
 
     update(newData) {
 
-
-
         let self = this;
         let {data, groupedData, flattenedData} = self.prepareData(newData);
         self.draw(data, groupedData, flattenedData);
         self.redraw(groupedData);
         self.legend(groupedData);
+        this.popup = new HtmlPopup(this.element,this.description);
         window.addEventListener("resize", () => self.redraw(groupedData), false);
     }
 }

@@ -1,6 +1,6 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartBar, HtmlHeader, HtmlMuniSelector } from '../chart-elements/module';
+import { ChartBar, HtmlHeader, HtmlPopup, HtmlMuniSelector } from '../chart-elements/module';
 import * as d3 from 'd3';
 
 
@@ -24,6 +24,7 @@ export class BandBars {
     bottomAxis;
     leftAxis;
 
+    popup;
     htmlHeader;
     htmlMuniSelector;
 
@@ -32,7 +33,8 @@ export class BandBars {
         private data : any,
         private elementID : string,
         private config : any,
-        private dataMapping : [any]
+        private dataMapping : [any],
+        private description : string
 
     ){
         this.element = d3.select(this.elementID).node();
@@ -74,6 +76,8 @@ export class BandBars {
                 self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
             });
         }
+
+        this.popup = new HtmlPopup(this.element,this.description);
 
         self.update(this.data,'all');
     }

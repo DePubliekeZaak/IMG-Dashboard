@@ -32,7 +32,7 @@ main {
     }
 
     @media (min-width: $breakpoint-md) {
-      padding: 0 2rem 0 240px;
+      padding: 2rem 2rem 0 240px;
       margin: 0;
     }
 
@@ -98,7 +98,7 @@ aside {
       width: calc(240px - 2rem);
       overflow: visible;
       background: transparent;
-      padding: 2rem 0rem 2rem 1rem;
+      padding: 2rem 0rem 2rem 0rem;
 
       ul.municipalities {
         display: block;
@@ -249,7 +249,7 @@ aside {
 
 .img-graph-container-flow {
 
-  height: 120vh;
+  height: 80vh;
 
 
   @media (min-width : $breakpoint-xsm) {
@@ -261,12 +261,14 @@ aside {
 
     width: calc(100% - 4rem);
     height: 460px;
+    margin-bottom: 8rem;
   }
 
   @media (min-width : $breakpoint-bax) {
 
     width: calc(100% - 4rem);
     height: 500px;
+
   }
 }
 
@@ -342,16 +344,27 @@ aside {
   }
 }
 
+.img-graph-ballenbak {
+
+  @media (min-width : $breakpoint-lg) {
+    height: 600px;
+  }
+}
+
 .img-graph-container-map {
 
-  height: calc(428px);
-  overflow: hidden;
+  height: 425px;
+  overflow: visible;
   position: relative;
 
 
   > section  {
     margin-top: -10%;
     margin-left: -20%;
+
+    > svg {
+      margin-bottom: -1.5rem;
+    }
 
 
     @media (min-width : $breakpoint-sm) {
@@ -372,6 +385,8 @@ aside {
   left: 1.5rem;
   width: calc(100vw - 4rem);
   height: calc(100vh - 6rem);
+
+  line-height : 1.425;
 
 
   a {

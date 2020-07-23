@@ -65,16 +65,16 @@ export class ChartCircles {
         this.circles = this.groupEnter
             .append("circle")
             .attr("class","circle")
-            .style("fill", d => { return colours[d.colour][0] });
+            .style("fill", d => { return colours['gray'][0] });
 
         this.circlesText = this.groupEnter
             .append("text")
             .attr("class","small-label in-circle")
             .attr("text-anchor","middle")
+            .style("font-size",".8rem")
             .style("fill","black")
             .attr("dy", ".4rem")
-            .style("fill","white")
-            .style("font-size","1rem");
+            .style("fill","white");
     }
 
     redraw(data,dimensions,rScale,xScale, direction) {
@@ -106,7 +106,7 @@ export class ChartCircles {
             .attr("r", (d) => {  return rScale(d.value);  });
 
         this.circlesText
-            .text( (d) => { console.log(d); return thousands(d.value)});
+            .text( (d) => { return thousands(d.value)});
 
         this.headers_lines
             .attr('height', (d,i) => {

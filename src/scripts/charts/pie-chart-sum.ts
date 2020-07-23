@@ -2,7 +2,7 @@ import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartPie, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../chart-elements/module';
+import {ChartPie, HtmlHeader, HtmlLink, HtmlMuniSelector, HtmlPopup, HtmlSegment} from '../chart-elements/module';
 
 import { convertToCurrency } from '../helpers/_helpers';
 import { colours } from '../_styleguide/_colours.js';
@@ -25,6 +25,7 @@ export class PieChartSum  {
     link;
     popup;
     htmlSegment;
+    htmlMuniSelector;
 
     rowHeight = 22;
 
@@ -65,13 +66,26 @@ export class PieChartSum  {
 
         this.chartPie = new ChartPie(this.config,this.svg,this.dimensions);
 
-        let data = this.prepareData(this.data);
+        let data = this.prepareData(this.data,'all');
         this.drawLegend(data);
         
         if (this.config.extra.header) {
             this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
             this.htmlHeader.draw();
            // this.link = new HtmlLink(this.element,this.config.extra.header,'');
+        }
+
+
+        this.htmlMuniSelector = new HtmlMuniSelector(this.element,'vergoedingen_taart_afgewezen'); // later koppelen aan GraphObject.slug
+
+        if(this.config.extra.municipalitySelect) {
+            this.htmlMuniSelector.draw();
+
+            const municipalitySelect = document.querySelector('.municipality_select_' + 'vergoedingen_taart_afgewezen' ) as HTMLSelectElement;
+
+            municipalitySelect.addEventListener("change", function () {
+                self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
+            });
         }
 
         this.popup = new HtmlPopup(this.element,this.description);
@@ -81,10 +95,14 @@ export class PieChartSum  {
 
     }
 
-    prepareData(data) {
+    prepareData(data,segment) {
+
+        let d = (this.config.extra.municipalitySelect) ? this.data.find( j => j['gemeente'] === segment) : data[0];
 
         let preparedData = [];
         let sum = 0;
+
+        console.log(d);
 
         this.dataMapping.forEach( (array,i) => {
 
@@ -107,15 +125,15 @@ export class PieChartSum  {
 
                             for (let prop of mapping.column.slice(0, mapping.column.length - 1)) {
 
-                                value += data[0][prop];
-                                sum += data[0][prop];
+                                value += d[prop];
+                                sum += d[prop];
                             }
 
                             break;
 
                         case '-' :
 
-                            let diff = data[0][mapping.column[0]] - data[0][mapping.column[1]];
+                            let diff = d[mapping.column[0]] - d[mapping.column[1]];
 
                             value += diff;
                             sum += diff;
@@ -125,10 +143,10 @@ export class PieChartSum  {
                     }
 
                 } else {
-                    value = data[0][mapping.column]
+                    value = d[mapping.column]
                 }
 
-                sum = (data[0][mapping.column] !== undefined) ? sum + data[0][mapping.column] : sum;
+                sum = (d[mapping.column] !== undefined) ? sum + d[mapping.column] : sum;
 
                 dataArray.push({
                     label: mapping.label,
@@ -183,16 +201,7 @@ export class PieChartSum  {
 
     redrawLegend(data) {
 
-        // this.element.querySelector('.legend').remove();
 
-        // let legendContainer = document.createElement('div');
-        // legendContainer.classList.add('legend');
-        //
-        // this.element.appendChild(legendContainer);
-        //
-        // let chartObjects = ChartObjects();
-        // let newSVGObject= chartObjects.svg();
-        //
         let dataLength = data[0].length;
 
         if(data[1]) {  dataLength = dataLength + ( data[1].length * 2) }
@@ -319,9 +328,11 @@ export class PieChartSum  {
 
     update(newData,segment) {
 
+        console.log(segment);
+
         let self = this;
 
-        let data = this.prepareData(newData);
+        let data = this.prepareData(newData,segment);
         this.draw(data);
 
         this.redrawLegend(data);

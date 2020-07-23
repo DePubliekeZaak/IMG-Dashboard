@@ -2,12 +2,12 @@ import { GraphObject} from '../types/graphObject';
 
 export const dashboardMain : GraphObject[] = [
     {
-    "label" : "Bol schademeldingen",
+    "label" : "Algemeen",
     "slug" : "bol_schademeldingen",
     "mapping": [
         [
           {
-            "label": "Vorige week: nieuw",
+            "label": "Nieuw binnen vorige week",
             "column": "nieuw_schademeldingen",
             "colour": "orange"
           },
@@ -36,7 +36,7 @@ export const dashboardMain : GraphObject[] = [
         "right": 0
       },
       "margin": {
-        "top": 90,
+        "top": 120,
         "bottom": 0,
         "left": 10,
         "right": 10
@@ -45,10 +45,10 @@ export const dashboardMain : GraphObject[] = [
           "useLineFill": true,
           "units": "meldingen",
           "segmentIndicator": true,
-          "link": "meldingen",
+          "link": "meldingen"
       }
     },
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+    "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
     "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
@@ -59,7 +59,7 @@ export const dashboardMain : GraphObject[] = [
         "mapping": [
             [
                 {
-                    "label": "Vorige week: afgehandeld",
+                    "label": "Afgehandeld in vorige week",
                     "column": "nieuw_afgehandeld",
                     "colour": "blue"
                 },
@@ -88,7 +88,7 @@ export const dashboardMain : GraphObject[] = [
                 "right": 0
             },
             "margin": {
-                "top": 90,
+                "top": 120,
                 "bottom": 0,
                 "left": 10,
                 "right": 10
@@ -99,7 +99,7 @@ export const dashboardMain : GraphObject[] = [
                 "segmentIndicator": true
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Het aantal schademeldingen dat afgelopen week is afgehandeld. Op sommige adressen lopen er meerdere schademeldingen. Die worden waar mogelijk met een enkel besluit afgehandeld.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
@@ -111,7 +111,7 @@ export const dashboardMain : GraphObject[] = [
     "mapping": [
       [
         {
-          "label": "In half jaar afgehandeld",
+          "label": "Binnen 1/2 jaar afgehandeld",
           "column": "percentage_binnen_half_jaar",
           "colour": "moss"
         }
@@ -130,7 +130,7 @@ export const dashboardMain : GraphObject[] = [
         "right": 0
       },
       "margin": {
-        "top": 90,
+        "top": 120,
         "bottom": 0,
         "left": 10,
         "right": 10
@@ -139,10 +139,10 @@ export const dashboardMain : GraphObject[] = [
           "useLineFill": true,
           "units": "%",
           "segmentIndicator": false,
-          "notNull": true
+          "noUpdate" : true
       }
     },
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+    "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde.",
     "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
@@ -153,8 +153,8 @@ export const dashboardMain : GraphObject[] = [
     "mapping": [
       [
         {
-          "label": "Gem. tijd tot besluit",
-          "column": "mediaan_doorlooptijd",
+          "label": "Verwachte duur afhandeling",
+          "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
           "colour": "brown"
         }
       ]
@@ -172,7 +172,7 @@ export const dashboardMain : GraphObject[] = [
         "right": 0
       },
       "margin": {
-        "top": 90,
+        "top": 120,
         "bottom": 0,
         "left": 10,
         "right": 10
@@ -181,10 +181,11 @@ export const dashboardMain : GraphObject[] = [
             "useLineFill": true,
             "units": "dagen",
             "segmentIndicator": false,
+            "noUpdate" : true,
             "notNull": true
     }
     },
-    "description" : "In de paarse bol is te zien hoe lang het duurt voor een schademelding voor een gewoon woonhuis (regulier dossier) is afgehandeld. Het gaat om het verschil in kalenderdagen van schademelding tot besluit. De lijngrafiek onder de bollen toont de ontwikkeling over de afgelopen acht week. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het gaat hier om een getal bij benadering (de mediaan), berekend over de laatste duizend besluiten. Het is daarmee ook een voortschrijdend cijfer. Het betekent dat bij de laatste duizend besluiten vijftig procent van de dossiers meer doorlooptijd in dagen hadden en 50 procent minder doorlooptijd tot het besluit. De mediaan is voor dit onderwerp een realistische getal dan het gemiddelde dat soms extreem wordt beïnvloed door slechts enkele zeer positieve of zeer negatieve dossiers waar het gaat om de doorlooptijd. ",
+    "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
     "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
@@ -226,12 +227,12 @@ export const dashboardMain : GraphObject[] = [
             "extra": {
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "header" : "Nieuwe - t.o.v afgehandelde schademeldingen ",
+                "header" : "Trend nieuw en afgehandeld",
                 "segmentIndicator": true,
                 "legend" : true,
             }
         },
-        "description" : "Het percentage schademeldingen voor gewone woningen dat binnen een half jaar is afgehandeld. We noemen dit ook wel reguliere dossiers en die beslaan verreweg het merendeel van alle schademeldingen. De lijngrafiek eronder toont de ontwikkeling in de laatste acht weken. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het percentage wordt berekend door voor de laatste duizend besluiten te berekenen wat de doorlooptijd per dossier is geweest waarover is besloten. Als dat 182 dagen of minder is geweest (een half jaar) dan wordt dat meegenomen in het genoemde percentage. Omdat dit telkens over de laatste duizend besluiten wordt berekend, is het een voortschrijdend cijfer. Samen met de grafiek 1. 'Gerealiseerde en verwachte doorlooptijd' schets dit de voortgang van de schadeafhandeling voor reguliere dossiers in het licht van het streven om alle nieuwe reguliere schademeldingen binnen een half jaar af te handelen.",
+        "description" : "Het aantal nieuwe en afgehandelde schademeldingen door de tijd heen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
@@ -278,13 +279,12 @@ export const dashboardMain : GraphObject[] = [
             "extra": {
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "header" : "Productie IMG",
+                "header" : "Trend schade-opnames en adviesrapporten",
                 "segmentIndicator": true,
-                "link": "de voortgang",
                 "legend": true,
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Het aantal schade-opnames en adviesrapporten door de tijd heen. De schade-opname en het adviesrapport zijn voor vrijwel alle schademeldingen nodig om te komen tot een besluit. De trend laat daarmee het potentieel van de schadeafhandeling zien.",
         "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
@@ -297,56 +297,58 @@ export const dashboardMain : GraphObject[] = [
         {
             "label" : "Nieuwe meldingen",
             "column" : "nieuw_schademeldingen",
-            "inflow" : "nieuw_schademeldingen",
-            "duration" : ""
+            "outflow" : "instroom_fase_ontvangst", // "nieuw_schademeldingen",
+            "duration" : "",
+            "colour": "moss"
         },
         {
             "label" : "Ontvangst & Analyse",
             "column" : "in_fase_ontvangst",
-            "inflow" : "instroom_fase_ingepland_voor_opname",
+            "outflow" : "instroom_fase_planning_opname", // "instroom_fase_ontvangst_analyse",
             "duration" : "",
-            "colour": "brown"
+            "colour": "lightBlue"
         },
         {
             "label" : "Planning schade-opname",
             "column" : "in_fase_planning_opname",
-            "inflow" : "instroom_fase_opleveren_rapport_bewoner",
+            "outflow" : "instroom_fase_ingepland_voor_opname", // "instroom_fase_ingepland_voor_opname",
             "duration" : "",
-            "colour": "yellow"
+            "colour": "blue"
         },
         {
             "label" : "Ingepland voor opname",
             "column" : "in_fase_ingepland_voor_opname",
-            "inflow" : "instroom_fase_rapport_bij_bewoner",
+            "outflow" : "instroom_fase_opleveren_schaderapport", // "instroom_fase_opleveren_rapport_bewoner",
             "duration" : "",
             "colour": "violet"
         },
         {
             "label" : "Opleveren rapport",
-            "column" : "in_fase_opleveren_rapport_bewoner",
-            "inflow" : "instroom_fase_voorbereiden_besluit",
+            "column" : "in_fase_opleveren_schaderapport",
+            "outflow" : "instroom_fase_rapport_bij_bewoner",
             "duration" : "",
             "colour": "purple"
         },
         {
             "label" : "Rapport bij bewoner",
             "column" : "in_fase_rapport_bij_bewoner",
-            "inflow" : "PRODUCTIE_RAPPORT_BEWONER",
+            "outflow" : "instroom_fase_voorbereiden_besluit",
             "duration" : "",
-            "colour": "green"
+            "colour": "brown"
         },
         {
             "label" : "Voorbereiden besluit",
-            "column" : "in_fase_voorbereiden_besluit",
-            "inflow" : "",
+            "column" : "in_fase_voorbereiding_besluit",
+            "outflow" : "nieuw_afgehandeld",
             "duration" : "",
-            "colour": "blue"
+            "colour": "orange"
         },
         {
             "label" : "Afgerond",
             "column" : "nieuw_afgehandeld",
-            "inflow" : "",
+            "outflow" : "",
             "duration" : "",
+            "colour": "yellow"
         }
     ]
     ],
@@ -355,15 +357,15 @@ export const dashboardMain : GraphObject[] = [
         "xScaleType": "linear",
         "yScaleType": false,
         "xParameter": "cumulativeDuration",
-        "yParameter": false,
+        "yParameter": "label",
         "padding": {
-            "top": 0,
-            "bottom": 120, // = ruimte onder ballen
+            "top": 30,
+            "bottom": 0, // = ruimte onder ballen
             "left": 0,
             "right": 0
         },
         "margin": {
-            "top": 40,
+            "top": 0,
             "bottom": 0,
             "left": 0,
             "right": 0
@@ -371,11 +373,12 @@ export const dashboardMain : GraphObject[] = [
         "extra": {
             'radiusFactor': .4,
             'minRadius': 20,
-            "link": "de voortgang",
-            "header": "Aantal dossiers per status in procedure"
+            "header": "Voortgang per procedurestap",
+            "paddingInner" : .5,
+            "paddingOuter" : .5
         }
     },
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+    "description" : "Een schademelding doorloopt een aantal stappen in de procedure voor afhandeling. Zolang er wekelijks ongeveer net zoveel schademeldingen naar een volgende stap in de procedure gaan als er nieuw binnenkomen, dan is de de capaciteit van de totale schadeafhandeling op niveau. De grafiek toont dus de mate waarin er voortgang is in het totaal van schademeldingen die in behandeling zijn. ",
     "endpoint": "https://img.publikaan.nl/open-data/api/productie",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-flow']
@@ -442,7 +445,7 @@ export const dashboardMain : GraphObject[] = [
             "segmentIndicator": true,
         }
     },
-    "description" : "",
+    "description" : "De diverse soorten schadevergoedingen die het IMG toekent uitgesplitst en als totaal opgeteld. De Stuwmeerregeling is afgelopen. Maar voor enkele van die dossiers worden nog vergoedingen toegekend omdat deze op basis van facturen van aannemers worden toegekend.",
     "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-4']
@@ -527,7 +530,7 @@ export const dashboardMain : GraphObject[] = [
                 "segmentIndicator": true,
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
         "endpoint": "https://img.publikaan.nl/open-data/api/reacties",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
@@ -580,11 +583,11 @@ export const dashboardMain : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
-                "header" : "Specials",
+                "header" : "Speciale dossiers",
                 "segmentIndicator": true,
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Sommige schademeldingen hebben speciale aandacht nodig, zoals voor monumenten, bedrijven en agrariërs. Dit worden ook wel specials genoemd. De doorlooptijd voor de specials wijkt af van de reguliere schademeldingen voor woonhuizen zonder bijzondere omstandigheden.",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']

@@ -1,26 +1,44 @@
 import * as d3 from "d3";
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes} from "../chart-basics/module";
 
-import { ChartCircles, ChartBrackets, ChartFlowBetweenCircles, HtmlHeader, HtmlLink, HtmlPopup } from "../chart-elements/module";
+import {
+    ChartCircles,
+    ChartBrackets,
+    ChartFlowBetweenCircles,
+    HtmlHeader,
+    HtmlLink,
+    HtmlPopup,
+    ChartStackedBarsNormalized
+} from "../chart-elements/module";
 
 import { breakpoints} from "../_styleguide/_breakpoints";
 
 export class FlowDossierCount {
 
 
+    keys;
+    props;
     element;
     dimensions;
-    svg;
+    barDimensions;
+    flowSVG;
+    barsSVG;
     xScale;
     yScale;
     rScale;
+    barsXScale;
+    barsYScale;
 
     xAxis;
 
     chartDimensions;
+    barChartDimensions;
     chartXScale;
     chartRScale;
-    chartSVG;
+    chartBarsXScale;
+    chartBarsYScale;
+    chartFlowSVG;
+    chartBarsSVG;
 
     chartCircles;
     chartBrackets;
@@ -31,6 +49,11 @@ export class FlowDossierCount {
     htmlHeader;
     simulation;
 
+    chartStackedBarsNormalized : any = false;
+    normalizedStack;
+
+
+
     constructor(
         private data,
         private elementID,
@@ -39,9 +62,16 @@ export class FlowDossierCount {
         private description
     ) {
         this.element = d3.select(elementID).node();
+        this.props = ['outflow'];
     }
 
     init(){
+
+
+        let flowEl = document.createElement('div');
+        flowEl.style.width = '100%';
+        flowEl.style.minHeight = '400px';
+        this.element.appendChild(flowEl);
 
         let self = this;
 
@@ -50,44 +80,39 @@ export class FlowDossierCount {
         this.config = Object.assign(chartObjects.config(), this.config);
 
         this.dimensions = chartObjects.dimensions();
-        this.svg = chartObjects.svg();
+        this.barDimensions = chartObjects.dimensions();
+        this.flowSVG = chartObjects.svg();
+        this.barsSVG = chartObjects.svg();
 
         // for mobile
 
 
         if (window.innerWidth < breakpoints.sm) {
-            this.config.padding.left = 200;
+            this.config.padding.left = 201;
             this.config.padding.right = 50;
             // this.config.extra.radiusFactor = 1;
         }
 
 
-        this.chartDimensions = new ChartDimensions(this.element,this.config);
+        this.chartDimensions = new ChartDimensions(flowEl,this.config);
         this.dimensions = this.chartDimensions.get(this.dimensions);
-
-        this.chartSVG = new ChartSVG(this.element,this.config,this.dimensions,this.svg);
-
+        this.chartFlowSVG = new ChartSVG(flowEl,this.config,this.dimensions,this.flowSVG);
         this.chartXScale = new ChartScale(this.config.xScaleType,this.config,this.dimensions);
         this.chartRScale = new ChartScale('radius', this.config, this.dimensions);
 
-
         // let chartYScale = ChartYScale(config,dimensions,yScale);
-        this.xAxis = new ChartAxes(this.config, this.svg,'bottom',this.chartXScale);
-
+        this.xAxis = new ChartAxes(this.config, this.flowSVG,'bottom',this.chartXScale);
 
         // kan ik circles hergebruiken?
-        this.chartCircles = new ChartCircles(this.config,this.svg.layers);
-      //  this.chartBrackets = new ChartBrackets(this.config,this.svg);
-        this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this.config,this.svg.layers);
+        this.chartCircles = new ChartCircles(this.config,this.flowSVG.layers);
+      //  this.chartBrackets = new ChartBrackets(this.config,this.svg);flowSVG
+        this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this.config,this.flowSVG.layers);
+
+        if(window.innerWidth > breakpoints.md) {
+            this.initBars();
+        }
 
         this.xAxis.draw();
-
-        // let { data } = this.prepareData();
-        //
-        // this.draw(data);
-        // this.redraw(data);
-        // this.legend(data,this.elementID);
-
 
         if (this.config.extra.header) {
             this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
@@ -98,80 +123,146 @@ export class FlowDossierCount {
 
         this.update(this.data)
 
-     //   this.link = new HtmlLink(this.element,'doorlooptijden','');
+    }
+
+    initBars() {
+
+        let barsEl = document.createElement('div');
+        barsEl.style.width = '100%';
+        barsEl.style.height = '160px';
+        this.element.appendChild(barsEl);
+
+        let barConfig = {
+
+            "graphType" : "ChartStackedBarsNormalized",
+            "xScaleType": "normalised",
+            "yScaleType": "band",
+            "xParameter": "",
+            "yParameter": "",
+            "padding": {
+                "top": -10,
+                "bottom": 0, // = ruimte onder ballen
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom": 80,
+                "left": 0,
+                "right": (window.innerWidth > breakpoints.bax) ?  100 : 80
+            },
+            "extra": {
+                "paddingInner" : .5,
+                "paddingOuter" : .5
+            }
+        }
+        this.chartBarsSVG = new ChartSVG(barsEl,barConfig,this.dimensions,this.barsSVG);
+        this.barChartDimensions = new ChartDimensions(barsEl,barConfig);
+        this.barDimensions = this.chartDimensions.get(this.barDimensions);
+        this.chartBarsXScale = new ChartScale('normalised',barConfig,this.barDimensions);
+        this.chartBarsYScale = new ChartScale('band', barConfig,this.barDimensions);
+        this.chartStackedBarsNormalized = new ChartStackedBarsNormalized(barConfig, this.barsSVG.layers);
     }
 
     prepareData(newData) {
 
-        let data = [];
-        console.log(this.data);
+        let self = this;
+        let flowData = [];
+        let outflowData = [];
 
         for (let mapping of this.dataMapping) {
 
-            data.push({
+            flowData.push({
 
                 label: mapping.label,
-                colour: 'blue',  // de in between flows corresponderen met duration .. dus evt een kleur
-                value: this.data[0][mapping.column],
+                colour: mapping.colour,  // de in between flows corresponderen met duration .. dus evt een kleur
+                value: this.data[0][mapping.column] || 0,
                 duration: 30,
                 turnover: 0,
-                inflow: 0,
+                outflow: this.data[0][mapping.outflow],
                 cumulativeDuration: 0
             })
-
         }
 
         let sum = 0;
 
-        for (let phase of data) {
+        for (let phase of flowData) {
 
             phase.cumulativeDuration = sum;
             sum += phase.duration;
         }
 
-        return data;
+        for (let prop of this.props) {
+
+            let obj = { 'serie' : prop };
+
+            for (let mapping of this.dataMapping.slice(0,this.dataMapping.length - 1)) {
+                obj[mapping.column] = this.data[0][mapping.outflow]
+            }
+
+            outflowData.push(obj)
+        }
+
+        this.keys = Object.keys(outflowData[0]).filter(key => {
+            return ['serie'].indexOf(key) < 0
+        });
+
+       console.log(outflowData);
+        let stackNormalised = d3.stack()
+            .offset(d3.stackOffsetExpand)
+            .keys(self.keys);
+
+
+        let outflowDataNormalised = stackNormalised(outflowData);
+
+        return { flowData, outflowDataNormalised };
     }
 
 
-    draw(data) {
+    draw(flowData, outflowDataNormalised) {
 
         let self = this;
 
         // eerst x as tekenen x scale = linear
-        this.xScale = this.chartXScale.set(data.map( (d) => d[self.config.xParameter] + d['duration']).concat(0));
-        this.rScale = this.chartRScale.set(data.map( (d) => d.value));
+        this.xScale = this.chartXScale.set(flowData.map( (d) => d[self.config.xParameter] + d['duration']).concat(0));
+        this.rScale = this.chartRScale.set(flowData.map( (d) => d.value));
 
+        this.chartFlowBetweenCircles.draw(flowData);
+        this.chartCircles.draw(flowData);
 
+        if(this.chartStackedBarsNormalized) {
+            this.barsXScale = this.chartBarsXScale.set([]);
+            this.barsYScale = this.chartBarsYScale.set(this.props);
+            this.chartStackedBarsNormalized.draw(flowData, outflowDataNormalised, []);
+        }
 
-        this.chartFlowBetweenCircles.draw(data)
-        this.chartCircles.draw(data);
      //   this.chartBrackets.draw(data);
 
     }
 
-    redraw(data) {
+    redraw(flowData, outflowDataNormalised) {
 
         let self = this;
 
         let direction = window.innerWidth > breakpoints.sm ? 'horizontal' : 'vertical-reverse';
 
         this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartSVG.redraw(this.dimensions);
+        this.chartFlowSVG.redraw(this.dimensions);
 
         this.xScale = this.chartXScale.reset(direction,this.dimensions,this.xScale);
-        this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale)
+        this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale);
 
       //  this.xAxis.redrawXLinearAxisBottom(this.xScale,this.dimensions);
 
-        this.chartCircles.redraw(data,this.dimensions,this.rScale,this.xScale, direction);
+        this.chartCircles.redraw(flowData,this.dimensions,this.rScale,this.xScale, direction);
     //    this.chartBrackets.redraw(data,this.dimensions,this.rScale,this.xScale)
-        this.chartFlowBetweenCircles.redraw(data,this.dimensions,this.rScale,this.xScale, direction);
+        this.chartFlowBetweenCircles.redraw(flowData,this.dimensions,this.rScale,this.xScale, direction);
 
-        let center = {x: (this.dimensions.width / 2) , y: ((this.dimensions.height / 2) + 0) };
+        let center = {x: (this.dimensions.width / 2) , y: (self.dimensions.height / 2) };
         let forceStrength = 0.025;
 
         this.simulation = d3.forceSimulation()
-            .nodes(data);
+            .nodes(flowData);
 
         this.simulation
             .velocityDecay(0.5)
@@ -179,15 +270,22 @@ export class FlowDossierCount {
             .force('collide', d3.forceCollide().radius((d : any) => this.rScale(d.value)))
             .on('tick', () => {
 
-                self.chartCircles.forceDirect(self.xScale, self.rScale, data, direction);
-                self.chartFlowBetweenCircles.forceDirect(self.xScale, self.rScale, data, direction);
+                self.chartCircles.forceDirect(self.xScale, self.rScale, flowData, direction);
+                self.chartFlowBetweenCircles.forceDirect(self.xScale, self.rScale, flowData, direction);
             });
 
         if (direction === 'horizontal') {
-
             this.simulation.force('y', d3.forceY().strength(forceStrength).y(center.y ))
         } else {
             this.simulation.force('x', d3.forceX().strength(forceStrength).x(center.x ))
+        }
+
+        if (this.chartStackedBarsNormalized) {
+            this.barDimensions = this.barChartDimensions.get(this.barDimensions);
+            this.chartBarsSVG.redraw(this.barDimensions);
+            this.barsXScale = this.chartBarsXScale.reset('horizontal',this.barDimensions,this.barsXScale);
+            this.barsYScale = this.chartBarsYScale.reset('vertical-reverse',this.barDimensions,this.barsYScale);
+            this.chartStackedBarsNormalized.redraw(this.barDimensions, this.barsXScale, this.barsYScale, 'outflow');
         }
 
     }
@@ -235,10 +333,11 @@ export class FlowDossierCount {
     update(newData) {
 
         let self = this;
-        let data = this.prepareData(newData);
-        this.draw(data);
-        this.redraw(data);
-        window.addEventListener("resize", () => self.redraw(data), false);
+        let { flowData, outflowDataNormalised } = this.prepareData(newData);
+
+        this.draw(flowData, outflowDataNormalised);
+        this.redraw(flowData, outflowDataNormalised);
+        window.addEventListener("resize", () => self.redraw(flowData, outflowDataNormalised), false);
     }
 }
 

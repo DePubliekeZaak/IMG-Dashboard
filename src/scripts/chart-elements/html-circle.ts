@@ -1,4 +1,5 @@
 import { colours } from '../_styleguide/_colours.js';
+import {thousands} from "../helpers/_helpers";
 
 export class HtmlCircle {
 
@@ -97,15 +98,23 @@ export class HtmlCircle {
 
     redraw(data,parameter) {
 
+
         let value =  Math.round(data[0][parameter]);
 
-        if (this.config.extra.notNull && value === 0) {
 
-            this.element.querySelector('.number').innerText = '---';
+        if (this.config.extra.segmentIndicator) {
+
+
+            this.element.querySelector('.number').innerText = (this.config.qualifier && this.config.qualifier !== undefined) ? value + this.config.qualifier : value;
 
         } else {
 
-            this.element.querySelector('.number').innerText = (this.config.qualifier && this.config.qualifier !== undefined) ? value + this.config.qualifier : value;
+            this.element.querySelector('.number').innerText = (value > 9999) ? thousands(value) : value;
+        }
+
+        if(value > 9999) {
+
+            this.element.querySelector('.number').style.fontSize = '2rem'
         }
 
         // let span = document.createElement('span');

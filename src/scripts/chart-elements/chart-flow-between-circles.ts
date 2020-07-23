@@ -34,7 +34,7 @@ export class ChartFlowBetweenCircles {
         this.startPoint = this.svgLayers.data
             .append("path")
             .style("fill", (d) => {
-                return colours.blue[0];
+                return colours.moss[0];
             });
         // .style("opacity", (d) => {
         //     return .75;
@@ -43,7 +43,7 @@ export class ChartFlowBetweenCircles {
         this.endPoint = this.svgLayers.data
             .append("path")
             .style("fill", (d) => {
-                return colours.blue[0];
+                return colours.orange[0];
             });
 
     }
@@ -61,7 +61,7 @@ export class ChartFlowBetweenCircles {
             .enter()
             .append("path")
             .attr("class","flow")
-            .style("fill", colours.lightBlue[0]) // "hsla(0,0%,80%,.5)")
+            .style("fill", (d) => { return colours[d.colour][0] })
             .on("mouseover", function(d) {
 
                 self.svgLayers.data
@@ -81,30 +81,30 @@ export class ChartFlowBetweenCircles {
 
         this.turnover.exit().remove();
 
-        this.turnoverEnter = this.turnover
-            .enter()
-            .append("text")
-            .attr("class","turnover")
-            .style("font-size",".8rem")
-            .attr("text-anchor","middle")
-            .text( (d,i) => {
-
-                if (i < data.length - 1 && d.turnover > 0) {
-                    return d.turnover;
-                }
-            })
-            .on("mouseover", function(d) {
-
-                self.svgLayers.data
-                    .attr("class","showturnover");
-            })
-            .on("mouseout", function(d) {
-
-                self.svgLayers.data
-                    .attr("class","");
-            })
-
-        ;
+        // this.turnoverEnter = this.turnover
+        //     .enter()
+        //     .append("text")
+        //     // .attr("class","turnover")
+        //     .style("font-size",".8rem")
+        //     .attr("text-anchor","middle")
+        //     .text( (d,i) => {
+        //
+        //         if (i < data.length - 1 && d.outflow > 0 && window.innerWidth > 600) {
+        //             return d.outflow;
+        //         }
+        //     })
+        //     .on("mouseover", function(d) {
+        //
+        //         self.svgLayers.data
+        //             .attr("class","showturnover");
+        //     })
+        //     .on("mouseout", function(d) {
+        //
+        //         self.svgLayers.data
+        //             .attr("class","");
+        //     })
+        //
+        // ;
 
     }
 
@@ -488,38 +488,40 @@ export class ChartFlowBetweenCircles {
 
         }
 
-        self.turnoverEnter.merge(self.turnover)
-            .attr('x', (d,i) => {
-
-                // if prev circle is big
-
-                if (i < 1) {
-
-                    return 10 + xScale(data[i].cumulativeDuration) + (((xScale(data[i + 1].cumulativeDuration) - rScale(data[i + 1].value)) - (xScale(data[i].cumulativeDuration)) + rScale(data[i].value)) / 2);
-
-                } else if (i < data.length - 2) {
-                    return xScale(data[i].cumulativeDuration) + (((xScale(data[i + 1].cumulativeDuration) - rScale(data[i + 1].value)) - (xScale(data[i].cumulativeDuration)) + rScale(data[i].value)) / 2);
-
-                } else if (i < data.length - 1) {
-
-                    return xScale(data[i].cumulativeDuration) + ((xScale(data[i + 1].cumulativeDuration) - xScale(data[i].cumulativeDuration)) / 1.5);
-                }
-            })
-            .attr('y', (d,i) => {
-
-                if (i < 1) {
-
-                    return 5 + data[1].y;
-
-                } else if (i < data.length - 2) {
-
-                    return 5 + (data[i + 1].y + data[i].y) / 2;
-
-                } else if (i < data.length - 1) {
-
-                    return 5 + data[i].y;
-                }
-            })
+        // self.turnoverEnter.merge(self.turnover)
+        //     .attr('x', (d,i) => {
+        //
+        //         // if prev circle is big
+        //
+        //         if (i < 1) {
+        //
+        //             return 10 + xScale(data[i].cumulativeDuration) + (((xScale(data[i + 1].cumulativeDuration) - rScale(data[i + 1].value)) - (xScale(data[i].cumulativeDuration)) + rScale(data[i].value)) / 2);
+        //
+        //         } else if (i < data.length - 2) {
+        //             return xScale(data[i].cumulativeDuration) + (((xScale(data[i + 1].cumulativeDuration) - rScale(data[i + 1].value)) - (xScale(data[i].cumulativeDuration)) + rScale(data[i].value)) / 2);
+        //
+        //         } else if (i < data.length - 1) {
+        //            // return 0;
+        //             return xScale(data[i].cumulativeDuration) + ((xScale(data[i + 1].cumulativeDuration) - xScale(data[i].cumulativeDuration)) / 1.5);
+        //         } else {
+        //             return 0;
+        //         }
+        //     })
+        //     .attr('y', (d,i) => {
+        //
+        //         if (i < 1) {
+        //
+        //             return 5 + data[1].y;
+        //
+        //         } else if (i < data.length - 2) {
+        //
+        //             return 5 + (data[i + 1].y + data[i].y) / 2;
+        //
+        //         } else if (i < data.length - 1) {
+        //
+        //             return 5 + data[i].y;
+        //         }
+        //     })
 
     }
 }

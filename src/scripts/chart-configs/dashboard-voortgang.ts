@@ -3,7 +3,7 @@ import { GraphObject} from '../types/graphObject';
 export const dashboardVoortgang : GraphObject[] = [
 
     {
-        "label": "Doorlooptijd afhandeling schademeldingen",
+        "label": "Voortgang afhandeling",
         "slug": "stacked_area_doorlooptijden",
         "mapping": [
             [
@@ -37,26 +37,27 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter": "TUSSEN_12_EN_1_JAAR",
             "padding": {
                 "top": 20,
-                "bottom": 100,
+                "bottom": 120,
                 "left": 60,
                 "right": 30
             },
             "margin": {
                 "top": 60,
-                "bottom": 45,
+                "bottom": 100,
                 "left": 0,
                 "right": 0
             },
             "extra": {
                 "xScaleTicks": "timeMonth",
-                "header": "Doorlooptijd afhandeling schademeldingen"
+                "header": "Aantal openstaand sinds indiening",
+                "largeHeader" : false,
             }
         },
-        "description" : "",
+        "description" : "Het aantal openstaande schademeldingen onderverdeeld in de leeftijd van die melding sinds de indiening ervan. De grafiek toont de ontwikkeling door de tijd heen. Aangezien het IMG ernaar streeft dat reguliere schademeldingen binnen een half jaar zijn afgehandeld, zou dit verreweg de grootste groep moeten zijn van het totaal aantal openstaande schademeldingen op dit moment.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "publishDate": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
     },
     {
         "label" : "Bol percentage binnen half jaar",
@@ -78,7 +79,7 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 80,
+                "bottom": 160,
                 "left": 0,
                 "right": 0
             },
@@ -93,7 +94,7 @@ export const dashboardVoortgang : GraphObject[] = [
                 "units": "%"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde. Gem. tijd tot besluit: Doorlooptijd afgehandeld dossiers",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
@@ -104,7 +105,7 @@ export const dashboardVoortgang : GraphObject[] = [
         "mapping": [
             [
                 {
-                    "label": "Gem. tijd tot besluit",
+                    "label": "Doorlooptijd afgehandeld dossiers",
                     "column": "mediaan_doorlooptijd",
                     "colour": "orange"
                 }
@@ -118,7 +119,7 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 80,
+                "bottom": 160,
                 "left": 0,
                 "right": 0
             },
@@ -133,7 +134,7 @@ export const dashboardVoortgang : GraphObject[] = [
                 "units": "%"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Dit is bij benadering het aantal dagen waarin de schademelding is afgehandeld sinds de schademelding is binnengekomen. Het gaat daarbij om de mediaan. Vijftig procent van de schademeldingen is daarmee in minder dan het genoemde aantal dagen afgehandeld en vijftig procent in meer dagen. De mediaan wordt berekend over de laatset 2.500 besluiten over schademeldingen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
@@ -144,7 +145,7 @@ export const dashboardVoortgang : GraphObject[] = [
         "mapping": [
             [
                 {
-                    "label": "Verwachte tijd melding tot besluit",
+                    "label": "Verwachte doorlooptijd nieuw dossier",
                     "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
                     "colour": "blue"
                 }
@@ -158,13 +159,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 80,
+                "bottom": 120,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 90,
-                "bottom": 120,
+                "bottom": 160,
                 "left": 10,
                 "right": 10
             },
@@ -173,8 +174,128 @@ export const dashboardVoortgang : GraphObject[] = [
                 "units": "dagen"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
+    {
+        "label" : "Schademeldingen totaal",
+        "slug" : "cijfer_schademedlingen_totaal",
+        "mapping": [
+            [
+                {
+                    "label": "Schademeldingen totaal",
+                    "column": "schademeldingen",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Cijfer",
+            "xScaleType" : "",
+            "yScaleType" : "",
+            "xParameter" : "",
+            "yParameter" : "",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 90,
+                "bottom": 80,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "units": "meldingen",
+                "header": "Schademeldingen totaal"
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
+    {
+        "label" : "Schademeldingen totaal",
+        "slug" : "cijfer_schademeldingen_totaal",
+        "mapping": [
+            [
+                {
+                    "label": "Totaal openstaande aanvragen",
+                    "column": "in_behandeling",
+                    "colour": "blue"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Cijfer",
+            "xScaleType" : "",
+            "yScaleType" : "",
+            "xParameter" : "",
+            "yParameter" : "",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 90,
+                "bottom": 80,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "units": "meldingen",
+                "header": true
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
+    {
+        "label" : "Schademeldingen totaal",
+        "slug" : "cijfer_schademeldingen_totaal",
+        "mapping": [
+            [
+                {
+                    "label": "Afgehandeld totaal",
+                    "column": "afgehandeld",
+                    "colour": "moss"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Cijfer",
+            "xScaleType" : "",
+            "yScaleType" : "",
+            "xParameter" : "",
+            "yParameter" : "",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 90,
+                "bottom": 80,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "units": "meldingen",
+                "header": true
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
@@ -290,18 +411,18 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter": "value",
             "padding": {
                 "top": 20,
-                "bottom": 40,
+                "bottom": 120,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 0,
-                "bottom": 15,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
             "extra": {
-                "header" : "Status naar doorlooptijd",
+                "header" : "Status en doorlooptijd",
                 "paddingInner" : 1,
                 "paddingOuter" : 1,
                 "minRadius" : 4,
@@ -313,7 +434,44 @@ export const dashboardVoortgang : GraphObject[] = [
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "publishDate": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-12']
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-ballenbak']
+    },
+    {
+        "label" : "Genormaliseerde barren met status",
+        "slug" : "normalised_status",
+        "mapping": [
+            []
+        ],
+        "config": {
+            "graphType": "NormalisedBars",
+            "xScaleType": "normalised",
+            "yScaleType": "band",
+            "xParameter": "",
+            "yParameter": "status",
+            "padding": {
+                "top": 0,
+                "bottom": 60,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom": 120,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "paddingInner" : .5,
+                "paddingOuter" : .5,
+                "header" : "Status per doorlooptijd",
+                "legend" : true
+            }
+        },
+        "description" : "Het aantal openstaande schademeldingen is hier onderverdeeld naar vier leeftijdscategorieën, gerekend vanaf de datum van indiening. Per leeftijdscategorie zijn deze openstaande schademeldingen weer onderverdeeld naar waar ze op dit moment in de procedure zijn. De aantallen worden in absolute getallen weergegeven en in percentage van het totaal binnen de leeftijdscategorie.",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "segment": "all",
+        "elementClasslist" : ['img-graph-container','img-graph-container-12'],
+        "publishDate": false
     }
 
 ]

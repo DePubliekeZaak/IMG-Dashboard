@@ -2,7 +2,7 @@ import { GraphObject} from '../types/graphObject';
 
 export const dashboardVergoedingen : GraphObject[] = [
     {
-        "label" : "Statussen met gemeenteselectie",
+        "label" : "Schadevergoedingen",
         "slug" : "specials_bandbars_statussen",
         "mapping": [
             [
@@ -11,15 +11,18 @@ export const dashboardVergoedingen : GraphObject[] = [
                     column: "schadevergoedingen_lager_dan_1000",
                     colour: 'lightBlue'
                 },
-                {   label : "€1K t/m €4K",
+                {
+                    label : "€1K t/m €4K",
                     column : "schadevergoedingen_tussen_1000_en_4000",
                     colour :'orange'
                 },
-                {   label : "€4K t/m €10K",
+                {
+                    label : "€4K t/m €10K",
                     column : "schadevergoedingen_tussen_4000_en_10000",
                     colour: 'moss'
                 },
-                {   label : "> €10K",
+                {
+                    label : "> €10K",
                     column : "schadevergoedingen_hoger_dan_10000",
                     colour: 'brown'
                 }
@@ -33,13 +36,13 @@ export const dashboardVergoedingen : GraphObject[] = [
             "yParameter" : "value",
             "padding": {
                 "top": 20,
-                "bottom": 60,
+                "bottom": 120,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 0,
-                "bottom":90,
+                "bottom": 120,
                 "left": 0,
                 "right": 0
             },
@@ -50,17 +53,18 @@ export const dashboardVergoedingen : GraphObject[] = [
                 "paddingOuter" : .1,
                 "municipalitySelect": true,
                 "alternateTicks" : false,
-                "header" : "Ordegrootte van schadevergoedingen"
+                "header" : "Ordegrootte van schadevergoedingen",
+                "largeHeader" : false,
             }
         },
-        "description" : "Lorem flipsum",
+        "description" : "Het aantal besluiten onderverdeeld naar omvang van de toegekende schadevergoeding in het besluit.",
         "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",  // ivm in-graph gemeentekiezer
         "segment": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label" : "Kaart specials",
-        "slug" : "specials_kaart_schademeldingen",
+        "label" : "Kaart totaal verleend",
+        "slug" : "vergoedingen_kaart_totaal_verleend",
         "mapping": [
             [
                 {
@@ -91,10 +95,10 @@ export const dashboardVergoedingen : GraphObject[] = [
             "extra" : {
                 "legendWidth" : 240,
                 "currencyLabels" : true,
-                "header" : "Totaal uitgekeerde schadebedragen per gemeente"
+                "header" : "Totaal schadevergoedingen per gemeente"
             }
         },
-        "description" : "Kip",
+        "description" : "De totale schadevergoeding die voor alle afgehandelde schademeldingen in een gemeente is toegekend.",
         "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
         "segment": false,
         "publishDate": false,
@@ -119,7 +123,7 @@ export const dashboardVergoedingen : GraphObject[] = [
             "yParameter": "nieuw_schademeldingen",
             "padding": {
                 "top": 20,
-                "bottom": 40,
+                "bottom": 60,
                 "left": 40,
                 "right": 0
             },
@@ -133,14 +137,108 @@ export const dashboardVergoedingen : GraphObject[] = [
                 "startDate" : '10-01-2019',
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "header" : "Ontwikkeling gemiddeld schadebedrag",
+                "header" : "Trend gemiddeld schadebedrag",
                 "legend" : true,
 
             }
         },
-        "description" : "Het percentage schademeldingen voor gewone woningen dat binnen een half jaar is afgehandeld. We noemen dit ook wel reguliere dossiers en die beslaan verreweg het merendeel van alle schademeldingen. De lijngrafiek eronder toont de ontwikkeling in de laatste acht weken. Op de stippellijn is te zien wat het gemiddelde is geweest in die periode. Het percentage wordt berekend door voor de laatste duizend besluiten te berekenen wat de doorlooptijd per dossier is geweest waarover is besloten. Als dat 182 dagen of minder is geweest (een half jaar) dan wordt dat meegenomen in het genoemde percentage. Omdat dit telkens over de laatste duizend besluiten wordt berekend, is het een voortschrijdend cijfer. Samen met de grafiek 1. 'Gerealiseerde en verwachte doorlooptijd' schets dit de voortgang van de schadeafhandeling voor reguliere dossiers in het licht van het streven om alle nieuwe reguliere schademeldingen binnen een half jaar af te handelen.",
+        "description" : "De ontwikkeling van het gemiddelde bedrag aan schadevergoeding per besluit door de tijd heen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+    },
+    {
+        "label": "Afgewezen",
+        "slug": "vergoedingen_taart_afgewezen",
+        "mapping":  [[
+            [
+                {
+                    "label": "Afgewezen schademeldingen",
+                    "column": "afgewezen_schademeldingen",
+                    "colour": "orange"
+                },
+                {
+                    "label": "Toegewezen besluiten",
+                    "column": "toegewezen_besluiten",
+                    "colour": "lightBlue"
+                }
+            ]
+        ]],
+        "config": {
+
+            "graphType": "PieChartSum",
+            "xScaleType" : false,
+            "yScaleType" : false,
+            "xParameter" : false,
+            "yParameter" : false,
+            "padding": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom": 15,
+                "left": 0,
+                "right": 0
+            },
+            "extra" :{
+                "currencyLabels" : false,
+                "legendWidth" : 220,
+                "maxRadius" : 100,
+                "innerRadius" : 20,
+                "header" : "Afwijzingen t.o.v. toegekende besluiten",
+                "segmentIndicator": true,
+                "municipalitySelect": true,
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
+        "segment": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-6']
+    },
+    {
+        "label" : "Spreiding percentage toegewezen besluiten",
+        "slug" : "vergoedingen_kaart_percentage_afwijzingen",
+        "mapping": [
+            [
+                {
+                    "label": "Percentage afwijzingen",
+                    "column": "percentage_toegewezen_besluiten",
+                    "colour": "lightBlue"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Map",
+            "xScaleType" : false,
+            "yScaleType" : false,
+            "xParameter" : false,
+            "yParameter" : false,
+            "padding": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom":0,
+                "left": 0,
+                "right": 0
+            },
+            "extra" : {
+                "legendWidth" : 240,
+                "currencyLabels" : false,
+                "percentage": true,
+                "header" : "Spreiding van het percentage toegewezen besluiten "
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
+        "segment": false,
+        "publishDate": false,
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map']
     }
 ]

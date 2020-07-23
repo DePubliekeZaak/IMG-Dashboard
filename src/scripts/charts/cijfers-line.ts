@@ -89,7 +89,7 @@ export class CijfersLine  {
 
         this.popup = new HtmlPopup(this.element,this.description);
 
-        self.update(this.data,this.segment);
+        self.update(this.data,this.segment,false);
 
     }
 
@@ -157,7 +157,9 @@ export class CijfersLine  {
         return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
     }
 
-    update(newData,segment) {
+    update(newData,segment,update) {
+
+        if(update && this.config.extra.noUpdate) { return; }
 
         let self = this;
 

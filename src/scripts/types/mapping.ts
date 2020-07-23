@@ -4,6 +4,6 @@ export interface Mapping {
     column: string | string[] | boolean,
     colour?: string | boolean,
     group?: string | boolean,
-    inflow?: string,
+    outflow?: any,
     duration?: string
 }

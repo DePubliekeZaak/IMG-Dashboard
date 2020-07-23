@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import {GraphObject} from "./types/graphObject";
 import {ResponseData} from "./types/responseData";
 import {DashboardMap} from "./dashboard/dashboard_map";
-import {dashboardMain, dashboardMeldingen, dashboardVergoedingen, dashboardVoortgang, dashboardSpecials } from "./chart-configs/module";
+import {dashboardMain, dashboardMeldingen, dashboardVergoedingen, dashboardVoortgang, dashboardSpecials, dashboardReacties, dashboardOpnames } from "./chart-configs/module";
 import { breakpoints} from "./_styleguide/_breakpoints";
 
 export class InitDashboard {
@@ -24,6 +24,7 @@ export class InitDashboard {
 
         this.htmlContainer = document.querySelector("[data-img-graph-preset='dashboard']");
         this.htmlContainer.parentNode.classList.add('container');
+        this.htmlContainer.parentNode.style.width = 'calc(100vw - 2rem)'
         const params : any = this.getParams(window.location.href);
 
         // segment
@@ -55,6 +56,10 @@ export class InitDashboard {
         this.createPopupElement();
         aside.insertBefore(this.createMenu(),aside.childNodes[0]);
         this.makeDashboardCall(dashboardArray, segment,false);
+
+        if(params.topic !== "") {
+            this.showHideSidebarElements(params.topic)
+        }
     }
 
     createSideBar() {
@@ -89,27 +94,36 @@ export class InitDashboard {
         let c = [
             {
                 topic: 'meldingen',
-                label: 'Meldingen en opnames'
+                label: 'Schademeldingen'
+            },
+            {
+                topic: 'opnames',
+                label: 'Schade-opnames'
+            },
+            {
+                topic: 'reacties',
+                label: 'Reacties'
             },
             {
                 topic: 'voortgang',
-                label: 'Voortgang'
+                label: 'Voortgang afhandeling'
             },
             {
                 topic: 'vergoedingen',
-                label: 'Vergoedingen'
+                label: 'Schadevergoedingen'
             },
             {
                 topic: 'specials',
-                label: 'Specials'
+                label: 'Speciale dossiers'
             }
+
         ]
 
         let ul = document.createElement('ul');
         ul.classList.add('dashboard_nav');
 
         let li = document.createElement('li');
-        li.innerText = 'Actueel';
+        li.innerText = 'Algemeen';
         li.style.padding = '.125rem 0';
         li.style.lineHeight = '1.5';
         li.style.cursor = 'pointer';
@@ -263,17 +277,7 @@ export class InitDashboard {
 
         this.updateMenuList(topic);
 
-        if(!topic || topic === undefined || topic === '') {
-            let menuList : any = document.querySelector('ul.municipalities');
-            menuList.style.display = 'block';
-            let map : any = document.getElementById('img-graph-dashboard-map');
-            map.style.display = 'block';
-        } else {
-            let menuList : any = document.querySelector('ul.municipalities');
-            menuList.style.display = 'none';
-            let map : any = document.getElementById('img-graph-dashboard-map');
-            map.style.display = 'none';
-        }
+        this.showHideSidebarElements(topic);
 
         if (history.pushState) {
             const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?topic=' + topic;
@@ -281,7 +285,26 @@ export class InitDashboard {
         }
     }
 
+    showHideSidebarElements(topic) {
+
+        let menuList : any = document.querySelector('ul.municipalities');
+        let map : any = document.getElementById('img-graph-dashboard-map');
+
+
+        if(!topic || topic === undefined || topic === '') {
+
+            menuList.style.display = 'block';
+            map.style.display = 'block';
+
+        } else {
+            menuList.style.display = 'none';
+            map.style.display = 'none';
+        }
+    }
+
     matchConfig(topic) {
+
+
 
         switch (topic) {
 
@@ -301,6 +324,14 @@ export class InitDashboard {
 
                 return dashboardSpecials;
 
+            case 'reacties' :
+
+                return dashboardReacties;
+
+            case 'opnames' :
+
+                return dashboardOpnames;
+
             default :
 
                 return dashboardMain;
@@ -308,8 +339,6 @@ export class InitDashboard {
     }
 
     makeDashboardCall(dashboardArray, segment, update) {
-
-        console.log(dashboardArray);
 
         let self = this;
         let promises = [];
@@ -365,9 +394,9 @@ export class InitDashboard {
 
                     let header = document.createElement('h2');
                     header.innerText = graphObject.label;
-                    header.style.fontFamily = 'Replica';
-                    header.style.fontSize = '1.8rem';
-                    header.style.fontWeight = '500';
+                    header.style.fontFamily = 'NotoSans Regular';
+                    header.style.fontSize = '1.6rem';
+                    // header.style.fontWeight = '500';
                     header.style.width = '100%';
                     header.style.margin = '0'; // '3rem 0 1rem 0';
 
@@ -388,7 +417,7 @@ export class InitDashboard {
 
                 if (update) {
 
-                    this.graphMethods[graphObject.slug].update(data,segment);
+                    this.graphMethods[graphObject.slug].update(data,segment,true);
 
                 } else {
 

@@ -1,3 +1,4 @@
+import { Cijfer } from './cijfer';
 import { CijfersLine } from './cijfers-line';
 import { Ticker } from './ticker';
 import { TrendLine } from './trend-line';
@@ -10,10 +11,11 @@ import { Flow } from './flow';
 import { FlowDossierCount } from './flow-dossier-count';
 import { Ballenbak } from './ballenbak';
 import { StackedArea } from './stacked-area';
-
+import { NormalisedBars } from './normalised_bars';
 
 export const graphs  = {
 
+    Cijfer,
     CijfersLine,
     Ticker,
     TrendLine,
@@ -25,5 +27,6 @@ export const graphs  = {
     Flow,
     FlowDossierCount,
     Ballenbak,
-    StackedArea
+    StackedArea,
+    NormalisedBars
 };

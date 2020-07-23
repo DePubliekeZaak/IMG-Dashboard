@@ -15,6 +15,7 @@ import { ChartFlowBetweenCircles } from './chart-flow-between-circles';
 import { ChartEndLabel} from "./chart-end-label";
 import { ChartStackedArea } from "./chart-stacked-area";
 import { ChartFlowDuration } from "./chart-flow-duration"
+import { ChartStackedBarsNormalized } from "./chart-stacked-bars-normalized";
 
 import { HtmlCircle } from './html-circle';
 import { HtmlHeader } from './html-header';
@@ -23,5 +24,4 @@ import { HtmlPopup } from './html-popup';
 import { HtmlSegment } from './html-segment';
 import {HtmlMuniSelector} from "./html-muniSelector";
 
-
-export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartCircleGroups, ChartBrackets, ChartFlowBetweenCircles, ChartEndLabel, ChartStackedArea, ChartFlowDuration, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment, HtmlMuniSelector }
+export { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, ChartAxisGrid, ChartBar, ChartMultiBars, ChartBarsIncrease, ChartPie, ChartMap, ChartCircles, ChartCircleGroups, ChartBrackets, ChartFlowBetweenCircles, ChartEndLabel, ChartStackedArea, ChartFlowDuration, ChartStackedBarsNormalized, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment, HtmlMuniSelector }

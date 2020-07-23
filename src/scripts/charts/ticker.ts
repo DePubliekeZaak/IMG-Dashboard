@@ -122,7 +122,7 @@ export class Ticker  {
 
         let graphWith;
         if (window.innerWidth < breakpoints.md ) { graphWith = 'calc(50% - 1rem)' } else
-        if (window.innerWidth < breakpoints.bax ) { graphWith = '100px' } else
+        if (window.innerWidth < breakpoints.lg ) { graphWith = '100px' } else
         { graphWith = '130px'  }
 
         const graphContainer = document.createElement('div');

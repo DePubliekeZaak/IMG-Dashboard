@@ -60,15 +60,15 @@ export class ChartBackgroundArea {
 
                     if (this.config.extra.smartColours === 'up') {
 
-                        if (data[0][xParameter] > data[1][xParameter]) {
-                            return colours['orange'][1];
-                        } else {
+                        if (data[0][yParameter] > data[1][yParameter]) {
                             return colours['moss'][1];
+                        } else {
+                            return colours['orange'][1];
                         }
 
                     } else if (this.config.extra.smartColours === 'down') {
 
-                        if(data[0][xParameter] < data[1][xParameter]) {
+                        if(data[0][yParameter] < data[1][yParameter]) {
                             return colours['moss'][1];
                         } else {
                             return colours['orange'][1];

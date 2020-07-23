@@ -19,6 +19,10 @@ export class ChartScale {
 
     set(data, minValue) {
 
+        let self = this;
+
+
+
         this.dataLength = data.length;
 
         switch(this.type) {
@@ -44,11 +48,10 @@ export class ChartScale {
             case 'band':
 
                 return d3.scaleBand()
-                // what is domain when working with a stack?
                     .domain(data)
-                    .paddingInner(this.config.extra.paddingInner)
-                    .paddingOuter(this.config.extra.paddingOuter)
-                    .align(0.5)
+                    .paddingInner(self.config.extra.paddingInner)
+                    .paddingOuter(self.config.extra.paddingOuter)
+                    .align(.5);
 
                 break;
 
@@ -70,6 +73,13 @@ export class ChartScale {
                         d3.min(data, (v) => (v ? v : 0) as number),  //
                         d3.max(data, (v) => (v ? v : 0) as number)
                     ]).nice();
+
+                break;
+
+
+            case 'normalised':
+
+                return d3.scaleLinear();
 
                 break;
         }
@@ -97,7 +107,6 @@ export class ChartScale {
                 break;
 
             case 'vertical':
-
                 return newScale
                     .range([dimensions.height, 0]);
 

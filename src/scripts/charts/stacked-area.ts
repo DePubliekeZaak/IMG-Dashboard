@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-import {ChartAxisGrid, ChartCircleGroups, HtmlHeader} from "../chart-elements/module";
+import {ChartAxisGrid, ChartCircleGroups, HtmlHeader, HtmlPopup} from "../chart-elements/module";
 import {ChartStackedArea} from "../chart-elements/chart-stacked-area";
 import {colours} from "../_styleguide/_colours";
 
@@ -26,6 +26,8 @@ export class StackedArea  {
     htmlHeader;
     stack;
     columnArray;
+
+    popup;
 
 
     constructor(
@@ -74,6 +76,8 @@ export class StackedArea  {
         this.leftAxis.draw();
         this.htmlHeader.draw();
 
+
+
         self.update(this.data);
     }
 
@@ -85,6 +89,7 @@ export class StackedArea  {
         legend.style.flexDirection = 'row-reverse';
         legend.style.justifyContent = 'center';
         legend.style.width = '100%';
+        legend.style.marginBottom = '2rem';
 
 
         this.dataMapping.forEach( (d,i) => {
@@ -194,6 +199,7 @@ export class StackedArea  {
         self.draw(data, stackedData);
         self.redraw(stackedData);
         self.legend(data);
+        this.popup = new HtmlPopup(this.element,this.description);
         window.addEventListener("resize", () => self.redraw(stackedData), false);
     }
 }

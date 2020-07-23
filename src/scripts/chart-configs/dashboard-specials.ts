@@ -1,7 +1,7 @@
 import { GraphObject} from '../types/graphObject';
 
 export const dashboardSpecials : GraphObject[] = [
-    {   "label": "Specials",
+    {   "label": "Speciale dossiers",
         "slug": "specials_stacked_schademeldingen",
         "mapping": [
             [
@@ -36,7 +36,7 @@ export const dashboardSpecials : GraphObject[] = [
             "yParameter": "nieuw_specials_schademeldingen",
             "padding": {
                 "top": 20,
-                "bottom": 40,
+                "bottom": 100,
                 "left": 40,
                 "right": 0
             },
@@ -48,11 +48,11 @@ export const dashboardSpecials : GraphObject[] = [
             },
             "extra": {
                 "xScaleTicks": "timeMonth",
-                "header" : "Schademeldingen per week",
-                "largeHeader" : true,
+                "header" : "Trend nieuwe speciale dossiers",
+                "largeHeader" : false,
             }
         },
-        "description" : "",
+        "description" : "Het aantal schademeldingen met speciale kenmerken per week, door de tijd heen. De schademeldingen zijn onderverdeeld naar het type speciale dossier.",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-vertical-padding','img-grap-container-medium-high']
@@ -113,10 +113,10 @@ export const dashboardSpecials : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
-                "header" : "Schademeldingen"
+                "header" : "Type speciale dossiers totaal"
             }
         },
-        "description" : "",
+        "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
@@ -177,10 +177,10 @@ export const dashboardSpecials : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
-                "header" : "In behandeling"
+                "header" : "Type speciale dossiers openstaand"
             }
         },
-        "description" : "",
+        "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet. ",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
@@ -297,18 +297,18 @@ export const dashboardSpecials : GraphObject[] = [
             "yParameter": "value",
             "padding": {
                 "top": 0,
-                "bottom": 80,
+                "bottom": 120,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 0,
-                "bottom": 15,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
             "extra": {
-                "header" : "Status van specials in procedure",
+                "header" : "Status openstaande speciale dossiers",
                 "paddingInner" : 1,
                 "paddingOuter" : 1,
                 "minRadius" : 4,
@@ -316,7 +316,7 @@ export const dashboardSpecials : GraphObject[] = [
                 "radiusFactor": 1
             }
         },
-        "description" : "",
+        "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials",
         "segment": "all",
         "publishDate": false,
@@ -357,15 +357,15 @@ export const dashboardSpecials : GraphObject[] = [
             "yParameter" : "value",
             "padding": {
                 "top": 20,
-                "bottom": 60,
+                "bottom": 120,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 0,
-                    "bottom":120,
-                    "left": 0,
-                    "right": 0
+                "bottom": 120,
+                "left": 0,
+                "right": 0
             },
             "extra" : {
                 "currencyLabels" : false,
@@ -376,10 +376,10 @@ export const dashboardSpecials : GraphObject[] = [
                 "header" : "Specials per status naar gemeente"
             }
         },
-        "description" : "",
+        "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",  // ivm in-graph gemeentekiezer
         "segment": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
         "label" : "Kaart specials",
@@ -414,10 +414,10 @@ export const dashboardSpecials : GraphObject[] = [
             "extra" : {
                 "legendWidth" : 240,
                 "currencyLabels" : false,
-                "header" : "Geografische spreiding van specials"
+                "header" : "Spreiding speciale dossiers"
             }
         },
-        "description" : "",
+        "description" : "Het aantal binnengekomen schademelding met speciale kenmerken dat per gemeente sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet. ",
         "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",
         "segment": false,
         "publishDate": false,

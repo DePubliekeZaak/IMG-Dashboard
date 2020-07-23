@@ -102,8 +102,8 @@ export class DashboardMap {
     redraw(parameter,colour) {
 
         // if (newProperty && newProperty != undefined) { this.property = newProperty };
-        this.scale = this.chartScale.set(this.features.map( f => f.properties[parameter]));
-        this.scale = this.chartScale.reset('opacity',this.dimensions,this.scale);
+      //  this.scale = this.chartScale.set(this.features.map( f => f.properties[parameter]));
+      //      this.scale = this.chartScale.reset('opacity',this.dimensions,this.scale);
         // on redraw chart gets new dimensions
         this.dimensions = this.chartDimensions.get(this.dimensions);
         this.chartSVG.redraw(this.dimensions);

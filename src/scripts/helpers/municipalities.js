@@ -9,8 +9,16 @@ export const munis = [
     {   label : 'Appingedam',
         value: 'appingedam'
     },
+    {
+        label: 'Borger-Odoorn',
+        value: 'borger-odoorn'
+    },
     {   label : 'Assen',
         value: 'assen'
+    },
+    {
+        label: 'Coevorden',
+        value: 'coevorden'
     },
     {   label : 'Delfzijl',
         value: 'delfzijl'
@@ -27,6 +35,9 @@ export const munis = [
     {   label : 'Loppersum',
         value: 'loppersum'
     },
+    {   label : 'Midden-Drenthe',
+        value: 'midden-drenthe'
+    },
     {   label : 'Midden-Groningen',
         value: 'midden-groningen'
     },
@@ -35,6 +46,12 @@ export const munis = [
     },
     {   label : 'Oldambt',
         value: 'oldambt'
+    },
+    {   label : 'Ooststellingwerf',
+        value: 'ooststellingwerf'
+    },
+    {   label : 'Opsterland',
+        value: 'opsterland'
     },
     {   label : 'Pekela',
         value: 'pekela'
