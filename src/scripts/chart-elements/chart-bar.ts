@@ -17,8 +17,6 @@ export class ChartBar {
 
     draw(data) {
 
-        console.log(data);
-
         this.bars = this.svgLayers.data.selectAll(".bar")
             .data(data);
 

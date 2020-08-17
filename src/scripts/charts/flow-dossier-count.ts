@@ -207,7 +207,6 @@ export class FlowDossierCount {
             return ['serie'].indexOf(key) < 0
         });
 
-       console.log(outflowData);
         let stackNormalised = d3.stack()
             .offset(d3.stackOffsetExpand)
             .keys(self.keys);

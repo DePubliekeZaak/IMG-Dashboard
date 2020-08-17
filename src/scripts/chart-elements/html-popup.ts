@@ -1,6 +1,3 @@
-import { GraphObject } from '../types/GraphObject'
-
-
 export class HtmlPopup {
 
 
@@ -115,7 +112,7 @@ export class HtmlPopup {
         img.style.marginBottom = '1.5rem';
         img.style.height = "1.5rem";
         img.style.width = "1.5rem";
-        img.src = 'https://graphs.publikaan.nl/graph-selector/img/i.svg';
+        img.src = 'https://img.publikaan.nl/graphs/img/i.svg';
         img.onclick = () => this.pop(this.element);
 
         // let a = document.createElement('a');

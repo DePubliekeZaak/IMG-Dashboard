@@ -134,7 +134,7 @@ export const dashboardVergoedingen : GraphObject[] = [
                 "right": 0
             },
             "extra": {
-                "startDate" : '10-01-2019',
+                "startDate" : '2019-10-01',
                 "xScaleTicks": "timeMonth",
                 "useLineFill": true,
                 "header" : "Trend gemiddeld schadebedrag",

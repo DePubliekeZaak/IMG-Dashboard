@@ -112,8 +112,6 @@ export class NormalisedBars  {
 
         entries.slice(1,entries.length).forEach( (d,i) => {
 
-            console.log(d);
-
             let item = document.createElement('div');
             item.style.display = 'flex';
             item.style.flexDirection = 'row';

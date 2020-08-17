@@ -102,8 +102,6 @@ export class PieChartSum  {
         let preparedData = [];
         let sum = 0;
 
-        console.log(d);
-
         this.dataMapping.forEach( (array,i) => {
 
             let dataArray = [];
@@ -327,8 +325,6 @@ export class PieChartSum  {
     }
 
     update(newData,segment) {
-
-        console.log(segment);
 
         let self = this;
 

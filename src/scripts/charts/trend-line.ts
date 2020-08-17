@@ -138,6 +138,8 @@ export class TrendLine {
 
     prepareData(json) {
 
+
+
         let neededColumns = ['_date'].concat(this.dataMapping.map( (c) => c.column ));
 
         let data = [];
@@ -156,13 +158,21 @@ export class TrendLine {
             data.push(o);
         }
 
+
+
         data.sort(function(a, b) {
             return new Date(a._date).getTime() - new Date(b._date).getTime();
         });
 
+
         if(this.config.extra.startDate) {
-            data = data.filter( (week) => new Date(week._date) > new Date(this.config.extra.startDate));
+
+            data = data.filter( (week) =>
+                new Date(week._date) > new Date(this.config.extra.startDate)
+            );
         }
+
+
 
         return data.slice(1,data.length);
     }
