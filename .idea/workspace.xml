@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25901f2d-2ea5-4d2e-94a4-2b8a3b4a34cb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sass/mvp-dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/mvp-dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/ballenbak_status.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/ballenbak_status.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-meldingen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-meldingen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-voortgang.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-voortgang.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/kaart_schademeldingen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/kaart_schademeldingen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/staaf_schade-opnames.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/staaf_schade-opnames.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bars-increase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bars-increase.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-circles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-circles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-flow-between-circles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-flow-between-circles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-muniSelector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-muniSelector.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/charts/flow-dossier-count.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/flow-dossier-count.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/init.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/single.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/single.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/stacked-area.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/stacked-area.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +89,7 @@
       <workItem from="1595488483592" duration="44000" />
       <workItem from="1597848746704" duration="11000" />
       <workItem from="1597848778017" duration="621000" />
-      <workItem from="1598265645639" duration="2548000" />
+      <workItem from="1598265645639" duration="3510000" />
     </task>
     <servers />
   </component>
@@ -150,12 +135,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/scripts/charts/stacked-area.ts</url>
-          <line>11</line>
+          <line>12</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/scripts/charts/stacked-area.ts</url>
-          <line>36</line>
+          <line>37</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

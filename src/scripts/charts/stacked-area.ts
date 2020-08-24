@@ -4,6 +4,7 @@ import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '
 import {ChartAxisGrid, ChartCircleGroups, HtmlHeader, HtmlPopup} from "../chart-elements/module";
 import {ChartStackedArea} from "../chart-elements/chart-stacked-area";
 import {colours} from "../_styleguide/_colours";
+import {breakpoints} from "../_styleguide/_breakpoints";
 
 export class StackedArea  {
 
@@ -86,10 +87,10 @@ export class StackedArea  {
         let legend = document.createElement('div');
         legend.classList.add('legend');
         legend.style.display = 'flex';
-        legend.style.flexDirection = 'row-reverse';
+        legend.style.flexDirection = (window.innerWidth > breakpoints.sm) ? 'row-reverse' : 'column-reverse';
         legend.style.justifyContent = 'center';
         legend.style.width = '100%';
-        legend.style.marginBottom = '2rem';
+        legend.style.marginBottom = (window.innerWidth > breakpoints.sm) ? '2rem' : '1rem';
 
 
         this.dataMapping.forEach( (d,i) => {
