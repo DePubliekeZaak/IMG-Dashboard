@@ -2,15 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25901f2d-2ea5-4d2e-94a4-2b8a3b4a34cb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-vergoedingen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-vergoedingen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bar.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bar.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-popup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-popup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gulpfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sass/mvp-dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/mvp-dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/ballenbak_status.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/ballenbak_status.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-meldingen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-meldingen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-voortgang.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-voortgang.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/kaart_schademeldingen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/kaart_schademeldingen.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/staaf_schade-opnames.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/staaf_schade-opnames.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bars-increase.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bars-increase.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-circles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-circles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-flow-between-circles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-flow-between-circles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-muniSelector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-muniSelector.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/flow-dossier-count.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/flow-dossier-count.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/charts/normalised_bars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/normalised_bars.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/charts/pie-chart-sum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/pie-chart-sum.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/charts/trend-line.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/trend-line.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/helpers/_helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/helpers/_helpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/init.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/single.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/single.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +38,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../eurekarail" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
@@ -49,11 +57,11 @@
       <recent name="$PROJECT_DIR$/app/ticker" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/styles" />
+      <recent name="$PROJECT_DIR$/app/scripts" />
       <recent name="$PROJECT_DIR$/app/img" />
       <recent name="$PROJECT_DIR$/app/fonts" />
       <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/dashboard" />
-      <recent name="$PROJECT_DIR$/src/scripts/dashboard" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -94,11 +102,14 @@
       <workItem from="1594641188660" duration="1134000" />
       <workItem from="1595248821979" duration="1698000" />
       <workItem from="1595488483592" duration="44000" />
+      <workItem from="1597848746704" duration="11000" />
+      <workItem from="1597848778017" duration="621000" />
+      <workItem from="1598265645639" duration="2548000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -108,14 +119,22 @@
       <screen x="0" y="0" width="1680" height="1013" />
     </state>
     <state x="478" y="414" width="496" height="396" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1680.1013@0.0.1680.1013" timestamp="1597666786299" />
+    <state x="739" y="264" width="528" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1597675904252">
+      <screen x="0" y="0" width="1680" height="1013" />
+    </state>
+    <state x="739" y="264" width="528" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1680.1013@0.0.1680.1013" timestamp="1597675904252" />
+    <state x="623" y="364" width="428" height="484" key="FileChooserDialogImpl" timestamp="1597849396796">
+      <screen x="0" y="0" width="1680" height="1013" />
+    </state>
+    <state x="623" y="364" width="428" height="484" key="FileChooserDialogImpl/0.0.1680.1013@0.0.1680.1013" timestamp="1597849396796" />
     <state x="343" y="262" width="766" height="700" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1597668221299">
       <screen x="0" y="0" width="1680" height="1013" />
     </state>
     <state x="343" y="262" width="766" height="700" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1680.1013@0.0.1680.1013" timestamp="1597668221299" />
-    <state x="247" y="83" width="1145" height="783" key="find.popup" timestamp="1597668231879">
+    <state x="247" y="83" width="1145" height="783" key="find.popup" timestamp="1598267926033">
       <screen x="0" y="0" width="1680" height="1013" />
     </state>
-    <state x="247" y="83" width="1145" height="783" key="find.popup/0.0.1680.1013@0.0.1680.1013" timestamp="1597668231879" />
+    <state x="247" y="83" width="1145" height="783" key="find.popup/0.0.1680.1013@0.0.1680.1013" timestamp="1598267926033" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

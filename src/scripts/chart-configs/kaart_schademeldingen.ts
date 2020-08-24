@@ -1,7 +1,6 @@
 import { GraphObject} from '../types/graphObject';
 
-export const kaartSchademeldingen : GraphObject =
-    {
+export const kaartSchademeldingen : GraphObject = {
     "label" : "Kaart schademeldingen",
     "slug" : "kaart_schademeldingen",
     "mapping": [
@@ -37,7 +36,7 @@ export const kaartSchademeldingen : GraphObject =
         }
     },
     "description" : "",
-    "endpoint": "/api/gemeenten",
+    "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
     "segment": "all",
     "publishDate": false
 }

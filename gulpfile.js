@@ -24,7 +24,7 @@ gulp.task('sass', function() {
       outputStyle: argv.production ? 'compressed' : undefined,
       includePaths: [ resetCSS ] 
     }).on('error', sass.logError))
-    .pipe(gulp.dest('./app'))
+    .pipe(gulp.dest('./app/styles'))
 })
 
 //the development task
@@ -34,7 +34,7 @@ gulp.task('watch', ['sass'], function(cb) {
 
   //dev server
   budo('dist/init.js', {
-    serve: 'bundle.js',     // end point for our <script> tag
+    serve: 'scripts/bundle.js',     // end point for our <script> tag
     stream: process.stdout, // pretty-print requests
     live: true,             // live reload & CSS injection
     dir: 'app',             // directory to serve
@@ -57,5 +57,5 @@ gulp.task('bundle', ['sass'], function() {
     .pipe(source('index.js'))
     .pipe(streamify(uglify()))
     .pipe(rename(outfile))
-    .pipe(gulp.dest('./app'))
+    .pipe(gulp.dest('./app/scripts'))
 })

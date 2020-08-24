@@ -2,6 +2,7 @@ import { GraphObject} from '../types/graphObject';
 
 export const dashboardVoortgang : GraphObject[] = [
 
+
     {
         "label": "Voortgang afhandeling",
         "slug": "stacked_area_doorlooptijden",
@@ -79,7 +80,7 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 160,
+                "bottom": 60,
                 "left": 0,
                 "right": 0
             },
@@ -119,7 +120,7 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 160,
+                "bottom": 60,
                 "left": 0,
                 "right": 0
             },
@@ -159,13 +160,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 120,
+                "bottom": 60,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 90,
-                "bottom": 160,
+                "bottom": 120,
                 "left": 10,
                 "right": 10
             },
@@ -178,6 +179,55 @@ export const dashboardVoortgang : GraphObject[] = [
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
+    {   "label": "Voortgang",
+        'slug': 'stacked_area_in_behandeling',
+        'mapping': [
+            [
+                {
+                    'label': 'Open meldingen CVW',
+                    'column': 'schademeldingen_cvw',
+                    'colour': 'lightBlue'
+                },
+                {
+                    'label': 'Open meldingen voor Westerwijtwerd',
+                    'column': 'schademeldingen_voor_westerwijtwerd',
+                    'colour': 'moss'
+                },
+                {
+                    'label': 'Open meldingen na Westerwijtwerd',
+                    'column': 'schademeldingen_na_westerwijtwerd',
+                    'colour': 'orange'
+                }
+            ]
+        ],
+        'config': {
+            'graphType': 'StackedArea',
+            'xScaleType': 'time',
+            'yScaleType': 'linear',
+            'xParameter': '_date',
+            'yParameter': 'MELDING_NA_WESTERWIJTWERD',
+            'padding': {
+                'top': 20,
+                'bottom': 120,
+                'left': 60,
+                'right': 30
+            },
+            'margin': {
+                'top': 60,
+                'bottom': 100,
+                'left': 0,
+                'right': 0
+            },
+            'extra': {
+                'xScaleTicks': 'timeMonth',
+                'header': 'Openstaande schademeldingen Westerwijtwerd'
+            }
+        },
+        "description" : "Het aantal schademeldingen dat nog in behandeling is voor de beving van Westerwijtwerd van mei 2019 en van na die beving. Bij de start van de TCMG op 19 maart 2018 kwamen ook ruim 13.000 openstaande schademeldingen binnen van het Centrum Veilig Wonen (CVW) dat voor de NAM de schadeafhandeling verzorgde. De schademeldingen die daarvan nog openstaan, worden hier ook getoond.",
+        'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
+        'segment': 'all',
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
     },
     {
         "label" : "Schademeldingen totaal",
@@ -430,7 +480,7 @@ export const dashboardVoortgang : GraphObject[] = [
                 "radiusFactor": 1.25
             }
         },
-        "description" : "",
+        "description" : "Het aantal openstaande schademeldingen is hier onderverdeeld naar vier leeftijdscategorieën, gerekend vanaf de datum van indiening. Per leeftijdscategorie zijn deze openstaande schademeldingen weer onderverdeeld naar waar ze op dit moment in de procedure zijn. De aantallen worden in absolute getallen weergegeven en in percentage van het totaal binnen de leeftijdscategorie.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "publishDate": false,

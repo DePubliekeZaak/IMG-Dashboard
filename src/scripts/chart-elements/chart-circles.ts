@@ -73,7 +73,6 @@ export class ChartCircles {
             .attr("text-anchor","middle")
             .style("font-size",".8rem")
             .style("fill","black")
-            .attr("dy", ".4rem")
             .style("fill","white");
     }
 
@@ -106,6 +105,7 @@ export class ChartCircles {
             .attr("r", (d) => {  return rScale(d.value);  });
 
         this.circlesText
+            .attr("dy", (d) => { return (direction === 'vertical-reverse') ? ".3rem" : ".4rem" })
             .text( (d) => { return thousands(d.value)});
 
         this.headers_lines

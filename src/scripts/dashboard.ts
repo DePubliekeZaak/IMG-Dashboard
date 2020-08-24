@@ -7,6 +7,33 @@ import {DashboardMap} from "./dashboard/dashboard_map";
 import {dashboardMain, dashboardMeldingen, dashboardVergoedingen, dashboardVoortgang, dashboardSpecials, dashboardReacties, dashboardOpnames } from "./chart-configs/module";
 import { breakpoints} from "./_styleguide/_breakpoints";
 
+const menuItems = [
+    {
+        topic: 'meldingen',
+        label: 'Schademeldingen'
+    },
+    {
+        topic: 'opnames',
+        label: 'Schade-opnames'
+    },
+    {
+        topic: 'reacties',
+        label: 'Reacties'
+    },
+    {
+        topic: 'voortgang',
+        label: 'Voortgang afhandeling'
+    },
+    {
+        topic: 'vergoedingen',
+        label: 'Schadevergoedingen'
+    },
+    {
+        topic: 'specials',
+        label: 'Speciale dossiers'
+    }
+]
+
 export class InitDashboard {
 
     graphObjectArray : GraphObject[]  = [];
@@ -40,24 +67,22 @@ export class InitDashboard {
 
         let dashboardArray = this.matchConfig(params.topic);
 
-        let aside = this.createSideBar();
-        this.htmlContainer.classList.add('has_sidebar');
-
-        // if (!params.topic) {
-
-        this.createList(segment);
-
-        if (window.innerWidth > breakpoints.md ) {
+        if(window.innerWidth > breakpoints.md ) {
+            let aside = this.createSideBar();
+            this.htmlContainer.classList.add('has_sidebar');
+            aside.insertBefore(this.createMenu(),aside.childNodes[0]);
+            this.createList(segment);
             this.dashBoardMap = new DashboardMap(munis);
             this.dashBoardMap.update(false, "orange")
+        } else {
+            let mobileNav = this.createMobileNav();
         }
-        // }
 
         this.createPopupElement();
-        aside.insertBefore(this.createMenu(),aside.childNodes[0]);
+
         this.makeDashboardCall(dashboardArray, segment,false);
 
-        if(params.topic !== "") {
+        if (params.topic !== "") {
             this.showHideSidebarElements(params.topic)
         }
     }
@@ -76,6 +101,44 @@ export class InitDashboard {
             return aside;
     }
 
+    createMobileNav() {
+
+        let self = this;
+
+        let nav = document.createElement('nav');
+        nav.classList.add('mobile_nav');
+
+        let select = document.createElement('select');
+
+        let option = document.createElement('option');
+        option.innerText = 'Algemeen';
+        option.value = '';
+        option.label = 'Algemeen';
+        select.appendChild(option);
+
+        for (let i of menuItems) {
+
+            let option = document.createElement('option');
+            option.innerText = i.label;
+            option.value = i.topic;
+            option.label = i.label;
+
+            select.appendChild(option);
+        }
+
+        //  this.switchTopic('','all');
+
+        select.addEventListener("change", function () {
+            self.switchTopic(select.options[select.selectedIndex].value,'all')
+        });
+
+        nav.appendChild(select);
+        this.htmlContainer.appendChild(nav);
+
+        return select;
+
+    }
+
     createMenu() {
 
         let div = document.createElement('div');
@@ -91,33 +154,7 @@ export class InitDashboard {
 
         div.appendChild(header);
 
-        let c = [
-            {
-                topic: 'meldingen',
-                label: 'Schademeldingen'
-            },
-            {
-                topic: 'opnames',
-                label: 'Schade-opnames'
-            },
-            {
-                topic: 'reacties',
-                label: 'Reacties'
-            },
-            {
-                topic: 'voortgang',
-                label: 'Voortgang afhandeling'
-            },
-            {
-                topic: 'vergoedingen',
-                label: 'Schadevergoedingen'
-            },
-            {
-                topic: 'specials',
-                label: 'Speciale dossiers'
-            }
 
-        ]
 
         let ul = document.createElement('ul');
         ul.classList.add('dashboard_nav');
@@ -132,7 +169,7 @@ export class InitDashboard {
         li.onclick = () =>  this.switchTopic('','all');
         ul.appendChild(li);
 
-        for (let i of c) {
+        for (let i of menuItems) {
 
             let li = document.createElement('li');
             li.innerText = i.label;

@@ -26,6 +26,8 @@ export class InitSingle {
 
             el.innerHTML = '';
 
+            console.log('2');
+
             this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("data-img-graph-preset")));
         }
 
@@ -79,15 +81,19 @@ export class InitSingle {
 
     makeSingleCall(segment,update) {
 
+        console.log(this.graphObjectArray);
+
         let self = this;
 
         let uniqueEndpoints = [... Array.from(new Set(this.graphObjectArray.map( (o) => o.endpoint)))];
 
         for (let endpoint of uniqueEndpoints) {
 
+            console.log(endpoint);
+
             const graphObjectArray = this.graphObjectArray.filter( o => o.endpoint === endpoint);
 
-            let url = (endpoint === '/api/gemeenten') ? 'https://tcmg-hub.publikaan.nl/api/gemeenten' : 'https://tcmg-hub.publikaan.nl' + (endpoint || '/api/data') + '?gemeente=' + segment;
+            let url = (endpoint === '/api/gemeenten') ? 'https://tcmg-hub.publikaan.nl/api/gemeenten' : (endpoint || '/api/data') + '?gemeente=eq.' + segment;
 
             d3.json<ResponseData>(url)
                 .then((data) => {

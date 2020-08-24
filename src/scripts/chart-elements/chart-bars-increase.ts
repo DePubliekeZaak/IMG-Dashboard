@@ -102,8 +102,7 @@ export class ChartBarsIncrease {
 
 
         groups.select(".diffLabel")
-            .text(d => '+' + thousands(d['nieuwe_' + yParameter]))
-
+            .text(d => '+' + thousands(d['nieuw_' + yParameter]))
             .attr('transform', function(d) {
 
                 return 'translate(' + (xScale.bandwidth() / 2) + ',' +

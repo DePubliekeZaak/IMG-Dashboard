@@ -42,6 +42,7 @@ export class InitGraph {
 
     single() {
 
+        console.log('1');
         const single = new InitSingle();
         single.init();
     }

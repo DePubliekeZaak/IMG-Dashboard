@@ -243,6 +243,8 @@ export class FlowDossierCount {
 
         let self = this;
 
+        console.log(window.innerWidth);
+
         let direction = window.innerWidth > breakpoints.sm ? 'horizontal' : 'vertical-reverse';
 
         this.dimensions = this.chartDimensions.get(this.dimensions);

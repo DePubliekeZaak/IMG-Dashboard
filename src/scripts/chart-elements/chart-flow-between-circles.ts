@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import { colours } from  '../_styleguide/_colours'
+import {breakpoints} from "../_styleguide/_breakpoints";
 
 export class ChartFlowBetweenCircles {
 
@@ -116,7 +117,7 @@ export class ChartFlowBetweenCircles {
     forceDirect(xScale,rScale,data,direction) {
 
         let self = this;
-        let triangleSize = (direction === 'horizontal') ? 40 : 30;
+        let triangleSize = (direction === 'horizontal') ? 40 : 20;
 
         if (direction === 'horizontal') {
 
@@ -205,7 +206,7 @@ export class ChartFlowBetweenCircles {
                             y: data[i + 1].y + yOffset2
                         }
 
-                        let knijp = 45; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = (window.innerWidth < breakpoints.md) ? 30 : 45; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2) - (knijp * Math.cos(lineAngle)),
@@ -286,22 +287,22 @@ export class ChartFlowBetweenCircles {
                         let schuineZijde2 = rScale(data[i].value);
 
                         let start1 = {
-                            x: data[1].x + (triangleSize / 2),
+                            x: data[1].x + (triangleSize / 4),
                             y: xScale(data[i].cumulativeDuration)
                         }
 
                         let start2 = {
-                            x: data[1].x - (triangleSize / 2),
+                            x: data[1].x - (triangleSize / 4),
                             y: xScale(data[i].cumulativeDuration)
                         }
 
                         let end1 = {
-                            x: data[1].x - (rScale(data[1].value / 8)),
+                            x: data[1].x - (rScale(data[1].value / 16)),
                             y: xScale(data[i + 1].cumulativeDuration)
                         }
 
                         let end2 = {
-                            x: data[1].x + (rScale(data[1].value / 8)),
+                            x: data[1].x + (rScale(data[1].value / 16)),
                             y: xScale(data[i + 1].cumulativeDuration)
                         }
 
@@ -363,7 +364,7 @@ export class ChartFlowBetweenCircles {
                             y: xScale(data[i + 1].cumulativeDuration) - yOffset2
                         }
 
-                        let knijp = 45; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2) + (knijp * Math.cos(lineAngle)),

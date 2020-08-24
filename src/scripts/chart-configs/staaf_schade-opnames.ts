@@ -7,12 +7,12 @@ export const staafSchadeopnames : GraphObject = {
         [
             {
                 "label": "Schade-opnames",
-                "column": "schadeopnames",
+                "column": "schade_opnames",
                 "colour": "blue"
             },
             {
                 "label": "",
-                "column": "nieuwe_schadeopnames",
+                "column": "nieuw_schade_opnames",
                 "colour": "blue"
             }
         ]
@@ -22,7 +22,7 @@ export const staafSchadeopnames : GraphObject = {
             "xScaleType": "bandTime",
             "yScaleType": "linear",
             "xParameter": "_date",
-            "yParameter": "schademeldingen",
+            "yParameter": "schade_opnames",
             "padding": {
             "top": 20,
                 "bottom": 40,
@@ -41,7 +41,7 @@ export const staafSchadeopnames : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "/api/data",
+    "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
     "segment": "all",
     "elementClasslist" : ["is-9"],
     "publishDate": false

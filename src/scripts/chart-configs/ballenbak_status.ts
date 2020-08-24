@@ -6,103 +6,103 @@ export const ballenbakStatus : GraphObject = {
     "slug": "ballenbak_status",
     "mapping": [[
 
-            {
-                "label": 'Minder dan een half jaar',
-                "column" : 'MNDER_HALF_JAAR_ONTVANGST',
-                "colour" : "yellow",
-                "group" : 'Ontvangst en analyse'
-            },
-            {
-                "label": 'Tussen een half jaar en jaar',
-                "column" : 'HALF_JAAR_1JAAR_ONTVANGST',
-                "colour" : "green",
-                "group" : 'Ontvangst en analyse'
-            },
-            {
-                "label": 'Tussen een jaar en twee jaar',
-                "column" : 'TUSSEN_1_2_JAAR_ONTVANGST',
-                "colour" : "brown",
-                "group" : 'Ontvangst en analyse'
-            },
-            {
-                "label": 'Langer dan twee jaar',
-                "column" : 'LANGER_2_JAAR_ONTVANGST',
-                "colour" : "blue",
-                "group" : 'Ontvangst en analyse'
-            },
-            {
-                "label": 'Minder dan een half jaar',
-                "column" : 'MINDER_HALF_JAAR_PLANNING',
-                "colour" : "yellow",
-                "group" : 'Schade-opname wordt ingepland'
-            },
-            {
-                "label": 'Tussen een half jaar en jaar',
-                "column" : 'HALF_JAAR_1JAAR_PLANNING_OPNAME',
-                "colour" : "green",
-                "group" : 'Schade-opname wordt ingepland'
-            },
-            {
-                "label": 'Tussen een jaar en twee jaar',
-                "column" : 'TUSSEN_1_2_JAAR_PLANNING_OPNAME',
-                "colour" : "brown",
-                "group" : 'Schade-opname wordt ingepland'
-            },
-            {
-                "label": 'Langer dan twee jaar',
-                "column" : 'LANGER_2_JAAR_PLANNING_OPNAME',
-                "colour" : "blue",
-                "group" : 'Schade-opname wordt ingepland'
-            },
-            {
-                "label": 'Minder dan een half jaar',
-                "column" : 'MINDER_HALF_JAAR_OPLEV_SCHRAP',
-                "colour" : "yellow",
-                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
-            },
-            {
-                "label": 'Tussen een half jaar en jaar',
-                "column" : 'HALF_JAAR_1JAAR_OPLEV_SCHRAP',
-                "colour" : "green",
-                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
-            },
-            {
-                "label": 'Tussen een jaar en twee jaar',
-                "column" : 'TUSSEN_1_2_JAAR_OPLEV_SCHRAP',
-                "colour" : "brown",
-                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
-            },
-            {
-                "label": 'Langer dan twee jaar',
-                "column" : 'LANGER_2_JAAR_OPLEV_SCHRAP',
-                "colour" : "blue",
-                "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
-            },
-            {
-                "label": 'Minder dan een half jaar',
-                "column" : 'MINDER_HALF_JAAR_VOORBER_',
-                "colour" : "yellow",
-                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
-            },
-            {
-                "label": 'Tussen een half jaar en jaar',
-                "column" : 'HALF_JAAR_1JAAR_VOORBER_CIE',
-                "colour" : "green",
-                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
-            },
-            {
-                "label": 'Tussen een jaar en twee jaar',
-                "column" : 'TUSSEN_1_2_JAAR_VOORBER_CIE',
-                "colour" : "brown",
-                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
-            },
-            {
-                "label": 'Langer dan twee jaar',
-                "column" : 'LANGER_2_JAAR_VOORBER_CIE',
-                "colour" : "blue",
-                "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
-            }
-        ]
+        {
+            "label": 'Minder dan een half jaar',
+            "column" : 'minder_dan_half_jaar_in_fase_ontvangst',
+            "colour" : "lightBlue",
+            "group" : 'Ontvangst en analyse'
+        },
+        {
+            "label": 'Tussen een half jaar en jaar',
+            "column" : 'tussen_half_jaar_en_jaar_in_fase_ontvangst',
+            "colour" : "orange",
+            "group" : 'Ontvangst en analyse'
+        },
+        {
+            "label": 'Tussen een jaar en twee jaar',
+            "column" : 'tussen_jaar_en_twee_jaar_in_fase_ontvangst',
+            "colour" : "moss",
+            "group" : 'Ontvangst en analyse'
+        },
+        {
+            "label": 'Langer dan twee jaar',
+            "column" : 'langer_dan_twee_jaar_in_fase_ontvangst',
+            "colour" : "brown",
+            "group" : 'Ontvangst en analyse'
+        },
+        {
+            "label": 'Minder dan een half jaar',
+            "column" : 'minder_dan_half_jaar_in_fase_planning_opname',
+            "colour" : "lightBlue",
+            "group" : 'Schade-opname wordt ingepland'
+        },
+        {
+            "label": 'Tussen een half jaar en jaar',
+            "column" : 'tussen_half_jaar_in_fase_planning_opname',
+            "colour" : "orange",
+            "group" : 'Schade-opname wordt ingepland'
+        },
+        {
+            "label": 'Tussen een jaar en twee jaar',
+            "column" : 'tussen_jaar_en_twee_jaar_in_fase_planning_opname',
+            "colour" : "moss",
+            "group" : 'Schade-opname wordt ingepland'
+        },
+        {
+            "label": 'Langer dan twee jaar',
+            "column" : 'langer_dan_twee_jaar_in_fase_planning_opname',
+            "colour" : "brown",
+            "group" : 'Schade-opname wordt ingepland'
+        },
+        {
+            "label": 'Minder dan een half jaar',
+            "column" : 'minder_dan_half_jaar_in_fase_opleveren_schaderapport',
+            "colour" : "lightBlue",
+            "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+        },
+        {
+            "label": 'Tussen een half jaar en jaar',
+            "column" : 'tussen_half_jaar_en_jaar_in_fase_opleveren_schaderapport',
+            "colour" : "orange",
+            "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+        },
+        {
+            "label": 'Tussen een jaar en twee jaar',
+            "column" : 'tussen_jaar_en_twee_jaar_in_fase_opleveren_schaderapport',
+            "colour" : "moss",
+            "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+        },
+        {
+            "label": 'Langer dan twee jaar',
+            "column" : 'langer_dan_twee_jaar_in_fase_opleveren_schaderapport',
+            "colour" : "brown",
+            "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
+        },
+        {
+            "label": 'Minder dan een half jaar',
+            "column" : 'minder_dan_half_jaar_in_fase_voorbereiding_besluit',
+            "colour" : "lightBlue",
+            "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+        },
+        {
+            "label": 'Tussen een half jaar en jaar',
+            "column" : 'tussen_half_jaar_en_jaar_in_fase_voorbereiding_besluit',
+            "colour" : "orange",
+            "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+        },
+        {
+            "label": 'Tussen een jaar en twee jaar',
+            "column" : 'tussen_jaar_en_twee_jaar_in_fase_voorbereiding_besluit',
+            "colour" : "moss",
+            "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+        },
+        {
+            "label": 'Langer dan twee jaar',
+            "column" : 'langer_dan_twee_jaar_in_fase_voorbereiding_besluit',
+            "colour" : "brown",
+            "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
+        }
+    ]
     ],
     "config": {
         "graphType": "Ballenbak",
@@ -132,36 +132,7 @@ export const ballenbakStatus : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "/api/data",
+    "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
     "segment": "all",
     "publishDate": false
 };
-
-/*
-
-,
-            {
-                "label": 'Minder dan een half jaar',
-                "column" : 'MINDER_HALF_JAAR_STATUS_STUW',
-                "colour" : "red",
-                "group" : 'Stuwmeerregeling'
-            },
-            {
-                "label": 'Tussen een half jaar en jaar',
-                "column" : 'HALF_JAAR_1JAAR_STATUS_STUW',
-                "colour" : "green",
-                "group" : 'Stuwmeerregeling'
-            },
-            {
-                "label": 'Tussen een jaar en twee jaar',
-                "column" : 'TUSSEN_1_2_JAAR_STATUS_STUW',
-                "colour" : "blue",
-                "group" : 'Stuwmeerregeling'
-            },
-            {
-                "label": 'Langer dan twee jaar',
-                "column" : 'LANGER_2_JAAR_STATUS_STUW',
-                "colour" : "purple",
-                "group" : 'Stuwmeerregeling'
-            }
- */

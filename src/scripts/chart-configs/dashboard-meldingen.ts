@@ -86,55 +86,6 @@ export const dashboardMeldingen : GraphObject[] = [
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
     },
-    {   "label": "Voortgang",
-        'slug': 'stacked_area_in_behandeling',
-        'mapping': [
-            [
-                {
-                    'label': 'Open meldingen CVW',
-                    'column': 'schademeldingen_cvw',
-                    'colour': 'lightBlue'
-                },
-                {
-                    'label': 'Open meldingen voor Westerwijtwerd',
-                    'column': 'schademeldingen_voor_westerwijtwerd',
-                    'colour': 'moss'
-                },
-                {
-                    'label': 'Open meldingen na Westerwijtwerd',
-                    'column': 'schademeldingen_na_westerwijtwerd',
-                    'colour': 'orange'
-                }
-            ]
-        ],
-        'config': {
-            'graphType': 'StackedArea',
-            'xScaleType': 'time',
-            'yScaleType': 'linear',
-            'xParameter': '_date',
-            'yParameter': 'MELDING_NA_WESTERWIJTWERD',
-            'padding': {
-                'top': 20,
-                'bottom': 120,
-                'left': 60,
-                'right': 30
-            },
-            'margin': {
-                'top': 60,
-                'bottom': 100,
-                'left': 0,
-                'right': 0
-            },
-            'extra': {
-                'xScaleTicks': 'timeMonth',
-                'header': 'Openstaande schademeldingen Westerwijtwerd'
-            }
-        },
-        "description" : "Het aantal schademeldingen dat nog in behandeling is voor de beving van Westerwijtwerd van mei 2019 en van na die beving. Bij de start van de TCMG op 19 maart 2018 kwamen ook ruim 13.000 openstaande schademeldingen binnen van het Centrum Veilig Wonen (CVW) dat voor de NAM de schadeafhandeling verzorgde. De schademeldingen die daarvan nog openstaan, worden hier ook getoond.",
-        'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
-        'segment': 'all',
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
-    },
     {   "label": "Acuut onveilige situaties",
         "slug": "meldingen_trend_aos_meldingen",
         "mapping": [

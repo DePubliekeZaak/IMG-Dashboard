@@ -324,7 +324,19 @@ aside {
       height: calc((100vw - 300px - 10rem) / 4);
     }
   }
+
+  &.img-graph-container-4 {
+
+    @media (min-width : $breakpoint-md) {
+
+      > svg {
+        height: 200px;
+      }
+    }
+  }
 }
+
+
 
 .img-grap-container-medium {
 
@@ -353,20 +365,17 @@ aside {
 
 .img-graph-container-map {
 
-  height: 425px;
+  height: 450px;
   overflow: visible;
   position: relative;
-
-
+  margin-bottom: 2rem;
   > section  {
     margin-top: -10%;
     margin-left: -20%;
 
     > svg {
-      margin-bottom: -1.5rem;
+      margin-bottom: -2.5rem;
     }
-
-
     @media (min-width : $breakpoint-sm) {
        margin-left: 0;
    }
@@ -401,4 +410,13 @@ aside {
     height: auto;
     max-width: 100%;
   }
+}
+
+.mobile_nav {
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2rem auto;
 }

@@ -23,6 +23,7 @@ export class HtmlMuniSelector {
             let option = document.createElement('option');
             option.label = muni.label;
             option.value = muni.value;
+            option.innerText = muni.label;
             dropdown.appendChild(option);
             dropdown.style.border = '1px solid black';
             dropdown.style.margin = '-1rem 0 0 .5rem';

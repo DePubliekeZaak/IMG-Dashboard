@@ -5,4 +5,4 @@ app
 *.log
 .DS_Store
 bundle.js
-app/main.css
+app/styles/main.css
