@@ -83,8 +83,6 @@ aside {
     }
 
     @media (min-width: $breakpoint-sm) {
-      //padding: 1rem;
-      //width: calc(240px - 2rem);
       width : auto;
       padding: 2rem;
 
@@ -94,7 +92,6 @@ aside {
       position: absolute;
       left: 0;
       min-height: 100vh;
-      padding: 1rem;
       width: calc(240px - 2rem);
       overflow: visible;
       background: transparent;
@@ -131,9 +128,7 @@ aside {
     width: 320px;
     height: 320px;
     margin-left: -120px;
-    margin-top: 60px;
     margin-top: 30px;
-
   }
 }
 
@@ -200,45 +195,58 @@ aside {
   }
 }
 
-
 .img-graph-container-6 {
-
   width: 100%;
 
   @media (min-width : $breakpoint-bax) {
-
     width: calc(50% - 2rem/2);
+  }
+}
+
+.img-graph-container-8 {
+
+  width : 100%;
+  margin-bottom: 4rem;
+
+  @media (min-width : $breakpoint-md) {
+
+    width: calc(66% - (3rem/2));
+
+    > svg {
+      height: auto;
+    }
+  }
+
+  @media (min-width : $breakpoint-bax) {
+    > svg {
+      height: calc((100vw - 300px - 10rem) / 4);
+    }
+
+    > .legend {
+      margin-bottom: 2rem;
+    }
   }
 }
 
 .img-graph-container-9 {
   width: calc(75% - 3rem - 9rem);
   height: 22vw;
-  padding: 0 5rem 0 0rem;
-  margin: 8rem 0rem 4rem 0rem;
+  padding: 0 5rem 0 0;
+  margin: 8rem 0 4rem 0;
 }
 
 .img-graph-container-12 {
 
-  margin: 0rem auto 2rem auto;
+  margin: 0 auto 2rem auto;
   height: 120vh;
   width: 100%;
 
   @media (min-width : $breakpoint-sm) {
-
-    //width: calc(100% - 4rem);
     height: 460px;
   }
 
   @media (min-width : $breakpoint-bax) {
-
-    //width: calc(100% - 4rem);
     height: 500px;
-  }
-
-  @media (min-width : $breakpoint-lg) {
-
-    //height: 600px;
   }
 
   > svg {
@@ -293,7 +301,7 @@ aside {
 
 .img-graph-container-vertical-padding {
 
-  padding: 2rem 0 0rem 0;
+  padding: 2rem 0 0 0;
 
   @media (min-width : $breakpoint-md) {
 
@@ -305,10 +313,12 @@ aside {
   }
 }
 
-.img-grap-container-bol {
+.img-graph-container-bol {
+
+  height: auto;
 
   > svg {
-    height: 60vw;
+    height: auto;
   }
 
   @media (min-width : $breakpoint-md) {
@@ -320,9 +330,21 @@ aside {
 
   @media (min-width : $breakpoint-bax) {
 
-    > svg {
-      height: calc((100vw - 300px - 10rem) / 4);
-    }
+    // safari only
+
+    height: auto;
+    margin-bottom: 0;
+    //
+    //@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
+    //
+    //}
+
+    //> svg {
+    //  height: calc((100vw - 300px - 10rem) / 4);
+    //  @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
+    //    height: 6rem;
+    //  }
+    //}
   }
 
   &.img-graph-container-4 {
@@ -368,17 +390,42 @@ aside {
   height: 450px;
   overflow: visible;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: -4rem;
+
+  @media (min-width : $breakpoint-sm) {
+    margin-bottom: 2rem;
+  }
+
   > section  {
-    margin-top: -10%;
-    margin-left: -20%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: -30%;
+    //margin-right: 160px;
+    margin-left: 0;
+    margin-bottom: -30%;
+
+    @media (min-width : $breakpoint-sm) {
+      margin-top: -10%;
+      margin-left: 0;
+      margin-bottom: 0;
+      margin-right: 0;
+
+    }
 
     > svg {
-      margin-bottom: -2.5rem;
+
+      margin-left: -40px;
+      margin-bottom: -3.5rem;
+
+      @media (min-width : $breakpoint-sm) {
+        margin-bottom: -2.5rem;
+        margin-left: 0;
+      }
     }
-    @media (min-width : $breakpoint-sm) {
-       margin-left: 0;
-   }
   }
 }
 

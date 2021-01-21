@@ -5,7 +5,8 @@ export class HtmlPopup {
 
     constructor(
         private element : HTMLElement,
-        private description : string
+        private description : string,
+        private data: any
     ){
        this.create();
     }
@@ -40,7 +41,15 @@ export class HtmlPopup {
         description.classList.add('popup_description');
         description.innerHTML = '<div>' + this.description + '</div>';
 
-        this.popupElement.append(description);
+        let span = description.querySelector('span');
+
+        if(span) {
+            span.innerText = this.data[0][span.getAttribute('data-slug')]
+        }
+
+            this.popupElement.append(description);
+
+
 
         // linkje
 

@@ -1,9 +1,9 @@
 import 'babel-polyfill';
 import 'isomorphic-fetch';
 
-import { InitDashboard } from "./dashboard";
-import { InitTicker } from "./ticker";
-import { InitSingle} from "./single";
+import { InitDashboard } from "./dashboard/dashboard.controller";
+import { InitTicker } from "./ticker/ticker.controller";
+import { InitSingle} from "./single.controller";
 import {configs} from "./chart-configs/module";
 
 export class InitGraph {
@@ -42,7 +42,6 @@ export class InitGraph {
 
     single() {
 
-        console.log('1');
         const single = new InitSingle();
         single.init();
     }

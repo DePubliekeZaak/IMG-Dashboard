@@ -42,8 +42,8 @@ export class CijfersLine  {
     ){
 
         this.element = d3.select(this.elementID).node();
-        this.yParameter = this.dataMapping[0].column;
-        this.config.yParameter = this.dataMapping[0].column;
+        this.yParameter =  this.config.yParameter || this.dataMapping[0].column;
+        // this.config.yParameter = this.dataMapping[0].column;
     }
 
     init() {
@@ -83,11 +83,14 @@ export class CijfersLine  {
         this.leftAxis.draw();
         this.htmlCircle.draw();
         this.htmlHeader.draw();
-        this.chartAvgLine.draw();
+
+        if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
+            this.chartAvgLine.draw();
+        }
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
 
-        this.popup = new HtmlPopup(this.element,this.description);
+
 
         self.update(this.data,this.segment,false);
 
@@ -100,7 +103,27 @@ export class CijfersLine  {
         let data = [];
         let hasEnoughData;
 
-        for (let week of newData.slice(0,8)) {
+        if (this.config.extra.period === 'monthly') {
+
+            // return only first week of month
+           newData = newData.filter( (w) => {
+
+              let weeksInMonth = newData.filter( (x) => x._month === w._month && x._year === w._year);
+              weeksInMonth.sort( (b: any, a: any) => (a._year.toString() + a._week.toString()) - (a._year.toString() + b._week.toString()));
+              // console.log(weeksInMonth.map( (y) => y._year.toString() + y._week.toString()));
+
+              // we retourneren de laatste in de maand
+                if(weeksInMonth.map( (y) => y._week).indexOf(w._week) === 0) {
+                    // alleen in eerste zeven dagen van de maand
+                    if(new Date(w._date).getDate() <= 7 ) {
+                        return w;
+                    }
+                }
+           })
+
+        }
+
+        for (let week of newData.slice(0,7)) {
 
             hasEnoughData = true;
 
@@ -117,6 +140,8 @@ export class CijfersLine  {
 
             if (hasEnoughData) {
                 data.push(clearWeek);
+            } else {
+                console.log('lacking data');
             }
         }
 
@@ -125,7 +150,9 @@ export class CijfersLine  {
 
     redraw(data) {
 
-        this.yScale = this.chartYScale.set(data.map( d => d[this.yParameter]));
+        let minValue = (this.config.extra.period === 'monthly') ? 7 : 0
+
+        this.yScale = this.chartYScale.set(data.map( d => d[this.yParameter]),minValue);
 
         // on redraw chart gets new dimensions
         this.dimensions = this.chartDimensions.get(this.dimensions);
@@ -135,20 +162,27 @@ export class CijfersLine  {
         this.xScale = this.chartXScale.reset('horizontal', this.dimensions, this.xScale);
         this.yScale = this.chartYScale.reset('vertical', this.dimensions, this.yScale);
 
-        this.htmlCircle.redraw(data,this.yParameter);
-        this.chartBackgroundArea.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
-        this.chartWeekGrid.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.yParameter);
-        this.chartLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.config.xParameter, this.yParameter);
-        this.chartAvgLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.yParameter);
+        this.htmlCircle.redraw(data,this.dataMapping[0].column);
+
+        if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
+            this.chartBackgroundArea.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
+            this.chartWeekGrid.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.yParameter);
+            this.chartLine.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
+            this.chartAvgLine.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.yParameter);
+        }
     }
 
     draw(data) {
 
         this.xScale = this.chartXScale.set(data.map(d => d[this.config.xParameter]));
 
-        this.chartBackgroundArea.draw(data);
-        this.chartLine.draw(data);
-        this.chartWeekGrid.draw(data);
+        if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
+            this.chartBackgroundArea.draw(data);
+            this.chartLine.draw(data);
+            this.chartWeekGrid.draw(data);
+        }
+
+        this.popup = new HtmlPopup(this.element,this.description,data);
 
     }
 

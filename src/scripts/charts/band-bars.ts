@@ -77,7 +77,7 @@ export class BandBars {
             });
         }
 
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.popup = new HtmlPopup(this.element,this.description,false);
 
         self.update(this.data,'all');
     }

@@ -30,8 +30,8 @@ export const dashboardOpnames : GraphObject[] = [
                 "right": 0
         },
         "margin": {
-            "top": 80,
-                "bottom": 100,
+            "top": 120,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
         },
@@ -55,19 +55,14 @@ export const dashboardOpnames : GraphObject[] = [
     "mapping":  [[
         [
             {
+                "label": "Regulier",
+                "column": "schadeopnames_regulier",
+                "colour": "gray"
+            },
+            {
                 "label": "Aannemersvariant",
                 "column": "schadeopnames_via_aannemersvariant",
                 "colour": "orange"
-            },
-            {
-                "label": "Schade-opnemers",
-                "column": "schadeopnames_via_opnemersvariant",
-                "colour": "moss"
-            },
-            {
-                "label": "CVW 2000",
-                "column": "schadeopnames_door_cvw2000",
-                "colour": "brown"
             },
             {
                 "label": "Wooncorporaties",
@@ -75,9 +70,14 @@ export const dashboardOpnames : GraphObject[] = [
                 "colour": "blue"
             },
             {
-                "label": "Regulier",
-                "column": "schadeopnames_regulier",
-                "colour": "gray"
+                "label": "Digitaal",
+                "column": "schadeopnames_digitaal",
+                "colour": "brown"
+            },
+            {
+                "label": "Schade-opnemers",
+                "column": "schadeopnames_via_opnemersvariant",
+                "colour": "moss"
             }
         ],
         [

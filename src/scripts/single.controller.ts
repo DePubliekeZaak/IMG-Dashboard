@@ -25,9 +25,6 @@ export class InitSingle {
         for (let el of this.elements) {
 
             el.innerHTML = '';
-
-            console.log('2');
-
             this.graphObjectArray.push(configs.find( c => c.slug === el.getAttribute("data-img-graph-preset")));
         }
 
@@ -81,7 +78,6 @@ export class InitSingle {
 
     makeSingleCall(segment,update) {
 
-        console.log(this.graphObjectArray);
 
         let self = this;
 

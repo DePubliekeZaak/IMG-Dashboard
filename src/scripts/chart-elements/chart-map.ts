@@ -1,10 +1,9 @@
 import * as d3 from "d3";
 import { colours } from '../_styleguide/_colours.js';
 import { convertToCurrency, shortenCurrency, slugify } from '../helpers/_helpers';
+import {breakpoints} from "../_styleguide/_breakpoints";
 
 export class ChartMap {
-
-
     projection;
     path;
 
@@ -18,7 +17,6 @@ export class ChartMap {
     init() {
 
         this.projection = d3.geoMercator();
-
         this.path = d3.geoPath()
             .projection(this.projection);
 
@@ -86,7 +84,7 @@ export class ChartMap {
 
                 return (property !== undefined && d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
             } )
-            .attr("fill-opacity", d => (d.properties[property] > 0) ? scale(d.properties[property]) : 1)
+            .attr("fill-opacity", (d) => (d.properties[property] > 0) ? scale(d.properties[property]) : 1)
             .on("mouseover", function (d) {
 
                 let html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + d.properties[property] + "</div>";
@@ -129,7 +127,7 @@ export class ChartMap {
             this.svg.values
                 .text(function (d) {
 
-                    if (d.properties[property] > 0) {
+                    if (window.innerWidth > breakpoints.sm && d.properties[property] > 0) {
 
                         if (self.config.extra.currencyLabels) {
                             return shortenCurrency(convertToCurrency(d.properties[property]));

@@ -96,7 +96,7 @@ export class ChartRaggedLine {
             let line = d3.line()
                 .x(d =>  (this.config.xScaleType === 'time') ?  xScale(new Date(d[this.config.xParameter])) : xScale(d[xParameter]))
                 .y(d => (this.config.yScaleType === 'time') ? yScale(new Date (d[yParameter])) : yScale(d[yParameter]) )
-                .curve(d3.curveCatmullRom);
+                .curve(d3.curveLinear);
 
             this.svg.line.merge(this.svg.lineEnter)
                 .transition()
@@ -179,7 +179,7 @@ export class ChartRaggedLine {
                             if (self.config.xScaleType === 'time') {
 
                                 return 'Gerapporteerd op ' + displayDate(date) + '<br/><b>'
-                                    + d[yParameter] + '</b><br/>'
+                                    + Math.round(d[yParameter] * 10) / 10  + '</b><br/>'
 
                             } else {
 

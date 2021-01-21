@@ -11,6 +11,11 @@ export function getWeek(date) {
         - 3 + (week1.getDay() + 6) % 7) / 7);
 }
 
+export function getMonth(date) {
+
+    return ['jan','feb','maa','apr','mei','jun','jul','aug','sep','okt','nov','dec'][date.getMonth()];
+}
+
 export function getDateRangeOfWeek(weekNo) {
     const d1 = new Date();
     // tslint:disable-next-line:no-eval

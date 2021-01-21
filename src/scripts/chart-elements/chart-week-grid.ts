@@ -1,5 +1,5 @@
 import { colours } from '../_styleguide/_colours.js';
-import { getWeek } from '../utils/date-object.utils';
+import { getWeek, getMonth } from '../utils/date-object.utils';
 
 export class ChartWeekGrid {
 
@@ -45,7 +45,7 @@ export class ChartWeekGrid {
                 .attr("class", "weekLine");
 
             this.svg.weekNumbers = this.svg.layers.underData.selectAll(".weekNumber")
-                    .data(data);
+                    .data(data.slice(0,data.length - 1));
 
             this.svg.weekNumbers.exit().remove();
 
@@ -108,14 +108,20 @@ export class ChartWeekGrid {
                     }
 
                 })
-                .attr("dx", (this.config.xScaleType === 'time') ? 0 : -16)
+                .attr("dx", (this.config.extra.period === 'monthly') ? -22 : -16)
                 .attr("dy", (this.config.xScaleType === 'time') ? 12 :  25)
                 .attr("fill", colours.grey)
                 .text(function (d, i) {
 
                     let date = new Date(d[self.config.xParameter]);
+                    // we rapporteren over de week ervoor
+                    date.setDate(date.getDate() - 7);
 
-                    if (self.config.xScaleType === 'time') {
+                    if (self.config.extra.period === 'monthly') {
+
+                        return getMonth(date)
+
+                    } else if (self.config.xScaleType === 'time') {
 
                         return getWeek(date) // (i < (data.length - 1)) ? getWeek(date) : '';
 

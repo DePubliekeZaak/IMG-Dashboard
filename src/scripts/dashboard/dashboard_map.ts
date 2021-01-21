@@ -4,7 +4,6 @@ import * as topojson from "topojson-client";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale} from "../chart-basics/module";
 import { ChartMap } from "../chart-elements/module";
-import {geodata} from "../helpers/geodata";
 import {slugify} from "../utils/slugify.utils";
 
 
@@ -76,13 +75,16 @@ export class DashboardMap {
         this.chartMap = new ChartMap(this.config,this.svg,this.dimensions);
         this.chartMap.init();
 
-        this.features = this.prepareData(this.data);
-        self.draw();
+        d3.json('/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
+            const features = this.prepareData(this.data, topojsonObject);
+            self.draw(features);
+        });
     }
 
-    prepareData(data)  {
+    prepareData(data, topojsonObject)  {
 
-        let features = topojson.feature(geodata, geodata.objects.gemeenten).features;
+        let geojson = topojson.feature(topojsonObject, topojsonObject.objects.gemeenten);
+        let features = geojson.features;
 
         for (let feature of features) {
 
@@ -94,9 +96,10 @@ export class DashboardMap {
         return features;
     }
 
-    draw() {
+    draw(features) {
 
-        this.chartMap.draw(this.features);
+        this.chartMap.draw(features);
+        this.update(false,'orange');
     }
 
     redraw(parameter,colour) {

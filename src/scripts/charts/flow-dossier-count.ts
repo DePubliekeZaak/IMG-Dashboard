@@ -119,7 +119,7 @@ export class FlowDossierCount {
             this.htmlHeader.draw();
         }
 
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.popup = new HtmlPopup(this.element,this.description,false);
 
         this.update(this.data)
 
@@ -242,8 +242,6 @@ export class FlowDossierCount {
     redraw(flowData, outflowDataNormalised) {
 
         let self = this;
-
-        console.log(window.innerWidth);
 
         let direction = window.innerWidth > breakpoints.sm ? 'horizontal' : 'vertical-reverse';
 

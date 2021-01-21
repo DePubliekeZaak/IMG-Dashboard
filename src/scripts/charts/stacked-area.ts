@@ -91,6 +91,8 @@ export class StackedArea  {
         legend.style.justifyContent = 'center';
         legend.style.width = '100%';
         legend.style.marginBottom = (window.innerWidth > breakpoints.sm) ? '2rem' : '1rem';
+        legend.style.marginLeft = (window.innerWidth > breakpoints.sm) ? '0' : '60px';
+        legend.style.marginRight = (window.innerWidth > breakpoints.sm) ? '0' : 'auto';
 
 
         this.dataMapping.forEach( (d,i) => {
@@ -99,7 +101,7 @@ export class StackedArea  {
             item.style.display = 'flex';
             item.style.flexDirection = 'row';
             item.style.alignItems = 'center';
-            item.style.marginRight = '2rem';
+            item.style.marginRight = (window.innerWidth > breakpoints.sm) ? '2rem' : '0';
 
             let circle = document.createElement('span');
             circle.style.width = '.75rem';
@@ -200,7 +202,7 @@ export class StackedArea  {
         self.draw(data, stackedData);
         self.redraw(stackedData);
         self.legend(data);
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.popup = new HtmlPopup(this.element,this.description, false);
         window.addEventListener("resize", () => self.redraw(stackedData), false);
     }
 }

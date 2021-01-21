@@ -1,91 +1,83 @@
 import { GraphObject} from '../types/graphObject';
 
 export const dashboardSpecials : GraphObject[] = [
-    {   "label": "Speciale dossiers",
-        "slug": "specials_stacked_schademeldingen",
-        "mapping": [
-            [
-
-                {
-                    "label": "Agro",
-                    "column": "nieuw_agro_schademeldingen",
-                    "colour": "moss"
-                },
-                {
-                    "label": "Erfgoed",
-                    "column": "nieuw_erfgoed_schademeldingen",
-                    "colour": "lightBlue"
-                },
-                {
-                    "label": "MKB",
-                    "column": "nieuw_mkb_schademeldingen",
-                    "colour": "blue"
-                },
-                {
-                    "label": "Overig en AOS",
-                    "column": "nieuw_aos_overig_schademeldingen",
-                    "colour": "orange"
-                }
-            ]
-        ],
-        "config": {
-            "graphType": "StackedArea",
-            "xScaleType": "time",
-            "yScaleType": "linear",
-            "xParameter": "_date",
-            "yParameter": "nieuw_specials_schademeldingen",
-            "padding": {
-                "top": 20,
-                "bottom": 100,
-                "left": 40,
-                "right": 0
+    {
+    "label": "Agro",
+    "slug": "specials_taart_schademeldingen",
+    "mapping":  [[
+        [
+            {
+                "label": "Afgehandeld",
+                "column": 'agro_afgehandeld',
+                "colour": "gray"
             },
-            "margin": {
-                "top": 80,
-                "bottom": 100,
+            {
+                "label": "In behandeling",
+                "column": "agro_in_behandeling",
+                "colour": "moss"
+            }
+        ],
+        [
+            {
+                "label": "Totaal",
+                "column": "agro_schademeldingen",
+                "colour": "yellow"
+            }
+        ]
+    ]],
+    "config": {
+
+        "graphType": "PieChartSum",
+            "xScaleType" : false,
+            "yScaleType" : false,
+            "xParameter" : false,
+            "yParameter" : false,
+            "padding": {
+            "top": 0,
+                "bottom": 0,
                 "left": 0,
                 "right": 0
-            },
-            "extra": {
-                "xScaleTicks": "timeMonth",
-                "header" : "Trend nieuwe speciale dossiers",
-                "largeHeader" : false,
-            }
         },
-        "description" : "Het aantal schademeldingen met speciale kenmerken per week, door de tijd heen. De schademeldingen zijn onderverdeeld naar het type speciale dossier.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-vertical-padding','img-grap-container-medium-high']
+        "margin": {
+            "top": 0,
+                "bottom": 15,
+                "left": 0,
+                "right": 0
+        },
+        "extra" :{
+            "currencyLabels" : false,
+                "legendWidth" : 220,
+                "maxRadius" : 100,
+                "innerRadius" : 20,
+                "header" : "Meldingen met agro kenmerk"
+        }
+    },
+    "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
+    "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+    "segment": "all",
+    "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label": "Taart Schademeldingen",
+        "label": "Erfgoed",
         "slug": "specials_taart_schademeldingen",
         "mapping":  [[
             [
                 {
-                    "label": "Regulier",
-                    "column": "schademeldingen",
+                    "label": "Afgehandeld",
+                    "column": 'erfgoed_afgehandeld',
                     "colour": "gray"
                 },
                 {
-                    "label": "Agro",
-                    "column": "agro_schademeldingen",
-                    "colour": "moss"
-                },
-                {
-                    "label": "Erfgoed",
-                    "column": "erfgoed_schademeldingen",
+                    "label": "In behandeling",
+                    "column": "erfgoed_in_behandeling",
                     "colour": "brown"
-                },
+                }
+            ],
+            [
                 {
-                    "label": "MKB",
-                    "column": "mkb_schademeldingen",
-                    "colour": "lightBlue"
-                },
-                {
-                    "label": "Overig en AOS",
-                    "column": "aos_overig_schademeldingen",
-                    "colour": "orange"
+                    "label": "Totaal",
+                    "column": "erfgoed_schademeldingen",
+                    "colour": "yellow"
                 }
             ]
         ]],
@@ -113,43 +105,35 @@ export const dashboardSpecials : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
-                "header" : "Type speciale dossiers totaal"
+                "header" : "Meldingen met erfgoed kenmerk"
             }
         },
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
+        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label": "Taart In behandeling",
-        "slug": "specials_taart_in_behandeling",
+        "label": "MKB",
+        "slug": "specials_taart_schademeldingen",
         "mapping":  [[
             [
                 {
-                    "label": "Regulier",
-                    "column": "in_behandeling",
+                    "label": "Afgehandeld",
+                    "column": 'mkb_afgehandeld',
                     "colour": "gray"
                 },
                 {
-                    "label": "Agro",
-                    "column": "agro_in_behandeling",
-                    "colour": "moss"
-                },
-                {
-                    "label": "Erfgoed",
-                    "column": "erfgoed_in_behandeling",
-                    "colour": "brown"
-                },
-                {
-                    "label": "MKB",
+                    "label": "In behandeling",
                     "column": "mkb_in_behandeling",
                     "colour": "lightBlue"
-                },
+                }
+            ],
+            [
                 {
-                    "label": "Overig en AOS",
-                    "column": "aos_in_behandeling",
-                    "colour": "orange"
+                    "label": "Totaal",
+                    "column": "mkb_schademeldingen",
+                    "colour": "yellow"
                 }
             ]
         ]],
@@ -177,13 +161,69 @@ export const dashboardSpecials : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
-                "header" : "Type speciale dossiers openstaand"
+                "header" : "Meldingen met MKB kenmerk"
             }
         },
-        "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet. ",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
+        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
+    },
+    {
+        "label": "Overig",
+        "slug": "specials_taart_schademeldingen",
+        "mapping":  [[
+            [
+                {
+                    "label": "Afgehandeld",
+                    "column": 'aos_overig_afgehandeld',
+                    "colour": "gray"
+                },
+                {
+                    "label": "In behandeling",
+                    "column": "aos_overig_in_behandeling",
+                    "colour": "orange"
+                }
+            ],
+            [
+                {
+                    "label": "Totaal",
+                    "column": "aos_overig_schademeldingen",
+                    "colour": "yellow"
+                }
+            ]
+        ]],
+        "config": {
+
+            "graphType": "PieChartSum",
+            "xScaleType" : false,
+            "yScaleType" : false,
+            "xParameter" : false,
+            "yParameter" : false,
+            "padding": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom": 15,
+                "left": 0,
+                "right": 0
+            },
+            "extra" :{
+                "currencyLabels" : false,
+                "legendWidth" : 220,
+                "maxRadius" : 100,
+                "innerRadius" : 20,
+                "header" : "Meldingen met overig kenmerk"
+            }
+        },
+        "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
 
@@ -297,13 +337,13 @@ export const dashboardSpecials : GraphObject[] = [
             "yParameter": "value",
             "padding": {
                 "top": 0,
-                "bottom": 120,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 0,
-                "bottom": 40,
+                "bottom": 140,
                 "left": 0,
                 "right": 0
             },
@@ -357,7 +397,7 @@ export const dashboardSpecials : GraphObject[] = [
             "yParameter" : "value",
             "padding": {
                 "top": 20,
-                "bottom": 120,
+                "bottom": 70,
                 "left": 0,
                 "right": 0
             },
@@ -401,7 +441,7 @@ export const dashboardSpecials : GraphObject[] = [
             "yParameter" : false,
             "padding": {
                 "top": 0,
-                "bottom": 0,
+                "bottom": 10,
                 "left": 0,
                 "right": 0
             },

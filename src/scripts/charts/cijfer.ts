@@ -57,7 +57,7 @@ export class Cijfer  {
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
 
-      //  this.popup = new HtmlPopup(this.element,this.description);
+      //  this.popup = new HtmlPopup(this.element,this.description,false);
         this.htmlCircle.draw();
         this.htmlHeader.draw();
 

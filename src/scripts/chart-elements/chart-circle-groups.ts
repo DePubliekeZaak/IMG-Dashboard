@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import * as _ from "lodash";
 import { colours } from  '../_styleguide/_colours'
+import {breakpoints} from "../_styleguide/_breakpoints";
 
 export class ChartCircleGroups {
 
@@ -151,13 +152,17 @@ export class ChartCircleGroups {
             .text( d => (rScale(d.value) > 30) ? d.value : '');
     }
 
-    forceDirect(xScale,rScale) {
+    forceDirect(xScale,yScale,rScale) {
 
         let self = this;
 
         self.circleGroupsEnter.merge(self.circleGroups)
          //   .attr("transform", (d) => { if(d.x !== undefined) { return "translate(" + (xScale(d.group) + d.x - this.center.x) + "," + (d.y + 32) + ")" } })
-            .attr("transform", (d) => { if(d.x !== undefined) { return "translate(" + (xScale(d.group) + d.x - this.center.x) + "," + (d.y ) + ")" } })
+            .attr("transform", (d,i) => {
+                if(d.x !== undefined) {
+                    return (window.innerWidth > breakpoints.sm) ? "translate(" + (xScale(d.group) + d.x - this.center.x) + "," + (d.y ) + ")" : "translate(" + ((window.innerWidth / 2) - this.center.x) + "," + (yScale(d.group)) + ")"
+                }
+            })
         ;
     }
 }

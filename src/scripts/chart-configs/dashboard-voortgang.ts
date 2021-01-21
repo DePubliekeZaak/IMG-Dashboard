@@ -38,13 +38,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter": "TUSSEN_12_EN_1_JAAR",
             "padding": {
                 "top": 20,
-                "bottom": 120,
+                "bottom": 80,
                 "left": 60,
                 "right": 30
             },
             "margin": {
                 "top": 60,
-                "bottom": 100,
+                "bottom": 150,
                 "left": 0,
                 "right": 0
             },
@@ -58,7 +58,7 @@ export const dashboardVoortgang : GraphObject[] = [
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
         "publishDate": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-medium-high','img-graph-container-vertical-padding']
     },
     {
         "label" : "Bol percentage binnen half jaar",
@@ -80,13 +80,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 60,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 90,
-                "bottom": 120,
+                "bottom": 160,
                 "left": 10,
                 "right": 10
             },
@@ -98,7 +98,7 @@ export const dashboardVoortgang : GraphObject[] = [
         "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde. Gem. tijd tot besluit: Doorlooptijd afgehandeld dossiers",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
     {
         "label" : "Bol percentage binnen half jaar",
@@ -120,13 +120,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 60,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 90,
-                "bottom": 120,
+                "bottom": 160,
                 "left": 10,
                 "right": 10
             },
@@ -138,7 +138,7 @@ export const dashboardVoortgang : GraphObject[] = [
         "description" : "Dit is bij benadering het aantal dagen waarin de schademelding is afgehandeld sinds de schademelding is binnengekomen. Het gaat daarbij om de mediaan. Vijftig procent van de schademeldingen is daarmee in minder dan het genoemde aantal dagen afgehandeld en vijftig procent in meer dagen. De mediaan wordt berekend over de laatset 2.500 besluiten over schademeldingen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
     {
         "label" : "Bol percentage binnen half jaar",
@@ -160,13 +160,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter" : "",
             "padding": {
                 "top": 20,
-                "bottom": 60,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 90,
-                "bottom": 120,
+                "bottom": 160,
                 "left": 10,
                 "right": 10
             },
@@ -178,7 +178,7 @@ export const dashboardVoortgang : GraphObject[] = [
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
         "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
     {   "label": "Voortgang",
         'slug': 'stacked_area_in_behandeling',
@@ -209,13 +209,13 @@ export const dashboardVoortgang : GraphObject[] = [
             'yParameter': 'MELDING_NA_WESTERWIJTWERD',
             'padding': {
                 'top': 20,
-                'bottom': 120,
+                'bottom': 80,
                 'left': 60,
                 'right': 30
             },
             'margin': {
                 'top': 60,
-                'bottom': 100,
+                'bottom': 150,
                 'left': 0,
                 'right': 0
             },
@@ -461,13 +461,13 @@ export const dashboardVoortgang : GraphObject[] = [
             "yParameter": "value",
             "padding": {
                 "top": 20,
-                "bottom": 120,
+                "bottom": 0,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 0,
-                "bottom": 40,
+                "bottom": 160,
                 "left": 0,
                 "right": 0
             },
@@ -506,7 +506,7 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "margin": {
                 "top": 0,
-                "bottom": 120,
+                "bottom": 160,
                 "left": 0,
                 "right": 0
             },

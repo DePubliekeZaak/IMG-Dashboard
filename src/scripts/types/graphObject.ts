@@ -11,6 +11,7 @@ export interface GraphObject {
     endpoint : string,
     segment :  string | boolean,
     publishDate? : string | boolean,
-    elementClasslist? : string[]
+    elementClasslist? : string[],
+
 
 }

@@ -42,7 +42,7 @@ export class ChartLine {
             let line = d3.line()
                 .x(d =>  (this.config.xScaleType === 'time') ? xScale(new Date(d['_date'])) : xScale(d['_date'] ))
                 .y(d => (this.config.yScaleType === 'time') ? yScale(new Date (d[this.yParameter])) : yScale(d[this.yParameter]) )
-                .curve(d3.curveCatmullRom);
+                .curve(d3.curveLinear);
 
             this.line.merge(this.lineEnter)
                 .transition()

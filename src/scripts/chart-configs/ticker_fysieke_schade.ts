@@ -1,6 +1,6 @@
 import { GraphObject} from '../types/graphObject';
 
-export const ticker : GraphObject[] = [
+export const tickerFysiekeSchade : GraphObject[] = [
     {
         "label" : "Bol schademeldingen",
         "slug" : "bol_schademeldingen",
@@ -9,17 +9,17 @@ export const ticker : GraphObject[] = [
                 {
                     "label": "Vorige week: nieuw",
                     "column": "nieuw_schademeldingen",
-                    "colour": "orange"
+                    "colour": "moss"
                 },
                 {
                     "label": "Schade-meldingen",
                     "column": "gem_MELDING",
-                    "colour": "orange"
+                    "colour": "moss"
                 },
                 {
                     "label": "Schade-meldingen",
                     "column": "schademeldingen",
-                    "colour": "orange"
+                    "colour": "moss"
                 }
             ]
         ],
@@ -163,7 +163,7 @@ export const ticker : GraphObject[] = [
                 {
                     "label": "Gem. tijd tot besluit",
                     "column": "mediaan_doorlooptijd",
-                    "colour": "orange"
+                    "colour": "moss"
                 }
             ]
         ],

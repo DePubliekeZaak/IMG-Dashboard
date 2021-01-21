@@ -23,6 +23,9 @@ export const munis = [
     {   label : 'Delfzijl',
         value: 'delfzijl'
     },
+    {   label : 'Eemsdelta',
+        value: 'eemsdelta'
+    },
     {   label : 'Emmen',
         value: 'emmen'
     },

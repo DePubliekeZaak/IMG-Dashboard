@@ -1,6 +1,12 @@
 import { Cijfer } from './cijfer';
+import { Average } from './average';
 import { CijfersLine } from './cijfers-line';
+import { CijfersMonths } from "./cijfers-months";
+import { CijfersTotals } from "./cijfers-totals";
+import { CijfersLineTotals } from "./cijfers-line-totals";
+import { TotalPlus } from "./total_plus";
 import { Ticker } from './ticker';
+import { TickerBol } from "./ticker-bol";
 import { TrendLine } from './trend-line';
 import { BandBars } from './band-bars';
 import { MultiBarProgression } from './multibar-progression';
@@ -17,7 +23,13 @@ export const graphs  = {
 
     Cijfer,
     CijfersLine,
+    CijfersMonths,
+    CijfersTotals,
+    CijfersLineTotals,
+    Average,
+    TotalPlus,
     Ticker,
+    TickerBol,
     TrendLine,
     BandBars,
     MultiBarProgression,

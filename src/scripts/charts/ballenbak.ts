@@ -10,6 +10,7 @@ import {
 
 import * as d3 from "d3";
 import * as _ from "lodash";
+import {breakpoints} from "../_styleguide/_breakpoints";
 
 export class Ballenbak {
 
@@ -19,12 +20,14 @@ export class Ballenbak {
     svg;
     rScale;
     xScale;
+    yScale;
     bottomAxis;
     leftAxis;
 
     chartDimensions;
     chartSVG;
     chartXScale;
+    chartYScale;
     chartRScale;
     chartAxes;
     chartCircleGroups;
@@ -67,6 +70,7 @@ export class Ballenbak {
         // create svg elements without data
         this.chartSVG = new ChartSVG(this.elementID, this.config, this.dimensions, this.svg);
         this.chartXScale = new ChartScale(this.config.xScaleType, this.config, this.dimensions);
+        this.chartYScale = new ChartScale(this.config.xScaleType, this.config, this.dimensions);
         this.chartRScale = new ChartScale('radius', this.config, this.dimensions);
         this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
         this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartRScale);
@@ -116,14 +120,14 @@ export class Ballenbak {
             let legend = document.createElement('div');
             legend.classList.add('legend');
             legend.style.display = 'flex';
-            legend.style.flexDirection = 'row';
+            legend.style.flexDirection = (window.innerWidth > breakpoints.sm) ? 'row' : 'column';
             legend.style.justifyContent = 'center';
-
             legend.style.width = '100%';
-            legend.style.marginBottom = '2rem';
+            legend.style.marginBottom = (window.innerWidth > breakpoints.sm) ? '2rem' : '1rem';
+            legend.style.marginLeft = (window.innerWidth > breakpoints.sm) ? '0' : '60px';
+            legend.style.marginRight = (window.innerWidth > breakpoints.sm) ? '0' : 'auto';
 
-
-            data[0].forEach( (d,i) => {
+        data[0].forEach( (d,i) => {
 
                 let item = document.createElement('div');
                 item.style.display = 'flex';
@@ -159,6 +163,7 @@ export class Ballenbak {
 
         // with data we can init scales
         this.xScale = this.chartXScale.set(_.uniq(data.map( (d) => d.group)));
+        this.yScale = this.chartYScale.set(_.uniq(data.map( (d) => d.group)));
         this.rScale = this.chartRScale.set(flattenedData) // = radius !!
         this.chartCircleGroups.draw(groupedData);
 
@@ -171,7 +176,7 @@ export class Ballenbak {
 
             this.simulation[group[0].group].on('tick', () => {
 
-                self.chartCircleGroups.forceDirect(self.xScale, self.rScale);
+                self.chartCircleGroups.forceDirect(self.xScale, self.yScale, self.rScale);
 
             });
         }
@@ -186,6 +191,7 @@ export class Ballenbak {
         this.chartSVG.redraw(this.dimensions);
 
         this.xScale = this.chartXScale.reset('horizontal',this.dimensions,this.xScale);
+        this.yScale = this.chartYScale.reset('vertical-reverse',this.dimensions,this.yScale);
         this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale);
 
         this.chartCircleGroups.redraw(groupedData,this.dimensions,this.rScale,this.xScale);
@@ -248,7 +254,7 @@ export class Ballenbak {
         self.draw(data, groupedData, flattenedData);
         self.redraw(groupedData);
         self.legend(groupedData);
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.popup = new HtmlPopup(this.element,this.description,false);
         window.addEventListener("resize", () => self.redraw(groupedData), false);
     }
 }

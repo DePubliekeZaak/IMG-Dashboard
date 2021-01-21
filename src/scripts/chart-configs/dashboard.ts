@@ -1,6 +1,62 @@
 import { GraphObject} from '../types/graphObject';
 
+ const pad = 40;
+ const margin = 140;
+
 export const dashboardMain : GraphObject[] = [
+    {
+        "label" : "Tevredenheidscijfer algemeen",
+        "slug" : "bol_tevredenheid_algemeen",
+        "mapping": [
+            [
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "doorlopend_cijfer",
+                    "colour": "orange"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "maandcijfer",
+                    "colour": "orange"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "aantal_respondenten",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "CijfersMonths",
+            "xScaleType" : "time",
+            "yScaleType" : "linear",
+            "xParameter" : "_date",
+            "yParameter" : "maandcijfer",
+            "padding": {
+                "top": 20,
+                "bottom": pad,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 120,
+                "bottom": margin,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "useLineFill": true,
+                "decimal": true,
+                "segmentIndicator": false,
+                "noUpdate" : true,
+                "shape": "block"
+            }
+        },
+        "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
+        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+    },
     {
     "label" : "Algemeen",
     "slug" : "bol_schademeldingen",
@@ -9,17 +65,17 @@ export const dashboardMain : GraphObject[] = [
           {
             "label": "Nieuw binnen vorige week",
             "column": "nieuw_schademeldingen",
-            "colour": "orange"
+            "colour": "blue"
           },
           {
             "label": "Schade-meldingen",
             "column": "gem_MELDING",
-            "colour": "orange"
+            "colour": "blue"
           },
           {
             "label": "Schade-meldingen",
             "column": "schademeldingen",
-            "colour": "orange"
+            "colour": "blue"
           }
         ]
     ],
@@ -28,16 +84,16 @@ export const dashboardMain : GraphObject[] = [
       "xScaleType" : "time",
       "yScaleType" : "linear",
       "xParameter" : "_date",
-      "yParameter" : "",
+      "yParameter" : false,
       "padding": {
         "top": 20,
-        "bottom": 80,
+        "bottom": pad,
         "left": 0,
         "right": 0
       },
       "margin": {
         "top": 120,
-        "bottom": 0,
+        "bottom": margin,
         "left": 10,
         "right": 10
       },
@@ -51,7 +107,7 @@ export const dashboardMain : GraphObject[] = [
     "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
     "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
+    "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
   },
     {
         "label" : "Bol afgehandelde meldingen",
@@ -61,17 +117,17 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Afgehandeld in vorige week",
                     "column": "nieuw_afgehandeld",
-                    "colour": "blue"
+                    "colour": "moss"
                 },
                 {
                     "label": "Afgehandelde schade-meldingen",
                     "column": "gem_afgehandeld",
-                    "colour": "blue"
+                    "colour": "moss"
                 },
                 {
                     "label": "Afgehandelde schade-meldingen",
                     "column": "afgehandeld",
-                    "colour": "blue"
+                    "colour": "moss"
                 }
             ]
         ],
@@ -80,16 +136,16 @@ export const dashboardMain : GraphObject[] = [
             "xScaleType" : "time",
             "yScaleType" : "linear",
             "xParameter" : "_date",
-            "yParameter" : "",
+            "yParameter" : false,
             "padding": {
                 "top": 20,
-                "bottom": 80,
+                "bottom": pad,
                 "left": 0,
                 "right": 0
             },
             "margin": {
                 "top": 120,
-                "bottom": 0,
+                "bottom": margin,
                 "left": 10,
                 "right": 10
             },
@@ -102,94 +158,52 @@ export const dashboardMain : GraphObject[] = [
         "description" : "Het aantal schademeldingen dat afgelopen week is afgehandeld. Op sommige adressen lopen er meerdere schademeldingen. Die worden waar mogelijk met een enkel besluit afgehandeld.",
         "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
 
     },
-  {
-    "label" : "Bol percentage binnen half jaar",
-    "slug" : "bol_binnen_half_jaar",
-    "mapping": [
-      [
-        {
-          "label": "Binnen 1/2 jaar afgehandeld",
-          "column": "percentage_binnen_half_jaar",
-          "colour": "moss"
+      {
+        "label" : "Bol gerealiseerde doorlooptijd",
+        "slug" : "bol_doorlooptijd",
+        "mapping": [
+          [
+            {
+              "label": "Verwachte duur afhandeling",
+              "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
+              "colour": "brown"
+            }
+          ]
+        ],
+        "config": {
+          "graphType": "CijfersLine",
+          "xScaleType" : "time",
+          "yScaleType" : "linear",
+          "xParameter" : "_date",
+          "yParameter" : false,
+          "padding": {
+            "top": 20,
+            "bottom": pad,
+            "left": 0,
+            "right": 0
+          },
+          "margin": {
+            "top": 120,
+            "bottom": margin,
+            "left": 10,
+            "right": 10
+          },
+            "extra": {
+                "useLineFill": true,
+                "units": "dagen",
+                "segmentIndicator": false,
+                "noUpdate" : true,
+                "notNull": true
         }
-      ]
-    ],
-    "config": {
-      "graphType": "CijfersLine",
-      "xScaleType" : "time",
-      "yScaleType" : "linear",
-      "xParameter" : "_date",
-      "yParameter" : "",
-      "padding": {
-        "top": 20,
-        "bottom": 80,
-        "left": 0,
-        "right": 0
+        },
+        "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
       },
-      "margin": {
-        "top": 120,
-        "bottom": 0,
-        "left": 10,
-        "right": 10
-      },
-      "extra": {
-          "useLineFill": true,
-          "units": "%",
-          "segmentIndicator": false,
-          "noUpdate" : true
-      }
-    },
-    "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde.",
-    "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
-    "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
-  },
-  {
-    "label" : "Bol gerealiseerde doorlooptijd",
-    "slug" : "bol_doorlooptijd",
-    "mapping": [
-      [
-        {
-          "label": "Verwachte duur afhandeling",
-          "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
-          "colour": "brown"
-        }
-      ]
-    ],
-    "config": {
-      "graphType": "CijfersLine",
-      "xScaleType" : "time",
-      "yScaleType" : "linear",
-      "xParameter" : "_date",
-      "yParameter" : "",
-      "padding": {
-        "top": 20,
-        "bottom": 80,
-        "left": 0,
-        "right": 0
-      },
-      "margin": {
-        "top": 120,
-        "bottom": 0,
-        "left": 10,
-        "right": 10
-      },
-        "extra": {
-            "useLineFill": true,
-            "units": "dagen",
-            "segmentIndicator": false,
-            "noUpdate" : true,
-            "notNull": true
-    }
-    },
-    "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
-    "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
-    "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3','img-grap-container-bol']
-  },
     {   "label": "In behandeling",
         "slug": "trend_schademeldingen",
         "mapping": [
@@ -389,30 +403,20 @@ export const dashboardMain : GraphObject[] = [
     "mapping":  [[
         [
             {
-                "label": "Mijnbouwschade",
-                "column": "schadevergoeding_schadebedrag",
-                "colour": "brown"
-            },
-            {
-                "label": "Stuwmeerregeling",
-                "column": "schadevergoeding_stuwmeerregeling_bedrag",
-                "colour": "blue"
-            },
-            {
-                "label": "Bijkomende kosten",
-                "column": "schadevergoeding_bijkomende_kosten_bedrag",
+                "label": "Waardedaling",
+                "column": "waardedalingsregeling_totaal_verleend",
                 "colour": "moss"
             },
             {
-                "label": "Wettelijke rente",
-                "column": "schadevergoeding_wettelijke_rente_bedrag",
-                "colour": "orange"
+                "label": "Fysieke schade",
+                "column": "fysieke_schade_totaal_verleend",
+                "colour": "blue"
             }
         ],
         [
             {
                 "label": "Totaal",
-                "column": "TOTAAL_VERLEEND",
+                "column": "waardedalingsregeling_totaal_verleend",
                 "colour": "gray"
             }
         ]

@@ -5,5 +5,6 @@ export interface Mapping {
     colour?: string | boolean,
     group?: string | boolean,
     outflow?: any,
-    duration?: string
+    duration?: string,
+    units? : string
 }

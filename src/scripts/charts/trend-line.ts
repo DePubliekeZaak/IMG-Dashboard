@@ -83,7 +83,7 @@ export class TrendLine {
                     this.htmlHeader.draw();
         }
 
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.popup = new HtmlPopup(this.element,this.description, false);
         this.htmlSegment = new HtmlSegment(this.element);
 
         if( this.config.extra.legend) {

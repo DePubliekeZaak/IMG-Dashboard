@@ -41,7 +41,6 @@ export class Ticker  {
         private description,
         private segment
     ){
-
         this.element = d3.select(this.elementID).node();
         this.yParameter = this.dataMapping[0].column;
         this.config.yParameter = this.dataMapping[0].column;
@@ -51,31 +50,7 @@ export class Ticker  {
 
         let self = this;
 
-        this.element.style.display = 'flex';
-        this.element.style.flexDirection = 'row';
-        this.element.style.flexWrap = 'wrap';
-
-        this.element.style.justifyContent = 'space-between';
-
-
-        if (window.innerWidth < breakpoints.sm) {
-
-            this.element.style.width = '100%';
-            this.element.style.margin = '1.5rem auto';
-        //    this.element.style.height = '9.5rem';
-
-        } else if  (window.innerWidth < breakpoints.md){
-
-            this.element.style.flex = '0 0 50%';
-            this.element.style.margin = '2rem auto 0 auto';
-            this.element.style.height = '6.5rem';
-
-        } else {
-
-            this.element.style.flex = '0 0 25%';
-            this.element.style.height = '6.5rem';
-        }
-
+        this.styleMainElement();
 
         const labelContainer = document.createElement('div');
         // labelContainer.classList.add('label_container');
@@ -101,7 +76,7 @@ export class Ticker  {
 
         const numberContainer = document.createElement('div');
         numberContainer.style.width = 'calc(50% - .5rem)';
-        numberContainer.style.height = '4rem';
+        numberContainer.style.height = '3.75rem';
         numberContainer.style.display = 'flex';
         numberContainer.style.flexDirection = 'column';
         numberContainer.style.alignItems = 'flex-end';
@@ -109,7 +84,7 @@ export class Ticker  {
         const number = document.createElement('div');
         number.innerText = this.data[0][this.dataMapping[0].column];
         number.style.fontSize = '3rem';
-        number.style.lineHeight = "1";
+        number.style.lineHeight = ".9";
         number.style.fontFamily = "Replica";
         numberContainer.appendChild(number);
 
@@ -167,9 +142,39 @@ export class Ticker  {
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
         //
-        // this.popup = new HtmlPopup(this.element,this.description);
+        // this.popup = new HtmlPopup(this.element,this.description, false);
 
         self.update(this.data,this.segment);
+
+    }
+
+    styleMainElement() {
+
+        this.element.style.position = 'relative';
+        this.element.style.display = 'flex';
+        this.element.style.flexDirection = 'row';
+        this.element.style.flexWrap = 'wrap';
+
+        this.element.style.justifyContent = 'space-between';
+
+        if (window.innerWidth < breakpoints.sm) {
+
+            this.element.style.width = '100%';
+            this.element.style.margin = '1.5rem auto';
+            //    this.element.style.height = '9.5rem';
+
+        } else if  (window.innerWidth < breakpoints.md){
+
+            // this.element.style.flex = '0 0 50%';
+            this.element.style.margin = '2rem auto 0 auto';
+            this.element.style.height = '6.5rem';
+
+        } else {
+
+            // this.element.style.flex = '0 0 25%';
+            this.element.style.height = '6.5rem';
+        }
+
 
     }
 

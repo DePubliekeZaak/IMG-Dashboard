@@ -1,65 +1,65 @@
-body {
+body#development {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.container, main.container {
+  .container, main.container {
 
-  position: relative;
-  width : 100%;
-  display: flex;
-  flex-direction: row;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 
-  @media (min-width: 1088px) {
-    max-width: 960px;
-    width: 960px;
+    @media (min-width: 1088px) {
+      max-width: 960px;
+      width: 960px;
+    }
+
+    @media (min-width: 1322px) {
+      max-width: 1194px;
+      width: 1194px;
+    }
   }
 
-  @media (min-width: 1322px) {
-    max-width: 1194px;
-    width: 1194px;
-  }
-}
+  .columns {
 
-.columns {
-
-  display: flex;
-  margin-left: -1rem;
-  margin-right: -1rem;
-}
-
-section.columns {
-  width: 100%;
-
-}
-
-.column {
-
-  padding: 1rem;
-
-
-  &.is-2 {
-
-    flex: none;
-    width: calc(16.66% - 1rem);
+    display: flex;
+    margin-left: -1rem;
+    margin-right: -1rem;
   }
 
-  &.is-3 {
+  section.columns {
+    width: 100%;
 
-    flex: none;
-    width: 25%;
   }
 
-  &.is-6 {
+  .column {
 
-    flex: none;
-    width: 50%;
-  }
+    padding: 1rem;
 
-  &.is-9 {
 
-    flex: none;
-    width: 75%;
+    &.is-2 {
+
+      flex: none;
+      width: calc(16.66% - 1rem);
+    }
+
+    &.is-3 {
+
+      flex: none;
+      width: 25%;
+    }
+
+    &.is-6 {
+
+      flex: none;
+      width: 50%;
+    }
+
+    &.is-9 {
+
+      flex: none;
+      width: 75%;
+    }
   }
 }

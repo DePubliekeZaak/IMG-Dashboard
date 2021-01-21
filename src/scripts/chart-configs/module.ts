@@ -16,8 +16,13 @@ import { stackedAreaInBehandeling } from './stacked_area_in_behandeling';
 import { doorlooptijden } from './doorlooptijden';
 import { normalisedStatusVsDoorlooptijd } from './normalised_status_doorlooptijd';
 
+import { bollenProcedureDuur } from './procedureduur';
+import { trendSchademeldingen } from './trend_schademeldingen';
+import { trendAanvragenWaardedaling } from './trend_aanvragen_waardedaling';
 
-import { ticker } from './ticker';
+import { tickerFysiekeSchade } from './ticker_fysieke_schade';
+import { tickerWaardedaling } from './ticker_waardedaling';
+import { tickerTevredenheid } from './ticker_tevredenheidscijfers';
 
 import { dashboardMain } from './dashboard';
 import { dashboardMeldingen } from './dashboard-meldingen';
@@ -26,7 +31,7 @@ import { dashboardVoortgang } from './dashboard-voortgang';
 import { dashboardSpecials} from './dashboard-specials';
 import { dashboardReacties } from './dashboard-reacties';
 import { dashboardOpnames } from './dashboard-opnames';
-
+import { dashboardWaardedalingsRegeling} from "./dashboard-waardedalingsregeling";
 
 
 export const configs = [
@@ -45,7 +50,10 @@ export const configs = [
     stackedAreaDoorlooptijden,
     stackedAreaInBehandeling,
     normalisedStatusVsDoorlooptijd,
-    doorlooptijden
+    doorlooptijden,
+    bollenProcedureDuur,
+    trendSchademeldingen,
+    trendAanvragenWaardedaling
 
 ]
 
@@ -56,7 +64,10 @@ export { dashboardVoortgang }
 export { dashboardSpecials }
 export { dashboardReacties }
 export { dashboardOpnames }
+export { dashboardWaardedalingsRegeling }
 
-export { ticker}
+export { tickerFysiekeSchade }
+export { tickerWaardedaling }
+export { tickerTevredenheid }
 
 

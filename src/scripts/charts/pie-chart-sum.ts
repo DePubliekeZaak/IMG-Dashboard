@@ -88,7 +88,7 @@ export class PieChartSum  {
             });
         }
 
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.popup = new HtmlPopup(this.element,this.description, false);
         this.htmlSegment = new HtmlSegment(this.element);
 
         this.update(this.data,this.segment);

@@ -13,6 +13,30 @@ export class HtmlCircle {
     draw() {
 
         let miniContainer = document.createElement('div');
+        miniContainer.style.display ='flex';
+        miniContainer.style.flexDirection = 'column';
+        // miniContainer.style.justifyContent = 'center';
+        miniContainer.style.alignItems = 'center';
+
+        if(this.config.extra.circleLabel) {
+
+            let qualifier = document.createElement('span');
+            qualifier.classList.add('label');
+            qualifier.style.fontSize = '.8rem';
+            qualifier.style.height = '1rem';
+            // qualifier.style.position = 'absolute';
+            // qualifier.style.top = 'calc(50% - .5rem)';
+            // qualifier.style.left = '-130px';
+            qualifier.style.color = 'black';
+            // qualifier.style.marginTop = '-.75rem';
+            qualifier.style.fontFamily = 'NotoSans Regular';
+            qualifier.style.fontWeight = 'normal';
+            // period.style.textTransform = 'uppercase';
+            qualifier.innerText = this.config.extra.circleLabel;
+            qualifier.style.margin = '0 auto .75rem auto';
+            miniContainer.appendChild(qualifier);
+        }
+
 
         let div = document.createElement('div');
         div.classList.add('number_circle');
@@ -23,12 +47,11 @@ export class HtmlCircle {
         div.style.flexDirection = 'column';
         div.style.justifyContent = 'center';
         div.style.alignItems = 'center';
-        div.style.width = '7.25rem';
-        div.style.height = '7.25rem';
+        div.style.width = (this.config.extra.circleRadius) ? this.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
+        div.style.height = (this.config.extra.circleRadius) ? this.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
+        div.style.marginBottom = '1.5rem';
 
         // div.style.marginBottom = '1rem';
-
-
 
         let number = document.createElement('span');
         number.classList.add('number');
@@ -40,11 +63,11 @@ export class HtmlCircle {
         // number.innerText = data[0][this.property];
         div.appendChild(number);
 
-        if(this.config.extra.units) {
+        if(this.config.extra.units || this.dataMapping[0].units) {
 
             let units = document.createElement('span');
             units.classList.add('units');
-            units.innerText = this.config.extra.units;
+            units.innerText = this.config.extra.units || this.dataMapping[0].units;
             units.style.color = 'white';
             units.style.fontFamily = 'NotoSans Regular';
             units.style.fontSize = '0.8rem';
@@ -92,18 +115,34 @@ export class HtmlCircle {
 
         miniContainer.appendChild(div);
 
+        if(this.config.extra.trendlineLabel) {
+
+            let label = document.createElement('span');
+            label.classList.add('label');
+            label.style.fontSize = '.8rem';
+            label.style.height = '1rem';
+            // qualifier.style.position = 'absolute';
+            // qualifier.style.top = 'calc(50% - .5rem)';
+            // qualifier.style.left = '-130px';
+            label.style.color = 'black';
+            // qualifier.style.marginTop = '-.75rem';
+            label.style.fontFamily = 'NotoSans Regular';
+            label.style.fontWeight = 'normal';
+            // period.style.textTransform = 'uppercase';
+            label.innerText = this.config.extra.trendlineLabel;
+            label.style.margin = '0rem auto .75rem auto';
+            miniContainer.appendChild(label);
+        }
+
         this.element.insertBefore(miniContainer,this.element.childNodes[0])
     }
 
 
     redraw(data,parameter) {
 
-
-        let value =  Math.round(data[0][parameter]);
-
+        let value =  (this.config.extra.decimal) ? data[0][parameter] : Math.round(data[0][parameter]);
 
         if (this.config.extra.segmentIndicator) {
-
 
             this.element.querySelector('.number').innerText = (this.config.qualifier && this.config.qualifier !== undefined) ? value + this.config.qualifier : value;
 
