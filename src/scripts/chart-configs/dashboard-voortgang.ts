@@ -2,7 +2,126 @@ import { GraphObject} from '../types/graphObject';
 
 export const dashboardVoortgang : GraphObject[] = [
 
-
+    {
+        "label" : "Schademeldingen totaal",
+        "slug" : "cijfer_schademedlingen_totaal",
+        "mapping": [
+            [
+                {
+                    "label": "Schademeldingen totaal",
+                    "column": "schademeldingen",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Cijfer",
+            "xScaleType" : "",
+            "yScaleType" : "",
+            "xParameter" : "",
+            "yParameter" : "",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 90,
+                "bottom": 80,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "units": "meldingen",
+                "header": "Schademeldingen totaal"
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
+    {
+        "label" : "Schademeldingen totaal",
+        "slug" : "cijfer_schademeldingen_totaal",
+        "mapping": [
+            [
+                {
+                    "label": "Totaal openstaande aanvragen",
+                    "column": "in_behandeling",
+                    "colour": "blue"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Cijfer",
+            "xScaleType" : "",
+            "yScaleType" : "",
+            "xParameter" : "",
+            "yParameter" : "",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 90,
+                "bottom": 80,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "units": "meldingen",
+                "header": true
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
+    {
+        "label" : "Schademeldingen totaal",
+        "slug" : "cijfer_schademeldingen_totaal",
+        "mapping": [
+            [
+                {
+                    "label": "Afgehandeld totaal",
+                    "column": "afgehandeld",
+                    "colour": "moss"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Cijfer",
+            "xScaleType" : "",
+            "yScaleType" : "",
+            "xParameter" : "",
+            "yParameter" : "",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 90,
+                "bottom": 80,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "units": "meldingen",
+                "header": true
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+    },
     {
         "label": "Voortgang afhandeling",
         "slug": "stacked_area_doorlooptijden",
@@ -228,126 +347,6 @@ export const dashboardVoortgang : GraphObject[] = [
         'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
         'segment': 'all',
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
-    },
-    {
-        "label" : "Schademeldingen totaal",
-        "slug" : "cijfer_schademedlingen_totaal",
-        "mapping": [
-            [
-                {
-                    "label": "Schademeldingen totaal",
-                    "column": "schademeldingen",
-                    "colour": "orange"
-                }
-            ]
-        ],
-        "config": {
-            "graphType": "Cijfer",
-            "xScaleType" : "",
-            "yScaleType" : "",
-            "xParameter" : "",
-            "yParameter" : "",
-            "padding": {
-                "top": 20,
-                "bottom": 80,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 90,
-                "bottom": 80,
-                "left": 10,
-                "right": 10
-            },
-            "extra": {
-                "units": "meldingen",
-                "header": "Schademeldingen totaal"
-            }
-        },
-        "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
-    },
-    {
-        "label" : "Schademeldingen totaal",
-        "slug" : "cijfer_schademeldingen_totaal",
-        "mapping": [
-            [
-                {
-                    "label": "Totaal openstaande aanvragen",
-                    "column": "in_behandeling",
-                    "colour": "blue"
-                }
-            ]
-        ],
-        "config": {
-            "graphType": "Cijfer",
-            "xScaleType" : "",
-            "yScaleType" : "",
-            "xParameter" : "",
-            "yParameter" : "",
-            "padding": {
-                "top": 20,
-                "bottom": 80,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 90,
-                "bottom": 80,
-                "left": 10,
-                "right": 10
-            },
-            "extra": {
-                "units": "meldingen",
-                "header": true
-            }
-        },
-        "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
-    },
-    {
-        "label" : "Schademeldingen totaal",
-        "slug" : "cijfer_schademeldingen_totaal",
-        "mapping": [
-            [
-                {
-                    "label": "Afgehandeld totaal",
-                    "column": "afgehandeld",
-                    "colour": "moss"
-                }
-            ]
-        ],
-        "config": {
-            "graphType": "Cijfer",
-            "xScaleType" : "",
-            "yScaleType" : "",
-            "xParameter" : "",
-            "yParameter" : "",
-            "padding": {
-                "top": 20,
-                "bottom": 80,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 90,
-                "bottom": 80,
-                "left": 10,
-                "right": 10
-            },
-            "extra": {
-                "units": "meldingen",
-                "header": true
-            }
-        },
-        "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
     {
 

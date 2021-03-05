@@ -201,6 +201,13 @@ aside {
   @media (min-width : $breakpoint-bax) {
     width: calc(50% - 2rem/2);
   }
+
+  &.img-graph-container-ipad-6 {
+
+    @media (min-width : $breakpoint-md) {
+      width: calc(50% - 2rem/2);
+    }
+  }
 }
 
 .img-graph-container-8 {
@@ -255,6 +262,14 @@ aside {
   }
 }
 
+.img-graph-rating {
+
+  .svg-wrapper {
+    width: 100%;
+    min-height: 480px;
+  }
+}
+
 .img-graph-container-flow {
 
   height: 80vh;
@@ -295,6 +310,24 @@ aside {
 
   @media (min-width : $breakpoint-bax) {
     height: calc(468px - 4rem);
+  }
+
+}
+
+.img-graph-container-shorttrend {
+
+  height : 400px;
+
+  @media (min-width : $breakpoint-sm) {
+    height: calc(400px - 4rem);
+  }
+
+  @media (min-width : $breakpoint-md) {
+    height: calc(400px - 4rem);
+  }
+
+  @media (min-width : $breakpoint-bax) {
+    height: calc(406px - 4rem);
   }
 
 }
@@ -444,10 +477,14 @@ aside {
 
   line-height : 1.425;
 
-
   a {
     color: black;
     text-decoration: none;
+  }
+
+  .popup_description span {
+    background: rgba(246,212,178,1);
+    padding: 0 3px;
   }
 
   @media (min-width : $breakpoint-sm) {

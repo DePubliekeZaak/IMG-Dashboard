@@ -134,11 +134,35 @@ export class HtmlCircle {
             miniContainer.appendChild(label);
         }
 
+        if(this.config.extra.noRespondents) {
+
+            let label = document.createElement('span');
+            label.classList.add('label');
+            label.classList.add('no_respondents');
+            label.classList.add(this.config.extra.slug);
+            label.style.fontSize = '.8rem';
+            label.style.height = '1rem';
+            // qualifier.style.position = 'absolute';
+            // qualifier.style.top = 'calc(50% - .5rem)';
+            // qualifier.style.left = '-130px';
+            label.style.color = 'black';
+            // qualifier.style.marginTop = '-.75rem';
+            label.style.fontFamily = 'NotoSans Regular';
+            label.style.fontWeight = 'normal';
+            label.style.display = 'flex';
+            label.style.flexDirection = 'column';
+            label.style.alignItems = 'center';
+            // period.style.textTransform = 'uppercase';
+            label.innerHTML = '<span></span><span>respondenten</span>';
+            label.style.margin = '0rem auto 2.5rem auto';
+            miniContainer.appendChild(label);
+        }
+
         this.element.insertBefore(miniContainer,this.element.childNodes[0])
     }
 
 
-    redraw(data,parameter) {
+    redraw(data,parameter,extraParameter) {
 
         let value =  (this.config.extra.decimal) ? data[0][parameter] : Math.round(data[0][parameter]);
 
@@ -156,33 +180,9 @@ export class HtmlCircle {
             this.element.querySelector('.number').style.fontSize = '2rem'
         }
 
-        // let span = document.createElement('span');
-        // span.innerText = Math.round(100 * (data[0][this.property] - gem) / gem) + '%';
-
-        // let SVGspan = document.createElement('span');
-        // SVGspan.innerHTML = svgUp;
-
-        //  let isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-
-        // let diff = this.element.querySelector('.diff');
-        //
-        // if ((data[0][this.property] - gem) === 0) {
-        //
-        //     this.element.querySelector('.diff').innerHTML = "--";
-        //
-        // } else if ((data[0][this.property] - gem) < 0) {
-        //
-        //     diff.appendChild(span);
-        //     if(!isIE11) { diff.appendChild(SVGspan); }
-        //     diff.classList.add('down');
-        //
-        // } else if ((data[0][this.property] - gem) > 0) {
-        //
-        //     diff.appendChild(span);
-        //     if(!isIE11) { diff.appendChild(SVGspan); }
-        //
-        //   //  this.element.querySelector('.diff').innerHTML = Math.round(100 * (data[0][this.property] - gem) / gem) + '%' + svgUp;
-        //     diff.classList.remove('down');
-        // }
+        if(this.config.extra.noRespondents) {
+            console.log(data[0]);
+            document.querySelector('.label.no_respondents.' + this.config.extra.slug +' span:first-child').innerHTML = data[0][extraParameter];
+        }
     }
 }

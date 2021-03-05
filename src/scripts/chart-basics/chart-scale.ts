@@ -21,8 +21,6 @@ export class ChartScale {
 
         let self = this;
 
-
-
         this.dataLength = data.length;
 
         switch(this.type) {
@@ -90,7 +88,6 @@ export class ChartScale {
     reset(direction,dimensions,newScale) {
 
         switch(direction) {
-
 
             case 'horizontal':
 

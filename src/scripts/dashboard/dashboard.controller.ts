@@ -47,7 +47,7 @@ export class InitDashboard {
             // this.dashBoardMap.update(false, "orange");
 
         } else {
-            let mobileNav = this.html.createMobileNav();
+            let mobileNav = this.html.createMobileNav(this.htmlContainer);
         }
 
         this.html.createPopupElement();

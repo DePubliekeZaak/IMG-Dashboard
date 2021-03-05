@@ -29,6 +29,8 @@ export default class DashboardHTML {
 
     createSideBar(htmlContainer: HTMLScriptElement) {
 
+        htmlContainer.classList.add('has_sidebar');
+
         let aside = document.createElement('aside');
         aside.classList.add('selectors');
 

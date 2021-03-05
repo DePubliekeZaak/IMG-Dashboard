@@ -1,5 +1,6 @@
 import { localTime } from '../helpers/_formats';
 import * as d3 from "d3";
+import {getMonth, getMonthFromNumber} from "../utils/date-object.utils";
 
 export class ChartAxes {
 
@@ -73,10 +74,13 @@ export class ChartAxes {
 
                case 'band' :
 
-                   // this.axis
-                   //     .tickFormat( (d,i) => {
-                   //         return (window.innerWidth < 640) ? (i + 1) : d;
-                   //     });
+                   this.axis
+                       .tickFormat( (d,i) => {
+                           // return (window.innerWidth < 640) ? (i + 1) : d;
+
+                          return (this.config.extra.axisInMonths) ? getMonthFromNumber(d) : d;
+                       })
+
 
                    break;
 
@@ -91,11 +95,23 @@ export class ChartAxes {
 
                case 'time' :
 
+                   let tickOrder, tickSpread;
 
-                   let tickSpread = (window.innerWidth > 700) ? 1 : 3;
+                   if(this.config.extra.xScaleTicks === 'quarterly') {
+
+                       tickOrder = 'timeMonth';
+                       tickSpread = 3
+
+                   } else {
+
+                       tickOrder = this.config.extra.xScaleTicks;
+                       tickSpread = (window.innerWidth > 700) ? 1 : 3;
+                   }
+
+
 
                    this.axis
-                       .ticks(d3[this.config.extra.xScaleTicks].every(tickSpread))
+                       .ticks(d3[tickOrder].every(tickSpread))
                        .tickFormat( date => (d3.timeYear(date) < date) ? localTime.format('%b')(date) : localTime.format('%Y')(date));
 
                    break;

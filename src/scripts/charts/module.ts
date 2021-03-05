@@ -18,6 +18,10 @@ import { FlowDossierCount } from './flow-dossier-count';
 import { Ballenbak } from './ballenbak';
 import { StackedArea } from './stacked-area';
 import { NormalisedBars } from './normalised_bars';
+import { Ratings } from './ratings';
+import { KTORatings } from './kto-ratings';
+import { ShortTrend } from "./short-trend";
+import { TevredenheidFormule } from "./tevredenheid-formule"
 
 export const graphs  = {
 
@@ -40,5 +44,9 @@ export const graphs  = {
     FlowDossierCount,
     Ballenbak,
     StackedArea,
-    NormalisedBars
+    NormalisedBars,
+    Ratings,
+    KTORatings,
+    ShortTrend,
+    TevredenheidFormule
 };

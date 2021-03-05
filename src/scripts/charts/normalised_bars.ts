@@ -80,7 +80,7 @@ export class NormalisedBars  {
             this.htmlHeader.draw();
         }
 
-        this.popup = new HtmlPopup(this.element,this.description,false);
+        this.popup = new HtmlPopup(this.element,this.description);
 
 
 

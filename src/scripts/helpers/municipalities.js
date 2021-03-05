@@ -6,9 +6,9 @@ export const munis = [
     {   label : 'Aa en Hunze',
         value: 'aa-en-hunze'
     },
-    {   label : 'Appingedam',
-        value: 'appingedam'
-    },
+    // {   label : 'Appingedam',
+    //     value: 'appingedam'
+    // },
     {
         label: 'Borger-Odoorn',
         value: 'borger-odoorn'
@@ -20,9 +20,9 @@ export const munis = [
         label: 'Coevorden',
         value: 'coevorden'
     },
-    {   label : 'Delfzijl',
-        value: 'delfzijl'
-    },
+    // {   label : 'Delfzijl',
+    //     value: 'delfzijl'
+    // },
     {   label : 'Eemsdelta',
         value: 'eemsdelta'
     },
@@ -35,9 +35,9 @@ export const munis = [
     {   label : 'Het Hogeland',
         value: 'het-hogeland'
     },
-    {   label : 'Loppersum',
-        value: 'loppersum'
-    },
+    // {   label : 'Loppersum',
+    //     value: 'loppersum'
+    // },
     {   label : 'Midden-Drenthe',
         value: 'midden-drenthe'
     },

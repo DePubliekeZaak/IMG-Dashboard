@@ -21,7 +21,7 @@ export class ChartLine {
     draw(data) {
 
         this.line = this.svgLayers.data.selectAll('.' + this.yParameter)
-            .data([data]);
+            .data([data.filter( (d) => d[this.yParameter] > 0)]);
 
         this.line.exit().remove();
 

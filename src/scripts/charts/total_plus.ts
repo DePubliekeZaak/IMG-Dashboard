@@ -66,15 +66,15 @@ export class TotalPlus  {
         this.dimensions = this.chartDimensions.get(this.dimensions);
 
         // create svg elements without data
-        this.chartSVG = new ChartSVG(this.elementID, this.config, this.dimensions, this.svg);
+     //   this.chartSVG = new ChartSVG(this.elementID, this.config, this.dimensions, this.svg);
         this.chartXScale = new ChartScale(this.config.xScaleType, this.config, this.dimensions);
         this.chartYScale = new ChartScale(this.config.yScaleType, this.config, this.dimensions);
-        this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
-        this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
-        this.chartLine = new ChartRaggedLine(this.config, this.svg);
-        this.chartBackgroundArea = new ChartBackgroundArea(this.config, this.svg, false, false);
-        this.chartWeekGrid = new ChartWeekGrid(this.config, this.svg);
-        this.chartAvgLine = new ChartAvgLine(this.config, this.svg);
+        // this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
+        // this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
+        // this.chartLine = new ChartRaggedLine(this.config, this.svg);
+        // this.chartBackgroundArea = new ChartBackgroundArea(this.config, this.svg, false, false);
+        // this.chartWeekGrid = new ChartWeekGrid(this.config, this.svg);
+        // this.chartAvgLine = new ChartAvgLine(this.config, this.svg);
         this.htmlHeader = new HtmlHeader(this.element,this.dataMapping[0].label);
         // this.htmlCircle = new HtmlCircle(this.config,this.dataMapping,this.element,this.dataMapping[0].label);
         this.htmlTotals = new HtmlTotals(this.config,this.dataMapping,this.element,'');
@@ -82,16 +82,16 @@ export class TotalPlus  {
         this.htmlNumber = new HtmlNumberNew(this.config,this.dataMapping,this.element,'');
         this.htmlSegment = new HtmlSegment(this.element);
 
-        this.bottomAxis.draw();
-        this.leftAxis.draw();
+        // this.bottomAxis.draw();
+        // this.leftAxis.draw();
         // reverse order ;)
         this.htmlNumber.draw();
         // this.htmlTriangle.draw();
         this.htmlHeader.draw();
-        this.chartAvgLine.draw();
+        // this.chartAvgLine.draw();
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
-        this.popup = new HtmlPopup(this.element,this.description,false);
+        this.popup = new HtmlPopup(this.element,this.description);
 
         self.update(this.data,this.segment,false);
 
@@ -129,34 +129,34 @@ export class TotalPlus  {
 
     redraw(data) {
 
-        this.yScale = this.chartYScale.set(data.map( d => d[this.yParameter]));
+     //   this.yScale = this.chartYScale.set(data.map( d => d[this.yParameter]));
 
         // on redraw chart gets new dimensions
-        this.dimensions = this.chartDimensions.get(this.dimensions);
+        // this.dimensions = this.chartDimensions.get(this.dimensions);
 
-        this.chartSVG.redraw(this.dimensions);
+        // this.chartSVG.redraw(this.dimensions);
         // new dimensions mean new scales
-        this.xScale = this.chartXScale.reset('horizontal', this.dimensions, this.xScale);
-        this.yScale = this.chartYScale.reset('vertical', this.dimensions, this.yScale);
+        // this.xScale = this.chartXScale.reset('horizontal', this.dimensions, this.xScale);
+        // this.yScale = this.chartYScale.reset('vertical', this.dimensions, this.yScale);
 
      //   this.htmlCircle.redraw(data,this.yParameter);
      //    this.htmlTriangle.redraw(data,this.yParameter);
         this.htmlNumber.redraw(data,this.yParameter);
 
 
-        this.chartBackgroundArea.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
-        this.chartWeekGrid.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.yParameter);
-        this.chartLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.config.xParameter, this.yParameter);
-        this.chartAvgLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.yParameter);
+        // this.chartBackgroundArea.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
+        // this.chartWeekGrid.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.yParameter);
+        // this.chartLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.config.xParameter, this.yParameter);
+        // this.chartAvgLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.yParameter);
     }
 
     draw(data) {
 
-        this.xScale = this.chartXScale.set(data.map(d => d[this.config.xParameter]));
+    //    this.xScale = this.chartXScale.set(data.slice(1,data.length -1).map(d => d[this.config.xParameter]));
 
-        this.chartBackgroundArea.draw(data);
-        this.chartLine.draw(data);
-        this.chartWeekGrid.draw(data);
+        // this.chartBackgroundArea.draw(data.slice(1,data.length -1));
+        // this.chartLine.draw(data.slice(1,data.length -1));
+        // this.chartWeekGrid.draw(data.slice(1,data.length -1));
 
     }
 

@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-import {ChartAxisGrid, ChartBackgroundArea, ChartEndLabel, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from "../chart-elements/module";
+import {ChartAxisGrid, ChartBackgroundArea, ChartFocus, ChartEndLabel, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from "../chart-elements/module";
 import {ChartLine} from "../chart-elements/chart-line";
 import {colours} from "../_styleguide/_colours";
 
@@ -20,11 +20,11 @@ export class TrendLine {
     chartLines = [];
     chartBackgroundAreas = [];
     chartEndLabels = [];
+    chartFocus;
 
-
-     htmlHeader;
-     link;
-     popup;
+    htmlHeader;
+    link;
+    popup;
     htmlSegment;
 
     yScale;
@@ -75,15 +75,18 @@ export class TrendLine {
 
             this.chartLines.push(new ChartLine(this.config,this.svg.layers, this.dataMapping[i].column, this.dataMapping[i].colour));
             this.chartBackgroundAreas.push(new ChartBackgroundArea(this.config, this.svg, this.dataMapping[i].column, this.dataMapping[i].colour))
-
         }
 
         if (this.config.extra.header) {
-                    this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
-                    this.htmlHeader.draw();
+            this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
+            this.htmlHeader.draw();
         }
 
-        this.popup = new HtmlPopup(this.element,this.description, false);
+        if (this.config.extra.hasFocus) {
+            this.chartFocus = new ChartFocus(this.config,this.svg.layers,this.element);
+        }
+
+        this.popup = new HtmlPopup(this.element,this.description);
         this.htmlSegment = new HtmlSegment(this.element);
 
         if( this.config.extra.legend) {
@@ -138,7 +141,7 @@ export class TrendLine {
 
     prepareData(json) {
 
-
+        // console.log(json);
 
         let neededColumns = ['_date'].concat(this.dataMapping.map( (c) => c.column ));
 
@@ -154,25 +157,32 @@ export class TrendLine {
                     o[p[0]] = p[1];
                 }
             }
-
             data.push(o);
         }
-
-
 
         data.sort(function(a, b) {
             return new Date(a._date).getTime() - new Date(b._date).getTime();
         });
 
 
-        if(this.config.extra.startDate) {
+        data = data.filter( (week) => {
 
+            let hasNeededColumns = true;
+
+            for (let column of neededColumns) {
+                if (!(column in week)) {
+                    hasNeededColumns = false ;
+                }
+            }
+            return hasNeededColumns;
+        })
+
+
+        if(this.config.extra.startDate) {
             data = data.filter( (week) =>
                 new Date(week._date) > new Date(this.config.extra.startDate)
             );
         }
-
-
 
         return data.slice(1,data.length);
     }
@@ -180,7 +190,6 @@ export class TrendLine {
     redraw(data) {
 
         let minValue = 0; // d3.min(data.map(d => ((d[this.yParameter]) * .85)));
-
         let valueArray = [];
 
         for (let map of this.dataMapping) {
@@ -210,6 +219,10 @@ export class TrendLine {
         for (let label of this.chartEndLabels) {
             label.redraw(this.xScale, this.yScale, this.dimensions, data, this.yParameter)
         }
+
+        if (this.config.extra.hasFocus) {
+            this.chartFocus.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping);
+        }
     }
 
     draw(data) {
@@ -227,7 +240,11 @@ export class TrendLine {
         this.chartEndLabels.forEach( (l,i) => {
             const text = (this.config.extra.label === 'value') ? data[data.length - 1][this.yParameter].toString() : this.dataMapping[i].label;
             l.draw(this.dataMapping[i].label,text);
-        })
+        });
+
+        if (this.config.extra.hasFocus) {
+            this.chartFocus.draw();
+        }
     }
 
     update(newData,segment) {
@@ -237,10 +254,8 @@ export class TrendLine {
         this.draw(data);
         this.redraw(data);
         window.addEventListener("resize", () => self.redraw(data), false);
-
-        if(this.config.extra.segmentIndicator) {
+        if (this.config.extra.segmentIndicator) {
             this.htmlSegment.draw(segment);
         }
-
     }
 }

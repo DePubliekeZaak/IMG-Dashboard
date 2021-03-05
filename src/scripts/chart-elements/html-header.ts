@@ -26,6 +26,7 @@ export class HtmlHeader {
         h.style.fontFamily = 'NotoSans Regular';
         h.style.textAlign = 'center';
         h.style.fontSize = '1rem';
+        h.style.lineHeight = '1.44';
         h.style.margin = '0';
 
         headerContainer.appendChild(h);

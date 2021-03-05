@@ -13,8 +13,6 @@ export class ChartMonthGrid {
 
     draw(data) {
 
-        console.log(data);
-
             this.svg.monthLines = this.svg.layers.underData.selectAll(".monthLine")
                 .data(data);
 
@@ -40,7 +38,6 @@ export class ChartMonthGrid {
     redraw(xScale,yScale,dimensions,data,colour,yParameter) {
 
             let self = this;
-
 
             this.svg.monthLines
                 .merge(this.svg.monthLinesEnter)

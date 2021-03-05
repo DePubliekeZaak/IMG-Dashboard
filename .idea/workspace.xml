@@ -25,75 +25,59 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25901f2d-2ea5-4d2e-94a4-2b8a3b4a34cb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-waardedalingsregeling.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/ijskast.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/procedureduur.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/ticker_tevredenheidscijfers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/ticker_waardedaling.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/trend_aanvragen_waardedaling.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-configs/trend_schademeldingen.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-month-grid.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-average.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-number-new.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-number.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-totals.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-triangle.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/charts/average.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-line-totals.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-months.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-totals.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/charts/ticker-bol.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/charts/total_plus.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.data.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.html.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.interactions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.menu.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.params.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scripts/ticker/ticker.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sass/styleguide/focus.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-bar-horizontal.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-blocked-line.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-blocktrend.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-focus.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-formule.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-periodSelector.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/charts/kto-ratings.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/charts/ratings.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/charts/short-trend.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/charts/tevredenheid-formule.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sass/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/main.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sass/mvp-dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/mvp-dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sass/netivity-layouts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/netivity-layouts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/_styleguide/_colours.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/_styleguide/_colours.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-opnames.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-opnames.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sass/mvp-layouts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/sass/mvp-layouts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-basics/chart-axes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-basics/chart-axes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-basics/chart-scale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-basics/chart-scale.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-reacties.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-reacties.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-specials.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-specials.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-vergoedingen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-vergoedingen.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-voortgang.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard-voortgang.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/dashboard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-configs/ticker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-configs/ticker_fysieke_schade.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-background-area.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-background-area.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-circle-groups.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-circle-groups.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-avg-line.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-avg-line.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-line.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-line.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-map.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-map.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-ragged-line.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-ragged-line.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-week-grid.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-week-grid.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/chart-month-grid.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/chart-month-grid.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-circle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-circle.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-header.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-header.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-number-new.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-number-new.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/html-popup.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/html-popup.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/chart-elements/module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/chart-elements/module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/average.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/average.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/ballenbak.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/ballenbak.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/band-bars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/band-bars.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/cijfer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/cijfer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/cijfers-line-totals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-line-totals.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/cijfers-line.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-line.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/cijfers-months.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-months.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/cijfers-totals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/cijfers-totals.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/flow-dossier-count.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/flow-dossier-count.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/map.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/map.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/normalised_bars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/normalised_bars.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/pie-chart-sum.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/pie-chart-sum.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/stacked-area.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/stacked-area.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/ticker-bol.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/ticker-bol.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/ticker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/ticker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/charts/total_plus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/total_plus.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/charts/trend-line.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/charts/trend-line.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/dashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.data.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.data.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.html.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard.html.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/dashboard/dashboard_map.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/dashboard/dashboard_map.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/helpers/geodata.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/helpers/_formats.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/helpers/_formats.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/helpers/municipalities.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/helpers/municipalities.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/init.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/init.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/single.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/single.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/ticker.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/types/graphObject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/types/graphObject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/ticker/ticker.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/ticker/ticker.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/types/mapping.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/types/mapping.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/utils/date-object.utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/utils/date-object.utils.ts" afterDir="false" />
     </list>
@@ -230,6 +214,16 @@
       <workItem from="1610615065521" duration="14109000" />
       <workItem from="1610702542128" duration="6984000" />
       <workItem from="1610964902680" duration="1192000" />
+      <workItem from="1611214113982" duration="15407000" />
+      <workItem from="1612256583757" duration="13187000" />
+      <workItem from="1612338987850" duration="14525000" />
+      <workItem from="1612427588019" duration="3197000" />
+      <workItem from="1613381458129" duration="21099000" />
+      <workItem from="1613409609765" duration="14308000" />
+      <workItem from="1613492327372" duration="2332000" />
+      <workItem from="1613722446740" duration="33000" />
+      <workItem from="1614004360501" duration="2570000" />
+      <workItem from="1614159432099" duration="19000" />
     </task>
     <servers />
   </component>

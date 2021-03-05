@@ -43,16 +43,13 @@ export class HtmlNumberNew {
         // number.innerText = data[0][this.property];
         miniContainer.appendChild(number);
 
-        let lastWeek = document.createElement('span');
-        lastWeek.classList.add('new');
-        lastWeek.style.fontSize = '.8rem';
-        lastWeek.style.lineHeight = "1";
-        lastWeek.style.color = colours[this.dataMapping[0].colour][0];
-        lastWeek.style.fontFamily = "NotoSans Regular";
-        // lastWeek.style.margin = '1.5rem auto .5rem auto';
-
-        // number.innerText = data[0][this.property];
-        miniContainer.appendChild(lastWeek);
+        // let lastWeek = document.createElement('span');
+        // lastWeek.classList.add('new');
+        // lastWeek.style.fontSize = '.8rem';
+        // lastWeek.style.lineHeight = "1";
+        // lastWeek.style.color = colours[this.dataMapping[0].colour][0];
+        // lastWeek.style.fontFamily = "NotoSans Regular";
+        // miniContainer.appendChild(lastWeek);
 
 
         this.element.insertBefore(miniContainer,this.element.childNodes[0])
@@ -72,7 +69,7 @@ export class HtmlNumberNew {
         } else {
 
             this.element.querySelector('.total').innerText = (value > 9999) ? thousands(value) : value;
-            this.element.querySelector('.new').innerText = 'vorige week: ' + lastWeek;
+            // this.element.querySelector('.new').innerText = 'vorige week: ' + lastWeek;
         }
 
     }

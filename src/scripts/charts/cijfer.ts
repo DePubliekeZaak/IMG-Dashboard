@@ -57,10 +57,11 @@ export class Cijfer  {
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
 
-      //  this.popup = new HtmlPopup(this.element,this.description,false);
+      //  this.popup = new HtmlPopup(this.element,this.description);
         this.htmlCircle.draw();
         this.htmlHeader.draw();
 
+        this.popup = new HtmlPopup(this.element,this.description);
 
         self.update(this.data,this.segment,false);
 
@@ -98,7 +99,13 @@ export class Cijfer  {
 
     redraw(data) {
 
-            this.htmlCircle.redraw(data,this.yParameter);
+            this.popup.attachData([data[0]])
+
+            // @ts-ignore
+
+        let secondParameter = (this.dataMapping[2]) ? this.dataMapping[2]['column'] : '';
+
+        this.htmlCircle.redraw(data,this.yParameter,secondParameter);
     }
 
 

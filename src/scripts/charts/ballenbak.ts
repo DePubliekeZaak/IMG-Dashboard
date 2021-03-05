@@ -254,7 +254,7 @@ export class Ballenbak {
         self.draw(data, groupedData, flattenedData);
         self.redraw(groupedData);
         self.legend(groupedData);
-        this.popup = new HtmlPopup(this.element,this.description,false);
+        this.popup = new HtmlPopup(this.element,this.description);
         window.addEventListener("resize", () => self.redraw(groupedData), false);
     }
 }

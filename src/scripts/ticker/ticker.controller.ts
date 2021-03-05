@@ -19,7 +19,7 @@ export class InitTicker {
         this.styleMainElement();
 
         this.row(tickerFysiekeSchade,'Fysieke schade',4,'full-width')
-        this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-6');
+      //  this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-6');
         this.row(tickerTevredenheid,'Tevredenheid',2,'img-graph-container-6');
         this.addLink();
 
@@ -29,6 +29,7 @@ export class InitTicker {
 
         this.htmlContainer = document.querySelector("[data-img-graph-preset='ticker']");
         this.htmlContainer.classList.add('container');
+        this.htmlContainer.style.display = 'flex';
         this.htmlContainer.style.flexDirection = 'row';
         this.htmlContainer.style.flexWrap = 'wrap';
         this.htmlContainer.style.justifyContent = 'space-between';
@@ -121,6 +122,7 @@ export class InitTicker {
         const columns = document.createElement('div');
         columns.classList.add('columns');
         columns.style.position = 'relative';
+        columns.style.minHeight = '9rem';
 
         if(window.innerWidth < breakpoints.sm) {
 
@@ -135,6 +137,9 @@ export class InitTicker {
             columns.style.display = 'flex';
             columns.style.flexDirection = 'row';
             columns.style.flexWrap = 'wrap';
+        } else if (window.innerWidth < breakpoints.bax && rowName === 'Waardedaling')  {
+
+            columns.style.width = 'calc(50% + 2rem)';
         }
 
         row.append(this.addHeader(rowName,'1',''))

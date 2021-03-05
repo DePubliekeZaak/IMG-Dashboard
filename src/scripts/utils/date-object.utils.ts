@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 
 
 export function getWeek(date) {
@@ -16,6 +17,16 @@ export function getMonth(date) {
     return ['jan','feb','maa','apr','mei','jun','jul','aug','sep','okt','nov','dec'][date.getMonth()];
 }
 
+export function getMonthFromNumber(number) {
+
+    return ['jan','feb','maa','apr','mei','jun','jul','aug','sep','okt','nov','dec'][number - 1];
+}
+
+export function getLongMonthFromNumber(number) {
+
+    return ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'][number - 1];
+}
+
 export function getDateRangeOfWeek(weekNo) {
     const d1 = new Date();
     // tslint:disable-next-line:no-eval
@@ -28,4 +39,24 @@ export function getDateRangeOfWeek(weekNo) {
     d1.setDate(d1.getDate() + 6);
     const rangeIsTo = d1.getMonth() + 1 + '/' + d1.getDate() + '/' + d1.getFullYear() ;
     return { rangeIsFrom, rangeIsTo};
+}
+
+export function getCompleteMonths(newData) {
+
+    let completeMonths = []; // newData.filter( (w) => {
+
+    const groupedData = _.groupBy(newData,(w) => w._month.toString() + w._year.toString());
+
+    const groupedArray = Object.values(groupedData).sort( (a,b) => +new Date(b[0]._date) - +new Date(a[0]._date))
+
+    for (let group of groupedArray) {
+
+        group.sort((a: any, b: any) => (a._year.toString() + a._week.toString()) - (b._year.toString() + b._week.toString()));
+        // if last has day <= 7
+        if (new Date(group.reverse()[0]._date).getDate() <= 7) {
+            completeMonths.push(group[0]);
+        }
+    }
+
+    return completeMonths;
 }

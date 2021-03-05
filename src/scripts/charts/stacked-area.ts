@@ -202,7 +202,7 @@ export class StackedArea  {
         self.draw(data, stackedData);
         self.redraw(stackedData);
         self.legend(data);
-        this.popup = new HtmlPopup(this.element,this.description, false);
+        this.popup = new HtmlPopup(this.element,this.description);
         window.addEventListener("resize", () => self.redraw(stackedData), false);
     }
 }

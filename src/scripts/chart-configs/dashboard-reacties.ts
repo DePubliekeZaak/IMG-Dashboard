@@ -10,7 +10,7 @@ export const dashboardReacties : GraphObject[] = [
         "mapping": [
             [
                 {
-                    "label": "Tevredenheidscijfer",
+                    "label": "Doorlopend tevredenheidscijfer",
                     "column": "doorlopend_cijfer",
                     "colour": "moss"
                 },
@@ -27,10 +27,104 @@ export const dashboardReacties : GraphObject[] = [
             ]
         ],
         "config": {
-            "graphType": "CijfersMonths",
+            "graphType": "Cijfer",
             "xScaleType" : "time",
             "yScaleType" : "linear",
             "xParameter" : "_date",
+            "yParameter" : "maandcijfer",
+            "padding": {
+                "top": 20,
+                "bottom": 0,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom": margin,
+                "left": 10,
+                "right": 10
+            },
+            "extra": {
+                "useLineFill": true,
+                "decimal": true,
+                "segmentIndicator": false,
+                "noUpdate" : true,
+                "shape": "block",
+                "noRespondents": true
+            }
+        },
+        "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.<div class='formula'></div></div>",
+        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-container-bol']
+    },
+    // {
+    //     "label" : "Tevredenheidscijfer algemeen",
+    //     "slug" : "bol_tevredenheid_algemeen_2",
+    //     "mapping": [
+    //         [
+    //             {
+    //                 "label": "Berekening doorlopend tevredenheidscijfer",
+    //                 "column": "doorlopend_cijfer",
+    //                 "colour": "moss"
+    //             }
+    //         ]
+    //     ],
+    //     "config": {
+    //         "graphType": "TevredenheidFormule",
+    //         "xScaleType" : "",
+    //         "yScaleType" : "",
+    //         "xParameter" : "",
+    //         "yParameter" : "",
+    //         "padding": {
+    //             "top": 20,
+    //             "bottom": pad,
+    //             "left": 0,
+    //             "right": 0
+    //         },
+    //         "margin": {
+    //             "top": 120,
+    //             "bottom": margin,
+    //             "left": 10,
+    //             "right": 10
+    //         },
+    //         "extra": {
+    //             "segmentIndicator": false,
+    //             "noUpdate" : true
+    //         }
+    //     },
+    //     "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
+    //     "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+    // },
+    {
+        "label" : "Rapportcijfers per maand",
+        "slug" : "bol_tevredenheid_algemeen_3",
+        "mapping": [
+            [
+                {
+                    "label": "Tevredenheidscijfer per maand",
+                    "column": "doorlopend_cijfer",
+                    "colour": "moss"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "maandcijfer",
+                    "colour": "moss"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "aantal_respondenten",
+                    "colour": "moss"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "ShortTrend",
+            "xScaleType" : "band",
+            "yScaleType" : "linear",
+            "xParameter" : "_month",
             "yParameter" : "maandcijfer",
             "padding": {
                 "top": 20,
@@ -39,7 +133,7 @@ export const dashboardReacties : GraphObject[] = [
                 "right": 0
             },
             "margin": {
-                "top": 120,
+                "top": 0,
                 "bottom": margin,
                 "left": 10,
                 "right": 10
@@ -49,74 +143,188 @@ export const dashboardReacties : GraphObject[] = [
                 "decimal": true,
                 "segmentIndicator": false,
                 "noUpdate" : true,
-                "shape": "block"
+                "shape": "block",
+                "paddingInner" : 0,
+                "paddingOuter" : 0,
+                "axisInMonths" : true
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-container-shorttrend']
     },
-    {
-        "label" : "Tevredenheidscijfer fysieke schade",
-        "slug" : "bol_tevredenheid_fysieke_schade",
+    {   "label": "Tevredenheid ratings",
+        "slug": "ratings_fs_doorlopend",
         "mapping": [
             [
+                [
+                    {
+                        "label": "Rapportcijfer waardedaling",
+                        "column": "fysieke_schade_doorlopend_cijfer",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "Tevredenheidscijfer",
+                        "column": "fysieke_schade_maandcijfer",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "Tevredenheidscijfer",
+                        "column": "fysieke_schade_aantal_respondenten_doorlopend",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "Tevredenheidscijfer",
+                        "column": "fysieke_schade_aantal_respondenten",
+                        "colour": "orange"
+                    }
+                ],
+                [
+                    {
+                        "label": "1",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_1",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "2",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_2",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "3",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_3",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "4",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_4",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "5",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_5",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "6",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_6",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "7",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_7",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "8",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_8",
+                        "colour": "moss"
+                    },
+                    {
+                        "label": "9",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_9",
+                        "colour": "moss"
+                    },
+                    {
+                        "label": "10",
+                        "column": "fysieke_schade_doorlopend_rapportcijfer_10",
+                        "colour": "moss"
+                    }
+            ],
+            [
                 {
-                    "label": "Fysieke schade",
-                    "column": "fysieke_schade_doorlopend_cijfer",
+                    "label": "1",
+                    "column": "fysieke_schade_maand_rapportcijfer_1",
                     "colour": "orange"
                 },
                 {
-                    "label": "Tevredenheidscijfer",
-                    "column": "fysieke_schade_maandcijfer",
+                    "label": "2",
+                    "column": "fysieke_schade_maand_rapportcijfer_2",
                     "colour": "orange"
                 },
                 {
-                    "label": "Tevredenheidscijfer",
-                    "column": "fysieke_schade_aantal_respondenten_doorlopend",
+                    "label": "3",
+                    "column": "fysieke_schade_maand_rapportcijfer_3",
                     "colour": "orange"
-                }
-            ]
+                },
+                {
+                    "label": "4",
+                    "column": "fysieke_schade_maand_rapportcijfer_4",
+                    "colour": "orange"
+                },
+                {
+                    "label": "5",
+                    "column": "fysieke_schade_maand_rapportcijfer_5",
+                    "colour": "orange"
+                },
+                {
+                    "label": "6",
+                    "column": "fysieke_schade_maand_rapportcijfer_6",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "7",
+                    "column": "fysieke_schade_maand_rapportcijfer_7",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "8",
+                    "column": "fysieke_schade_maand_rapportcijfer_8",
+                    "colour": "moss"
+                },
+                {
+                    "label": "9",
+                    "column": "fysieke_schade_maand_rapportcijfer_9",
+                    "colour": "moss"
+                },
+                {
+                    "label": "10",
+                    "column": "fysieke_schade_maand_rapportcijfer_10",
+                    "colour": "moss"
+                },
+            ]]
         ],
         "config": {
-            "graphType": "CijfersMonths",
-            "xScaleType" : "time",
-            "yScaleType" : "linear",
-            "xParameter" : "_date",
-            "yParameter" : "fysieke_schade_maandcijfer",
+            "graphType": "KTORatings",
+            "xScaleType": "linear",
+            "yScaleType": "band",
+            "xParameter": "value",
+            "yParameter": "label",
             "padding": {
                 "top": 20,
-                "bottom": pad,
+                "bottom": 0,
+                "left": 20,
+                "right": 80
+            },
+            "margin": {
+                "top": 20,
+                "bottom": 40,
                 "left": 0,
                 "right": 0
             },
-            "margin": {
-                "top": 120,
-                "bottom": margin,
-                "left": 10,
-                "right": 10
-            },
             "extra": {
-                "useLineFill": true,
-                "decimal": true,
-                "segmentIndicator": false,
-                "noUpdate" : true,
-                "shape": "block"
+                "slug": "ratings_fs_doorlopend",
+                "header" : "Rapportcijfers besluiten fysieke schade",
+                "legend" : true,
+                "paddingInner" : .25,
+                "paddingOuter" : .25,
+                "columnForAverage" : "fysieke_schade_aantal_respondenten_doorlopend",
+                "decimal" : true,
+                "noRespondents": true
             }
         },
-        "description" : "Het betreft hier een doorlopend gemiddelde gebaseerd op alle reacties die sinds de start van de meting is binnengekomen. Er wordt daarbij per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Onder dit gemiddelde rapportcijfer over de gehele periode, staat het doorlopend gemiddelde rapportcijfer voor die maand weergegeven. Het gemiddelde rapportcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='fysieke_schade_aantal_respondenten_doorlopend'>xxxxx</span> reacties.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
-    {
-        "label" : "Tevredenheidscijfer waardedaling",
-        "slug" : "bol_tevredenheid_waardedaling",
+    {   "label": "Tevredenheid ratings",
+        "slug": "ratings_w_doorlopend",
         "mapping": [
-            [
+            [[
                 {
-                    "label": "Waardedaling",
+                    "label": "Rapportcijfer waardedaling",
                     "column": "waardedaling_doorlopend_cijfer",
                     "colour": "blue"
                 },
@@ -129,39 +337,208 @@ export const dashboardReacties : GraphObject[] = [
                     "label": "Tevredenheidscijfer",
                     "column": "waardedaling_aantal_respondenten_doorlopend",
                     "colour": "blue"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "waardedaling_aantal_respondenten",
+                    "colour": "blue"
+                }
+            ],
+            [
+                {
+                    "label": "1",
+                    "column": "waardedaling_doorlopend_rapportcijfer_1",
+                    "colour": "orange"
+                },
+                {
+                    "label": "2",
+                    "column": "waardedaling_doorlopend_rapportcijfer_2",
+                    "colour": "orange"
+                },
+                {
+                    "label": "3",
+                    "column": "waardedaling_doorlopend_rapportcijfer_3",
+                    "colour": "orange"
+                },
+                {
+                    "label": "4",
+                    "column": "waardedaling_doorlopend_rapportcijfer_4",
+                    "colour": "orange"
+                },
+                {
+                    "label": "5",
+                    "column": "waardedaling_doorlopend_rapportcijfer_5",
+                    "colour": "orange"
+                },
+                {
+                    "label": "6",
+                    "column": "waardedaling_doorlopend_rapportcijfer_6",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "7",
+                    "column": "waardedaling_doorlopend_rapportcijfer_7",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "8",
+                    "column": "waardedaling_doorlopend_rapportcijfer_8",
+                    "colour": "moss"
+                },
+                {
+                    "label": "9",
+                    "column": "waardedaling_doorlopend_rapportcijfer_9",
+                    "colour": "moss"
+                },
+                {
+                    "label": "10",
+                    "column": "waardedaling_doorlopend_rapportcijfer_10",
+                    "colour": "moss"
+                },
+            ],
+            [
+                {
+                    "label": "1",
+                    "column": "waardedaling_maand_rapportcijfer_1",
+                    "colour": "orange"
+                },
+                {
+                    "label": "2",
+                    "column": "waardedaling_maand_rapportcijfer_2",
+                    "colour": "orange"
+                },
+                {
+                    "label": "3",
+                    "column": "waardedaling_maand_rapportcijfer_3",
+                    "colour": "orange"
+                },
+                {
+                    "label": "4",
+                    "column": "waardedaling_maand_rapportcijfer_4",
+                    "colour": "orange"
+                },
+                {
+                    "label": "5",
+                    "column": "waardedaling_maand_rapportcijfer_5",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "6",
+                    "column": "waardedaling_maand_rapportcijfer_6",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "7",
+                    "column": "waardedaling_maand_rapportcijfer_7",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "8",
+                    "column": "waardedaling_maand_rapportcijfer_8",
+                    "colour": "moss"
+                },
+                {
+                    "label": "9",
+                    "column": "waardedaling_maand_rapportcijfer_9",
+                    "colour": "moss"
+                },
+                {
+                    "label": "10",
+                    "column": "waardedaling_maand_rapportcijfer_10",
+                    "colour": "moss"
+                },
+            ]
+            ]
+        ],
+        "config": {
+            "graphType": "KTORatings",
+            "xScaleType": "linear",
+            "yScaleType": "band",
+            "xParameter": "value",
+            "yParameter": "label",
+            "padding": {
+                "top": 20,
+                "bottom": 0,
+                "left": 20,
+                "right": 80
+            },
+            "margin": {
+                "top": 20,
+                "bottom": 40,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "slug": "ratings_w_doorlopend",
+                "header" : "Rapportcijfers besluiten waardedaling",
+                "legend" : true,
+                "paddingInner" : .25,
+                "paddingOuter" : .25,
+                "columnForAverage" : "waardedaling_aantal_respondenten_doorlopend",
+                "decimal": true,
+                "noRespondents": true
+            }
+        },
+        "description" : "",
+        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
+    },
+    {   "label": "Tevredenheid door de tijd",
+        "slug": "trend_tevredenheid",
+        "mapping": [
+            [
+                {
+                    "label": "Gewogen gemiddelde",
+                    "column": "maandcijfer",
+                    "colour": "moss",
+                    "short": "gem"
+                },
+                {
+                    "label": "Fysieke schade",
+                    "column": "fysieke_schade_maandcijfer",
+                    "colour": "orange",
+                    "short": "fs"
+                },
+                {
+                    "label": "Waardedaling",
+                    "column": "waardedaling_maandcijfer",
+                    "colour": "blue",
+                    "short": "wd"
                 }
             ]
         ],
         "config": {
-            "graphType": "CijfersMonths",
-            "xScaleType" : "time",
-            "yScaleType" : "linear",
-            "xParameter" : "_date",
-            "yParameter" : "waardedaling_maandcijfer",
+            "graphType": "TrendLine",
+            "xScaleType": "time",
+            "yScaleType": "linear",
+            "xParameter": "_date",
+            "yParameter": "maandcijfer",
             "padding": {
                 "top": 20,
-                "bottom": pad,
-                "left": 0,
+                "bottom": 40,
+                "left": 40,
                 "right": 0
             },
             "margin": {
-                "top": 120,
-                "bottom": margin,
-                "left": 10,
-                "right": 10
+                "top": 80,
+                "bottom": 100,
+                "left": 0,
+                "right": 0
             },
             "extra": {
+                "xScaleTicks": "timeMonth",
                 "useLineFill": true,
-                "decimal": true,
+                "header" : "Trend tevredenheidscijfers",
                 "segmentIndicator": false,
-                "noUpdate" : true,
-                "shape": "block"
+                "legend" : true,
+                "hasFocus": true
             }
         },
-        "description" : " Het betreft hier een doorlopend gemiddelde gebaseerd op alle reacties die sinds de start van de meting is binnengekomen. Er wordt daarbij per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)”  Onder dit gemiddelde rapportcijfer over de gehele periode, staat het doorlopend gemiddelde rapportcijfer voor die maand weergegeven. Het gemiddelde rapportcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='waardedaling_aantal_respondenten_doorlopend'>xxxxx</span> reacties.",
+        "description" : "",
         "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
     {
 

@@ -142,7 +142,7 @@ export class Ticker  {
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
         //
-        // this.popup = new HtmlPopup(this.element,this.description, false);
+        // this.popup = new HtmlPopup(this.element,this.description);
 
         self.update(this.data,this.segment);
 
@@ -165,14 +165,14 @@ export class Ticker  {
 
         } else if  (window.innerWidth < breakpoints.md){
 
-            // this.element.style.flex = '0 0 50%';
+            this.element.style.flex = '0 0 50%';
             this.element.style.margin = '2rem auto 0 auto';
-            this.element.style.height = '6.5rem';
+            this.element.style.height = '100%';
 
         } else {
 
-            // this.element.style.flex = '0 0 25%';
-            this.element.style.height = '6.5rem';
+            this.element.style.flex = 'auto';
+            this.element.style.height = '100%';
         }
 
 

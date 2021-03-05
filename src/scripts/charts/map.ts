@@ -70,10 +70,10 @@ export class Map {
             this.htmlHeader.draw();
         }
 
-        this.popup = new HtmlPopup(this.element,this.description,false);
+        this.popup = new HtmlPopup(this.element,this.description);
 
         // get geodata.js
-        d3.json('/geojson/gemeenten2020.topojson').then( (topojsonObject) => {
+        d3.json('https://graphs.publikaan.nl/graphs/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
             this.update(this.data, topojsonObject);
         });
     }

@@ -1,11 +1,11 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-import { ChartBar, HtmlHeader, HtmlPopup, HtmlMuniSelector } from '../chart-elements/module';
+import { ChartBarHorizontal, HtmlHeader, HtmlPopup, HtmlMuniSelector } from '../chart-elements/module';
 import * as d3 from 'd3';
 
 
 
-export class BandBars {
+export class Ratings {
 
     element;
     yParameter;
@@ -26,7 +26,7 @@ export class BandBars {
 
     popup;
     htmlHeader;
-    htmlMuniSelector;
+    // htmlMuniSelector;
 
     constructor(
 
@@ -58,24 +58,12 @@ export class BandBars {
         this.chartSVG = new ChartSVG(this.elementID, this.config, this.dimensions, this.svg);
         this.chartXScale = new ChartScale(this.config.xScaleType, this.config, this.dimensions);
         this.chartYScale = new ChartScale(this.config.yScaleType, this.config, this.dimensions);
-        this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
-        this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
-        this.chartBar = new ChartBar(this.config, this.svg.layers);
+        // this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
+        // this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
+        this.chartBar = new ChartBarHorizontal(this.config, this.svg.layers);
 
         this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
         this.htmlHeader.draw();
-
-        this.htmlMuniSelector = new HtmlMuniSelector(this.element,'specials_band_bars'); // later koppelen aan GraphObject.slug
-
-        if(this.config.extra.municipalitySelect) {
-            this.htmlMuniSelector.draw();
-
-            const municipalitySelect = document.querySelector('.municipality_select_' + 'specials_band_bars' ) as HTMLSelectElement;
-
-            municipalitySelect.addEventListener("change", function () {
-                self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
-            });
-        }
 
         this.popup = new HtmlPopup(this.element,this.description);
 
@@ -99,8 +87,7 @@ export class BandBars {
             )
         }
 
-
-        return data;
+        return data.reverse();
     }
 
     redraw(data) {
@@ -114,26 +101,24 @@ export class BandBars {
         this.xScale = this.chartXScale.reset('horizontal',this.dimensions,this.xScale);
         this.yScale = this.chartYScale.reset('vertical',this.dimensions,this.yScale);
         // new scales mean new axis
-        this.bottomAxis.redraw(this.config.xScaleType, this.dimensions, this.xScale);
-        this.leftAxis.redraw(this.config.yScaleType, this.dimensions, this.yScale);
+        // this.bottomAxis.redraw(this.config.xScaleType, this.dimensions, this.xScale);
+        // this.leftAxis.redraw(this.config.yScaleType, this.dimensions, this.yScale);
         // redraw data
-        this.chartBar.redraw(this.dimensions,this.xScale,this.yScale);
+
+
+        this.chartBar.redraw(this.dimensions,this.xScale,this.yScale,this.data[0][this.config.extra.columnForAverage]);
     }
 
     draw(data) {
 
         let self = this;
-
         this.xScale = this.chartXScale.set(data.map(d => d[this.config.xParameter]));
-
         this.chartBar.draw(data);
     }
 
     update(newData,segment) {
 
-
         let self = this;
-
         let data = this.prepareData(newData,segment);
         this.draw(data);
         this.redraw(data);

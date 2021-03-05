@@ -10,9 +10,6 @@ export class ChartAvgLine {
 
             this.svg.layers.data.selectAll('g.average').remove();
 
-
-
-
                 this.svg.averageGroup = this.svg.layers.underData.append("g")
                     .attr("class", "average");
 

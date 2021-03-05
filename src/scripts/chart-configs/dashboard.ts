@@ -211,12 +211,14 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Nieuw",
                     "column": "nieuw_schademeldingen",
-                    "colour": "orange"
+                    "colour": "orange",
+                    "short": "nieuw"
                 },
                 {
                     "label": "Afgehandeld",
                     "column": "nieuw_afgehandeld",
-                    "colour": "blue"
+                    "colour": "blue",
+                    "short": "afgeh."
                 }
             ]
         ],
@@ -239,11 +241,12 @@ export const dashboardMain : GraphObject[] = [
                 "right": 0
             },
             "extra": {
-                "xScaleTicks": "timeMonth",
+                "xScaleTicks": "quarterly",
                 "useLineFill": true,
                 "header" : "Trend nieuw en afgehandeld",
                 "segmentIndicator": true,
                 "legend" : true,
+                "hasFocus": true
             }
         },
         "description" : "Het aantal nieuwe en afgehandelde schademeldingen door de tijd heen.",
@@ -258,12 +261,14 @@ export const dashboardMain : GraphObject[] = [
                 {
                     "label": "Schade-opnames",
                     "column": "nieuw_schade_opnames",
-                    "colour": "moss"
+                    "colour": "moss",
+                    "short": "opname"
                 },
                 {
                     "label": "Adviesrapporten",
                     "column": "nieuw_adviesrapporten",
-                    "colour": "purple"
+                    "colour": "purple",
+                    "short": "rapport"
                 },
                 // {
                 //     "label": "Besluiten",
@@ -291,11 +296,12 @@ export const dashboardMain : GraphObject[] = [
                 "right": 0
             },
             "extra": {
-                "xScaleTicks": "timeMonth",
+                "xScaleTicks": "quarterly",
                 "useLineFill": true,
                 "header" : "Trend schade-opnames en adviesrapporten",
                 "segmentIndicator": true,
                 "legend": true,
+                "hasFocus": true
             }
         },
         "description" : "Het aantal schade-opnames en adviesrapporten door de tijd heen. De schade-opname en het adviesrapport zijn voor vrijwel alle schademeldingen nodig om te komen tot een besluit. De trend laat daarmee het potentieel van de schadeafhandeling zien.",

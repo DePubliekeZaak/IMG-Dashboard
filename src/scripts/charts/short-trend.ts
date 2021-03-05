@@ -1,9 +1,21 @@
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 import * as _ from "lodash";
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartMonthGrid, HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../chart-elements/module';
+import {
+    ChartAvgLine,
+    ChartBackgroundArea,
+    ChartBarHorizontal,
+    ChartBlockedLine,
+    ChartMonthGrid,
+    ChartBlockTrend,
+    HtmlCircle,
+    HtmlHeader,
+    HtmlLink,
+    HtmlPopup,
+    HtmlSegment
+} from '../chart-elements/module';
 import * as d3 from "d3";
 
-export class CijfersMonths  {
+export class ShortTrend{
 
     element;
     yParameter;
@@ -20,12 +32,12 @@ export class CijfersMonths  {
     chartYScale;
     chartAxes;
 
+    chartBlockTrend;
     chartLine;
     chartBackgroundArea;
     chartGrid;
     chartAvgLine;
     htmlHeader;
-    htmlCircle;
     htmlSegment;
 
     link;
@@ -55,6 +67,7 @@ export class CijfersMonths  {
         this.dimensions = chartObjects.dimensions();
         this.svg = chartObjects.svg();
 
+
         this.config.paddingInner = 0;
         this.config.paddingOuter = 0;
 
@@ -68,22 +81,22 @@ export class CijfersMonths  {
         this.chartYScale = new ChartScale(this.config.yScaleType, this.config, this.dimensions);
         this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
         this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
-        this.chartLine = new ChartRaggedLine(this.config, this.svg);
-        this.chartBackgroundArea = new ChartBackgroundArea(this.config, this.svg, false, false);
-        this.chartGrid = new ChartMonthGrid(this.config, this.svg);
-        this.chartAvgLine = new ChartAvgLine(this.config, this.svg);
+        // this.chartLine = new ChartBlockedLine(this.config, this.svg);
+        // this.chartBackgroundArea = new ChartBackgroundArea(this.config, this.svg, false, false);
+        // this.chartGrid = new ChartMonthGrid(this.config, this.svg);
+        // this.chartAvgLine = new ChartAvgLine(this.config, this.svg);
+        this.chartBlockTrend = new ChartBlockTrend(this.config, this.svg.layers);
+
         this.htmlHeader = new HtmlHeader(this.element,this.dataMapping[0].label);
-        this.htmlCircle = new HtmlCircle(this.config,this.dataMapping,this.element,this.dataMapping[0].label);
         this.htmlSegment = new HtmlSegment(this.element);
 
         this.bottomAxis.draw();
         this.leftAxis.draw();
-        this.htmlCircle.draw();
         this.htmlHeader.draw();
 
-        if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
-            this.chartAvgLine.draw();
-        }
+        // if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
+        //     this.chartAvgLine.draw();
+        // }
 
         this.popup = new HtmlPopup(this.element,this.description);
 
@@ -95,7 +108,7 @@ export class CijfersMonths  {
 
     prepareData(newData)  {
 
-        let neededColumns = ['_date','_category'].concat(this.dataMapping.map( (c) => c.column ));
+        let neededColumns = ['_date','_month'].concat(this.dataMapping.map( (c) => c.column ));
 
         let completeMonths = []; // newData.filter( (w) => {
 
@@ -123,7 +136,7 @@ export class CijfersMonths  {
                 }
         }
 
-        completeMonths = completeMonths.slice(0,7);
+        completeMonths = completeMonths.slice(0,7).reverse();
 
         let week = newData[0];
         let latestData = {};
@@ -148,19 +161,21 @@ export class CijfersMonths  {
         this.dimensions = this.chartDimensions.get(this.dimensions);
         // if height not fixed .. area gets samller on each resize
         // perhaps create html el before . and send this.element.querySelector('something') into chartDimensions
-        this.dimensions.svgHeight = 140;
+        // this.dimensions.svgHeight = 140;
         this.chartSVG.redraw(this.dimensions);
         // new dimensions mean new scales
         this.xScale = this.chartXScale.reset('horizontal', this.dimensions, this.xScale);
         this.yScale = this.chartYScale.reset('vertical', this.dimensions, this.yScale);
 
-        this.htmlCircle.redraw([latestData],this.dataMapping[0].column);
+        this.bottomAxis.redraw(this.config.xScaleType,this.dimensions,this.xScale);
 
         if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
-            this.chartBackgroundArea.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
-            this.chartGrid.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.yParameter);
-            this.chartLine.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
-            this.chartAvgLine.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.yParameter);
+
+            this.chartBlockTrend.redraw(this.dimensions,this.xScale,this.yScale);
+            // this.chartBackgroundArea.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
+            // this.chartGrid.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.yParameter);
+            // this.chartLine.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.config.xParameter, this.yParameter);
+            // this.chartAvgLine.redraw(this.xScale, this.yScale, this.dimensions, completeMonths, this.dataMapping[0].colour, this.yParameter);
         }
     }
 
@@ -169,19 +184,20 @@ export class CijfersMonths  {
         this.xScale = this.chartXScale.set(completeMonths.map(d => d[this.config.xParameter]));
 
         if(this.data.map( (i) => i[this.dataMapping[0].column]).filter( (i) => i !== null && i !== undefined).length > 2) {
-            this.chartBackgroundArea.draw(completeMonths);
-            this.chartLine.draw(completeMonths);
-            this.chartGrid.draw(completeMonths);
+            // this.chartBackgroundArea.draw(completeMonths);
+            // this.chartLine.draw(completeMonths);
+            // this.chartGrid.draw(completeMonths);
+            this.chartBlockTrend.draw(completeMonths);
         }
 
         this.popup.attachData([latestData])
 
     }
 
-    average(data) {
-
-        return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
-    }
+    // average(data) {
+    //
+    //     return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
+    // }
 
     update(newData,segment,update) {
 
@@ -206,8 +222,6 @@ export class CijfersMonths  {
 
 
     createLink(label) {
-
-
 
     }
 }

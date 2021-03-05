@@ -90,7 +90,7 @@ export class CijfersLine  {
         // this.link = new HtmlLink(this.element,this.config.extra.link,'');
 
 
-
+        this.popup = new HtmlPopup(this.element,this.description);
 
         self.update(this.data,this.segment,false);
 
@@ -156,7 +156,9 @@ export class CijfersLine  {
 
         // on redraw chart gets new dimensions
         this.dimensions = this.chartDimensions.get(this.dimensions);
-
+        // if height not fixed .. area gets samller on each resize
+        // perhaps create html el before . and send this.element.querySelector('something') into chartDimensions
+        this.dimensions.svgHeight = 140;
         this.chartSVG.redraw(this.dimensions);
         // new dimensions mean new scales
         this.xScale = this.chartXScale.reset('horizontal', this.dimensions, this.xScale);
@@ -182,7 +184,7 @@ export class CijfersLine  {
             this.chartWeekGrid.draw(data);
         }
 
-        this.popup = new HtmlPopup(this.element,this.description,data);
+        this.popup.attachData(data)
 
     }
 
@@ -205,7 +207,11 @@ export class CijfersLine  {
             self.redraw(data);
         }, 500);
 
-        window.addEventListener("resize", () => self.redraw(data), false);
+        window.addEventListener("resize", () => {
+
+            console.log('resize');
+            self.redraw(data)
+        }, false);
 
         if(this.config.extra.segmentIndicator) {
             this.htmlSegment.draw(segment);
