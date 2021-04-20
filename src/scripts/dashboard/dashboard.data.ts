@@ -3,6 +3,11 @@ import {ResponseData} from "../types/responseData";
 import {breakpoints} from "../_styleguide/_breakpoints";
 import {graphs} from "../charts/module";
 import * as _ from 'lodash';
+import { API_BASE } from '../env';
+
+// const apiBase = 'https://img.publikaan.nl/open-data/api/';
+
+
 
 export default class DashboardData {
 
@@ -25,7 +30,8 @@ export default class DashboardData {
         const restQuery = (segment === 'eemsdelta') ? '?gemeente=in.(loppersum,delfzijl,appingedam)&_date=gte.2018-11-01' : '?gemeente=eq.' + segment + '&_date=gte.2018-11-01';
 
         for (let endpoint of uniqueEndpoints) {
-            let url = (endpoint.indexOf('limit=') < 0) ? endpoint + restQuery : endpoint;
+
+            let url = (endpoint.indexOf('limit=') < 0) ? API_BASE + endpoint + restQuery : API_BASE + endpoint;
             promises.push(
                 new Promise((resolve, reject) => {
                     d3.json<ResponseData>(url)
@@ -85,11 +91,61 @@ export default class DashboardData {
                         o = item;
                     }
                     munis.push(o);
+
                 });
             }
         }
 
+        munis = this.createMapDataForEemsdelta(munis);
+
         return { weeks, munis };
+    }
+
+    createMapDataForEemsdelta(munis) {
+
+        if(munis && munis.length > 0) {
+
+            let mergedMunis = munis.filter((m) => ['appingedam', 'delfzijl', 'loppersum'].indexOf(m.gemeente) > -1)
+
+            let e: any = {};
+            e.gemeente = 'eemsdelta';
+
+            for (let prop of Object.keys(munis[0])) {
+
+                if (['_date', "_year", "_month", "_week"].indexOf(prop) > -1) {
+
+                    e[prop] = munis[0][prop];
+                } else if (prop !== 'gemeente') {
+
+                    let sum = 0;
+                    for (let m of mergedMunis) {
+
+                        if (m[prop] !== null) {
+                            sum = sum + parseFloat(m[prop]);
+
+                            if(prop === 'fysieke_schade_afgewezen_meldingen') {
+                                console.log(sum);
+                            }
+                        }
+                    }
+
+                    e[prop] = sum;
+                    //  gemiddeldes kun je niet optellen
+                    e['fysieke_schade_gemiddeld_schadebedrag'] = e['fysieke_schade_nieuw_totaal_verleend'] / e['fysieke_schade_nieuw_toegewezen_besluiten'];
+                    e['fysieke_schade_gemiddeld_schadebedrag_sinds_start'] = e['fysieke_schade_totaal_verleend'] / e['fysieke_schade_toegewezen_besluiten'];
+
+                    // en percentage ook nie
+
+                    e['fysieke_schade_percentage_toegewezen_besluiten'] = (e['fysieke_schade_toegewezen_besluiten'] * 100) / (e['fysieke_schade_toegewezen_besluiten'] + e['fysieke_schade_afgewezen_meldingen'])
+                }
+            }
+
+
+            munis.push(e);
+
+        }
+
+        return munis;
     }
 
     createHistoryForEemsdelta(weeks) {
@@ -116,5 +172,36 @@ export default class DashboardData {
 
         }
         return array;
+    }
+
+    correctionForEemsdelta(weeks) {
+        for (let week of weeks) {
+
+            if (week['_date'] === '2021-03-01') {
+                    week['nieuw_schademeldingen'] = '50';
+                    week['nieuw_afgehandeld'] = '50';
+            } else if (week['_date'] === '2021-03-08') {
+                week['nieuw_schademeldingen'] = '50';
+                week['nieuw_afgehandeld'] = '50';
+            }
+        }
+        return weeks;
+
+    }
+
+    correctionForHetHogeland(weeks) {
+
+        for (let week of weeks) {
+
+            if (week['_date'] === '2021-03-01') {
+                week['nieuw_schademeldingen'] = '36';
+                week['nieuw_afgehandeld'] = '55';
+            } else if (week['_date'] === '2021-03-08') {
+                week['nieuw_schademeldingen'] = '36';
+                week['nieuw_afgehandeld'] = '55';
+            }
+        }
+
+        return weeks;
     }
 }

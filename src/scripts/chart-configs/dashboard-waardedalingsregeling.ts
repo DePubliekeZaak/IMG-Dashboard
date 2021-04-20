@@ -43,7 +43,7 @@ export const dashboardWaardedalingsRegeling : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
@@ -89,7 +89,7 @@ export const dashboardWaardedalingsRegeling : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
@@ -135,7 +135,7 @@ export const dashboardWaardedalingsRegeling : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
@@ -180,10 +180,12 @@ export const dashboardWaardedalingsRegeling : GraphObject[] = [
                 "largeHeader" : false,
                 "header" : "Voortgang per week",
                 "legend" : true,
+                "startDate" : "2020-09-01"
+
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline']
@@ -222,7 +224,7 @@ export const dashboardWaardedalingsRegeling : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6']
     },
@@ -260,7 +262,7 @@ export const dashboardWaardedalingsRegeling : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6']
     }

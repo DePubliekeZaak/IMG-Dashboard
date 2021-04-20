@@ -154,7 +154,7 @@ export class TrendLine {
             };
             for (let p of Object.entries(week))  {
                 if (neededColumns.indexOf(p[0]) > -1 ) {
-                    o[p[0]] = p[1];
+                    o[p[0]] = p[1] !== null ? p[1] : 0;
                 }
             }
             data.push(o);
@@ -189,7 +189,7 @@ export class TrendLine {
 
     redraw(data) {
 
-        let minValue = 0; // d3.min(data.map(d => ((d[this.yParameter]) * .85)));
+        let minValue = this.config.extra.minValue || 0; // d3.min(data.map(d => ((d[this.yParameter]) * .85)));
         let valueArray = [];
 
         for (let map of this.dataMapping) {

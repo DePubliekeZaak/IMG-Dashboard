@@ -40,7 +40,7 @@ export const tickerTevredenheid : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
     },
@@ -82,7 +82,7 @@ export const tickerTevredenheid : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
     },
@@ -124,7 +124,7 @@ export const tickerTevredenheid : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
     }

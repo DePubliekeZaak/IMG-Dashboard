@@ -53,7 +53,7 @@ export const dashboardMain : GraphObject[] = [
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
     },
@@ -105,7 +105,7 @@ export const dashboardMain : GraphObject[] = [
       }
     },
     "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
-    "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+    "endpoint": "meldingen",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
   },
@@ -156,7 +156,7 @@ export const dashboardMain : GraphObject[] = [
             }
         },
         "description" : "Het aantal schademeldingen dat afgelopen week is afgehandeld. Op sommige adressen lopen er meerdere schademeldingen. Die worden waar mogelijk met een enkel besluit afgehandeld.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
 
@@ -200,7 +200,7 @@ export const dashboardMain : GraphObject[] = [
         }
         },
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
       },
@@ -250,7 +250,7 @@ export const dashboardMain : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe en afgehandelde schademeldingen door de tijd heen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
@@ -305,7 +305,7 @@ export const dashboardMain : GraphObject[] = [
             }
         },
         "description" : "Het aantal schade-opnames en adviesrapporten door de tijd heen. De schade-opname en het adviesrapport zijn voor vrijwel alle schademeldingen nodig om te komen tot een besluit. De trend laat daarmee het potentieel van de schadeafhandeling zien.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
+        "endpoint": "opnames",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
@@ -399,7 +399,7 @@ export const dashboardMain : GraphObject[] = [
         }
     },
     "description" : "Een schademelding doorloopt een aantal stappen in de procedure voor afhandeling. Zolang er wekelijks ongeveer net zoveel schademeldingen naar een volgende stap in de procedure gaan als er nieuw binnenkomen, dan is de de capaciteit van de totale schadeafhandeling op niveau. De grafiek toont dus de mate waarin er voortgang is in het totaal van schademeldingen die in behandeling zijn. ",
-    "endpoint": "https://img.publikaan.nl/open-data/api/productie",
+    "endpoint": "productie",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-flow']
   },
@@ -456,7 +456,7 @@ export const dashboardMain : GraphObject[] = [
         }
     },
     "description" : "De diverse soorten schadevergoedingen die het IMG toekent uitgesplitst en als totaal opgeteld. De Stuwmeerregeling is afgelopen. Maar voor enkele van die dossiers worden nog vergoedingen toegekend omdat deze op basis van facturen van aannemers worden toegekend.",
-    "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen",
+    "endpoint": "vergoedingen",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-4']
 
@@ -541,7 +541,7 @@ export const dashboardMain : GraphObject[] = [
             }
         },
         "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/reacties",
+        "endpoint": "reacties",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
@@ -598,7 +598,7 @@ export const dashboardMain : GraphObject[] = [
             }
         },
         "description" : "Sommige schademeldingen hebben speciale aandacht nodig, zoals voor monumenten, bedrijven en agrariërs. Dit worden ook wel specials genoemd. De doorlooptijd voor de specials wijkt af van de reguliere schademeldingen voor woonhuizen zonder bijzondere omstandigheden.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
+        "endpoint": "specials",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     }

@@ -47,7 +47,7 @@ export class ChartBackgroundArea {
                 .x1(d => xScale(d[xParameter]))
                 // .y0(dimensions.height)
                 .y(d => yScale(new Date(d[yParameter])))
-                .curve(d3.curveCardinal);
+                .curve(d3.curveLinear);
         }
 
         if(this.config.extra.useLineFill) {

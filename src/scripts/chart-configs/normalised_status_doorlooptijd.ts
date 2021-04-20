@@ -42,7 +42,7 @@ export const normalisedStatusVsDoorlooptijd : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+    "endpoint": "voortgang",
     "segment": "all",
     "elementClasslist" : ["is-12"],
     "publishDate": false

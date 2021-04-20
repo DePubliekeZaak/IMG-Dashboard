@@ -5,6 +5,9 @@ import {GraphObject} from "../types/graphObject";
 import {ResponseData} from "../types/responseData";
 import { tickerFysiekeSchade, tickerWaardedaling, tickerTevredenheid } from "../chart-configs/module";
 import { breakpoints} from "../_styleguide/_breakpoints";
+import { API_BASE } from '../env';
+
+
 
 export class InitTicker {
 
@@ -19,7 +22,7 @@ export class InitTicker {
         this.styleMainElement();
 
         this.row(tickerFysiekeSchade,'Fysieke schade',4,'full-width')
-      //  this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-6');
+        this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-6');
         this.row(tickerTevredenheid,'Tevredenheid',2,'img-graph-container-6');
         this.addLink();
 
@@ -217,7 +220,7 @@ export class InitTicker {
 
         for (let endpoint of uniqueEndpoints) {
 
-            let url = (endpoint.indexOf('limit=') < 0) ? endpoint  + '?gemeente=eq.' + segment + '&_date=gte.2018-11-01' : endpoint;
+            let url = (endpoint.indexOf('limit=') < 0) ? API_BASE + endpoint  + '?gemeente=eq.' + segment + '&_date=gte.2018-11-01' : API_BASE +  endpoint;
 
             promises.push(
                 new Promise((resolve, reject) => {

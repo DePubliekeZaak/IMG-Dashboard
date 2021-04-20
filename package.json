@@ -41,6 +41,7 @@
     "test": "node test.js",
     "open": "gulp watch --open",
     "start": "gulp watch",
-    "build": "gulp bundle --production"
+    "build": "gulp bundle --production",
+    "dev": "gulp bundle --development"
   }
 }

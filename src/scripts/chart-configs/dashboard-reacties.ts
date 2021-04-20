@@ -54,7 +54,7 @@ export const dashboardReacties : GraphObject[] = [
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.<div class='formula'></div></div>",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-container-bol']
     },
@@ -94,7 +94,7 @@ export const dashboardReacties : GraphObject[] = [
     //         }
     //     },
     //     "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
-    //     "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+    //     "endpoint": "waardedaling",
     //     "segment": "all",
     //     "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     // },
@@ -150,7 +150,7 @@ export const dashboardReacties : GraphObject[] = [
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-container-shorttrend']
     },
@@ -315,7 +315,7 @@ export const dashboardReacties : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
@@ -480,7 +480,7 @@ export const dashboardReacties : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
@@ -536,7 +536,7 @@ export const dashboardReacties : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/tevredenheid",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
@@ -589,7 +589,7 @@ export const dashboardReacties : GraphObject[] = [
             }
         },
         "description" : "Schademelders krijgen gelegenheid te reageren op een adviesrapport. Dat heet een zienswijze. Er zijn drie opties: ‘akkoord geven’, een ‘zienswijze indienen’ en ‘niet reageren’. Als iemand niet reageert, dan wordt na twee weken de procedure voortgezet. Bijgaande cijfers betreffen de ingediende zienswijzes én de adviesrapporten waar geen reactie op kwam waar de reactietermijn is verstreken. Het is ook mogelijk die reactietermijn te laten verlengen. Een dergelijke reactie maakt geen onderdeel uit van de hier gepresenteerde cijfers.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/reacties",
+        "endpoint": "reacties",
         "segment": "all",
         "elementClasslist" : ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding'],
         "publishDate": false

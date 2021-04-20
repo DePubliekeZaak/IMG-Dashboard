@@ -40,7 +40,7 @@ export const tickerWaardedaling : GraphObject[] = [
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
@@ -84,7 +84,7 @@ export const tickerWaardedaling : GraphObject[] = [
             }
         },
         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+        "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     }

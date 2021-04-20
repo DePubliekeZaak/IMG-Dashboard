@@ -36,7 +36,7 @@ export const kaartSchademeldingen : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+    "endpoint": "meldingen",
     "segment": "all",
     "publishDate": false
 }

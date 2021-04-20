@@ -132,7 +132,7 @@ export const ballenbakStatus : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+    "endpoint": "voortgang",
     "segment": "all",
     "publishDate": false
 };

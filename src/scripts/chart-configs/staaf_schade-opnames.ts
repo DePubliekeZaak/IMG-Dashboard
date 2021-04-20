@@ -41,7 +41,7 @@ export const staafSchadeopnames : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "https://img.publikaan.nl/open-data/api/opnames",
+    "endpoint": "opnames",
     "segment": "all",
     "elementClasslist" : ["is-9"],
     "publishDate": false

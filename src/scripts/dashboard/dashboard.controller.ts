@@ -70,6 +70,11 @@ export class InitDashboard {
 
             if(segment === 'eemsdelta') {
                 weeks = this.data.createHistoryForEemsdelta(weeks);
+                weeks = this.data.correctionForEemsdelta(weeks);
+            }
+
+            if(segment === 'het-hogeland') {
+               weeks = this.data.correctionForHetHogeland(weeks);
             }
 
             if (update) {

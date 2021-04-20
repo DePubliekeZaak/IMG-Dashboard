@@ -53,7 +53,7 @@ export const dashboardSpecials : GraphObject[] = [
         }
     },
     "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
-    "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+    "endpoint": "meldingen",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
@@ -109,7 +109,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
@@ -165,7 +165,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
@@ -221,7 +221,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
@@ -357,7 +357,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/specials",
+        "endpoint": "specials",
         "segment": "all",
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-12']
@@ -417,7 +417,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",  // ivm in-graph gemeentekiezer
+        "endpoint": "specials?limit=60",  // ivm in-graph gemeentekiezer
         "segment": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
@@ -458,7 +458,7 @@ export const dashboardSpecials : GraphObject[] = [
             }
         },
         "description" : "Het aantal binnengekomen schademelding met speciale kenmerken dat per gemeente sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet. ",
-        "endpoint": "https://img.publikaan.nl/open-data/api/specials?limit=60",
+        "endpoint": "specials?limit=60",
         "segment": false,
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']

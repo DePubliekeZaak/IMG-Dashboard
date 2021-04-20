@@ -58,7 +58,7 @@ export const dashboardVergoedingen : GraphObject[] = [
             }
         },
         "description" : "Het aantal besluiten onderverdeeld naar omvang van de toegekende schadevergoeding in het besluit.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",  // ivm in-graph gemeentekiezer
+        "endpoint": "vergoedingen?limit=60",  // ivm in-graph gemeentekiezer
         "segment": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
@@ -99,7 +99,7 @@ export const dashboardVergoedingen : GraphObject[] = [
             }
         },
         "description" : "De totale schadevergoeding die voor alle afgehandelde schademeldingen in een gemeente is toegekend.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
+        "endpoint": "vergoedingen?limit=60",
         "segment": false,
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
@@ -167,53 +167,10 @@ export const dashboardVergoedingen : GraphObject[] = [
             }
         },
         "description" : "De diverse soorten schadevergoedingen die het IMG toekent uitgesplitst en als totaal opgeteld. De Stuwmeerregeling is afgelopen. Maar voor enkele van die dossiers worden nog vergoedingen toegekend omdat deze op basis van facturen van aannemers worden toegekend.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen",
+        "endpoint": "vergoedingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
 
-    },
-    {   "label": "Gemiddeld schadebedrag",
-        "slug": "meldingen_trend_schademeldingen",
-        "mapping": [
-            [
-                {
-                    "label": "Gemiddeld schadebedrag",
-                    "column": "fysieke_schade_gemiddeld_schadebedrag",
-                    "colour": "moss"
-                }
-            ]
-        ],
-        "config": {
-            "graphType": "TrendLine",
-            "xScaleType": "time",
-            "yScaleType": "linear",
-            "xParameter": "_date",
-            "yParameter": "nieuw_schademeldingen",
-            "padding": {
-                "top": 20,
-                "bottom": 80,
-                "left": 40,
-                "right": 0
-            },
-            "margin": {
-                "top": 80,
-                "bottom": 120,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "startDate" : '2019-10-01',
-                "xScaleTicks": "timeMonth",
-                "useLineFill": true,
-                "header" : "Trend gemiddeld schadebedrag",
-                "legend" : true,
-
-            }
-        },
-        "description" : "De ontwikkeling van het gemiddelde bedrag aan schadevergoeding per besluit door de tijd heen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-8','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
     {
         "label": "Afgewezen",
@@ -262,9 +219,96 @@ export const dashboardVergoedingen : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
+        "endpoint": "vergoedingen?limit=60",
         "segment": false,
-        "elementClasslist": ['img-graph-container','img-graph-container-6']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
+    },
+    {   "label": "Gemiddeld schadebedrag",
+        "slug": "meldingen_trend_schademeldingen",
+        "mapping": [
+            [
+                {
+                    "label": "Gemiddeld schadebedrag",
+                    "column": "fysieke_schade_week_percentage_toegewezen_besluiten",
+                    "colour": "lightBlue"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "TrendLine",
+            "xScaleType": "time",
+            "yScaleType": "linear",
+            "xParameter": "_date",
+            "yParameter": "nieuw_schademeldingen",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 40,
+                "right": 0
+            },
+            "margin": {
+                "top": 80,
+                "bottom": 120,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "startDate" : '2019-10-01',
+                "xScaleTicks": "timeMonth",
+                "minValue" : 50,
+                "useLineFill": true,
+                "header" : "Trend percentage toegewezen besluiten",
+                "legend" : false,
+
+            }
+        },
+        "description" : "De ontwikkeling van het gemiddelde bedrag aan schadevergoeding per besluit door de tijd heen.",
+        "endpoint": "vergoedingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+    },
+    {   "label": "Gemiddeld schadebedrag",
+        "slug": "meldingen_trend_schademeldingen",
+        "mapping": [
+            [
+                {
+                    "label": "Gemiddeld schadebedrag",
+                    "column": "fysieke_schade_gemiddeld_schadebedrag",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "TrendLine",
+            "xScaleType": "time",
+            "yScaleType": "linear",
+            "xParameter": "_date",
+            "yParameter": "nieuw_schademeldingen",
+            "padding": {
+                "top": 20,
+                "bottom": 80,
+                "left": 40,
+                "right": 0
+            },
+            "margin": {
+                "top": 80,
+                "bottom": 120,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "startDate" : '2019-10-01',
+                "xScaleTicks": "timeMonth",
+                "useLineFill": true,
+                "header" : "Trend gemiddeld schadebedrag",
+                "legend" : false,
+
+            }
+        },
+        "description" : "De ontwikkeling van het gemiddelde bedrag aan schadevergoeding per besluit door de tijd heen.",
+        "endpoint": "vergoedingen",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
     {
         "label" : "Spreiding percentage toegewezen besluiten",
@@ -304,9 +348,52 @@ export const dashboardVergoedingen : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",
+        "endpoint": "vergoedingen?limit=60",
         "segment": false,
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map']
+    },
+    {
+        "label": "Spreiding gemiddeld uitbetaald bedrag",
+        "slug": "vergoedingen_kaart_gemiddeld_uitbetaald",
+        "mapping": [
+            [
+                {
+                    "label": "Percentage afwijzingen",
+                    "column": "fysieke_schade_gemiddeld_schadebedrag_sinds_start",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "config": {
+            "graphType": "Map",
+            "xScaleType": false,
+            "yScaleType": false,
+            "xParameter": false,
+            "yParameter": false,
+            "padding": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0
+            },
+            "margin": {
+                "top": 0,
+                "bottom": 0,
+                "left": 0,
+                "right": 0
+            },
+            "extra": {
+                "legendWidth": 240,
+                "currencyLabels" : true,
+                "percentage": false,
+                "header" : "Spreiding van het gemiddeld uitgekeerd schadebedrag"
+            }
+        },
+        "description": "",
+        "endpoint": "vergoedingen?limit=60",
+        "segment": false,
+        "publishDate": false,
+        "elementClasslist": ['img-graph-container', 'img-graph-container-6', 'img-graph-container-map']
     }
 ]

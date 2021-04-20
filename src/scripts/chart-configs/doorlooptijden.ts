@@ -91,7 +91,7 @@ export const doorlooptijden : GraphObject = {
     }
 },
     "description" : "Een schademelding doorloopt een aantal stappen in de procedure voor afhandeling. Zolang er wekelijks ongeveer net zoveel schademeldingen naar een volgende stap in de procedure gaan als er nieuw binnenkomen, dan is de de capaciteit van de totale schadeafhandeling op niveau. De grafiek toont dus de mate waarin er voortgang is in het totaal van schademeldingen die in behandeling zijn. ",
-    "endpoint": "https://img.publikaan.nl/open-data/api/productie",
+    "endpoint": "productie",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-flow']
 }

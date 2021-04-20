@@ -40,7 +40,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "Het aantal nieuwe schademeldingen per week door de tijd heen. De grote piek komt overeen met de beving van Westerwijtwerd in mei 2019.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
@@ -81,7 +81,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "Het totaal aantal schademeldingen dat per gemeente is binnengekomen sinds 19 maart 2018, de start van de TCMG. Het IMG zet het werk van de TCMG (die tijdelijk was) structureel voort sinds 1 juli 2020.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen?limit=60",
+        "endpoint": "meldingen?limit=60",
         "segment": false,
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
@@ -129,7 +129,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie door de tijd heen, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
 
@@ -186,7 +186,7 @@ export const dashboardMeldingen : GraphObject[] = [
             }
         },
         "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
     }

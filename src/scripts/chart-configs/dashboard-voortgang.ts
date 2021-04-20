@@ -38,7 +38,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
@@ -78,7 +78,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
@@ -118,7 +118,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
     },
@@ -174,7 +174,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Het aantal openstaande schademeldingen onderverdeeld in de leeftijd van die melding sinds de indiening ervan. De grafiek toont de ontwikkeling door de tijd heen. Aangezien het IMG ernaar streeft dat reguliere schademeldingen binnen een half jaar zijn afgehandeld, zou dit verreweg de grootste groep moeten zijn van het totaal aantal openstaande schademeldingen op dit moment.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-medium-high','img-graph-container-vertical-padding']
@@ -215,7 +215,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde. Gem. tijd tot besluit: Doorlooptijd afgehandeld dossiers",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
@@ -255,7 +255,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Dit is bij benadering het aantal dagen waarin de schademelding is afgehandeld sinds de schademelding is binnengekomen. Het gaat daarbij om de mediaan. Vijftig procent van de schademeldingen is daarmee in minder dan het genoemde aantal dagen afgehandeld en vijftig procent in meer dagen. De mediaan wordt berekend over de laatset 2.500 besluiten over schademeldingen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
@@ -295,7 +295,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+        "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
     },
@@ -344,7 +344,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Het aantal schademeldingen dat nog in behandeling is voor de beving van Westerwijtwerd van mei 2019 en van na die beving. Bij de start van de TCMG op 19 maart 2018 kwamen ook ruim 13.000 openstaande schademeldingen binnen van het Centrum Veilig Wonen (CVW) dat voor de NAM de schadeafhandeling verzorgde. De schademeldingen die daarvan nog openstaan, worden hier ook getoond.",
-        'endpoint': 'https://img.publikaan.nl/open-data/api/meldingen',
+        'endpoint': 'meldingen',
         'segment': 'all',
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
     },
@@ -480,7 +480,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Het aantal openstaande schademeldingen is hier onderverdeeld naar vier leeftijdscategorieën, gerekend vanaf de datum van indiening. Per leeftijdscategorie zijn deze openstaande schademeldingen weer onderverdeeld naar waar ze op dit moment in de procedure zijn. De aantallen worden in absolute getallen weergegeven en in percentage van het totaal binnen de leeftijdscategorie.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "publishDate": false,
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-ballenbak']
@@ -517,7 +517,7 @@ export const dashboardVoortgang : GraphObject[] = [
             }
         },
         "description" : "Het aantal openstaande schademeldingen is hier onderverdeeld naar vier leeftijdscategorieën, gerekend vanaf de datum van indiening. Per leeftijdscategorie zijn deze openstaande schademeldingen weer onderverdeeld naar waar ze op dit moment in de procedure zijn. De aantallen worden in absolute getallen weergegeven en in percentage van het totaal binnen de leeftijdscategorie.",
-        "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist" : ['img-graph-container','img-graph-container-12'],
         "publishDate": false

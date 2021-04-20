@@ -80,6 +80,7 @@ export class Map {
 
     prepareData(data, topojsonObject)  {
 
+
         let features = topojson.feature(topojsonObject, topojsonObject.objects.gemeenten).features;
 
         for (let feature of features) {
@@ -98,6 +99,7 @@ export class Map {
 
             feature.properties.colour = this.dataMapping[0].colour;
         }
+
 
         return features;
     }

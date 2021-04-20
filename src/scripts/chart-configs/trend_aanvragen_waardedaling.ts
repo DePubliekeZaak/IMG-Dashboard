@@ -45,7 +45,7 @@ export const trendAanvragenWaardedaling : GraphObject = {
         }
     },
     "description" : "",
-    "endpoint": "https://img.publikaan.nl/open-data/api/waardedaling",
+    "endpoint": "waardedaling",
     "segment": "all",
     "publishDate": false
 };

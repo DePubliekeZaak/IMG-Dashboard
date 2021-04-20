@@ -50,7 +50,7 @@
 //     }
 // },
 //     "description" : "Het aantal schademeldingen met speciale kenmerken per week, door de tijd heen. De schademeldingen zijn onderverdeeld naar het type speciale dossier.",
-//     "endpoint": "https://img.publikaan.nl/open-data/api/specials",
+//     "endpoint": "specials",
 //     "segment": "all",
 //     "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-vertical-padding','img-grap-container-medium-high']
 // };
@@ -114,7 +114,7 @@
 //     }
 // },
 //     "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
-//     "endpoint": "https://img.publikaan.nl/open-data/api/meldingen",
+//     "endpoint": "meldingen",
 //     "segment": "all",
 //     "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
 // },
@@ -178,7 +178,7 @@
 //     }
 // },
 //     "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet. ",
-//     "endpoint": "https://img.publikaan.nl/open-data/api/voortgang",
+//     "endpoint": "voortgang",
 //     "segment": "all",
 //     "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
 // }]
@@ -241,7 +241,7 @@
 //     }
 // },
 //     "description" : "Het aantal besluiten onderverdeeld naar omvang van de toegekende schadevergoeding in het besluit.",
-//     "endpoint": "https://img.publikaan.nl/open-data/api/vergoedingen?limit=60",  // ivm in-graph gemeentekiezer
+//     "endpoint": "vergoedingen?limit=60",  // ivm in-graph gemeentekiezer
 //     "segment": false,
 //     "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
 // },

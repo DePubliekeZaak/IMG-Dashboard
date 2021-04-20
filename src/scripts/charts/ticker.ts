@@ -4,6 +4,8 @@ import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid, Html
 import * as d3 from "d3";
 import { breakpoints } from "../_styleguide/_breakpoints";
 
+
+
 export class Ticker  {
 
     element;
