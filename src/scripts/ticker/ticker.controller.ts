@@ -20,7 +20,6 @@ export class InitTicker {
 
     init() {
         this.styleMainElement();
-
         this.row(tickerFysiekeSchade,'Fysieke schade',4,'full-width')
         this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-6');
         this.row(tickerTevredenheid,'Tevredenheid',2,'img-graph-container-6');

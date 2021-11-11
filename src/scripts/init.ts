@@ -41,19 +41,19 @@ export class InitGraph {
     }
 
     single() {
-
-        const single = new InitSingle();
-        single.init();
+       const single = new InitSingle();
+       single.init();
     }
 
     dashboard() {
-        const dashboard = new InitDashboard();
-        dashboard.init();
+       const dashboard = new InitDashboard();
+       dashboard.init();
     }
 
     ticker() {
-        const ticker = new InitTicker();
-        ticker.init();
+
+       const ticker = new InitTicker();
+       ticker.init();
     }
 
     addStylesheets() {

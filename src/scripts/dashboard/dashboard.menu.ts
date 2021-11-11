@@ -26,5 +26,9 @@ export const menuItems = [
     {
         topic: 'waardedaling',
         label: 'Waardedalingsregeling'
-    }
+    } //,
+    // {
+    //     topic: 'trillingssnelheden',
+    //     label: 'Trillingssnelheden'
+    // }
 ]

@@ -5,7 +5,6 @@ import {GraphObject} from "./types/graphObject";
 import {ResponseData} from "./types/responseData";
 import { configs } from "./chart-configs/module";
 
-
 export class InitSingle {
 
     elements;

@@ -89,7 +89,7 @@ export class KTORatings {
         const periodSelect = document.querySelector('.period_select_' + this.config.extra.slug ) as HTMLSelectElement;
 
         periodSelect.addEventListener("change", function () {
-            self.update(self.data,periodSelect.options[periodSelect.selectedIndex].value);
+            self.update(completeMonths,periodSelect.options[periodSelect.selectedIndex].value);
         });
 
         this.popup = new HtmlPopup(this.element,this.description);
@@ -97,19 +97,25 @@ export class KTORatings {
         self.update(completeMonths,'all');
     }
 
-    prepareData(newData,segment)  {
+    prepareData(completeMonths,segment)  {
 
         const dataIndex = (segment === 'all') ? 1 : 2;
-        const monthIndex = (segment === 'all') ? 0 : segment;
+        const monthIndex = (segment === 'all') ? false : segment;
 
         let rapportcijfers = [];
         let neededColumns = ['_date','_category'].concat(this.dataMapping[0].map( (c) => c.column ));
         let data = [];
         let hasEnoughData = true;
         let clearWeek = {};
+        let selectedMonth = monthIndex ? completeMonths.find( (m) => {
+            return parseInt(m._month) === parseInt(monthIndex);
+
+        }) : completeMonths[0];
+        
         for (let column of neededColumns) {
-            if (newData[monthIndex][column] !== null) {
-                clearWeek[column] = newData[monthIndex][column]
+
+            if (selectedMonth[column] !== null) {
+                clearWeek[column] = selectedMonth[column]
             } else {
                 hasEnoughData = false;
             }
@@ -127,7 +133,7 @@ export class KTORatings {
                 rapportcijfers.push({
                         label: mapping.label,
                         colour: mapping.colour,
-                        value: newData[monthIndex][mapping.column]
+                        value: selectedMonth[mapping.column]
                     }
                 )
             }

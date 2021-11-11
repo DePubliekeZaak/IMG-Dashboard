@@ -146,12 +146,14 @@ export class PieChartSum  {
 
                 sum = (d[mapping.column] !== undefined) ? sum + d[mapping.column] : sum;
 
-                dataArray.push({
-                    label: mapping.label,
-                    value: value,
-                    colour: mapping.colour,
-                    accented: (i > 1) ? true : false
-                });
+                if (value > 0) {
+                    dataArray.push({
+                        label: mapping.label,
+                        value: value,
+                        colour: mapping.colour,
+                        accented: (i > 1) ? true : false
+                    });
+                }
             }
 
             preparedData.push(dataArray);

@@ -4,7 +4,6 @@ import {Config} from "../types/graphConfig";
 
 export class ChartScale {
 
-
     dataLength;
 
     constructor(
@@ -81,7 +80,6 @@ export class ChartScale {
 
                 break;
         }
-
     }
 
 

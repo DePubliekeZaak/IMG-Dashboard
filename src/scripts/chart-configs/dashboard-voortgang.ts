@@ -251,7 +251,7 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "extra": {
                 "useLineFill": true,
-                "units": "%"
+                "units": "dagen"
             }
         },
         "description" : "Dit is bij benadering het aantal dagen waarin de schademelding is afgehandeld sinds de schademelding is binnengekomen. Het gaat daarbij om de mediaan. Vijftig procent van de schademeldingen is daarmee in minder dan het genoemde aantal dagen afgehandeld en vijftig procent in meer dagen. De mediaan wordt berekend over de laatset 2.500 besluiten over schademeldingen.",

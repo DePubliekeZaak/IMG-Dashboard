@@ -33,6 +33,15 @@ export class ChartAxes {
 
                 break;
 
+            case 'center' :
+
+                this.axisGroup
+                    .attr('class', 'x-axis');
+
+                this.axis = d3.axisBottom(this.scale);
+
+                break;
+
             case 'top' :
 
                 this.axisGroup

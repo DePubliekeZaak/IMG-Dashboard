@@ -239,7 +239,7 @@ export const dashboardVergoedingen : GraphObject[] = [
             "xScaleType": "time",
             "yScaleType": "linear",
             "xParameter": "_date",
-            "yParameter": "nieuw_schademeldingen",
+            "yParameter": "schademeldingen",
             "padding": {
                 "top": 20,
                 "bottom": 80,

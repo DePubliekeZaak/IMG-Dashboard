@@ -5,6 +5,7 @@ import {dashboardSpecials} from "../chart-configs/dashboard-specials";
 import {dashboardReacties} from "../chart-configs/dashboard-reacties";
 import {dashboardOpnames} from "../chart-configs/dashboard-opnames";
 import {dashboardWaardedalingsRegeling} from "../chart-configs/dashboard-waardedalingsregeling";
+import {dashboardTrillingssnelheden} from "../chart-configs/dashboard-trillingssnelheden";
 import {dashboardMain} from "../chart-configs/dashboard";
 import {munis} from "../helpers/municipalities";
 
@@ -45,6 +46,10 @@ export default class DashboardParams {
             case 'waardedaling' :
 
                 return dashboardWaardedalingsRegeling;
+
+            case 'trillingssnelheden' :
+
+                return dashboardTrillingssnelheden;
 
             default :
 

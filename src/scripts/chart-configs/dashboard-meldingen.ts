@@ -8,7 +8,8 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "Nieuw",
                     "column": "nieuw_schademeldingen",
-                    "colour": "blue"
+                    "colour": "blue",
+                    "short": "nieuw"
                 }
             ]
         ],
@@ -31,12 +32,13 @@ export const dashboardMeldingen : GraphObject[] = [
                 "right": 0
             },
             "extra": {
-                "xScaleTicks": "timeMonth",
+                "xScaleTicks": "quarterly",
                 "useLineFill": true,
                 "largeHeader" : false,
                 "header" : "Schademeldingen per week",
                 "link": "meldingen",
                 "legend" : true,
+                "hasFocus" : true
             }
         },
         "description" : "Het aantal nieuwe schademeldingen per week door de tijd heen. De grote piek komt overeen met de beving van Westerwijtwerd in mei 2019.",
@@ -93,12 +95,14 @@ export const dashboardMeldingen : GraphObject[] = [
                 {
                     "label": "AOS Meldingen",
                     "column": "nieuw_aos_meldingen",
-                    "colour": "moss"
+                    "colour": "moss",
+                    "short": "melding"
                 },
                 {
                     "label": "Acuut onveilige situaties",
                     "column": "nieuw_aos_meldingen_gegrond",
-                    "colour": "orange"
+                    "colour": "orange",
+                    "short": "gegrond"
                 }
             ]
         ],
@@ -121,11 +125,12 @@ export const dashboardMeldingen : GraphObject[] = [
                 "right": 0
             },
             "extra": {
-                "xScaleTicks": "timeMonth",
+                "xScaleTicks": "quarterly",
                 "useLineFill": true,
                 "largeHeader" : true,
                 "header" : "Trend AOS-meldingen",
                 "legend": true,
+                "hasFocus" : true
             }
         },
         "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie door de tijd heen, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
@@ -182,6 +187,7 @@ export const dashboardMeldingen : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
+                "tieten": false,
                 "header" : "Wel/niet acuut onveilige situatie"
             }
         },

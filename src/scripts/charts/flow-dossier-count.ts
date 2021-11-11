@@ -234,9 +234,6 @@ export class FlowDossierCount {
             this.barsYScale = this.chartBarsYScale.set(this.props);
             this.chartStackedBarsNormalized.draw(flowData, outflowDataNormalised, []);
         }
-
-     //   this.chartBrackets.draw(data);
-
     }
 
     redraw(flowData, outflowDataNormalised) {
@@ -251,10 +248,7 @@ export class FlowDossierCount {
         this.xScale = this.chartXScale.reset(direction,this.dimensions,this.xScale);
         this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale);
 
-      //  this.xAxis.redrawXLinearAxisBottom(this.xScale,this.dimensions);
-
         this.chartCircles.redraw(flowData,this.dimensions,this.rScale,this.xScale, direction);
-    //    this.chartBrackets.redraw(data,this.dimensions,this.rScale,this.xScale)
         this.chartFlowBetweenCircles.redraw(flowData,this.dimensions,this.rScale,this.xScale, direction);
 
         let center = {x: (this.dimensions.width / 2) , y: (self.dimensions.height / 2) };
