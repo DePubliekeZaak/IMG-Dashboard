@@ -1,0 +1,34 @@
+[
+  {
+    "label": "Staaf schademeldingen",
+    "value": "staaf_schademeldingen",
+    "className": "img-custom-graph",
+    "scripts": [
+      "https://img.publikaan.nl/graphs/scripts/bundle.js"
+    ]
+  },
+  {
+    "label" : "Bollen proceduretijd",
+    "value" : "bollen_procedureduur",
+    "className": "img-custom-graph",
+    "scripts": [
+      "https://img.publikaan.nl/graphs/scripts/bundle.js"
+    ]
+  },
+  {
+    "label" : "Trend nieuwe meldingen vs afgehandeld",
+    "value" : "trend_schademeldingen",
+    "className": "img-custom-graph",
+    "scripts": [
+      "https://img.publikaan.nl/graphs/scripts/bundle.js"
+    ]
+  },
+  {
+    "label" : "Trend aanvragen waardedaling",
+    "value" : "trend_aanvragen_waardedaling",
+    "className": "img-custom-graph",
+    "scripts": [
+      "https://img.publikaan.nl/graphs/scripts/bundle.js"
+    ]
+  }
+]

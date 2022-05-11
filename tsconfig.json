@@ -1,16 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonjs",
-    "outDir": "dist",
-    "sourceMap": true,
-    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "module": "es6",
+    "target": "es5",
     "allowJs": true
   },
-  "include": [
-    "./src/scripts/**/*"
-  ],
-  "exclude": [
-    "./node_modules"
-  ]
+  "files": ["src/index.ts"]
 }
