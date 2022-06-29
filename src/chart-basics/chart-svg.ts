@@ -26,8 +26,8 @@ export class ChartSVG {
             .attr('height', dimensions.svgHeight)
             .attr('width', dimensions.svgWidth);
 
-        this.svg.layers.legend
-            .attr('transform', 'translate(' + this.config.padding.left + ',' + this.config.padding.top + ')');
+        // this.svg.layers.legend
+        //     .attr('transform', 'translate(' + this.config.padding.left + ',' + this.config.padding.top + ')');
     }
 
     layers() {

@@ -10,15 +10,6 @@ body#development {
     display: flex;
     flex-direction: row;
 
-    @media (min-width: 1088px) {
-      max-width: 960px;
-      width: 960px;
-    }
-
-    @media (min-width: 1322px) {
-      max-width: 1194px;
-      width: 1194px;
-    }
 
     > div {
       width: 100%;
@@ -30,6 +21,19 @@ body#development {
     }
 
 
+  }
+
+  .container {
+
+    @media (min-width: 1088px) {
+      max-width: 960px;
+      width: 960px;
+    }
+
+    @media (min-width: 1322px) {
+      max-width: 1194px;
+      width: 1194px;
+    }
   }
 
   .columns {

@@ -1,18 +1,13 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-import { munis } from '../helpers/municipalities';
-import { ChartBar, HtmlHeader, HtmlPopup, HtmlMuniSelector } from '../chart-elements/module';
-import * as d3 from 'd3';
+import { ChartAxes } from '../chart-basics/module';
 
-export class BandBars {
-    element;
-    yParameter;
-    dimensions;
-    svg;
+import { ChartBar } from '../svg-elements/module';
 
-    chartDimensions;
-    chartSVG;
-    chartXScale;
-    chartYScale;
+import { GraphController } from './graph';
+import { GraphObject } from '../types/graphObject';
+import { D3DataTypeLatest, DataPart, GraphData } from '../types/data';
+
+export default class BandBars extends GraphController {
+
     chartAxis;
     chartBar;
 
@@ -21,127 +16,95 @@ export class BandBars {
     bottomAxis;
     leftAxis;
 
-    popup;
-    htmlHeader;
-    htmlMuniSelector;
-
     constructor(
-
-        private data : any,
-        private elementID : string,
-        private config : any,
-        private dataMapping : [any],
-        private description : string,
-        private segment : string
-
+        public main: any,
+        public data : any,
+        public element : HTMLElement,
+        public graphObject: GraphObject,
+        public segment: string  
     ){
-        this.element = d3.select(this.elementID).node();
-        this.yParameter = this.dataMapping[0].column;
-
-
-        // this.config.yParameter = this.dataMapping[0].column;
+        super(main,data,element,graphObject,segment) 
     }
 
     init() {
 
+        super._init();
+        super._svg();
 
-        let self = this;
-        let chartObjects = ChartObjects();
-        this.config = Object.assign(chartObjects.config(),this.config);
-        this.dimensions = chartObjects.dimensions();
-        this.svg = chartObjects.svg();
+        this.graphObject.config.extra.paddingInner = .25;
+      //  this.graphObject.config.extra.paddingOuter = .5;
 
-        // get dimensions from parent element
-        this.chartDimensions = new ChartDimensions(this.elementID, this.config);
-        this.dimensions = this.chartDimensions.get(this.dimensions);
 
-        // create svg elements without data
-        this.chartSVG = new ChartSVG(this.elementID, this.config, this.dimensions, this.svg);
-        this.chartXScale = new ChartScale(this.config.xScaleType, this.config, this.dimensions);
-        this.chartYScale = new ChartScale(this.config.yScaleType, this.config, this.dimensions);
-        this.bottomAxis = new ChartAxes(this.config, this.svg, 'bottom',this.chartXScale);
-        this.leftAxis = new ChartAxes(this.config, this.svg,'left',this.chartYScale);
-        this.chartBar = new ChartBar(this.config, this.svg.layers);
+        this.bottomAxis = new ChartAxes(this.graphObject.config, this.svg, 'bottom',this.chartXScale);
+        this.leftAxis = new ChartAxes(this.graphObject.config, this.svg,'left',this.chartYScale);
+        
+        this.chartBar = new ChartBar(this);
 
-        this.htmlHeader = new HtmlHeader(this.element,this.config.multiples ? munis.find( m => m.value === this.segment).label : this.config.extra.header);
-        this.htmlHeader.draw();
 
-        this.htmlMuniSelector = new HtmlMuniSelector(this.element,'specials_band_bars'); // later koppelen aan GraphObject.slug
 
-        if (this.config.extra.municipalitySelect) {
+        // this.htmlMuniSelector = new HtmlMuniSelector(this.element,'specials_band_bars'); // later koppelen aan GraphObject.slug
 
-            this.htmlMuniSelector.draw();
-            const municipalitySelect = document.querySelector('.municipality_select_' + 'specials_band_bars' ) as HTMLSelectElement;
-            municipalitySelect.addEventListener("change", function () {
-                self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
-            });
-        }
+        // if (this.graphObject.config.extra.municipalitySelect) {
 
-        this.popup = new HtmlPopup(this.element,this.description);
+        //     this.htmlMuniSelector.draw();
+        //     const municipalitySelect = document.querySelector('.municipality_select_' + 'specials_band_bars' ) as HTMLSelectElement;
+        //     municipalitySelect.addEventListener("change", function () {
+        //         self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
+        //     });
+        // }
 
-        this.update(this.data,(this.segment !== undefined) ? this.segment : "all");
+        this.update(this.data,(this.segment !== undefined) ? this.segment : "all", false);
     }
 
-    prepareData(newData,segment)  {
+    prepareData(data: DataPart[]) : GraphData {
 
-        let data = [];
+        let slice: D3DataTypeLatest[] = [];
 
-        let d = (this.config.extra.municipalitySelect || this.config.multiples) ? this.data.find( j => j['gemeente'] === segment) : newData[0];
+        let d = (this.graphObject.config.extra.municipalitySelect || this.graphObject.config.multiples) ? data.find( j => j['gemeente'] === this.segment) : data[0];
 
-        for (let mapping of this.dataMapping) {
+        for (let mapping of this.graphObject.mapping[0]) {
 
-            let value = d[mapping.column];
+            let column = Array.isArray(mapping) ? mapping[0].column : mapping.column;
 
-            data.push({
+            slice.push({
                     label: mapping.label,
                     colour: mapping.colour,
-                    value
+                    value: d[column],
+                    gemeente: d['gemeente'],
+                    _date: d['_date']
+
                 }
             )
         }
 
-        return data;
+        return { 
+            "history" : null,
+            "latest":  null, 
+            "slice" : slice,
+        };
     }
 
-    redraw(data) {
+    draw(data: GraphData) {
+    
+        this.xScale = this.chartXScale.set(data.slice.map(d => d[this.xParameter]));
+        this.chartBar.draw(data.slice);
+    }
 
-        this.popup.attachData([data]);
 
-        this.yScale = this.chartYScale.set(this.config.extra.yMax ? [this.config.extra.yMax] : data.map ( d => d[this.config.yParameter]));
+    redraw(data: GraphData) {
 
-        // on redraw chart gets new dimensions
-        this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartSVG.redraw(this.dimensions);
-        // new dimensions mean new scales
-        this.xScale = this.chartXScale.reset('horizontal',this.dimensions,this.xScale);
-        this.yScale = this.chartYScale.reset('vertical',this.dimensions,this.yScale);
-        // new scales mean new axis
-        this.bottomAxis.redraw(this.config.xScaleType, this.dimensions, this.xScale);
-        this.leftAxis.redraw(this.config.yScaleType, this.dimensions, this.yScale);
+        this.yScale = this.chartYScale.set(this.graphObject.config.extra.yMax ? [this.graphObject.config.extra.yMax] : data.slice.map ( d => d[this.yParameter]));
+
+        super.redraw(data);
+        
+        this.bottomAxis.redraw(this.graphObject.config.xScaleType, this.dimensions, this.xScale);
+        this.leftAxis.redraw(this.graphObject.config.yScaleType, this.dimensions, this.yScale);
         // redraw data
-        this.chartBar.redraw(this.dimensions,this.xScale,this.yScale);
+        this.chartBar.redraw(data.slice);
     }
 
-    draw(data) {
-
-        let self = this;
-
-        let inputData = this.config.extra.removeFirstColumn ? data.slice(1, data.length) : data;
-
-        this.xScale = this.chartXScale.set(inputData.map(d => d[this.config.xParameter]));
-
-        this.chartBar.draw(inputData);
-    }
-
-    update(newData,segment) {
-
-
-        let self = this;
-
-        let data = this.prepareData(newData,segment);
-        this.draw(data);
-        this.redraw(data);
-
-        window.addEventListener("resize", () => self.redraw(data), false);
-    }
+    
+    update(data: GraphData, segment: string, update: boolean) {
+        super._update(data,segment,update);
+    } 
 }

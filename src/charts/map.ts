@@ -1,87 +1,73 @@
 import * as d3 from "d3";
+import { GraphController } from "./graph";
 import * as topojson from "topojson-client";
 
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale} from "../chart-basics/module";
-import {ChartMap, HtmlHeader, HtmlPopup} from "../chart-elements/module";
+import { ChartObjects, ChartSVG, ChartDimensions, ChartScale } from "../chart-basics/module";
+import { ChartMap, MapLegend } from "../svg-elements/module";
+import { HtmlHeader, HtmlPopup } from "../html-elements/module";
 
-import { slugify} from "../utils/slugify.utils";
-import {breakpoints} from "../_styleguide/_breakpoints";
-import {colours} from "../_styleguide/_colours";
+import { slugify } from "../utils/slugify.utils";
+import { breakpoints } from "../_styleguide/_breakpoints";
 
-export class Map {
+import { GraphObject } from "../types/graphObject";
+import { DataPart, GraphData } from "../types/data";
 
-    element;
-    parameter;
-    dimensions;
-    svg;
 
-    chartDimensions;
-    chartSVG;
-    chartScale;
+export default class Map extends GraphController {
+
+    topojsonObject
+
     scale;
-
+    xScale: any;
+    chartScale; 
     features;
     chartMap;
-
-    popup;
-    htmlHeader;
+    legend;
 
     constructor(
-        private data,
-        private elementID,
-        private config,
-        private dataMapping,
-        private description
+        public main: any,
+        public data : any,
+        public element : HTMLElement,
+        public graphObject: GraphObject,
+        public segment: string  
     ) {
-        this.element = d3.select(elementID).node();
-        this.parameter = this.dataMapping[0]['column'];
+        super(main,data,element,graphObject,segment);
     }
-
-
 
     init() {
 
+        // if (window.innerWidth < breakpoints.sm) {
+            this.graphObject.config.margin.right = 25;
+        // }
+
+        super._init();
+
+        const svgId = "svg-wrapper-" + this.graphObject.slug
         const container = document.createElement('section');
+        container.style.height = "320px";
+        container.style.marginTop = "-5%";
+        container.id = svgId;
         this.element.appendChild(container);
 
-        let self = this;
-        let chartObjects = ChartObjects();
-        this.config = Object.assign(chartObjects.config(),this.config);
+        super._svg(container);
+     
+        this.chartScale = new ChartScale("linear", this.graphObject.config, this.dimensions)
 
-        if (window.innerWidth < breakpoints.sm) {
-            this.config.margin.right = 60;
-        }
-
-        this.dimensions = new ChartDimensions(container,this.config);
-        this.svg = chartObjects.svg();
-
-        this.chartDimensions = new ChartDimensions(this.element,this.config);
-        this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartSVG = new ChartSVG(container,this.config,this.dimensions,this.svg);
-        this.chartScale = new ChartScale('linear',this.config,this.dimensions);
-
-        this.chartSVG.redraw(this.dimensions);
-
-        this.chartMap = new ChartMap(this.config,this.svg,this.dimensions);
+        this.chartMap = new ChartMap(this);
         this.chartMap.init();
 
-        if (this.config.extra.header) {
-            this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
-            this.htmlHeader.draw();
-        }
-
-        this.popup = new HtmlPopup(this.element,this.description);
+        this.legend = new MapLegend(this);
 
         // get geodata.js
         d3.json('https://graphs.publikaan.nl/graphs/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
-            this.update(this.data, topojsonObject);
+            this.topojsonObject = topojsonObject;
+            this.update(this.data,this.segment,false);
         });
     }
 
-    prepareData(data, topojsonObject)  {
+    prepareData(data: DataPart[]) : GraphData  {
 
-
-        let geojson: any = topojson.feature(topojsonObject, topojsonObject.objects.gemeenten);
+        let geojson: any = topojson.feature(this.topojsonObject, this.topojsonObject.objects.gemeenten);
         let features = geojson.features;
 
         for (let feature of features) {
@@ -98,85 +84,41 @@ export class Map {
                 }
             }
 
-            feature.properties.colour = this.dataMapping[0].colour;
+            feature.properties.colour = this.graphObject.mapping[0][0].colour;
         }
 
-
-        return features;
+        return {
+            latest: null,
+            slice: null,
+            history: null,
+            features
+        }
     }
 
-    legend(features) {
+    draw(data: GraphData) {
 
-        let bar =  document.createElement('div');
-        bar.style.display = 'flex';
-        bar.style.flexDirection = 'column';
-        bar.style.position ='relative';
-        bar.style.height = '200px';
-        bar.style.width = '1.5rem';
-        bar.style.background = '#eee';
-        bar.style.borderTop = '1px solid black';
-        bar.style.borderBottom = '1px solid black';
-        bar.style.marginTop = '1.5rem';
-
-        let max = d3.max(features.map( f => f.properties[this.parameter]));
-        let topSpan = document.createElement('span');
-        topSpan.innerText = max;
-        topSpan.style.fontSize = '0.7rem';
-        topSpan.style.height = '0';
-        topSpan.style.alignSelf ='flex-end';
-        topSpan.style.marginRight = '1.75rem';
-        topSpan.style.marginTop = '-.3rem';
-        topSpan.style.marginBottom = '.3rem';
-        bar.appendChild(topSpan);
-
-        let bottomSpan = document.createElement('span');
-        bottomSpan.innerText = '0';
-        bottomSpan.style.fontSize = '0.7rem';
-        bottomSpan.style.height = '0';
-        bottomSpan.style.alignSelf ='flex-end';
-        bottomSpan.style.marginRight = '1.75rem';
-        bottomSpan.style.marginTop= '-.3rem';
-
-        let inner =  document.createElement('div');
-        inner.style.height = '100%';
-
-      //  inner.style.background =
-
-        let gradient = 'linear-gradient(0deg, ' + colours.lightBlue[3] + ' 0%,' + colours.lightBlue[0] + ' 100%)';
-        inner.style.background = gradient + ' no-repeat';
-
-        bar.appendChild(inner);
-        bar.appendChild(bottomSpan);
-
-        return bar;
-
+        this.chartMap.draw(data.features);
+    //   if (window.innerWidth < breakpoints.sm) {
+        this.element.appendChild(this.legend.draw(data));
+        //   }
     }
 
-    draw(features) {
+    redraw(data: GraphData) {
 
-        this.chartMap.draw(features);
-    }
-
-    redraw(features) {
+        super.redraw(data);
 
         // if (newProperty && newProperty != undefined) { this.property = newProperty };
-        this.scale = this.chartScale.set(features.map( f => (f.properties[this.parameter] !== undefined) ? f.properties[this.parameter] : 0));
+        this.scale = this.chartScale.set(data.features.map( f => (f['properties'][this.yParameter] !== undefined) ? f['properties'][this.yParameter] : 0));
         this.scale = this.chartScale.reset('opacity',this.dimensions,this.scale);
-        // on redraw chart gets new dimensions
-        this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartSVG.redraw(this.dimensions);
-        // redraw data
-        this.chartMap.redraw(this.dimensions,this.parameter,this.scale);
+     
+        this.chartMap.redraw(this.yParameter,this.graphObject.mapping[0][0]['colour']);
     }
 
-    update(data,geodata) {
+    update(data: GraphData, segment: string, update: boolean) {
 
-        let features = this.prepareData(data, geodata);
-        if (window.innerWidth < breakpoints.sm) {
-            this.element.querySelector('section').appendChild(this.legend(features));
-        }
-        this.draw(features);
-        this.redraw(features);
+        super._update(data,segment,update);
+
+ 
     }
 }
 

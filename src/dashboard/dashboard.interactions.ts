@@ -40,17 +40,17 @@ export default class DashboardInteractions {
     showHideSidebarElements(topic) {
 
         let menuList : any = document.querySelector('ul.municipalities');
-        let map : any = document.getElementById('img-graph-dashboard-map');
+        // let map : any = document.getElementById('img-graph-dashboard-map');
 
 
         if(!topic || topic === undefined || topic === '') {
 
             menuList.style.display = 'block';
-            map.style.display = 'block';
+            //map.style.display = 'block';
 
         } else {
             menuList.style.display = 'none';
-            map.style.display = 'none';
+           // map.style.display = 'none';
         }
     }
 

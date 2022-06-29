@@ -3,7 +3,7 @@ import { GraphObject} from '../types/graphObject';
 export const taartSchadevergoedingen : GraphObject = {
         "label" : "Taart Schadevergoedingen",
         "slug" : "taart_schadevergoedingen",
-        "mapping": [[
+        "mapping": [
             [
                 {
                     "label": "Mijnbouwschade",
@@ -33,7 +33,7 @@ export const taartSchadevergoedingen : GraphObject = {
                     "colour": "yellow"
                 }
             ]
-        ]],
+        ],
         "config": {
             "graphType": "PieChartSum",
             "xScaleType" : false,

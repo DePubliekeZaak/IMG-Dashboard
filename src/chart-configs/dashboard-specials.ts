@@ -3,8 +3,8 @@ import { GraphObject} from '../types/graphObject';
 export const dashboardSpecials : GraphObject[] = [
     {
     "label": "Agro",
-    "slug": "specials_taart_schademeldingen",
-    "mapping":  [[
+    "slug": "specials_taart_schademeldingen_agro",
+    "mapping":  [
         [
             {
                 "label": "Afgehandeld",
@@ -24,7 +24,7 @@ export const dashboardSpecials : GraphObject[] = [
                 "colour": "yellow"
             }
         ]
-    ]],
+    ],
     "config": {
 
         "graphType": "PieChartSum",
@@ -59,8 +59,8 @@ export const dashboardSpecials : GraphObject[] = [
     },
     {
         "label": "Erfgoed",
-        "slug": "specials_taart_schademeldingen",
-        "mapping":  [[
+        "slug": "specials_taart_schademeldingen_erfgoed",
+        "mapping":  [
             [
                 {
                     "label": "Afgehandeld",
@@ -80,7 +80,7 @@ export const dashboardSpecials : GraphObject[] = [
                     "colour": "yellow"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",
@@ -115,8 +115,8 @@ export const dashboardSpecials : GraphObject[] = [
     },
     {
         "label": "MKB",
-        "slug": "specials_taart_schademeldingen",
-        "mapping":  [[
+        "slug": "specials_taart_schademeldingen_mkb",
+        "mapping":  [
             [
                 {
                     "label": "Afgehandeld",
@@ -136,7 +136,7 @@ export const dashboardSpecials : GraphObject[] = [
                     "colour": "yellow"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",
@@ -171,8 +171,8 @@ export const dashboardSpecials : GraphObject[] = [
     },
     {
         "label": "Overig",
-        "slug": "specials_taart_schademeldingen",
-        "mapping":  [[
+        "slug": "specials_taart_schademeldingen_overig",
+        "mapping":  [
             [
                 {
                     "label": "Afgehandeld",
@@ -192,7 +192,7 @@ export const dashboardSpecials : GraphObject[] = [
                     "colour": "yellow"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",
@@ -251,7 +251,7 @@ export const dashboardSpecials : GraphObject[] = [
             },
             {
                 "label": 'Overig en AOS',
-                "column" : 'overig_aos_in_fase_ontvangst',
+                "column" : 'aos_overig_in_fase_ontvangst',
                 "colour" : "orange",
                 "group" : 'Ontvangst en analyse'
             },

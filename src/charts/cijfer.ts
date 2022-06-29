@@ -1,125 +1,64 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
+import { HtmlCircle } from '../html-elements/module';
+import { GraphController } from './graph';
+import { GraphObject } from '../types/graphObject';
+import { DataPart, GraphData } from '../types/data';
+import { filterWeeks, getNeededColumnsForHistory } from '../d3-services/data-with-history.functions';
+import { ChartDimensions } from '../chart-basics/chart-dimensions';
 
-import { HtmlCircle, HtmlHeader, HtmlPopup, HtmlSegment } from '../chart-elements/module';
-import * as d3 from "d3";
+export default class Cijfer extends GraphController   {
 
-export class Cijfer  {
-
-    element;
-    yParameter;
-    dimensions;
-    svg;
-    yScale;
-    xScale;
-    bottomAxis;
-    leftAxis;
-
-    chartDimensions;
-    chartSVG;
-    chartXScale;
-    chartYScale;
-    chartAxes;
-
-    chartLine;
-    chartBackgroundArea;
-    chartWeekGrid;
-    chartAvgLine;
-    htmlHeader;
     htmlCircle;
-    htmlSegment;
-
-    link;
-    popup;
 
     constructor(
-
-        private data : any,
-        private elementID : string,
-        private config : any,
-        private dataMapping : [any],
-        private description,
-        private segment
+        public main: any,
+        public data : any,
+        public element : HTMLElement,
+        public graphObject: GraphObject,
+        public segment: string  
     ){
 
-        this.element = d3.select(this.elementID).node();
-        this.yParameter = this.dataMapping[0].column;
-        this.config.yParameter = this.dataMapping[0].column;
+        super(main,data,element,graphObject,segment) 
     }
 
     init() {
 
-        let self = this;
-
-        this.htmlHeader = new HtmlHeader(this.element,this.dataMapping[0].label);
-        this.htmlCircle = new HtmlCircle(this.config,this.dataMapping,this.element,this.dataMapping[0].label);
-        this.htmlSegment = new HtmlSegment(this.element);
-
-        // this.link = new HtmlLink(this.element,this.config.extra.link,'');
-
-
-      //  this.popup = new HtmlPopup(this.element,this.description);
+        super._init();
+        // super._svg(this.elementID);
+        
+        this.htmlCircle = new HtmlCircle(this.graphObject.config,this.graphObject.mapping,this.element,this.firstMapping);
         this.htmlCircle.draw();
-        this.htmlHeader.draw();
 
-        this.popup = new HtmlPopup(this.element,this.description);
-
-        self.update(this.data,this.segment,false);
+        this.update(this.data,this.segment,false);
 
     }
 
-    prepareData(newData)  {
+    prepareData(data: DataPart[])  {
 
-        let neededColumns = ['_date','_category'].concat(this.dataMapping.map( (c) => c.column ));
+        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const history = filterWeeks(data,neededColumns);
 
-        let data = [];
-        let hasEnoughData;
+        this.main.dataStore.setGraph(this.graphObject.slug, history);
 
-        for (let week of newData.slice(0,8)) {
-
-            hasEnoughData = true;
-
-            let clearWeek = {};
-
-            for (let column of neededColumns) {
-
-                if (week[column] !== null) {
-                    clearWeek[column] = week[column]
-                } else {
-                    hasEnoughData = false;
-                }
-            }
-
-            if (hasEnoughData) {
-                data.push(clearWeek);
-            }
-        }
-
-        return data;
+        return { 
+            "history" : history,
+            "latest" : data[0], 
+            "slice" : history.slice(0,8), 
+        };
     }
 
-    redraw(data) {
+    redraw(data: GraphData) {
 
-            this.popup.attachData([data[0]])
+        super.redraw(data);
 
-            // @ts-ignore
-
-        let secondParameter = (this.dataMapping[2]) ? this.dataMapping[2]['column'] : '';
-
-        this.htmlCircle.redraw(data,this.yParameter,secondParameter);
+        let noRespondents = (this.graphObject.mapping[0][2]) ? this.graphObject.mapping[0][2]['column'] : '';
+        this.htmlCircle.redraw([data.latest],this.firstMapping.column,noRespondents);
     }
 
 
-    update(newData,segment,update) {
+    update(data: GraphData, segment: string, update: boolean) {
 
-        if(update && this.config.extra.noUpdate) { return; }
+        super._update(data,segment,update);
 
-        let self = this;
-
-        // let data = self.prepareData(newData);
-
-        self.redraw(newData);
-
-        window.addEventListener("resize", () => self.redraw(newData), false);
     }
 
 }

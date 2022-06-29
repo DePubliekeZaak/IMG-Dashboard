@@ -1,35 +1,38 @@
 import { graphs } from '../charts/module';
-import { munis } from '../helpers/municipalities';
+import { munis } from '../d3-services/municipalities';
 import * as d3 from 'd3';
 import {GraphObject} from "../types/graphObject";
-import {ResponseData} from "../types/responseData";
-import {DashboardMap} from "./dashboard_map";
+import {ResponseData} from "../types/data";
+// import {DashboardMap} from "./dashboard_map";
 import {dashboardMain, dashboardMeldingen, dashboardVergoedingen, dashboardVoortgang, dashboardSpecials, dashboardReacties, dashboardOpnames, dashboardWaardedalingsRegeling } from "../chart-configs/module";
 import { breakpoints} from "../_styleguide/_breakpoints";
 import { menuItems } from "./dashboard.menu";
 import DashboardParams from "./dashboard.params";
 import DashboardHTML from "./dashboard.html";
 import DashboardInteractions from "./dashboard.interactions";
-import DashboardData from "./dashboard.data";
+import DashboardData from "./dashboard.data.service";
+import DataStore from '../data.store';
 
 
 export class InitDashboard {
 
     graphObjectArray : GraphObject[]  = [];
     graphMethods = {};
-    dashBoardMap;
+    // dashBoardMap;
     htmlContainer;
     html;
     interactions;
-    data;
+    dataService;
     params;
+    dataStore;
 
     constructor(){
 
         this.params = new DashboardParams();
         this.interactions = new DashboardInteractions(this,this.params);
-        this.data = new DashboardData();
-        this.html = new DashboardHTML(this,this.interactions,this.data);
+        this.dataStore = new DataStore()
+        this.dataService = new DashboardData();
+        this.html = new DashboardHTML(this,this.interactions,this.dataService);
     }
 
     init() {
@@ -43,7 +46,7 @@ export class InitDashboard {
             let aside = this.html.createSideBar(this.htmlContainer);
             aside.insertBefore(this.html.createMenu(this.htmlContainer), aside.childNodes[0]);
             this.html.createList(segment);
-            this.dashBoardMap = new DashboardMap(munis);
+            // this.dashBoardMap = new DashboardMap(munis);
             // this.dashBoardMap.update(false, "orange");
 
         } else {
@@ -61,29 +64,29 @@ export class InitDashboard {
 
     call(dashboardArray, segment: string, update: boolean) {
 
-        const promises = this.data.createDashboardCalls(dashboardArray, segment,false);
+        const promises = this.dataService.createDashboardCalls(dashboardArray, segment,false);
 
         Promise.all(promises).then((values) => {
 
-            let data = this.data.discardEmpty(values);
-            let { weekData, muniData } = this.data.mergeArrayObjects(data);
+            let data = this.dataService.discardEmpty(values);
+            let { weekData, muniData } = this.dataService.mergeArrayObjects(data);
 
             if (segment === 'eemsdelta') {
-                weekData = this.data.createHistoryForEemsdelta(weekData);
-                weekData = this.data.correctionForEemsdelta(weekData);
+                weekData = this.dataService.createHistoryForEemsdelta(weekData);
+                weekData = this.dataService.correctionForEemsdelta(weekData);
             }
 
             if (segment === 'het-hogeland') {
-                weekData = this.data.correctionForHetHogeland(weekData);
+                weekData = this.dataService.correctionForHetHogeland(weekData);
             }
 
             if (update) {
 
                 this.interactions.updateMuniList(segment);
                 //  highlight path in map
-                if (window.innerWidth > breakpoints.sm) {
-                    this.dashBoardMap.highlight(segment);
-                }
+                // if (window.innerWidth > breakpoints.sm) {
+                //     this.dashBoardMap.highlight(segment);
+                // }
             }
 
             for (let graphObject of dashboardArray) {
@@ -123,7 +126,7 @@ export class InitDashboard {
                         this.graphMethods[graphObject.slug].update(data, segment, true);
                     } else {
                         element.innerHTML = '';
-                        this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](data, element, graphObject.config, graphObject.mapping[0], graphObject.description, segment);
+                        this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](this, data, element, graphObject, segment);
                         this.graphMethods[graphObject.slug].init();
                     }
                 }

@@ -3,7 +3,7 @@ import { GraphObject} from '../types/graphObject';
 export const taartBezwaren : GraphObject = {
     "label" : "Taart Bezwaren",
     "slug" : "taart_bezwaren",
-    "mapping": [[
+    "mapping": [
         [
             {
                 "label": "Gegrond",
@@ -39,8 +39,8 @@ export const taartBezwaren : GraphObject = {
         [
             {
                 "label": "Totaal afgehandeld",
-                "column": false,
-                "colour": false
+                "column": undefined,
+                "colour": undefined
             }
         ],
         [
@@ -50,7 +50,7 @@ export const taartBezwaren : GraphObject = {
                 "colour": "yellow"
             }
         ]
-    ]],
+    ],
     "config": {
         "graphType": "PieChartSum",
         "xScaleType" : false,

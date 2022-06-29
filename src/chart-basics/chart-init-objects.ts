@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import { colours } from "../_styleguide/_colours";
 
 let ChartObjects = function ChartObjects() {
 
@@ -45,7 +46,7 @@ let ChartObjects = function ChartObjects() {
         // tooltip.style.maxHeight = '180px';
         tooltip.style.padding = '.5rem';
         tooltip.style.background = 'white';
-        tooltip.style.border = '1px solid #777c00';
+        tooltip.style.border = '1px solid ' + colours.gray[0];
         tooltip.style.fontFamily = 'NotoSans Regular';
         tooltip.style.color = 'black';
         tooltip.style.pointerEvents = 'none';

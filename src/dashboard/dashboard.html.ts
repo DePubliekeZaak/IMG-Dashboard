@@ -1,5 +1,5 @@
 import {menuItems} from "./dashboard.menu";
-import {munis} from "../helpers/municipalities";
+import {munis} from "../d3-services/municipalities";
 import {dashboardMain} from "../chart-configs/dashboard";
 import DashboardInteractions from "./dashboard.interactions";
 import {GraphObject} from "../types/graphObject";
@@ -34,9 +34,9 @@ export default class DashboardHTML {
         let aside = document.createElement('aside');
         aside.classList.add('selectors');
 
-        let mapContainer = document.createElement('div');
-        mapContainer.id = "img-graph-dashboard-map";
-        aside.appendChild(mapContainer);
+        // let mapContainer = document.createElement('div');
+        // mapContainer.id = "img-graph-dashboard-map";
+        // aside.appendChild(mapContainer);
 
         htmlContainer.appendChild(aside);
 
@@ -99,8 +99,16 @@ export default class DashboardHTML {
         let ul = document.createElement('ul');
         ul.classList.add('dashboard_nav');
 
+        // let fs = document.createElement('li');
+        // fs.innerText = 'Fysieke schade';
+        // fs.style.padding = '.125rem 0';
+        // fs.style.lineHeight = '1.5';
+        // fs.style.fontWeight = '700';
+        // ul.appendChild(fs);
+
         let li = document.createElement('li');
-        li.innerText = 'Algemeen';
+        li.innerText = 'Fysieke schade';
+        li.style.fontWeight = '700';
         li.style.padding = '.125rem 0';
         li.style.lineHeight = '1.5';
         li.style.cursor = 'pointer';
@@ -118,6 +126,13 @@ export default class DashboardHTML {
             li.style.cursor = 'pointer';
             li.setAttribute('data-slug', i.topic);
             li.onclick = () =>  this.interactions.switchTopic(i.topic,'all');
+
+            if (["Waardedaling","Immateriele schade","Waardering en reacties"].indexOf(i.label) >  -1) {
+
+                li.style.fontWeight = '700';
+                li.style.marginTop = '1rem';
+            }
+
             ul.appendChild(li);
         }
 
@@ -131,22 +146,29 @@ export default class DashboardHTML {
         let container = document.querySelector('aside.selectors');
 
         let ul = document.createElement('ul');
+        ul.style.marginTop = '3rem';
         ul.classList.add('municipalities');
 
         for ( let muni of munis) {
 
             let li = document.createElement('li');
-            li.innerText = muni.label;
+            
             li.setAttribute('data-slug', muni.value);
             li.onclick = () => this.controller.call(dashboardMain,muni.value,true);
             li.style.padding = '.125rem 0';
             li.style.lineHeight = '1.5';
             li.style.cursor = 'pointer';
 
-            if (muni.value === segment) {
-                li.classList.add('active');
-            }
+            let span = document.createElement('span');
+            span.innerText = muni.label;
 
+            
+
+            if (muni.value === segment) {
+                span.classList.add('active');
+            }
+            
+            li.appendChild(span);
             ul.appendChild(li);
         }
 

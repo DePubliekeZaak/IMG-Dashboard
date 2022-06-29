@@ -142,7 +142,7 @@ export const dashboardMeldingen : GraphObject[] = [
     {
         "label": "Taart AOS Gegrond",
         "slug": "meldingen_taart_aos_meldingen",
-        "mapping":  [[
+        "mapping":  [
             [
                 {
                     "label": "Wel",
@@ -162,7 +162,7 @@ export const dashboardMeldingen : GraphObject[] = [
                     "colour": "gray"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",

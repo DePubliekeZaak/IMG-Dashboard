@@ -1,6 +1,7 @@
-import { localTime } from '../helpers/_formats';
+import { localTime } from '../d3-services/_formats';
 import * as d3 from "d3";
 import {getMonth, getMonthFromNumber} from "../utils/date-object.utils";
+import { convertToCurrency } from '../d3-services/_helpers';
 
 export class ChartAxes {
 
@@ -25,6 +26,7 @@ export class ChartAxes {
         switch (this.position) {
 
             case 'bottom' :
+            case 'belowBottom':
 
                 this.axisGroup
                     .attr('class', 'x-axis');
@@ -76,7 +78,7 @@ export class ChartAxes {
         }
     }
 
-    redraw(type, dimensions, scale) {
+    redraw(type, dimensions, scale, data) {
 
            switch (type) {
 
@@ -96,8 +98,38 @@ export class ChartAxes {
 
                case 'linear' :
 
-                   this.axis
-                       .ticks(4);
+                    if (this.config.extra.percentage) {
+
+                        this.axis
+                        .ticks(5)
+                        .tickFormat( d => d + "%")
+
+                    } else if (this.config.extra.currencyLabels) {
+
+                        this.axis
+                        .ticks(4)
+                        .tickFormat( d => convertToCurrency(d))
+
+                    } else if (this.config.extra.weekLabels && this.position === 'belowBottom') {
+
+                        let starts = data.filter( (w) => [1].indexOf(w._week) > -1 ).map( (w) => w._index);
+
+                       this.axis
+                            .tickValues(starts)
+                            .tickFormat( (d, i) => {
+                                let week = data.find( (w) => w._index == d);
+                                return /* 'w' + week['_week'] + ' ' +  */ week['_year']
+
+                            });
+
+                        break;
+
+                    } else {
+
+                        this.axis
+                            .ticks(4);
+
+                    }
 
                    break;
 
@@ -165,6 +197,14 @@ export class ChartAxes {
 
                     break;
 
+                case 'belowBottom' :
+
+                    this.axisGroup
+                        .attr("transform", "translate(" + 0 + "," + (dimensions.height + 0) + ")")
+
+
+                    break;
+
                 case 'top' :
 
                     this.axisGroup
@@ -184,7 +224,7 @@ export class ChartAxes {
                 case 'right' :
 
                     this.axisGroup
-                        .attr("transform", "translate(" + 0 + "," + dimensions.width + ")");
+                        .attr("transform", "translate(" + (dimensions.width + this.config.padding.right) + "," + 0 + ")");
 
 
                     break;

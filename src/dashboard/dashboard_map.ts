@@ -1,9 +1,9 @@
 import * as d3 from "d3";
-import {ResponseData} from "../types/responseData";
+import {ResponseData} from "../types/data";
 import * as topojson from "topojson-client";
 
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale} from "../chart-basics/module";
-import { ChartMap } from "../chart-elements/module";
+import { ChartMap } from "../svg-elements/module";
 import {slugify} from "../utils/slugify.utils";
 
 
@@ -66,14 +66,14 @@ export class DashboardMap {
         this.svg = chartObjects.svg();
 
         this.chartDimensions = new ChartDimensions(this.element,this.config);
-        this.dimensions = this.chartDimensions.get(this.dimensions);
+        this.dimensions = this.chartDimensions.measure(this.dimensions);
         this.chartSVG = new ChartSVG(this.element,this.config,this.dimensions,this.svg);
         this.chartScale = new ChartScale('linear',this.config,this.dimensions);
 
         this.chartSVG.redraw(this.dimensions);
 
-        this.chartMap = new ChartMap(this.config,this.svg,this.dimensions);
-        this.chartMap.init();
+        this.chartMap = new ChartMap(this);
+        // this.chartMap.init();
 
         d3.json('https://graphs.publikaan.nl/graphs/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
             const features = this.prepareData(this.data, topojsonObject);
@@ -108,10 +108,10 @@ export class DashboardMap {
       //  this.scale = this.chartScale.set(this.features.map( f => f.properties[parameter]));
       //      this.scale = this.chartScale.reset('opacity',this.dimensions,this.scale);
         // on redraw chart gets new dimensions
-        this.dimensions = this.chartDimensions.get(this.dimensions);
+        this.dimensions = this.chartDimensions.measure(this.dimensions);
         this.chartSVG.redraw(this.dimensions);
         // redraw data
-        this.chartMap.redraw(this.dimensions,parameter,this.scale,colour);
+        this.chartMap.redraw(parameter,colour);
     }
 
     update(parameter,colour) {

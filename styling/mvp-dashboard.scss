@@ -39,7 +39,7 @@ main {
     @media (min-width: $breakpoint-bax) {
       padding: 2rem 0rem 0rem 240px;
       margin: 0;
-      width : calc(100% - 0px); //calc(100% - 4rem - 300px);
+      width : calc(100% - 240px); //calc(100% - 4rem - 300px);
     }
   }
 }
@@ -71,8 +71,9 @@ aside {
 
           display: none;
           @media (min-width: $breakpoint-md) {
-            display: block;
-            font-weight: 700;
+            display: inline-block;
+            // font-weight: 700;
+            border-bottom: 1px solid black;
           }
         }
       }
@@ -201,12 +202,14 @@ aside {
   @media (min-width : $breakpoint-bax) {
     width: calc(50% - 2rem/2);
   }
+}
 
-  &.img-graph-container-ipad-6 {
+.img-graph-container-ipad-6 {
 
-    @media (min-width : $breakpoint-md) {
-      width: calc(50% - 2rem/2);
-    }
+  width: 100%;
+
+  @media (min-width : $breakpoint-md) {
+    width: calc(50% - 2rem/2);
   }
 }
 
@@ -236,13 +239,12 @@ aside {
 }
 
 .img-graph-container-9 {
-  width: calc(75% - 3rem - 9rem);
+  width: calc(75% - 2rem);
   height: 22vw;
-  padding: 0 5rem 0 0;
+  // padding: 0 5rem 0 0;
   margin: 8rem 0 4rem 0;
 
   &.img-graph-top-align {
-
     margin: 0;
   }
 }

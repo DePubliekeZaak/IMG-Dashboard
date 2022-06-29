@@ -1,13 +1,11 @@
 import { graphs } from '../charts/module';
-import { munis } from '../helpers/municipalities';
+import { munis } from '../d3-services/municipalities';
 import * as d3 from 'd3';
 import {GraphObject} from "../types/graphObject";
-import {ResponseData} from "../types/responseData";
+import {ResponseData} from "../types/data";
 import { tickerFysiekeSchade, tickerWaardedaling, tickerTevredenheid, tickerImmaterieel } from "../chart-configs/module";
 import { breakpoints} from "../_styleguide/_breakpoints";
 import { API_BASE } from '../env';
-
-
 
 export class InitTicker {
 
@@ -20,12 +18,12 @@ export class InitTicker {
 
     init() {
         this.styleMainElement();
-        this.row(tickerFysiekeSchade,'Fysieke schade',4,'full-width')
-        this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-6');
-        this.row(tickerImmaterieel,'Immateriele schade',2,'img-graph-container-6');
-        this.row(tickerTevredenheid,'Tevredenheid',2,'img-graph-container-6');
-        this.addLink();
 
+        this.row(tickerFysiekeSchade,'Fysieke schade',4,'full-width')
+        this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-ipad-6');
+        this.row(tickerImmaterieel,'Immateriele schade',2,'img-graph-container-ipad-6');
+        // this.row(tickerTevredenheid,'Tevredenheid',2,'full-width');
+        this.addLink();
     }
 
     styleMainElement() {
@@ -67,13 +65,14 @@ export class InitTicker {
 
                 element.classList.add('img-graph-container');
                 element.classList.add('column');
+                element.style.padding = '0';
                 row.querySelector('.columns').appendChild(element);
 
                 let data = graphObject.segment ? weeks : munis;
 
                 element.innerHTML = '';
 
-                let graphClass = new graphs[graphObject.config.graphType](data, element, graphObject.config, graphObject.mapping[0],graphObject.description, 'all');
+                let graphClass = new graphs[graphObject.config.graphType](this, data, element, graphObject, 'all');
                 graphClass.init();
             }
         });
@@ -86,7 +85,7 @@ export class InitTicker {
         header.style.fontWeight = '700';
         header.style.lineHeight = '2';
         headerDiv.style.borderBottom = '1px solid #000';
-        headerDiv.style.marginTop = (count > 0) ?  '3rem' : '1.5rem';
+        headerDiv.style.marginTop = (count > 0) ?  '1.5rem' : '1.5rem';
         headerDiv.style.marginBottom = '1rem';
         header.innerText = name;
         headerDiv.appendChild(header);
@@ -122,11 +121,13 @@ export class InitTicker {
         row.classList.add('img-graph-ticker-block');
         row.classList.add(className);
         row.style.position = 'relative';
+        row.style.fontSize = '.875rem';
 
         const columns = document.createElement('div');
         columns.classList.add('columns');
         columns.style.position = 'relative';
         columns.style.minHeight = '9rem';
+        columns.style.margin = '0';
 
         if(window.innerWidth < breakpoints.sm) {
 
@@ -134,17 +135,14 @@ export class InitTicker {
             columns.style.flexDirection = 'column';
             columns.style.justifyContent = 'flex-start';
             columns.style.flexWrap = 'nowrap';
-            // row.style.height = (count === 2) ? '18rem' : '36rem';
 
         } else if (window.innerWidth < breakpoints.md) {
 
             columns.style.display = 'flex';
             columns.style.flexDirection = 'row';
             columns.style.flexWrap = 'wrap';
-        } else if (window.innerWidth < breakpoints.bax && rowName === 'Waardedaling')  {
 
-            columns.style.width = 'calc(50% + 2rem)';
-        }
+        }  
 
         row.append(this.addHeader(rowName,'1',''))
         row.appendChild(columns);

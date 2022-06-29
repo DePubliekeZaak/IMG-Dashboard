@@ -12,7 +12,7 @@ import {dashboardMultiplesVergoedingen} from "../chart-configs/dashboard-multipl
 import {dashboardMultiplesToegekend} from "../chart-configs/dashboard-multiples-toegekend";
 import {dashboardOverzicht} from "../chart-configs/dashboard-overzicht";
 import {dashboardMain} from "../chart-configs/dashboard";
-import {munis} from "../helpers/municipalities";
+import {munis} from "../d3-services/municipalities";
 
 export default class DashboardParams {
 

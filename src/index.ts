@@ -7,10 +7,15 @@ import { ENV } from "./env";
 import { InitDashboard } from "./dashboard/dashboard.controller";
 import { InitTicker } from "./ticker/ticker.controller";
 import { InitSingle} from "./single.controller";
+import DataStore  from "./data.store"
 
 export class InitGraph {
 
     constructor(){
+        this.init(); 
+    }
+
+    init() {
 
         // @ts-ignore
         if (ENV == "prod") {

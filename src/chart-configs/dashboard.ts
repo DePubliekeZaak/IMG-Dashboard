@@ -49,7 +49,8 @@ export const dashboardMain : GraphObject[] = [
                 "decimal": true,
                 "segmentIndicator": false,
                 "noUpdate" : true,
-                "shape": "block"
+                "shape": "block",
+                "header": "Tevredenheidscijfer"
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
@@ -96,7 +97,7 @@ export const dashboardMain : GraphObject[] = [
           "useLineFill": true,
           "units": "meldingen",
           "segmentIndicator": true,
-          "link": "meldingen"
+          "header": "Nieuw binnen vorige week"
       }
     },
     "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
@@ -142,7 +143,8 @@ export const dashboardMain : GraphObject[] = [
             "extra": {
                 "useLineFill": true,
                 "units": "meldingen",
-                "segmentIndicator": true
+                "segmentIndicator": true,
+                "header": "Afgehandeld in vorige week"
             }
         },
         "description" : "Het aantal schademeldingen dat afgelopen week is afgehandeld. Op sommige adressen lopen er meerdere schademeldingen. Die worden waar mogelijk met een enkel besluit afgehandeld.",
@@ -186,14 +188,15 @@ export const dashboardMain : GraphObject[] = [
                 "units": "dagen",
                 "segmentIndicator": false,
                 "noUpdate" : true,
-                "notNull": true
+                "notNull": true,
+                "header": "Verwachte duur afhandeling"
         }
         },
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
         "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
-      },
+    },
     {   "label": "In behandeling",
         "slug": "trend_schademeldingen",
         "mapping": [
@@ -289,9 +292,10 @@ export const dashboardMain : GraphObject[] = [
                 "xScaleTicks": "quarterly",
                 "useLineFill": true,
                 "header" : "Trend schade-opnames en adviesrapporten",
-                "segmentIndicator": true,
+                "segmentIndicator": false,
                 "legend": true,
-                "hasFocus": true
+                "hasFocus": true,
+                "noUpdate": true
             }
         },
         "description" : "Het aantal schade-opnames en adviesrapporten door de tijd heen. De schade-opname en het adviesrapport zijn voor vrijwel alle schademeldingen nodig om te komen tot een besluit. De trend laat daarmee het potentieel van de schadeafhandeling zien.",
@@ -306,7 +310,7 @@ export const dashboardMain : GraphObject[] = [
 
         {
             "label" : "Nieuwe meldingen",
-            "column" : "nieuw_schademeldingen",
+            "column" : "maatwerk_nieuwe_meldingen",
             "outflow" : "instroom_fase_ontvangst", // "nieuw_schademeldingen",
             "duration" : "",
             "colour": "moss"
@@ -355,7 +359,7 @@ export const dashboardMain : GraphObject[] = [
         },
         {
             "label" : "Afgerond",
-            "column" : "nieuw_afgehandeld",
+            "column" : "maatwerk_nieuw_afgehandeld",
             "outflow" : "",
             "duration" : "",
             "colour": "yellow"
@@ -396,7 +400,7 @@ export const dashboardMain : GraphObject[] = [
   {
     "label": "Taart Schadevergoedingen",
     "slug": "taart_schadevergoeding_totaal",
-    "mapping":  [[
+    "mapping":  [
         [
             {
                 "label": "Waardedaling",
@@ -421,7 +425,7 @@ export const dashboardMain : GraphObject[] = [
                 "colour": "gray"
             }
         ]
-    ]],
+    ],
     "config": {
 
         "graphType": "PieChartSum",
@@ -455,114 +459,30 @@ export const dashboardMain : GraphObject[] = [
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
-        // {
-        //     "label": "Taart AOS Gegrond",
-        //     "slug": "meldingen_taart_aos_meldingen",
-        //     "mapping":  [[
-        //         [
-        //             {
-        //                 "label": "Wel",
-        //                 "column": "aos_meldingen_gegrond",
-        //                 "colour": "moss"
-        //             },
-        //             {
-        //                 "label": "Niet",
-        //                 "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
-        //                 "colour": "blue"
-        //             }
-        //         ],
-        //         [
-        //             {
-        //                 "label": "Totaal",
-        //                 "column": "aos_meldingen",
-        //                 "colour": "gray"
-        //             }
-        //         ]
-        //     ]],
-        //     "config": {
-        //
-        //         "graphType": "PieChartSum",
-        //         "xScaleType" : false,
-        //         "yScaleType" : false,
-        //         "xParameter" : false,
-        //         "yParameter" : false,
-        //         "padding": {
-        //             "top": 0,
-        //             "bottom": 0,
-        //             "left": 0,
-        //             "right": 0
-        //         },
-        //         "margin": {
-        //             "top": 0,
-        //             "bottom": 15,
-        //             "left": 0,
-        //             "right": 0
-        //         },
-        //         "extra" :{
-        //             "currencyLabels" : false,
-        //             "legendWidth" : 220,
-        //             "maxRadius" : 100,
-        //             "innerRadius" : 20,
-        //             "tieten": false,
-        //             "header" : "Wel/niet acuut onveilige situatie"
-        //         }
-        //     },
-        //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-        //     "endpoint": "voortgang",
-        //     "segment": "all",
-        //     "elementClasslist": ['img-graph-container','img-graph-container-4']
-        // },
     {
-        "label": "Taart Bezwaren",
-        "slug": "taart_bezwaren",
-        "mapping":  [[
+        "label": "Taart AOS Gegrond",
+        "slug": "meldingen_taart_aos_meldingen",
+        "mapping":  [
             [
                 {
-                    "label": "Gegrond",
-                    "column": "bezwaren_gegrond",
+                    "label": "Wel",
+                    "column": "aos_meldingen_gegrond",
                     "colour": "moss"
                 },
                 {
-                    "label": "Deels gegrond",
-                    "column": "bezwaren_deels_gegrond",
-                    "colour": "orange"
-                },
-                {
-                    "label": "Ongegrond",
-                    "column": "bezwaren_ongegrond",
+                    "label": "Niet",
+                    "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
                     "colour": "blue"
-                },
-                {
-                    "label": "Niet ontvankelijk",
-                    "column": "bezwaren_niet_ontvankelijk",
-                    "colour": "purple"
-                },
-                {
-                    "label": "Ingetrokken",
-                    "column": "bezwaren_ingetrokken",
-                    "colour": "brown"
-                },
-                {
-                    "label": "Naar schadeprocedure",
-                    "column": "bezwaren_doorgezet",
-                    "colour": "orange"
                 }
             ],
             [
                 {
-                    "label": "Totaal afgehandeld",
-                    "column": false,
-                    "colour": false
-                }
-            ],
-            [
-                {
-                    "label": "In behandeling",
-                    "column": "bezwaren_in_behandeling",
+                    "label": "Totaal",
+                    "column": "aos_meldingen",
                     "colour": "gray"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",
@@ -587,19 +507,160 @@ export const dashboardMain : GraphObject[] = [
                 "legendWidth" : 220,
                 "maxRadius" : 100,
                 "innerRadius" : 20,
-                "header" : "Bezwaren",
-                "segmentIndicator": true,
+                "tieten": false,
+                "header" : "Wel/niet acuut onveilige situatie"
             }
         },
-        "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
-        "endpoint": "reacties",
+        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
+//         // {
+//         //     "label": "Taart AOS Gegrond",
+//         //     "slug": "meldingen_taart_aos_meldingen",
+//         //     "mapping":  [[
+//         //         [
+//         //             {
+//         //                 "label": "Wel",
+//         //                 "column": "aos_meldingen_gegrond",
+//         //                 "colour": "moss"
+//         //             },
+//         //             {
+//         //                 "label": "Niet",
+//         //                 "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
+//         //                 "colour": "blue"
+//         //             }
+//         //         ],
+//         //         [
+//         //             {
+//         //                 "label": "Totaal",
+//         //                 "column": "aos_meldingen",
+//         //                 "colour": "gray"
+//         //             }
+//         //         ]
+//         //     ]],
+//         //     "config": {
+//         //
+//         //         "graphType": "PieChartSum",
+//         //         "xScaleType" : false,
+//         //         "yScaleType" : false,
+//         //         "xParameter" : false,
+//         //         "yParameter" : false,
+//         //         "padding": {
+//         //             "top": 0,
+//         //             "bottom": 0,
+//         //             "left": 0,
+//         //             "right": 0
+//         //         },
+//         //         "margin": {
+//         //             "top": 0,
+//         //             "bottom": 15,
+//         //             "left": 0,
+//         //             "right": 0
+//         //         },
+//         //         "extra" :{
+//         //             "currencyLabels" : false,
+//         //             "legendWidth" : 220,
+//         //             "maxRadius" : 100,
+//         //             "innerRadius" : 20,
+//         //             "tieten": false,
+//         //             "header" : "Wel/niet acuut onveilige situatie"
+//         //         }
+//         //     },
+//         //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
+//         //     "endpoint": "voortgang",
+//         //     "segment": "all",
+//         //     "elementClasslist": ['img-graph-container','img-graph-container-4']
+//         // },
+//     // {
+//     //     "label": "Taart Bezwaren",
+//     //     "slug": "taart_bezwaren",
+//     //     "mapping":  [
+//     //         [
+//     //             {
+//     //                 "label": "Gegrond",
+//     //                 "column": "bezwaren_gegrond",
+//     //                 "colour": "moss"
+//     //             },
+//     //             {
+//     //                 "label": "Deels gegrond",
+//     //                 "column": "bezwaren_deels_gegrond",
+//     //                 "colour": "orange"
+//     //             },
+//     //             {
+//     //                 "label": "Ongegrond",
+//     //                 "column": "bezwaren_ongegrond",
+//     //                 "colour": "blue"
+//     //             },
+//     //             {
+//     //                 "label": "Niet ontvankelijk",
+//     //                 "column": "bezwaren_niet_ontvankelijk",
+//     //                 "colour": "purple"
+//     //             },
+//     //             {
+//     //                 "label": "Ingetrokken",
+//     //                 "column": "bezwaren_ingetrokken",
+//     //                 "colour": "brown"
+//     //             },
+//     //             {
+//     //                 "label": "Naar schadeprocedure",
+//     //                 "column": "bezwaren_doorgezet",
+//     //                 "colour": "orange"
+//     //             }
+//     //         ],
+//     //         [
+//     //             {
+//     //                 "label": "Totaal afgehandeld",
+//     //                 "column": false,
+//     //                 "colour": false
+//     //             }
+//     //         ],
+//     //         [
+//     //             {
+//     //                 "label": "In behandeling",
+//     //                 "column": "bezwaren_in_behandeling",
+//     //                 "colour": "gray"
+//     //             }
+//     //         ]
+//     //     ],
+//     //     "config": {
+
+//     //         "graphType": "PieChartSum",
+//     //         "xScaleType" : false,
+//     //         "yScaleType" : false,
+//     //         "xParameter" : false,
+//     //         "yParameter" : false,
+//     //         "padding": {
+//     //             "top": 0,
+//     //             "bottom": 0,
+//     //             "left": 0,
+//     //             "right": 0
+//     //         },
+//     //         "margin": {
+//     //             "top": 0,
+//     //             "bottom": 15,
+//     //             "left": 0,
+//     //             "right": 0
+//     //         },
+//     //         "extra" :{
+//     //             "currencyLabels" : false,
+//     //             "legendWidth" : 220,
+//     //             "maxRadius" : 100,
+//     //             "innerRadius" : 20,
+//     //             "header" : "Bezwaren",
+//     //             "segmentIndicator": true,
+//     //         }
+//     //     },
+//     //     "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
+//     //     "endpoint": "reacties",
+//     //     "segment": "all",
+//     //     "elementClasslist": ['img-graph-container','img-graph-container-4']
+//     // },
     {
         "label": "Taart Specials",
         "slug": "taart_specials",
-        "mapping":  [[
+        "mapping":  [
             [
                 {
                     "label": "Afgehandelde specials",
@@ -615,11 +676,11 @@ export const dashboardMain : GraphObject[] = [
             [
                 {
                     "label": "Totaal",
-                    "column": false,
-                    "colour": false
+                    "column": undefined,
+                    "colour": undefined
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",

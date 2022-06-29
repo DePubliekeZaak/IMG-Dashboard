@@ -1,16 +1,18 @@
 export const menuItems = [
+    // {
+    //     topic: false,
+    //     label: 'Fysieke schade'
+        
+    // },
     {
         topic: 'meldingen',
         label: 'Schademeldingen'
     },
-    {
-        topic: 'opnames',
-        label: 'Schade-opnames'
-    },
-    {
-        topic: 'reacties',
-        label: 'Reacties'
-    },
+    // {
+    //     topic: 'opnames',
+    //     label: 'Schade-opnames'
+    // },
+  
     {
         topic: 'voortgang',
         label: 'Voortgang afhandeling'
@@ -25,12 +27,16 @@ export const menuItems = [
     },
     {
         topic: 'waardedaling',
-        label: 'Waardedalingsregeling'
+        label: 'Waardedaling'
     },
     {
         topic: 'immateriele_schade',
         label: 'Immateriele schade'
-    }  //,
+    },
+    {
+        topic: 'reacties',
+        label: 'Waardering en reacties'
+    },  //,
     // {
     //     topic: 'trillingssnelheden',
     //     label: 'Trillingssnelheden'

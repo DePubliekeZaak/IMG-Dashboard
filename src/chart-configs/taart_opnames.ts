@@ -3,7 +3,7 @@ import { GraphObject} from '../types/graphObject';
 export const taartOpnames : GraphObject = {
     "label" : "Taart opnames",
     "slug" : "taart_opnames",
-    "mapping": [[
+    "mapping": [
         [
             {
                 'label': 'Aannemersvariant',
@@ -34,10 +34,10 @@ export const taartOpnames : GraphObject = {
         [
             {
                 'label': 'Totaal',
-                'column': false
+                'column': undefined
             }
         ]
-    ]],
+    ]   ,
     "config": {
         "graphType": "PieChartSum",
         "xScaleType" : false,

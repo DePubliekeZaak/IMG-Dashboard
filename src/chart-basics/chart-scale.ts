@@ -1,15 +1,16 @@
 import * as d3 from 'd3';
 import {Dimensions} from "../types/dimensions";
-import {Config} from "../types/graphConfig";
+import {GraphConfig} from "../types/graphConfig";
 
 export class ChartScale {
 
     dataLength;
+    scale;
 
     constructor(
 
-        private type : string,
-        private config : Config ,
+        private type : string | boolean,
+        private config : GraphConfig ,
         private dimensions : Dimensions
 
     ) {
@@ -17,6 +18,8 @@ export class ChartScale {
     }
 
     set(data, minValue) {
+
+        if(!this.type) return;
 
         let self = this;
 
@@ -26,7 +29,7 @@ export class ChartScale {
 
             case 'linear':
 
-                return d3.scaleLinear()
+                this.scale = d3.scaleLinear()
                     .domain([
                         minValue || 0,  //
                         d3.max(data, (v) => (v ? v : 0) as number)
@@ -35,7 +38,7 @@ export class ChartScale {
 
             case 'time':
 
-                return d3.scaleTime()
+                this.scale = d3.scaleTime()
                     .domain([
                         d3.min(data, (d : any) => ( new Date(d) ? new Date(d) : 0) as Date), //
                         d3.max(data, (d : any) => ( new Date(d) ? new Date(d) : 0) as Date),
@@ -44,7 +47,7 @@ export class ChartScale {
 
             case 'band':
 
-                return d3.scaleBand()
+                this.scale = d3.scaleBand()
                     .domain(data)
                     .paddingInner(self.config.extra.paddingInner)
                     .paddingOuter(self.config.extra.paddingOuter)
@@ -55,7 +58,7 @@ export class ChartScale {
 
             case 'bandTime':
 
-                return d3.scaleBand()
+                this.scale = d3.scaleBand()
                     .domain(data)
                     .paddingInner(.2)
                     .paddingOuter(.5)
@@ -65,7 +68,7 @@ export class ChartScale {
 
             case 'radius':
 
-                return d3.scalePow()
+                this.scale = d3.scalePow()
                     .domain([
                         d3.min(data, (v) => (v ? v : 0) as number),  //
                         d3.max(data, (v) => (v ? v : 0) as number)
@@ -73,54 +76,68 @@ export class ChartScale {
 
                 break;
 
-
             case 'normalised':
 
-                return d3.scaleLinear();
+                this.scale = d3.scaleLinear();
 
                 break;
         }
+
+        return this.scale;
     }
 
 
     reset(direction,dimensions,newScale) {
 
+        if (!this.type) return;
+
         switch(direction) {
 
             case 'horizontal':
 
-                return newScale
+                this.scale
                     .range([0, dimensions.width]);
 
                 break;
 
             case 'vertical-reverse':
 
-                return newScale
+                this.scale
                     .range([0,dimensions.height]);
 
                 break;
 
             case 'vertical':
-                return newScale
+                this.scale
                     .range([dimensions.height, 0]);
 
                 break;
 
-            case 'radius' :
+            case 'radius':
 
                 let langsteZijde = dimensions.width > dimensions.height ? dimensions.width : dimensions.height;
 
-                return newScale
+                this.scale
                     .range([this.config.extra.minRadius, (langsteZijde / this.dataLength) * this.config.extra.radiusFactor]);
 
                 break;
 
-            case 'opacity' :
+            case 'opacity':
 
-                return newScale
+                this.scale
                     .range([0.3,1]);
 
+                break;
+
+            case 'flow':
+
+                this.scale
+                    .range([70,-70]);
+
+            
+
         }
+
+        return this.scale;
     }
 }

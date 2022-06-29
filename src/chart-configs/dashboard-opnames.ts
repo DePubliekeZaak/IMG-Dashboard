@@ -9,11 +9,6 @@ export const dashboardOpnames : GraphObject[] = [
                 "label": "Schade opnames",
                 "column": "nieuw_schade_opnames",
                 "colour": "blue"
-            },
-            {
-                "label": "Nulmetingen",
-                "column": "nieuw_nulmetingen",
-                "colour": "orange"
             }
         ]
     ],
@@ -36,10 +31,10 @@ export const dashboardOpnames : GraphObject[] = [
                 "right": 0
         },
         "extra": {
-            "xScaleTicks": "timeMonth",
+            "xScaleTicks": "quarterly",
                 "useLineFill": true,
                 "largeHeader" : false,
-                "header" : "Trend schade-opnames vs. nulmetingen",
+                "header" : "Trend schade-opnames",
                 "link": "de voortgang",
                 "legend": true,
         }

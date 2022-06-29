@@ -1,12 +1,14 @@
 import {Mapping} from "./mapping";
-import {Config} from "./graphConfig";
+import {GraphConfig} from "./graphConfig";
+import { DataPart } from "./data";
+import { Dimensions } from "./dimensions"
 
 export interface GraphObject {
 
     label : string,
     slug : string,
-    mapping : Mapping[][][] | Mapping[][] | Mapping[],
-    config : Config,
+    mapping : Mapping[][],
+    config : GraphConfig,
     description : string,
     endpoint : string,
     segment :  string | boolean,

@@ -4,7 +4,7 @@ export const multistaafBesluitenAfgehandeld : GraphObject = {
 
     "label" : "Multistaaf besluiten en afgehandeld",
     "slug" : "multistaaf_besluiten_afgehandeld",
-    "mapping": [[
+    "mapping": [
         [
             {
                 "label": "Besluiten",
@@ -29,7 +29,7 @@ export const multistaafBesluitenAfgehandeld : GraphObject = {
                 "colour": "red"
             }
         ]
-    ]],
+    ],
     "config": {
         "graphType": "MultiBarProgression",
         "xScaleType": "bandTime",

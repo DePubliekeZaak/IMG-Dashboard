@@ -50,7 +50,8 @@ export const dashboardReacties : GraphObject[] = [
                 "segmentIndicator": false,
                 "noUpdate" : true,
                 "shape": "block",
-                "noRespondents": true
+                "noRespondents": true,
+                "header": "Doorlopend tevredenheidscijfer"
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.<div class='formula'></div></div>",
@@ -146,7 +147,8 @@ export const dashboardReacties : GraphObject[] = [
                 "shape": "block",
                 "paddingInner" : 0,
                 "paddingOuter" : 0,
-                "axisInMonths" : true
+                "axisInMonths" : true,
+                "header": "Tevredenheidscijfer per maand"
             }
         },
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
@@ -156,7 +158,7 @@ export const dashboardReacties : GraphObject[] = [
     },
     {   "label": "Tevredenheid ratings",
         "slug": "ratings_fs_doorlopend",
-        "mapping": [
+        "mapping": 
             [
                 [
                     {
@@ -283,7 +285,7 @@ export const dashboardReacties : GraphObject[] = [
                     "column": "fysieke_schade_maand_rapportcijfer_10",
                     "colour": "moss"
                 },
-            ]]
+            ]
         ],
         "config": {
             "graphType": "KTORatings",
@@ -309,7 +311,7 @@ export const dashboardReacties : GraphObject[] = [
                 "legend" : true,
                 "paddingInner" : .25,
                 "paddingOuter" : .25,
-                "columnForAverage" : "fysieke_schade_aantal_respondenten_doorlopend",
+                "columnForAverage" : ["fysieke_schade_aantal_respondenten_doorlopend","fysieke_schade_aantal_respondenten"],
                 "decimal" : true,
                 "noRespondents": true
             }
@@ -322,7 +324,7 @@ export const dashboardReacties : GraphObject[] = [
     {   "label": "Tevredenheid ratings",
         "slug": "ratings_w_doorlopend",
         "mapping": [
-            [[
+            [
                 {
                     "label": "Rapportcijfer waardedaling",
                     "column": "waardedaling_doorlopend_cijfer",
@@ -448,7 +450,7 @@ export const dashboardReacties : GraphObject[] = [
                     "colour": "moss"
                 },
             ]
-            ]
+            
         ],
         "config": {
             "graphType": "KTORatings",
@@ -487,7 +489,7 @@ export const dashboardReacties : GraphObject[] = [
     {   "label": "Tevredenheid ratings",
         "slug": "ratings_w_ves",
         "mapping": [
-            [[
+            [
                 {
                     "label": "Rapportcijfer waardedaling",
                     "column": "ves_doorlopend_cijfer",
@@ -613,7 +615,6 @@ export const dashboardReacties : GraphObject[] = [
                         "colour": "moss"
                     },
                 ]
-            ]
         ],
         "config": {
             "graphType": "KTORatings",
@@ -649,6 +650,170 @@ export const dashboardReacties : GraphObject[] = [
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
+    // {   "label": "Tevredenheid ratings",
+    //     "slug": "ratings_w_ims",
+    //     "mapping": [
+    //         [
+    //             {
+    //                 "label": "Rapportcijfer waardedaling",
+    //                 "column": "ims_doorlopend_cijfer",
+    //                 "colour": "blue"
+    //             },
+    //             {
+    //                 "label": "Tevredenheidscijfer",
+    //                 "column": "ims_maandcijfer",
+    //                 "colour": "blue"
+    //             },
+    //             {
+    //                 "label": "Tevredenheidscijfer",
+    //                 "column": "ims_aantal_respondenten_doorlopend",
+    //                 "colour": "blue"
+    //             },
+    //             {
+    //                 "label": "Tevredenheidscijfer",
+    //                 "column": "ims_aantal_respondenten",
+    //                 "colour": "blue"
+    //             }
+    //         ],
+    //             [
+    //                 {
+    //                     "label": "1",
+    //                     "column": "ims_doorlopend_rapportcijfer_1",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "2",
+    //                     "column": "ims_doorlopend_rapportcijfer_2",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "3",
+    //                     "column": "ims_doorlopend_rapportcijfer_3",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "4",
+    //                     "column": "ims_doorlopend_rapportcijfer_4",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "5",
+    //                     "column": "ims_doorlopend_rapportcijfer_5",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "6",
+    //                     "column": "ims_doorlopend_rapportcijfer_6",
+    //                     "colour": "lightBlue"
+    //                 },
+    //                 {
+    //                     "label": "7",
+    //                     "column": "ims_doorlopend_rapportcijfer_7",
+    //                     "colour": "lightBlue"
+    //                 },
+    //                 {
+    //                     "label": "8",
+    //                     "column": "ims_doorlopend_rapportcijfer_8",
+    //                     "colour": "moss"
+    //                 },
+    //                 {
+    //                     "label": "9",
+    //                     "column": "ims_doorlopend_rapportcijfer_9",
+    //                     "colour": "moss"
+    //                 },
+    //                 {
+    //                     "label": "10",
+    //                     "column": "ims_doorlopend_rapportcijfer_10",
+    //                     "colour": "moss"
+    //                 },
+    //             ],
+    //             [
+    //                 {
+    //                     "label": "1",
+    //                     "column": "ims_maand_rapportcijfer_1",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "2",
+    //                     "column": "ims_maand_rapportcijfer_2",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "3",
+    //                     "column": "ims_maand_rapportcijfer_3",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "4",
+    //                     "column": "ims_maand_rapportcijfer_4",
+    //                     "colour": "orange"
+    //                 },
+    //                 {
+    //                     "label": "5",
+    //                     "column": "ims_maand_rapportcijfer_5",
+    //                     "colour": "lightBlue"
+    //                 },
+    //                 {
+    //                     "label": "6",
+    //                     "column": "ims_maand_rapportcijfer_6",
+    //                     "colour": "lightBlue"
+    //                 },
+    //                 {
+    //                     "label": "7",
+    //                     "column": "ims_maand_rapportcijfer_7",
+    //                     "colour": "lightBlue"
+    //                 },
+    //                 {
+    //                     "label": "8",
+    //                     "column": "ims_maand_rapportcijfer_8",
+    //                     "colour": "moss"
+    //                 },
+    //                 {
+    //                     "label": "9",
+    //                     "column": "ims_maand_rapportcijfer_9",
+    //                     "colour": "moss"
+    //                 },
+    //                 {
+    //                     "label": "10",
+    //                     "column": "ims_maand_rapportcijfer_10",
+    //                     "colour": "moss"
+    //                 },
+    //             ]
+    //     ],
+    //     "config": {
+    //         "graphType": "KTORatings",
+    //         "xScaleType": "linear",
+    //         "yScaleType": "band",
+    //         "xParameter": "value",
+    //         "yParameter": "label",
+    //         "padding": {
+    //             "top": 20,
+    //             "bottom": 0,
+    //             "left": 20,
+    //             "right": 80
+    //         },
+    //         "margin": {
+    //             "top": 20,
+    //             "bottom": 40,
+    //             "left": 0,
+    //             "right": 0
+    //         },
+    //         "extra": {
+    //             "slug": "ratings_ims_doorlopend",
+    //             "header" : "Rapportcijfers immateriele schade",
+    //             "legend" : true,
+    //             "paddingInner" : .25,
+    //             "paddingOuter" : .25,
+    //             "columnForAverage" : "ims_aantal_respondenten_doorlopend",
+    //             "decimal": true,
+    //             "noRespondents": true
+    //         }
+    //     },
+    //     "description" : "",
+    //     "endpoint": "tevredenheid",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
+    // },
     {   "label": "Tevredenheid door de tijd",
         "slug": "trend_tevredenheid",
         "mapping": [

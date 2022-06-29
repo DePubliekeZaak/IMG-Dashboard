@@ -1,18 +1,34 @@
-export class ChartDimensions {
+import { Dimensions } from "../types/dimensions";
+import { GraphConfig } from "../types/graphConfig";
 
-    dimensions
+export interface IChartDimensions {
+    element: HTMLElement,
+    config: GraphConfig,
+    measure: (Dimensions) =>  Dimensions
+}
+
+
+export class ChartDimensions implements IChartDimensions {
+
+    element: HTMLElement;
+    config: GraphConfig;
+    dimensions: Dimensions;
 
     constructor(
-        private element,
-        private config
-    ) {}
+        
+        element : HTMLElement,
+        config : GraphConfig
+    ) {
+        this.config = config;
+        this.element = element
+    }
 
-    get(dimensions) {
+    measure(dimensions: Dimensions) {
 
         this.dimensions = dimensions;
 
-        this.element = (typeof this.element === 'string') ? document.querySelector(this.element) : this.element;
-
+        // svgWidth enn svgHeight includes the padding for axes 
+     
         this.dimensions.svgWidth = this.element.getBoundingClientRect().width - this.config.margin.left - this.config.margin.right;
         this.dimensions.width = dimensions.svgWidth - this.config.padding.left - this.config.padding.right;
 

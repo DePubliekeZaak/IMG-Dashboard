@@ -1,8 +1,8 @@
 import { graphs } from './charts/module';
-import { munis } from './helpers/municipalities';
+import { munis } from './d3-services/municipalities';
 import * as d3 from 'd3';
 import {GraphObject} from "./types/graphObject";
-import {ResponseData} from "./types/responseData";
+import {ResponseData} from "./types/data";
 import { configs } from "./chart-configs/module";
 
 export class InitSingle {

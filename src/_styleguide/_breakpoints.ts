@@ -1,8 +1,8 @@
-const xsm = 600;
-const sm = 700;
+const xsm = 640;
+const sm = 760;
 const md = 900;
-const bax = 1160;
-const lg = 1360;
+const bax = 1300;
+const lg = 1400;
 const xl = 1700;
 const xxl = 2000;
 

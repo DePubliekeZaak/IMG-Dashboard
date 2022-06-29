@@ -1,233 +1,171 @@
 import * as d3 from "d3";
+import { GraphController } from "./graph";
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes} from "../chart-basics/module";
 
 import {
     ChartCircles,
     ChartBrackets,
     ChartFlowBetweenCircles,
+    ChartStackedBarsNormalized
+} from "../svg-elements/module";
+
+import {
     HtmlHeader,
     HtmlLink,
     HtmlPopup,
-    ChartStackedBarsNormalized
-} from "../chart-elements/module";
+} from "../html-elements/module";
 
 import { breakpoints} from "../_styleguide/_breakpoints";
+import { GraphObject } from "../types/graphObject";
+import { DataPart, GraphData } from "../types/data";
+import { filterWeeks, getNeededColumnsForHistory } from "../d3-services/data-with-history.functions";
+import { parseOutflowData } from "../d3-services/data.functions";
 
-export class FlowDossierCount {
 
 
-    keys;
-    props;
-    element;
-    dimensions;
-    barDimensions;
-    flowSVG;
-    barsSVG;
-    xScale;
-    yScale;
+export default class FlowDossierCount extends GraphController {
+
+
     rScale;
-    barsXScale;
-    barsYScale;
+    oScale;
 
-    xAxis;
+    // xAxis;
 
     chartDimensions;
-    barChartDimensions;
-    chartXScale;
-    chartRScale;
-    chartBarsXScale;
-    chartBarsYScale;
-    chartFlowSVG;
-    chartBarsSVG;
 
+    chartOScale;
+    chartRScale;
     chartCircles;
-    chartBrackets;
+    
     chartFlowBetweenCircles;
 
-    link;
-    popup;
-    htmlHeader;
     simulation;
-
-    chartStackedBarsNormalized : any = false;
-    normalizedStack;
 
 
 
     constructor(
-        private data,
-        private elementID,
-        private config,
-        private dataMapping,
-        private description
+        public main: any,
+        public data : any,
+        public element : HTMLElement,
+        public graphObject: GraphObject,
+        public segment: string  
     ) {
-        this.element = d3.select(elementID).node();
-        this.props = ['outflow'];
+        super(main,data,element,graphObject,segment);
     }
 
     init(){
 
+       
 
+        if (window.innerWidth < breakpoints.sm) {
+            this.graphObject.config.padding.left = 201;
+            this.graphObject.config.padding.right = 50;
+            // this.config.extra.radiusFactor = 1;
+        }
+
+        super._init();
+
+        let svgId = "flow-element"
         let flowEl = document.createElement('div');
+        flowEl.id = svgId;
         flowEl.style.width = '100%';
         flowEl.style.minHeight = '400px';
         this.element.appendChild(flowEl);
 
-        let self = this;
+        super._svg(flowEl);
 
-        let chartObjects = ChartObjects();
+        this.chartRScale = new ChartScale('radius', this.graphObject.config, this.dimensions);
+        this.chartOScale = new ChartScale('radius', this.graphObject.config, this.dimensions);
 
-        this.config = Object.assign(chartObjects.config(), this.config);
-
-        this.dimensions = chartObjects.dimensions();
-        this.barDimensions = chartObjects.dimensions();
-        this.flowSVG = chartObjects.svg();
-        this.barsSVG = chartObjects.svg();
-
-        // for mobile
-
-
-        if (window.innerWidth < breakpoints.sm) {
-            this.config.padding.left = 201;
-            this.config.padding.right = 50;
-            // this.config.extra.radiusFactor = 1;
-        }
-
-
-        this.chartDimensions = new ChartDimensions(flowEl,this.config);
-        this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartFlowSVG = new ChartSVG(flowEl,this.config,this.dimensions,this.flowSVG);
-        this.chartXScale = new ChartScale(this.config.xScaleType,this.config,this.dimensions);
-        this.chartRScale = new ChartScale('radius', this.config, this.dimensions);
-
-        // let chartYScale = ChartYScale(config,dimensions,yScale);
-        this.xAxis = new ChartAxes(this.config, this.flowSVG,'bottom',this.chartXScale);
+        // this.xAxis = new ChartAxes(this.graphObject.config, this.svg,'bottom',this.chartXScale);
+        // this.xAxis.draw();
 
         // kan ik circles hergebruiken?
-        this.chartCircles = new ChartCircles(this.config,this.flowSVG.layers);
-      //  this.chartBrackets = new ChartBrackets(this.config,this.svg);flowSVG
-        this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this.config,this.flowSVG.layers);
+        this.chartCircles = new ChartCircles(this);
+        this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this);
 
-        if(window.innerWidth > breakpoints.md) {
-            this.initBars();
-        }
-
-        this.xAxis.draw();
-
-        if (this.config.extra.header) {
-            this.htmlHeader = new HtmlHeader(this.element,this.config.extra.header);
-            this.htmlHeader.draw();
-        }
-
-        this.popup = new HtmlPopup(this.element,this.description);
-
-        this.update(this.data)
+        this.update(this.data,this.segment, false);
 
     }
 
-    initBars() {
+    // initBars() {
 
-        let barsEl = document.createElement('div');
-        barsEl.style.width = '100%';
-        barsEl.style.height = '160px';
-        this.element.appendChild(barsEl);
+    //     let barsEl = document.createElement('div');
+    //     barsEl.style.width = '100%';
+    //     barsEl.style.height = '160px';
+    //     this.element.appendChild(barsEl);
 
-        let barConfig = {
+    //     let barConfig = {
 
-            "graphType" : "ChartStackedBarsNormalized",
-            "xScaleType": "normalised",
-            "yScaleType": "band",
-            "xParameter": "",
-            "yParameter": "",
-            "padding": {
-                "top": -10,
-                "bottom": 0, // = ruimte onder ballen
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 80,
-                "left": 0,
-                "right": (window.innerWidth > breakpoints.bax) ?  100 : 80
-            },
-            "extra": {
-                "paddingInner" : .5,
-                "paddingOuter" : .5
-            }
-        }
-        this.chartBarsSVG = new ChartSVG(barsEl,barConfig,this.dimensions,this.barsSVG);
-        this.barChartDimensions = new ChartDimensions(barsEl,barConfig);
-        this.barDimensions = this.chartDimensions.get(this.barDimensions);
-        this.chartBarsXScale = new ChartScale('normalised',barConfig,this.barDimensions);
-        this.chartBarsYScale = new ChartScale('band', barConfig,this.barDimensions);
-        this.chartStackedBarsNormalized = new ChartStackedBarsNormalized(barConfig, this.barsSVG.layers);
-    }
+    //         "graphType" : "ChartStackedBarsNormalized",
+    //         "xScaleType": "normalised",
+    //         "yScaleType": "band",
+    //         "xParameter": "",
+    //         "yParameter": "",
+    //         "padding": {
+    //             "top": -10,
+    //             "bottom": 0, // = ruimte onder ballen
+    //             "left": 0,
+    //             "right": 0
+    //         },
+    //         "margin": {
+    //             "top": 0,
+    //             "bottom": 80,
+    //             "left": 0,
+    //             "right": (window.innerWidth > breakpoints.bax) ?  100 : 80
+    //         },
+    //         "extra": {
+    //             "paddingInner" : .5,
+    //             "paddingOuter" : .5
+    //         }
+    //     }
+    //     this.chartBarsSVG = new ChartSVG(barsEl,barConfig,this.dimensions,this.barsSVG);
+    //     this.barChartDimensions = new ChartDimensions(barsEl,barConfig);
+    //     this.barDimensions = this.chartDimensions.get(this.barDimensions);
+    //     this.chartBarsXScale = new ChartScale('normalised',barConfig,this.barDimensions);
+    //     this.chartBarsYScale = new ChartScale('band', barConfig,this.barDimensions);
+    //     this.chartStackedBarsNormalized = new ChartStackedBarsNormalized(barConfig, this.barsSVG.layers);
+    // }
 
-    prepareData(newData) {
+    prepareData(data: DataPart[]) : GraphData {
 
-        let self = this;
-        let flowData = [];
-        let outflowData = [];
+        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const history = filterWeeks(data,neededColumns);
+        
+        const { flowData, outflowData } = parseOutflowData(data, this.graphObject);
 
-        for (let mapping of this.dataMapping) {
+        // this.keys = Object.keys(outflowData[0]).filter(key => {
+        //     return ['serie'].indexOf(key) < 0
+        // });
 
-            flowData.push({
-
-                label: mapping.label,
-                colour: mapping.colour,  // de in between flows corresponderen met duration .. dus evt een kleur
-                value: this.data[0][mapping.column] || 0,
-                duration: 30,
-                turnover: 0,
-                outflow: this.data[0][mapping.outflow],
-                cumulativeDuration: 0
-            })
-        }
-
-        let sum = 0;
-
-        for (let phase of flowData) {
-
-            phase.cumulativeDuration = sum;
-            sum += phase.duration;
-        }
-
-        for (let prop of this.props) {
-
-            let obj = { 'serie' : prop };
-
-            for (let mapping of this.dataMapping.slice(0,this.dataMapping.length - 1)) {
-                obj[mapping.column] = this.data[0][mapping.outflow]
-            }
-
-            outflowData.push(obj)
-        }
-
-        this.keys = Object.keys(outflowData[0]).filter(key => {
-            return ['serie'].indexOf(key) < 0
-        });
-
-        let stackNormalised = d3.stack()
-            .offset(d3.stackOffsetExpand)
-            .keys(self.keys);
+        // let stackNormalised = d3.stack()
+        //     .offset(d3.stackOffsetExpand)
+        //     .keys(self.keys);
 
 
-        let outflowDataNormalised = stackNormalised(outflowData);
+        // let outflowDataNormalised = stackNormalised(outflowData);
 
-        return { flowData, outflowDataNormalised };
+        return { 
+            latest : null,
+            slice:  null, 
+            history,
+            flowData,
+            outflowData
+        };
     }
 
 
-    draw(flowData, outflowDataNormalised) {
+    draw(data: GraphData) {
 
         let self = this;
 
         // eerst x as tekenen x scale = linear
-        this.xScale = this.chartXScale.set(flowData.map( (d) => d[self.config.xParameter] + d['duration']).concat(0));
-        this.rScale = this.chartRScale.set(flowData.map( (d) => d.value));
+        this.xScale = this.chartXScale.set(data.flowData.map( (d) => d[self.xParameter] + d['duration']).concat(0));
+        this.rScale = this.chartRScale.set(data.flowData.map( (d) => d['value']));
+        this.oScale = this.chartOScale.set(data.flowData.map( (d) => d['outflow']));
 
-        this.chartFlowBetweenCircles.draw(flowData);
-        this.chartCircles.draw(flowData);
+        this.chartFlowBetweenCircles.draw(data.flowData);
+        this.chartCircles.draw(data.flowData);
 
         // if(this.chartStackedBarsNormalized) {
         //     this.barsXScale = this.chartBarsXScale.set([]);
@@ -236,26 +174,25 @@ export class FlowDossierCount {
         // }
     }
 
-    redraw(flowData, outflowDataNormalised) {
+    redraw(data: GraphData) {
 
         let self = this;
 
         let direction = window.innerWidth > breakpoints.sm ? 'horizontal' : 'vertical-reverse';
 
-        this.dimensions = this.chartDimensions.get(this.dimensions);
-        this.chartFlowSVG.redraw(this.dimensions);
+        super.redraw(data);
 
-        this.xScale = this.chartXScale.reset(direction,this.dimensions,this.xScale);
         this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale);
+        this.oScale = this.chartOScale.reset('flow',this.dimensions,this.oScale);
 
-        this.chartCircles.redraw(flowData,this.dimensions,this.rScale,this.xScale, direction);
-        this.chartFlowBetweenCircles.redraw(flowData,this.dimensions,this.rScale,this.xScale, direction);
+        this.chartCircles.redraw(this.rScale, direction);
+     //   this.chartFlowBetweenCircles.redraw(data.flowData, direction);
 
         let center = {x: (this.dimensions.width / 2) , y: (self.dimensions.height / 2) };
         let forceStrength = 0.025;
 
         this.simulation = d3.forceSimulation()
-            .nodes(flowData);
+            .nodes(data.flowData);
 
         this.simulation
             .velocityDecay(0.5)
@@ -263,8 +200,8 @@ export class FlowDossierCount {
             .force('collide', d3.forceCollide().radius((d : any) => this.rScale(d.value)))
             .on('tick', () => {
 
-                self.chartCircles.forceDirect(self.xScale, self.rScale, flowData, direction);
-                self.chartFlowBetweenCircles.forceDirect(self.xScale, self.rScale, flowData, direction);
+                self.chartCircles.forceDirect(self.rScale, direction);
+                self.chartFlowBetweenCircles.forceDirect(data.flowData, self.rScale, self.oScale, direction);
             });
 
         if (direction === 'horizontal') {
@@ -283,7 +220,7 @@ export class FlowDossierCount {
 
     }
 
-    legend(data,elementID) {
+    legend() {
 
             let self = this;
 
@@ -323,14 +260,10 @@ export class FlowDossierCount {
             this.element.appendChild(legendContainer);
     }
 
-    update(newData) {
+    update(data: GraphData, segment: string, update: boolean) {
 
-        let self = this;
-        let { flowData, outflowDataNormalised } = this.prepareData(newData);
+        super._update(data,segment,update);
 
-        this.draw(flowData, outflowDataNormalised);
-        this.redraw(flowData, outflowDataNormalised);
-        window.addEventListener("resize", () => self.redraw(flowData, outflowDataNormalised), false);
     }
 }
 

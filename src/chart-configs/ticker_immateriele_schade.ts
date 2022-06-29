@@ -7,17 +7,30 @@ export const tickerImmaterieel : GraphObject[] = [
         "mapping": [
             [
                 {
-                    "label": "Vorige week: nieuw",
-                    "column": "immateriele_schade_nieuw_aanvragen",
-                    "colour": "blue"
+                    "label": "Verleend",
+                    "column": "immateriele_schade_totaal_verleend",
+                    "colour": "lightBlue",
+                    "format": "currency"
+                },
+                {
+                    "label": "Afgehandeld",
+                    "column": "immateriele_schade_besluiten",
+                    "colour": "lightBlue",
+                    "format": "thousands"
+                },
+                {
+                    "label": "Waardering",
+                    "column": "waardering",
+                    "colour": "lightBlue",
+                    "format": "decimal"
                 }
             ]
         ],
         "config": {
-            "graphType": "Ticker",
-            "xScaleType" : "time",
+            "graphType": "TickerNumbers",
+            "xScaleType" : "linear",
             "yScaleType" : "linear",
-            "xParameter" : "_date",
+            "xParameter" : "_week",
             "yParameter" : "",
             "padding": {
                 "top": 0,
@@ -27,7 +40,7 @@ export const tickerImmaterieel : GraphObject[] = [
             },
             "margin": {
                 "top": 0,
-                "bottom": 0,
+                "bottom": 4,
                 "left": 0,
                 "right": 0
             },
@@ -39,7 +52,7 @@ export const tickerImmaterieel : GraphObject[] = [
                 "units": "aanvragen"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : null,
         "endpoint": "immateriele_schade",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
@@ -51,16 +64,28 @@ export const tickerImmaterieel : GraphObject[] = [
             [
                 {
                     "label": "Vorige week: nieuw",
+                    "column": "immateriele_schade_nieuw_aanvragen",
+                    "colour": "blue"
+                },
+                {
+                    "label": "Vorige week: nieuw",
                     "column": "immateriele_schade_nieuw_besluiten",
                     "colour": "blue"
                 }
+            ],
+            [
+                {
+                    "label": "in behandeling",
+                    "column": "immateriele_schade_in_behandeling",
+                    "colour": "blue"
+                } 
             ]
         ],
         "config": {
-            "graphType": "Ticker",
-            "xScaleType" : "time",
+            "graphType": "TickerHorizon",
+            "xScaleType" : "linear",
             "yScaleType" : "linear",
-            "xParameter" : "_date",
+            "xParameter" : "_week",
             "yParameter" : "",
             "padding": {
                 "top": 0,
@@ -70,17 +95,17 @@ export const tickerImmaterieel : GraphObject[] = [
             },
             "margin": {
                 "top": 0,
-                "bottom": 0,
+                "bottom": 4,
                 "left": 0,
                 "right": 0
             },
             "extra": {
                 "useLineFill": true,
                 "noDots": true,
-                "smartColours" : 'down',
+                "smartColours" : 'up',
                 "thinLines" : true,
                 "units": "besluiten",
-                "link": "meldingen",
+                "link": "tevredenheid",
             }
         },
         "description" : "",

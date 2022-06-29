@@ -7,17 +7,30 @@ export const tickerWaardedaling : GraphObject[] = [
         "mapping": [
             [
                 {
-                    "label": "Vorige week: nieuw",
-                    "column": "nieuw_aanvragen",
-                    "colour": "moss"
+                    "label": "Verleend",
+                    "column": "waardedalingsregeling_totaal_verleend",
+                    "colour": "lightBlue",
+                    "format": "currency"
+                },
+                {
+                    "label": "Afgehandeld",
+                    "column": "waardedaling_besluiten",
+                    "colour": "lightBlue",
+                    "format": "thousands"
+                },
+                {
+                    "label": "Waardering",
+                    "column": "waardering",
+                    "colour": "lightBlue",
+                    "format": "decimal"
                 }
             ]
         ],
         "config": {
-            "graphType": "Ticker",
-            "xScaleType" : "time",
+            "graphType": "TickerNumbers",
+            "xScaleType" : "linear",
             "yScaleType" : "linear",
-            "xParameter" : "_date",
+            "xParameter" : "_week",
             "yParameter" : "",
             "padding": {
                 "top": 0,
@@ -27,7 +40,7 @@ export const tickerWaardedaling : GraphObject[] = [
             },
             "margin": {
                 "top": 0,
-                "bottom": 0,
+                "bottom": 4,
                 "left": 0,
                 "right": 0
             },
@@ -39,8 +52,8 @@ export const tickerWaardedaling : GraphObject[] = [
                 "units": "aanvragen"
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
-        "endpoint": "waardedaling",
+        "description" : null,
+        "endpoint": "vergoedingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
@@ -50,21 +63,33 @@ export const tickerWaardedaling : GraphObject[] = [
         "mapping": [
             [
                 {
+                    "label": "in behandeling",
+                    "column": "nieuw_aanvragen",
+                    "colour": "moss"
+                },
+                {
                     "label": "Vorige week: nieuw",
                     "column": "nieuw_besluiten",
+                    "colour": "orange"
+                }
+            ],
+            [
+                {
+                    "label": "in behandeling",
+                    "column": "waardedaling_in_behandeling",
                     "colour": "orange"
                 }
             ]
         ],
         "config": {
-            "graphType": "Ticker",
-            "xScaleType" : "time",
+            "graphType": "TickerHorizon",
+            "xScaleType" : "linear",
             "yScaleType" : "linear",
-            "xParameter" : "_date",
+            "xParameter" : "_week",
             "yParameter" : "",
             "padding": {
                 "top": 0,
-                "bottom": 0,
+                "bottom": 4,
                 "left": 0,
                 "right": 0
             },
@@ -77,13 +102,13 @@ export const tickerWaardedaling : GraphObject[] = [
             "extra": {
                 "useLineFill": true,
                 "noDots": true,
-                "smartColours" : 'down',
+                "smartColours" : 'up',
                 "thinLines" : true,
                 "units": "besluiten",
                 "link": "meldingen",
             }
         },
-        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus in ligula ac tempus. In tempor nisi quam, a volutpat arcu tincidunt nec. Fusce blandit neque vitae quam facilisis viverra. Nulla dapibus justo et pellentesque egestas. In ut justo diam. Pellentesque efficitur arcu magna, vel volutpat eros porta eget. Maecenas eu lorem in lacus congue porta. Vestibulum vel leo ut neque pellentesque posuere sed ut enim.",
+        "description" : null,
         "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']

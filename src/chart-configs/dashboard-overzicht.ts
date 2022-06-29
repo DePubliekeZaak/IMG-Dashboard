@@ -7,7 +7,7 @@ export const dashboardOverzicht : GraphObject[] = [
     {
         "label": "Taart Schadevergoedingen",
         "slug": "taart_schadevergoeding_totaal",
-        "mapping":  [[
+        "mapping":  [
             [
                 {
                     "label": "Gebouwen",
@@ -32,7 +32,7 @@ export const dashboardOverzicht : GraphObject[] = [
                     "colour": "gray"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",
@@ -1121,7 +1121,7 @@ export const dashboardOverzicht : GraphObject[] = [
     {
         "label": "Taart Schadevergoedingen",
         "slug": "taart_schadevergoeding_totaal",
-        "mapping":  [[
+        "mapping":  [
             [
                 {
                     "label": "Toegewezen",
@@ -1141,7 +1141,7 @@ export const dashboardOverzicht : GraphObject[] = [
                     "colour": "gray"
                 }
             ]
-        ]],
+        ],
         "config": {
 
             "graphType": "PieChartSum",

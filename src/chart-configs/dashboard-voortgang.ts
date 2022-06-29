@@ -74,7 +74,7 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "extra": {
                 "units": "meldingen",
-                "header": true
+                "header": "Totaal openstaande aanvragen"
             }
         },
         "description" : "",
@@ -114,7 +114,7 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "extra": {
                 "units": "meldingen",
-                "header": true
+                "header": "Afgehandeld totaal"
             }
         },
         "description" : "",
@@ -211,7 +211,8 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "extra": {
                 "useLineFill": true,
-                "units": "%"
+                "units": "%",
+                "header": "In half jaar afgehandeld"
             }
         },
         "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde. Gem. tijd tot besluit: Doorlooptijd afgehandeld dossiers",
@@ -251,7 +252,8 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "extra": {
                 "useLineFill": true,
-                "units": "dagen"
+                "units": "dagen",
+                "header": "Doorlooptijd afgehandeld dossiers"
             }
         },
         "description" : "Dit is bij benadering het aantal dagen waarin de schademelding is afgehandeld sinds de schademelding is binnengekomen. Het gaat daarbij om de mediaan. Vijftig procent van de schademeldingen is daarmee in minder dan het genoemde aantal dagen afgehandeld en vijftig procent in meer dagen. De mediaan wordt berekend over de laatset 2.500 besluiten over schademeldingen.",
@@ -291,7 +293,8 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             "extra": {
                 "useLineFill": true,
-                "units": "dagen"
+                "units": "dagen",
+                "header": "Verwachte doorlooptijd nieuw dossier"
             }
         },
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
@@ -410,7 +413,7 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             {
                 "label": 'Tussen een half jaar en jaar',
-                "column" : 'tussen_half_jaar_en_jaar_in_fase_opleveren_schaderapport',
+                "column" : 'tussen_half_jaar_in_fase_opleveren_schaderapport',
                 "colour" : "orange",
                 "group" : 'Schade-opname uitgevoerd, adviesrapport opleveren'
             },
@@ -434,7 +437,7 @@ export const dashboardVoortgang : GraphObject[] = [
             },
             {
                 "label": 'Tussen een half jaar en jaar',
-                "column" : 'tussen_half_jaar_en_jaar_in_fase_voorbereiding_besluit',
+                "column" : 'tussen_half_jaar_in_fase_voorbereiding_besluit',
                 "colour" : "orange",
                 "group" : 'Adviesrapport opgeleverd, besluit voorbereiden'
             },
@@ -489,7 +492,113 @@ export const dashboardVoortgang : GraphObject[] = [
         "label" : "Genormaliseerde barren met status",
         "slug" : "normalised_status",
         "mapping": [
-            []
+            [
+                {
+                    "label": 'Ontvangst',
+                    "column" : 'langer_dan_twee_jaar_in_fase_ontvangst',
+                    "colour" : "moss",
+                    "group" : 'Langer dan twee jaar'
+                },
+                {
+                    "label": 'Planning opname',
+                    "column" : 'langer_dan_twee_jaar_in_fase_planning_opname',
+                    "colour" : "lightBlue",
+                    "group" : 'Langer dan twee jaar'
+                },
+                {
+                    "label": 'Opleveren schaderapport',
+                    "column" : 'langer_dan_twee_jaar_in_fase_opleveren_schaderapport',
+                    "colour" : "blue",
+                    "group" : 'Langer dan twee jaar'
+                },
+                {
+                    "label": 'Voorbereiden commissie',
+                    "column" : 'langer_dan_twee_jaar_in_fase_voorbereiding_besluit',
+                    "colour" : "purple",
+                    "group" : 'Langer dan twee jaar'
+                }
+            ],
+            [
+                {
+                    "label": 'Ontvangst',
+                    "column" : 'tussen_jaar_en_twee_jaar_in_fase_ontvangst',
+                    "colour" : "moss",
+                    "group" : 'Tussen een en twee jaar'
+                },
+                {
+                    "label": 'Planning opname',
+                    "column" : 'tussen_jaar_en_twee_jaar_in_fase_planning_opname',
+                    "colour" : "lightBlue",
+                    "group" : 'Tussen een en twee jaar'
+                },
+                {
+                    "label": 'Opleveren schaderapport',
+                    "column" : 'tussen_jaar_en_twee_jaar_in_fase_opleveren_schaderapport',
+                    "colour" : "blue",
+                    "group" : 'Tussen een en twee jaar'
+                },
+                {
+                    "label": 'Voorbereiden commissie',
+                    "column" : 'tussen_jaar_en_twee_jaar_in_fase_voorbereiding_besluit',
+                    "colour" : "purple",
+                    "group" : 'Tussen een en twee jaar'
+                }
+            ],
+            [
+                {
+                    "label": 'Ontvangst',
+                    "column" : 'tussen_half_jaar_en_jaar_in_fase_ontvangst',
+                    "colour" : "moss",
+                    "group" : 'Tussen half jaar en een jaar'
+                },
+                {
+                    "label": 'Planning opname',
+                    "column" : 'tussen_half_jaar_in_fase_planning_opname',
+                    "colour" : "LightBlue",
+                    "group" : 'Tussen half jaar en een jaar'
+                },
+                {
+                    "label": 'Opleveren schaderapport',
+                    "column" : 'tussen_half_jaar_in_fase_opleveren_schaderapport',
+                    "colour" : "blue",
+                    "group" : 'Tussen half jaar en een jaar'
+                },
+                {
+                    "label": 'Voorbereiden commissie',
+                    "column" : 'tussen_half_jaar_in_fase_voorbereiding_besluit',
+                    "colour" : "purple",
+                    "group" : 'Tussen half jaar en een jaar'
+                }
+            ],
+            [
+                {
+                    "label": 'Ontvangst',
+                    "column" : 'minder_dan_half_jaar_in_fase_ontvangst',
+                    "colour" : "moss",
+                    "group" : 'Minder dan een half jaar'
+                },
+                {
+                    "label": 'Planning opname',
+                    "column" : 'minder_dan_half_jaar_in_fase_planning_opname',
+                    "colour" : "lightBlue",
+                    "group" : 'Minder dan een half jaar'
+                },
+                {
+                    "label": 'Opleveren schaderapport',
+                    "column" : 'minder_dan_half_jaar_in_fase_opleveren_schaderapport',
+                    "colour" : "blue",
+                    "group" : 'Minder dan een half jaar'
+                },
+                {
+                    "label": 'Voorbereiden commissie',
+                    "column" : 'minder_dan_half_jaar_in_fase_voorbereiding_besluit',
+                    "colour" : "purple",
+                    "group" : 'Minder dan een half jaar'
+                }
+            ]
+
+                
+            
         ],
         "config": {
             "graphType": "NormalisedBars",
@@ -521,6 +630,50 @@ export const dashboardVoortgang : GraphObject[] = [
         "segment": "all",
         "elementClasslist" : ['img-graph-container','img-graph-container-12'],
         "publishDate": false
+    },
+    {   
+        "label": "Schade opnames",
+    "slug": "meldingen_trend_aos_meldingen",
+    "mapping": [
+        [
+            {
+                "label": "Schade opnames",
+                "column": "nieuw_schade_opnames",
+                "colour": "blue"
+            }
+        ]
+    ],
+        "config": {
+        "graphType": "TrendLine",
+            "xScaleType": "time",
+            "yScaleType": "linear",
+            "xParameter": "_date",
+            "yParameter": "nieuw_schade_opnames",
+            "padding": {
+            "top": 20,
+                "bottom": 40,
+                "left": 40,
+                "right": 0
+        },
+        "margin": {
+            "top": 120,
+                "bottom": 40,
+                "left": 0,
+                "right": 0
+        },
+        "extra": {
+            "xScaleTicks": "quarterly",
+                "useLineFill": true,
+                "largeHeader" : false,
+                "header" : "Trend schade-opnames",
+                "link": "de voortgang",
+                "legend": true,
+        }
+    },
+        "description" : "Het aantal schade-opnames dat voor de gewone schadeprocedure is uitgevoerd vergeleken met het aantal nulmetingen die in het kader van de Stuwmeerregeling zijn uitgevoerd. Bij een schade-opname wordt ook een schadecalculatie gemaakt. Bij de nulmeting wordt alleen de schade vastgelegd en in het kader van de Stuwmeerregeling met een vooraf vastgestelde schadevergoeding afgehandeld. In een klein aantal gevallen gebeurt dat op basis van facturen van een aannemer.",
+        "endpoint": "opnames",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
     }
 
 ]
