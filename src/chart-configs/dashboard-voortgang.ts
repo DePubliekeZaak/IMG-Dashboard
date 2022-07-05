@@ -62,7 +62,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
     },
     {
         "slug" : "trend_aanvragen_en_besluiten",
-        "graph": "Horizon@Y",
+        "graph": "Horizon2Y",
         "parameters": [
             [
                 {
