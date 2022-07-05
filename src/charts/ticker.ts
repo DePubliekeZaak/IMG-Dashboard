@@ -1,34 +1,31 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-
 import { ChartBackgroundArea, ChartRaggedLine  } from '../svg-elements/module';
-
 import { breakpoints } from "../_styleguide/_breakpoints";
-import { GraphController } from './graph';
 import { GraphObject } from '../types/graphObject';
 import { flattenColumn } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistory } from '../d3-services/data-with-history.functions';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
 import { DataPart, GraphData } from '../types/data';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
 
-
-
-export default class Ticker extends GraphController   {
+export default class Ticker extends GraphControllerV2   {
 
     chartLine;
     chartBackgroundArea;
     chartWeekGrid;
-    // chartAvgLine;
-
-    // htmlCircle;
-
 
     constructor(
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre(){
+
     }
 
     init() {
@@ -44,7 +41,7 @@ export default class Ticker extends GraphController   {
         labelContainer.style.width = '100%';
 
         labelContainer.style.textAlign = 'center';
-        labelContainer.innerText = this.graphObject.mapping[0][0].label;
+        labelContainer.innerText = this.mapping.parameters[0][0].label;
         this.element.appendChild(labelContainer);
 
         if (window.innerWidth < breakpoints.sm) {
@@ -60,7 +57,6 @@ export default class Ticker extends GraphController   {
             labelContainer.style.height = '2.5rem';
         }
 
-
         const numberContainer = document.createElement('div');
         numberContainer.style.width = 'calc(50% - .5rem)';
         numberContainer.style.height = '3.75rem';
@@ -69,14 +65,14 @@ export default class Ticker extends GraphController   {
         numberContainer.style.alignItems = 'flex-start';
 
         const number = document.createElement('div');
-        number.innerText = this.data[0][flattenColumn(this.graphObject.mapping[0][0].column)];
+        number.innerText = this.data[0][flattenColumn(this.mapping.parameters[0][0].column)];
         number.style.fontSize = '3rem';
         number.style.lineHeight = ".9";
         number.style.fontFamily = "Replica";
         numberContainer.appendChild(number);
 
         const units = document.createElement('div');
-        units.innerText = this.graphObject.config.extra.units
+        units.innerText = this.config.extra.units
         numberContainer.appendChild(units);
 
         this.element.appendChild(numberContainer);
@@ -91,17 +87,15 @@ export default class Ticker extends GraphController   {
         graphContainer.style.height = '4rem';
         this.element.appendChild(graphContainer);
 
-
-        this.graphObject.config.paddingInner = 0;
-        this.graphObject.config.paddingOuter = 0;
+        this.config.paddingInner = 0;
+        this.config.paddingOuter = 0;
 
         this._svg(graphContainer)
 
-        this.chartLine = new ChartRaggedLine(this.graphObject.config, this.svg);
-        this.chartBackgroundArea = new ChartBackgroundArea(this,this.yParameter,"moss");
+        this.chartLine = new ChartRaggedLine(this);
+        this.chartBackgroundArea = new ChartBackgroundArea(this,this.parameters.y,"moss");
 
         this.update(this.data,this.segment, false);
-
     }
 
     styleMainElement() {
@@ -130,13 +124,11 @@ export default class Ticker extends GraphController   {
             this.element.style.flex = 'auto';
             this.element.style.height = '100%';
         }
-
-
     }
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data,this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data,this.mapping);
         const history = filterWeeks(data,neededColumns);
 
         return {
@@ -149,21 +141,17 @@ export default class Ticker extends GraphController   {
 
     redraw(data: GraphData) {
 
-        this.yScale = this.chartYScale.set(data.slice.map( d => d[this.yParameter]));
+        this.yScale = this.scales.y.set(data.slice.map( d => d[this.parameters.y]));
 
         super.redraw(data);
 
         this.chartBackgroundArea.redraw(data);
-        // this.chartWeekGrid.redraw(this.xScale, this.yScale, this.dimensions, data, this.dataMapping[0].colour, this.yParameter);
-   //     this.chartLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.graphObject.mapping[0][0].colour,this.graphObject.config.xParameter, this.yParameter);
-      //  this.chartAvgLine.redraw(this.xScale,this.yScale,this.dimensions,data,this.dataMapping[0].colour,this.yParameter);
     }
 
     draw(data: GraphData) {
 
-        this.xScale = this.chartXScale.set(data.slice.map(d => d[this.xParameter]));
+        this.xScale = this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
         this.chartBackgroundArea.draw(data);
-      //  this.chartLine.draw(data.slice);
     }
 
     update(data: GraphData, segment: string, update: boolean) {

@@ -12,6 +12,8 @@ export default class HtmlLegendDots {
 
     draw() {
 
+        const mapping = this.ctrlr.mapping ? this.ctrlr.mapping.parameters : this.ctrlr.graphObject.mapping;
+
         let legend = document.createElement('div');
         legend.classList.add('legend');
         legend.style.display = 'flex';
@@ -19,7 +21,7 @@ export default class HtmlLegendDots {
         legend.style.justifyContent = 'center';
         legend.style.width = '100%';
 
-        this.ctrlr.graphObject.mapping[0].forEach( (map: Mapping,i:  number) => {
+        mapping[0].forEach( (map: Mapping,i:  number) => {
 
             let item = this.createDiv();
             item.appendChild(this.createCircle(map));
@@ -28,16 +30,16 @@ export default class HtmlLegendDots {
 
         });
 
-        if(this.ctrlr.graphObject.mapping[1]) {
+        // if(mapping[1]) {
            
-            this.ctrlr.graphObject.mapping[1].forEach( (map: Mapping,i:  number) => {
+        //     mapping[1].forEach( (map: Mapping,i:  number) => {
 
-                let item = this.createDiv();
-                item.appendChild(this.createLine(map));
-                item.appendChild(this.createLabel(map));
-                legend.appendChild(item);
-            });
-        }
+        //         let item = this.createDiv();
+        //         item.appendChild(this.createLine(map));
+        //         item.appendChild(this.createLabel(map));
+        //         legend.appendChild(item);
+        //     });
+        // }
 
         this.ctrlr.element.insertBefore(legend,this.ctrlr.element.querySelector('svg'))
     }
@@ -53,17 +55,17 @@ export default class HtmlLegendDots {
         return item;
     }
 
-    createLine(map: Mapping) : HTMLSpanElement {
+    // createLine(map: Mapping) : HTMLSpanElement {
 
-        let line = document.createElement('span');
-        line.style.width = (window.innerWidth > 700) ? '.75rem' : '.5rem';
-        line.style.height = '1px';
-        line.style.marginRight = (window.innerWidth > 700) ? '.5rem' : '.25rem';
-        line.style.display = 'inline-block';
-        line.style.background = colours[map['colour']][0];
+    //     let line = document.createElement('span');
+    //     line.style.width = (window.innerWidth > 700) ? '.75rem' : '.5rem';
+    //     line.style.height = '1px';
+    //     line.style.marginRight = (window.innerWidth > 700) ? '.5rem' : '.25rem';
+    //     line.style.display = 'inline-block';
+    //     line.style.borderBottom = '1px dotted black'
 
-        return line;
-    }
+    //     return line;
+    // }
 
     createCircle(map: Mapping) : HTMLSpanElement {
 
@@ -79,11 +81,11 @@ export default class HtmlLegendDots {
 
     createLabel(map: Mapping) : HTMLSpanElement {
 
-            let label = document.createElement('span');
-            label.style.fontFamily = "NotoSans Regular";
-            label.style.fontSize = (window.innerWidth > 700) ? '.8rem' : '.71em';
-            label.innerText = map['label'];
-            return label;
+        let label = document.createElement('span');
+        label.style.fontFamily = "NotoSans Regular";
+        label.style.fontSize = (window.innerWidth > 700) ? '.8rem' : '.71em';
+        label.innerText = map['label'];
+        return label;
     }
 
 

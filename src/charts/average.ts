@@ -1,11 +1,12 @@
 
 import { HtmlAverage } from '../html-elements/module';
-import { GraphController } from './graph';
-import { GraphObject } from '../types/graphObject';
-import { filterWeeks, getNeededColumnsForHistory } from '../d3-services/data-with-history.functions';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
 import { DataPart, GraphData } from '../types/data';
+import { IGraphMapping } from '../types/mapping';
+import { GraphControllerV2 } from './graph-v2';
+import { flattenColumn } from '../d3-services/_helpers';
 
-export default class Average extends GraphController  {
+export default class Average extends GraphControllerV2  {
 
     htmlAverage;
 
@@ -13,11 +14,16 @@ export default class Average extends GraphController  {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
 
-        super(main,data,element,graphObject,segment) 
+        super(main,data,element,mapping,segment) 
+        this.pre();
+    }
+
+    pre() {
+        this.parameters.y = flattenColumn(this.firstMapping.column);
     }
 
     init() {
@@ -35,10 +41,11 @@ export default class Average extends GraphController  {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
+
         const history = filterWeeks(data,neededColumns);
 
-        this.main.dataStore.setGraph(this.graphObject.slug, history);
+        this.main.dataStore.setGraph(this.mapping.slug, history);
 
         return { 
             "history" : history,
@@ -48,7 +55,7 @@ export default class Average extends GraphController  {
     }
 
     redraw(data: GraphData) {
-        this.htmlAverage.redraw(data,this.yParameter);
+        this.htmlAverage.redraw(data,this.parameters.y);
     }
 
     update(data: GraphData, segment: string, update: boolean) {

@@ -1,11 +1,14 @@
 import Cijfer from './cijfer';
+import CijferCurrency from './cijfer-currency';
+import CijferDecimalPlus from './cijfer-decimal-plus';
 import Average from './average';
-import   CijfersLine  from './cijfers-line';
-import   CijfersMonths  from "./cijfers-months";
-import { CijfersTotals } from "./_cijfers-totals";
-import { CijfersLineTotals } from "./_cijfers-line-totals";
+import CijfersLine  from './cijfers-line';
+import CijfersMonths  from "./cijfers-months";
+// import { CijfersTotals } from "./_cijfers-totals";
+// import { CijfersLineTotals } from "./_cijfers-line-totals";
 import { TotalPlus } from "./total_plus";
 import Horizon from "./horizon";
+import Horizon2Y from "./horizon_2y";
 import Ticker from './ticker';
 import TickerAreas from './ticker-areas';
 import TickerBars from './ticker-bars';
@@ -14,11 +17,10 @@ import TickerBol  from "./ticker-bol";
 import TickerNumbers  from "./ticker-numbers";
 import TrendLine  from './trend-line';
 import BandBars from './band-bars';
-import { MultiBarProgression } from './_multibar-progression';
-import { BarProgression } from './_bar-progression';
-import  PieChartSum from './pie-chart-sum';
+// import { MultiBarProgression } from './_multibar-progression';
+// import { BarProgression } from './_bar-progression';
+import  PieChartSumV2 from './pie-chart-sum-v2';
 import  Map  from './map';
-import { Flow } from './_flow';
 import  FlowDossierCount from './flow-dossier-count';
 import Ballenbak  from './ballenbak';
 import StackedArea from './stacked-area';
@@ -27,17 +29,18 @@ import StackedBars from './stacked-bars';
 // import { Ratings } from './ratings';
 import  KTORatings from './kto-ratings';
 import  ShortTrend from "./short-trend";
-import { Results} from "./_results"
+// import { Results} from "./_results"
 
 
 export const graphs  = {
 
     Cijfer,
+    CijferCurrency,
+    CijferDecimalPlus,
     CijfersLine,
     CijfersMonths,
-    CijfersTotals,
-    CijfersLineTotals,
     Horizon,
+    Horizon2Y,
     Average,
     TotalPlus,
     Ticker,
@@ -48,17 +51,13 @@ export const graphs  = {
     TickerNumbers,
     TrendLine,
     BandBars,
-    MultiBarProgression,
-    BarProgression,
-    PieChartSum,
+    PieChartSumV2,
     Map,
-    Flow,
     FlowDossierCount,
     Ballenbak,
     StackedArea,
     NormalisedBars,
     StackedBars,
     KTORatings,
-    ShortTrend,
-    Results
+    ShortTrend
 };

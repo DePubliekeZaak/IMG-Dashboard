@@ -67,33 +67,36 @@ export class ChartCircles {
             .style("fill","white");
     }
 
-    redraw(rScale: any, direction: string) {
+    redraw() {
 
         let self = this;
 
         this.headerGroup
             .attr("transform", (d) => {
 
-                if(direction === 'horizontal'){
+                if(this.ctrlr.scales.x.config.direction === 'horizontal'){
 
-                    return "translate(" + this.ctrlr.xScale(d[this.ctrlr.graphObject.config.xParameter]) + "," + this.ctrlr.graphObject.config.padding.top + ")"
+                    return "translate(" + this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x]) + "," + this.ctrlr.config.padding.top + ")"
 
                 } else {
-                    return "translate(" + -(this.ctrlr.graphObject.config.padding.left) + "," + this.ctrlr.xScale(d[this.ctrlr.graphObject.config.xParameter]) + ")"
+                    return "translate(" + -(this.ctrlr.config.padding.left) + "," + this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x]) + ")"
                 }
             });
 
         this.headerLabels
-            .attr("text-anchor",(direction === 'horizontal') ? "middle" : "start")
+            .attr("text-anchor",(this.ctrlr.scales.x.config.direction === 'horizontal') ? "middle" : "start")
             .attr('dy', (d,i) => {
 
-                if (direction === 'vertical-reverse') { return 5; }
+                if (this.ctrlr.scales.x.config.direction === 'vertical-reverse') { return 5; }
 
                 return (i % 2 == 0 ) ? 0 : 24
-            })
+            });
+
+        console.log(this.ctrlr.scales.r.scale.domain());
+        console.log(this.ctrlr.scales.r.scale.range());
 
         this.circles
-            .attr("r", (d) => {  return rScale(d.value);  })
+            .attr("r", (d) => {  return this.ctrlr.scales.r.scale(d.value);  })
             .on("mouseover", function (event: any, d: any) {
 
                 let html = `
@@ -120,14 +123,14 @@ export class ChartCircles {
             });
 
         this.circlesText
-            .attr("dy", (d) => { return (direction === 'vertical-reverse') ? ".3rem" : ".4rem" })
+            .attr("dy", (d) => { return (this.ctrlr.scales.x.config.direction === 'vertical-reverse') ? ".3rem" : ".4rem" })
             .attr("pointer-events","none")
             .text( (d) => { return thousands(d.value)});
 
         this.headers_lines
             .attr('height', (d,i) => {
 
-                if (direction === 'vertical-reverse') { return 0;}
+                if (this.ctrlr.scales.x.config.direction === 'vertical-reverse') { return 0;}
 
                 return (i % 2 == 0) ? this.ctrlr.dimensions.height - 120 : this.ctrlr.dimensions.height - 154;
             })
@@ -136,7 +139,7 @@ export class ChartCircles {
             });
     }
 
-    forceDirect(rScale, direction) {
+    forceDirect() {
 
         let self = this;
         let triangleSize = 40;
@@ -146,12 +149,12 @@ export class ChartCircles {
 
                 if(d.x !== undefined) {
 
-                    if (direction === 'horizontal') {
+                    if (this.ctrlr.scales.x.config.direction === 'horizontal') {
 
-                        return "translate(" + self.ctrlr.xScale(d.cumulativeDuration) + "," + (d.y + 0) + ")"
+                        return "translate(" + self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]) + "," + (d.y + 0) + ")"
                     } else {
 
-                        return "translate(" + (d.x + 0) + "," + self.ctrlr.xScale(d.cumulativeDuration) + ")"
+                        return "translate(" + (d.x + 0) + "," + self.ctrlr.scales.x.scale(d.cumulativeDuration) + ")"
                     }
                 }
             })

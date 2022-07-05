@@ -93,7 +93,8 @@ export class InitDashboard {
 
                 let data = graphObject.segment ? weekData : muniData;
 
-                if (graphObject.config.multiples) {
+
+                if (graphObject.config && graphObject.config.multiples) {
 
                     data = data.filter( (muni) => munis.map((m) => m.value).indexOf(muni.gemeente) > -1 && muni.gemeente !== "all");
 
@@ -114,19 +115,15 @@ export class InitDashboard {
 
                 } else {
 
+                    const graphType = graphObject.config ? graphObject.config.graphType : graphObject.graph;
+
                     const element = this.html.createGraphGroupElement(graphObject, this.htmlContainer);
-
-                    // of een generieke data parse file gebruiken
-
-                    // of toch vanuit graph doen
-
-                    // console.log(data);
 
                     if (update) {
                         this.graphMethods[graphObject.slug].update(data, segment, true);
                     } else {
                         element.innerHTML = '';
-                        this.graphMethods[graphObject.slug] = new graphs[graphObject.config.graphType](this, data, element, graphObject, segment);
+                        this.graphMethods[graphObject.slug] = new graphs[graphType](this, data, element, graphObject, segment);
                         this.graphMethods[graphObject.slug].init();
                     }
                 }

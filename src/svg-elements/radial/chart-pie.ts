@@ -11,6 +11,8 @@ export class ChartPie {
 
     draw(data: any[][]) {
 
+        const config = this.ctrlr.config ? this.ctrlr.config : this.ctrlr.graphObject.config;
+
         let self = this;
 
         let pie = d3.pie()
@@ -33,12 +35,10 @@ export class ChartPie {
                 d3.select(event.target)
                     .attr("fill", (dd: any) => colours[dd.data.colour][0]);
                  
-                let date = new Date(d[self.ctrlr.xParameter]);
-
                 d3.select('.tooltip')
                     .html((dd: any) => {
-
-                        let value = self.ctrlr.graphObject.config.extra.currencyLabels ? convertToCurrency(d['value']) : d['value'];
+        
+                        let value = (self.ctrlr.mapping.parameters[0][0].format === 'currency') ? convertToCurrency(d['value']) : d['value'];
 
                         return '<b>' + d['data']['label'] + '</b><br/>' + value;
                     })
@@ -64,6 +64,7 @@ export class ChartPie {
 
         let radius, arc, labelArc, innerRadius;
 
+        const config = this.ctrlr.config ? this.ctrlr.config : this.ctrlr.graphObject.config;
 
         if(window.innerWidth < 700) {
 
@@ -83,26 +84,26 @@ export class ChartPie {
 
         } else {
 
-            innerRadius = (this.ctrlr.graphObject.config.extra.innerRadius !== undefined) ? this.ctrlr.graphObject.config.extra.innerRadius : 30;
+            innerRadius = (config.extra.innerRadius !== undefined) ? config.extra.innerRadius : 30;
 
-            let offset = ( this.ctrlr.graphObject.config.extra.maxRadius / 2)  + (this.ctrlr.dimensions.width - this.ctrlr.graphObject.config.extra.maxRadius) / 2;
+            let offset = ( config.extra.maxRadius / 2)  + (this.ctrlr.dimensions.width - config.extra.maxRadius) / 2;
 
             this.ctrlr.svg.layers.data
-                .attr("transform", "translate(" + offset + "," + ((this.ctrlr.graphObject.config.extra.maxRadius) + 20) + ")");
+                .attr("transform", "translate(" + offset + "," + ((config.extra.maxRadius) + 20) + ")");
 
             radius = this.ctrlr.dimensions.svgWidth / 3;
 
-            if(radius > (this.ctrlr.graphObject.config.extra.maxRadius)) {
-                radius = this.ctrlr.graphObject.config.extra.maxRadius;
+            if(radius > (config.extra.maxRadius)) {
+                radius = config.extra.maxRadius;
             }
 
             labelArc = d3.arc()
-                .outerRadius(this.ctrlr.graphObject.config.extra.maxRadius)
-                .innerRadius(this.ctrlr.graphObject.config.extra.maxRadius);
+                .outerRadius(config.extra.maxRadius)
+                .innerRadius(config.extra.maxRadius);
 
             arc = d3.arc()
-                .outerRadius(this.ctrlr.graphObject.config.extra.maxRadius)
-                .innerRadius(this.ctrlr.graphObject.config.extra.innerRadius);
+                .outerRadius(config.extra.maxRadius)
+                .innerRadius(config.extra.innerRadius);
         }
 
         function arcTween(a) {

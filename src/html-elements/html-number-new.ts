@@ -20,9 +20,9 @@ export class HtmlNumberNew {
         number.classList.add('total');
         number.style.fontSize = '2rem';
         number.style.lineHeight = "1";
-        number.style.color = colours[this.ctrlr.graphObject.mapping[0][0].colour][0];
+        number.style.color = colours[this.ctrlr.mapping.parameters[0][0].colour][0];
         number.style.fontFamily = "Replica";
-        number.style.margin = '2.3rem auto 0rem auto';
+        number.style.margin = '2.7rem auto 0rem auto';
 
         miniContainer.appendChild(number);
         this.ctrlr.element.appendChild(miniContainer)
@@ -31,15 +31,14 @@ export class HtmlNumberNew {
 
     redraw(data: GraphData) {
 
+        let value =  Math.round(data.latest[this.ctrlr.mapping.parameters[0][0].column]);
+      //  let lastWeek = Math.round(data.latest[this.ctrlr.mapping.parameters[0][0].column]);
 
-        let value =  Math.round(data.latest[this.ctrlr.graphObject.mapping[0][1].column]);
-        let lastWeek = Math.round(data.latest[this.ctrlr.graphObject.mapping[0][0].column]);
-
-        if (this.ctrlr.graphObject.config.extra.segmentIndicator) {
+        if (this.ctrlr.config.extra.segmentIndicator) {
 
             this.ctrlr.element.querySelector('.total').innerText = (this.ctrlr.graphObject.config.qualifier && this.ctrlr.graphObject.config.qualifier !== undefined) ? value + this.ctrlr.graphObject.config.qualifier : value;
 
-        } else if (this.ctrlr.graphObject.config.extra.currency) {
+        } else if (this.ctrlr.config.extra.currency) {
 
             this.ctrlr.element.querySelector('.total').innerText = convertToCurrency(value);
 

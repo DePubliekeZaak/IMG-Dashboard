@@ -1,19 +1,16 @@
 import * as d3 from "d3";
-import { GraphController } from "./graph";
+
 import * as topojson from "topojson-client";
 
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale } from "../chart-basics/module";
 import { ChartMap, MapLegend } from "../svg-elements/module";
-import { HtmlHeader, HtmlPopup } from "../html-elements/module";
-
 import { slugify } from "../utils/slugify.utils";
-import { breakpoints } from "../_styleguide/_breakpoints";
-
-import { GraphObject } from "../types/graphObject";
 import { DataPart, GraphData } from "../types/data";
+import { GraphControllerV2 } from "./graph-v2";
+import { IGraphMapping } from "../types/mapping";
+import { flattenColumn } from "../d3-services/_helpers";
 
 
-export default class Map extends GraphController {
+export default class Map extends GraphControllerV2 {
 
     topojsonObject
 
@@ -28,21 +25,25 @@ export default class Map extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre() {
+        this._addScale('y','linear','opacity', flattenColumn(this.firstMapping.column));
+        this._addMargin(80,100,0,0);
+        this._addPadding(20,40,40,0);
     }
 
     init() {
 
-        // if (window.innerWidth < breakpoints.sm) {
-            this.graphObject.config.margin.right = 25;
-        // }
-
+        this.config.margin.right = 25;
         super._init();
 
-        const svgId = "svg-wrapper-" + this.graphObject.slug
+        const svgId = "svg-wrapper-" + this.mapping.slug
         const container = document.createElement('section');
         container.style.height = "320px";
         container.style.marginTop = "-5%";
@@ -51,8 +52,6 @@ export default class Map extends GraphController {
 
         super._svg(container);
      
-        this.chartScale = new ChartScale("linear", this.graphObject.config, this.dimensions)
-
         this.chartMap = new ChartMap(this);
         this.chartMap.init();
 
@@ -84,7 +83,7 @@ export default class Map extends GraphController {
                 }
             }
 
-            feature.properties.colour = this.graphObject.mapping[0][0].colour;
+            feature.properties.colour = this.firstMapping.colour;
         }
 
         return {
@@ -97,28 +96,25 @@ export default class Map extends GraphController {
 
     draw(data: GraphData) {
 
-        this.chartMap.draw(data.features);
-    //   if (window.innerWidth < breakpoints.sm) {
+        this.chartMap.draw(data.features);    //   if (window.innerWidth < breakpoints.sm) {
         this.element.appendChild(this.legend.draw(data));
-        //   }
+
     }
 
     redraw(data: GraphData) {
 
+        console.log(data.features);
+        this.scales.y.set(data.features.map( f => (f['properties'][this.parameters.y] !== undefined) ? f['properties'][this.parameters.y] : 0));
         super.redraw(data);
+        this.chartMap.redraw(this.parameters.y,this.mapping.parameters[0][0]['colour']);
 
-        // if (newProperty && newProperty != undefined) { this.property = newProperty };
-        this.scale = this.chartScale.set(data.features.map( f => (f['properties'][this.yParameter] !== undefined) ? f['properties'][this.yParameter] : 0));
-        this.scale = this.chartScale.reset('opacity',this.dimensions,this.scale);
-     
-        this.chartMap.redraw(this.yParameter,this.graphObject.mapping[0][0]['colour']);
+        console.log(this.scales.y.domain());
+        console.log(this.scales.y.range());
     }
 
     update(data: GraphData, segment: string, update: boolean) {
 
         super._update(data,segment,update);
-
- 
     }
 }
 

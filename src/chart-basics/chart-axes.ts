@@ -88,7 +88,7 @@ export class ChartAxes {
                    this.axis
                        .tickFormat( (d,i) => {
                            // return (window.innerWidth < 640) ? (i + 1) : d;
-
+                 
                           return (this.config.extra.axisInMonths) ? getMonthFromNumber(d) : d;
                        })
 

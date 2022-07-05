@@ -1,131 +1,39 @@
 import { colours } from '../../_styleguide/_colours';
 import { getWeek, getMonth } from '../../utils/date-object.utils';
 import { DataPart } from '../../types/data';
+import { ChartGrid } from './chart-grid';
 
-export class ChartWeekGrid {
+export class ChartGridWeek extends ChartGrid {
+
 
     constructor(
-        private config,
-        private svg
+        ctrlr,
     ) {
-
-        if(this.config.extra.firstInLine) {
-
-            this.svg.weekLabel = this.svg.layers.data
-                .append("text")
-                .attr("class", "weekLabel")
-                .attr("font-family", "NotoSans Regular")
-                .attr("font-size", ".8rem")
-                .attr("text-anchor", "end")
-                .text("laatste 8 weken:")
-            ;
-        }
+        super(ctrlr);
     }
 
-    draw(data) {
+    redraw(data,colour) {
 
-            this.svg.weekLines = this.svg.layers.underData.selectAll(".weekLine")
-                .data(data)
-                .join("line")
-                .attr("class", "weekLine");
+        let self = this;
 
-            this.svg.weekNumbers = this.svg.layers.underData.selectAll(".weekNumber")
-                .data(data.slice(0,data.length - 1))
-                .join("text")
-                .attr("class", "weekNumber smallest-label")
-                .attr("text-anchor","middle")
-                .attr("font-size",".75rem")
-                .attr("font-family","NotoSans Regular");
-    }
+        super.redraw(data,colour);
+            
+        this.ctrlr.svg.gridNumbers
+                .text( (d, i) => {
 
-    redraw(xScale,yScale,dimensions,data,colour,yParameter) {
-
-            let self = this;
-
-            this.svg.weekLines
-                .attr("x1", function (d) {
-                    return (self.config.xScaleType === 'time') ? xScale(new Date(d[self.config.xParameter])) : -40
-                })
-                .attr("x2", function (d) {
-                    return (self.config.xScaleType === 'time') ? xScale(new Date(d[self.config.xParameter])) : dimensions.width + 40
-                })
-                .attr("y1", function (d,i) {
-
-                    if(self.config.yScaleType === 'time' && i === 0) {
-                        return yScale(new Date(d[yParameter])) - 35;
-                    } else {
-                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : yScale(d[yParameter]) + 6;
-                    }
-                })
-                .attr("y2", (d,i) => {
-
-                    if(self.config.yScaleType === 'time' && i === 0) {
-
-                        return yScale(new Date(d[yParameter])) - 35;
-                    } else {
-                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height;
-                    }
-                })
-                .attr("fill", "none")
-                .style("stroke", (this.config.extra.useLineFill) ? colours[colour][2] : colours.lightGrey)
-                .style("stroke-width", (d,i) => (self.config.yScaleType === 'time' && i === 0) ? 0 : 1)
-            // .style("stroke-dasharray", "2 4")
-            ;
-
-        this.svg.weekNumbers
-                .attr("x", function (d, i) {
-                    if (self.config.xScaleType === 'time') {
-
-                        return ((xScale(new Date(data[i + 1][self.config.xParameter])) - xScale(new Date(data[i][self.config.xParameter]))) / 2) + xScale(new Date(data[i][self.config.xParameter]))
-                    } else {
-                        return -35; 
-                    }
-                })
-                .attr("y", function (d,i) {
-
-                    if (self.config.yScaleType === 'time' && i === 0) {
-                        return yScale(new Date(d[yParameter])) - 66;
-                    } else {
-                        return (self.config.yScaleType === 'time') ? yScale(new Date(d[yParameter])) : dimensions.height  + 4; // - self.config.padding.bottom
-                    }
-
-                })
-             //   .attr("dx", (this.config.extra.period === 'monthly') ? -22 : -16)
-                .attr("dy", (this.config.xScaleType === 'time') ? 12 :  25)
-                .attr("fill", colours.grey)
-                .text(function (d, i) {
-
-                    let date = new Date(d[self.config.xParameter]);
-                    // we rapporteren over de week ervoor
+                    let date = new Date(d[self.ctrlr.parameters.x]);
+                    // we rapporteren over de month ervoor
                     date.setDate(date.getDate() - 7);
 
-                    if (self.config.extra.period === 'monthly') {
-
-                        return getMonth(date)
-
-                    } else if (self.config.xScaleType === 'time') {
-
-                        return getWeek(date) // (i < (data.length - 1)) ? getWeek(date) : '';
-
-                    } else if (i === data.length - 1) {
+                    if (i === data.length - 1) {
 
                         return '';
 
                     } else {
 
-                        return 'week ' + getWeek(date);
+                        return getWeek(date)
                     }
-                })
-                .style("text-anchor", (self.config.xScaleType === 'time') ? "middle" : "end");
+                });
 
-            // if(this.svg.weekLabel) {
-
-            //     this.svg.weekLabel
-            //         .attr("y", function (d) {
-            //             return dimensions.height + 16;  // http://192.168.1.7:9966
-            //         })
-            //         .attr("x", -40)
-            //     ;
-            // }
     }
 }

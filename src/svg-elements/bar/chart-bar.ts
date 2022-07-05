@@ -41,44 +41,44 @@ export class ChartBar {
 
         this.bars
             .attr("x", (d: DataPart)  => {
-                return self.ctrlr.xScale(d[self.ctrlr.xParameter]);
+                return self.ctrlr.scales.x.fn(d[self.ctrlr.parameters.x]);
             })
             .attr("y", self.ctrlr.dimensions.height)
             .attr("height", 0)
-            .attr("width",  (self.ctrlr.graphObject.config.xScaleType === 'band') ? self.ctrlr.xScale.bandwidth() : self.ctrlr.dimensions.width / data.length - 1)
+            .attr("width",  (self.ctrlr.scales.x.config.type === 'band') ? self.ctrlr.scales.x.scale.bandwidth() : self.ctrlr.dimensions.width / data.length - 1)
             .transition()
             .duration(500)
-            .attr("y", (d) => (this.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.yScale(d[self.ctrlr.yParameter]))
-            .attr("height", (d) => (this.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? 0 : self.ctrlr.dimensions.height - self.ctrlr.yScale(d[self.ctrlr.yParameter]))
+            .attr("y", (d) => (this.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.scales.y.fn(d[self.ctrlr.parameters.y]))
+            .attr("height", (d) => (this.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? 0 : self.ctrlr.dimensions.height - self.ctrlr.scales.y.fn(d[self.ctrlr.parameters.y]))
 
         ;
 
         this.barLabels
             .text( (d) => {
 
-                if(self.ctrlr.graphObject.config.extra.currencyLabels) {
-                    return convertToCurrency(d[self.ctrlr.yParameter]);
+                if(self.ctrlr.firstMapping.format === 'currency') {
+                    return convertToCurrency(d[self.ctrlr.parameters.y]);
 
-                } else if(self.ctrlr.graphObject.config.extra.percentage) {
+                } else if(self.ctrlr.firstMapping.format === 'percentage') {
 
-                    return d[self.ctrlr.yParameter] + "%";
+                    return d[self.ctrlr.parameters.y] + "%";
 
                 } else {
-                    return (self.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? '< 25' : d[self.ctrlr.yParameter] ;
+                    return (self.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? '< 25' : d[self.ctrlr.parameters.y] ;
                 }
             })
             .attr('transform', (d) => {
 
-                    if (this.ctrlr.graphObject.config.xScaleType === "band") {
+                    if (this.ctrlr.scales.x.config.type === "band") {
 
-                        return 'translate(' + (self.ctrlr.xScale(d[self.ctrlr.xParameter]) + (self.ctrlr.xScale.bandwidth() / 2)) + ',' +
-                            ((self.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.yScale(d[self.ctrlr.yParameter]))
+                        return 'translate(' + (self.ctrlr.scales.x.fn(d[self.ctrlr.parameters.x]) + (self.ctrlr.scales.x.scale.bandwidth() / 2)) + ',' +
+                            ((self.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.scales.y.fn(d[self.ctrlr.parameters.y]))
                             + ')';
 
                     } else {
                         
                         return 'translate(' + (self.ctrlr.dimensions.width / 2) + ',' +
-                            ((self.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.yScale(d[self.ctrlr.yParameter]))
+                            ((self.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.scales.y.fn(d[self.ctrlr.parameters.y]))
                             + ')';
 
                     }

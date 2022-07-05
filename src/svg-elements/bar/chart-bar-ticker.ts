@@ -28,13 +28,13 @@ export class ChartBarTicker {
 
     smartColour(d,data:  GraphData) : string {
 
-        if(this.ctrlr.graphObject.config.extra.smartColours === 'up') {
+        if(this.ctrlr.config.extra.smartColours === 'up') {
                 
-            return d[this.ctrlr.yParameter] > data.average ? 'moss' : 'orange'
+            return d[this.ctrlr.parameters.y] > data.average ? 'moss' : 'orange'
 
         } else {
 
-            return d[this.ctrlr.yParameter] > data.average ? 'orange' : 'moss'
+            return d[this.ctrlr.parameters.y] > data.average ? 'orange' : 'moss'
         }
     }
 
@@ -44,34 +44,34 @@ export class ChartBarTicker {
 
         this.bars
             .attr("x", (d: DataPart)  => {
-                return self.ctrlr.xScale(d[self.ctrlr.xParameter]);
+                return self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]);
             })
             .attr("y", self.ctrlr.dimensions.height)
             .attr("height", 0)
             .attr("width", self.ctrlr.dimensions.width / data.slice.length - 2)
             .transition()
             .duration(500)
-            .attr("y", (d) => (this.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.yScale(d[self.ctrlr.yParameter]))
-            .attr("height", (d) => (this.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.yParameter] < 25) ? 0 : self.ctrlr.dimensions.height - self.ctrlr.yScale(d[self.ctrlr.yParameter]))
+            .attr("y", (d) => (this.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? self.ctrlr.dimensions.height : self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]))
+            .attr("height", (d) => (this.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? 0 : self.ctrlr.dimensions.height - self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]))
             
         this.bars
             .on("mouseover", function (event: any, d: any) {
 
                 d3.select(this).attr("fill", () => colours[self.smartColour(d,data)][0]);
             
-                let date = new Date(d[self.ctrlr.xParameter]);
+                let date = new Date(d[self.ctrlr.parameters.x]);
 
                 d3.select('.tooltip')
                     .html(() => {
 
-                        if (self.ctrlr.graphObject.config.xScaleType === 'time') {
+                        if (self.ctrlr.scales.x.config.type === 'time') {
 
                             return 'Gerapporteerd op ' + displayDate(date) + '<br/><b>'
-                                + Math.round(d[self.ctrlr.yParameter] * 10) / 10  + '</b><br/>'
+                                + Math.round(d[self.ctrlr.parameters.y] * 10) / 10  + '</b><br/>'
 
                         } else {
 
-                            return 'Week: ' + d._week + '<br/>Aantal: ' + d[self.ctrlr.yParameter] + '<br/>Gem. sinds 2019: ' + Math.round(data.average);  
+                            return 'Week: ' + d._week + '<br/>Aantal: ' + d[self.ctrlr.parameters.y] + '<br/>Gem. sinds 2019: ' + Math.round(data.average);  
                         }
                     })
                     .style("left", (event.pageX) + "px")

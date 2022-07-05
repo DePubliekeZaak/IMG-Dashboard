@@ -1,35 +1,20 @@
 import * as d3 from "d3";
-import { GraphController } from "./graph";
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes} from "../chart-basics/module";
+import { ChartScale } from "../chart-basics/module";
 
-import {
-    ChartCircles,
-    ChartBrackets,
-    ChartFlowBetweenCircles,
-    ChartStackedBarsNormalized
-} from "../svg-elements/module";
-
-import {
-    HtmlHeader,
-    HtmlLink,
-    HtmlPopup,
-} from "../html-elements/module";
-
+import { ChartCircles, ChartFlowBetweenCircles } from "../svg-elements/module";
 import { breakpoints} from "../_styleguide/_breakpoints";
 import { GraphObject } from "../types/graphObject";
 import { DataPart, GraphData } from "../types/data";
-import { filterWeeks, getNeededColumnsForHistory } from "../d3-services/data-with-history.functions";
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from "../d3-services/data-with-history.functions";
 import { parseOutflowData } from "../d3-services/data.functions";
+import { GraphControllerV2 } from "./graph-v2";
+import { IGraphMapping } from "../types/mapping";
 
-
-
-export default class FlowDossierCount extends GraphController {
+export default class FlowDossierCount extends GraphControllerV2 {
 
 
     rScale;
     oScale;
-
-    // xAxis;
 
     chartDimensions;
 
@@ -47,23 +32,45 @@ export default class FlowDossierCount extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre() {
+
+        this._addMargin(0,0,0,0);
+        this._addPadding(30,0,0,0);
+
+        this._addScale('r','radius','radius','value')
+        this._addScale('o','radius','radius','outflow')
+        this._addScale('x','band','horizontal','label')
+
+            // "config": {
+
+    //     "xScaleType": "linear",
+    //     "yScaleType": false,
+    //     "xParameter": "cumulativeDuration",
+    //     "yParameter": "label",
+ 
     }
 
     init(){
 
-       
+        
+        super._init();
 
         if (window.innerWidth < breakpoints.sm) {
-            this.graphObject.config.padding.left = 201;
-            this.graphObject.config.padding.right = 50;
-            // this.config.extra.radiusFactor = 1;
+            this.config.padding.left = 201;
+            this.config.padding.right = 50;   
         }
 
-        super._init();
+        this.config.extra.radiusFactor = .4;
+        this.config.extra.minRadius = 20;
+        this.config.paddingInner = .5;
+        this.config.paddingOuter = .5;
 
         let svgId = "flow-element"
         let flowEl = document.createElement('div');
@@ -74,13 +81,6 @@ export default class FlowDossierCount extends GraphController {
 
         super._svg(flowEl);
 
-        this.chartRScale = new ChartScale('radius', this.graphObject.config, this.dimensions);
-        this.chartOScale = new ChartScale('radius', this.graphObject.config, this.dimensions);
-
-        // this.xAxis = new ChartAxes(this.graphObject.config, this.svg,'bottom',this.chartXScale);
-        // this.xAxis.draw();
-
-        // kan ik circles hergebruiken?
         this.chartCircles = new ChartCircles(this);
         this.chartFlowBetweenCircles = new ChartFlowBetweenCircles(this);
 
@@ -129,10 +129,10 @@ export default class FlowDossierCount extends GraphController {
 
     prepareData(data: DataPart[]) : GraphData {
 
-        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = filterWeeks(data,neededColumns);
         
-        const { flowData, outflowData } = parseOutflowData(data, this.graphObject);
+        const { flowData, outflowData } = parseOutflowData(data, this.mapping);
 
         // this.keys = Object.keys(outflowData[0]).filter(key => {
         //     return ['serie'].indexOf(key) < 0
@@ -160,9 +160,9 @@ export default class FlowDossierCount extends GraphController {
         let self = this;
 
         // eerst x as tekenen x scale = linear
-        this.xScale = this.chartXScale.set(data.flowData.map( (d) => d[self.xParameter] + d['duration']).concat(0));
-        this.rScale = this.chartRScale.set(data.flowData.map( (d) => d['value']));
-        this.oScale = this.chartOScale.set(data.flowData.map( (d) => d['outflow']));
+        this.scales.x.set(data.flowData.map( (d) => d['label'])); // + d['duration']).concat(0));
+        this.scales.r.set(data.flowData.map( (d) => d['value']));
+        this.scales.o.set(data.flowData.map( (d) => d['outflow']));
 
         this.chartFlowBetweenCircles.draw(data.flowData);
         this.chartCircles.draw(data.flowData);
@@ -182,10 +182,7 @@ export default class FlowDossierCount extends GraphController {
 
         super.redraw(data);
 
-        this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale);
-        this.oScale = this.chartOScale.reset('flow',this.dimensions,this.oScale);
-
-        this.chartCircles.redraw(this.rScale, direction);
+        this.chartCircles.redraw();
      //   this.chartFlowBetweenCircles.redraw(data.flowData, direction);
 
         let center = {x: (this.dimensions.width / 2) , y: (self.dimensions.height / 2) };
@@ -197,11 +194,11 @@ export default class FlowDossierCount extends GraphController {
         this.simulation
             .velocityDecay(0.5)
             .force('center', d3.forceCenter(center.x,center.y))
-            .force('collide', d3.forceCollide().radius((d : any) => this.rScale(d.value)))
+            .force('collide', d3.forceCollide().radius((d : any) => this.scales.r.scale(d.value)))
             .on('tick', () => {
 
-                self.chartCircles.forceDirect(self.rScale, direction);
-                self.chartFlowBetweenCircles.forceDirect(data.flowData, self.rScale, self.oScale, direction);
+                self.chartCircles.forceDirect();
+                self.chartFlowBetweenCircles.forceDirect(data.flowData);
             });
 
         if (direction === 'horizontal') {

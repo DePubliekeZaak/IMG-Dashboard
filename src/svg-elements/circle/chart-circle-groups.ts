@@ -2,6 +2,7 @@ import * as d3 from 'd3';
 import * as _ from "lodash";
 import { colours } from  '../../_styleguide/_colours'
 import {breakpoints} from "../../_styleguide/_breakpoints";
+import debug from "../../d3-services/_debugger"
 
 export default class ChartCircleGroups {
 
@@ -97,7 +98,7 @@ export default class ChartCircleGroups {
 
         this.headerGroup
             .attr("transform", (d) => {
-                return "translate(" + self.ctrlr.xScale(d[0].group) + "," + self.ctrlr.graphObject.config.padding.top + ")"
+                return "translate(" + self.ctrlr.scales.x.scale(d[0].group) + "," + self.ctrlr.config.padding.top + ")"
             });
 
         this.headers_lines
@@ -112,29 +113,40 @@ export default class ChartCircleGroups {
             //     .attr("transform", (d) => {  return "translate(" + this.center.x + "," + this.center.y + ")" })
             // ;
 
-        this.circles
-            .attr("r", d => this.ctrlr.rScale(d.value))
-            .on("mouseover", function(event: any, d: any) {
+   
 
-                self.tooltip
-                    .html(popup(d))
-                    .style("left", (event.pageX) + "px")
-                    .style("top", (event.pageY) + "px")
-                    .transition()
-                    .duration(250)
-                    .style("opacity", 1);
-            })
-            .on("mouseout", function(d) {
+            this.circles
+                .attr("r", (d) => {
 
-                self.tooltip
-                    .transition()
-                    .duration(250)
-                    .style("opacity", 0);
-            })
-        ;
+                    // hoe kunnen we checken of een value Nan is en dan een handige foutmelding leveren inc
+                    // info over de scale enzo 
+
+                    return this.ctrlr.scales.r.fn(d.value);
+                
+                })
+                .on("mouseover", function(event: any, d: any) {
+
+                    self.tooltip
+                        .html(popup(d))
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY) + "px")
+                        .transition()
+                        .duration(250)
+                        .style("opacity", 1);
+                })
+                .on("mouseout", function(d) {
+
+                    self.tooltip
+                        .transition()
+                        .duration(250)
+                        .style("opacity", 0);
+                })
+            ;
+
+       
 
         this.circlesText
-            .text( d => (this.ctrlr.rScale(d.value) > 30) ? d.value : '');
+            .text( d => (this.ctrlr.scales.r.fn(d.value) > 30) ? d.value : '');
     }
 
     forceDirect() {
@@ -147,9 +159,9 @@ export default class ChartCircleGroups {
                     // console.log(d);
                 // } else {
                     return (window.innerWidth > breakpoints.sm) ? 
-                    "translate(" + (self.ctrlr.xScale(d.group) + d.x - this.center.x) + "," + (d.y ) + ")" 
+                    "translate(" + (self.ctrlr.scales.x.fn(d.group) + d.x - this.center.x) + "," + (d.y ) + ")" 
                     : 
-                    "translate(" + ((window.innerWidth / 2) - self.center.x) + "," + (self.ctrlr.yScale(d.group)) + ")"
+                    "translate(" + ((window.innerWidth / 2) - self.center.x) + "," + (self.ctrlr.scales.y.fn(d.group)) + ")"
                 }
             })
         ;

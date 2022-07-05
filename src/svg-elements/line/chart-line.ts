@@ -10,36 +10,40 @@ export class ChartLine {
     lineEnter;
 
     constructor(
-        private ctrlr : any,
-        private yParameter: string,
-        private colour: string
+        public ctrlr : any,
+        public yParameter: string,
+        public colour: string
     ){
     }
 
     draw(data: DataPart[]) {
 
-        this.line = this.ctrlr.svg.layers.data.selectAll('.' + this.yParameter)
-            // mmm waarom niet array  met twee lijnen? 
+        const yParameter = this.ctrlr.parameters[this.yParameter] != undefined ? this.ctrlr.parameters[this.yParameter] : this.yParameter;
+
+        this.line = this.ctrlr.svg.layers.data.selectAll('.' + yParameter)
             .data([data.slice])
             .join("path")
-            .attr("class", this.yParameter);
+            .attr("class", yParameter);
+    }
+
+    lineMaker() : d3.Line<[number, number]> {
+
+        const yParameter = this.ctrlr.parameters[this.yParameter] != undefined ? this.ctrlr.parameters[this.yParameter] : this.yParameter;
+
+        return d3.line()
+            .x(d => this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x] + .5 ))
+            .y(d => this.ctrlr.scales.y.scale(d[yParameter]) )
+            .curve(d3.curveBasis);
     }
 
     redraw() {
 
         let self = this;
 
-        let line = d3.line()
-            .x(d => {
-                return (this.ctrlr.graphObject.config.xScaleType === 'time') ? this.ctrlr.xScale(new Date(d['_date'])) : this.ctrlr.xScale(d[this.ctrlr.xParameter] )
-            })
-            .y(d => (this.ctrlr.graphObject.config.yScaleType === 'time') ? this.ctrlr.yScale(new Date (d[this.yParameter])) : this.ctrlr.yScale(d[this.yParameter]) )
-            .curve(d3.curveLinear);
-
         this.line
             .transition()
             .duration(250)
-            .attr("d", line)
+            .attr("d", this.lineMaker())
             .attr("fill", 'transparent')
             .attr("stroke", d => colours[this.colour][0] )
             .attr("stroke-width", 1)

@@ -1,10 +1,11 @@
 import { GraphObject} from '../types/graphObject';
+import { IGraphMapping } from '../types/mapping';
 
-export const dashboardSpecials : GraphObject[] = [
+export const dashboardSpecials : (GraphObject|IGraphMapping)[] = [
     {
-    "label": "Agro",
     "slug": "specials_taart_schademeldingen_agro",
-    "mapping":  [
+    "graph": "PieChartSumV2",
+    "parameters":  [
         [
             {
                 "label": "Afgehandeld",
@@ -25,42 +26,16 @@ export const dashboardSpecials : GraphObject[] = [
             }
         ]
     ],
-    "config": {
-
-        "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-            "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-        },
-        "margin": {
-            "top": 0,
-                "bottom": 15,
-                "left": 0,
-                "right": 0
-        },
-        "extra" :{
-            "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Meldingen met agro kenmerk"
-        }
-    },
+    "header" : "Meldingen met agro kenmerk",
     "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
     "endpoint": "meldingen",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label": "Erfgoed",
         "slug": "specials_taart_schademeldingen_erfgoed",
-        "mapping":  [
+        "graph": "PieChartSumV2",
+        "parameters":  [
             [
                 {
                     "label": "Afgehandeld",
@@ -81,42 +56,43 @@ export const dashboardSpecials : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
+        // "config": {
 
-            "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 15,
-                "left": 0,
-                "right": 0
-            },
-            "extra" :{
-                "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Meldingen met erfgoed kenmerk"
-            }
-        },
+            
+        //     "xScaleType" : false,
+        //     "yScaleType" : false,
+        //     "xParameter" : false,
+        //     "yParameter" : false,
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 15,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra" :{
+        //         "currencyLabels" : false,
+        //         "legendWidth" : 220,
+        //         "maxRadius" : 100,
+        //         "innerRadius" : 20,
+                
+        //     }
+        // },
+        "header" : "Meldingen met erfgoed kenmerk",
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label": "MKB",
         "slug": "specials_taart_schademeldingen_mkb",
-        "mapping":  [
+        "graph": "PieChartSumV2",
+        "parameters":  [
             [
                 {
                     "label": "Afgehandeld",
@@ -137,42 +113,43 @@ export const dashboardSpecials : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
+        // "config": {
 
-            "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 15,
-                "left": 0,
-                "right": 0
-            },
-            "extra" :{
-                "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Meldingen met MKB kenmerk"
-            }
-        },
+            
+        //     "xScaleType" : false,
+        //     "yScaleType" : false,
+        //     "xParameter" : false,
+        //     "yParameter" : false,
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 15,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra" :{
+        //         "currencyLabels" : false,
+        //         "legendWidth" : 220,
+        //         "maxRadius" : 100,
+        //         "innerRadius" : 20,
+                
+        //     }
+        // },
+        "header" : "Meldingen met MKB kenmerk",
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label": "Overig",
         "slug": "specials_taart_schademeldingen_overig",
-        "mapping":  [
+        "graph": "PieChartSumV2",
+        "parameters":  [
             [
                 {
                     "label": "Afgehandeld",
@@ -193,43 +170,43 @@ export const dashboardSpecials : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
+        // "config": {
 
-            "graphType": "PieChartSum",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 15,
-                "left": 0,
-                "right": 0
-            },
-            "extra" :{
-                "currencyLabels" : false,
-                "legendWidth" : 220,
-                "maxRadius" : 100,
-                "innerRadius" : 20,
-                "header" : "Meldingen met overig kenmerk"
-            }
-        },
+            
+        //     "xScaleType" : false,
+        //     "yScaleType" : false,
+        //     "xParameter" : false,
+        //     "yParameter" : false,
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 15,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra" :{
+        //         "currencyLabels" : false,
+        //         "legendWidth" : 220,
+        //         "maxRadius" : 100,
+        //         "innerRadius" : 20,
+                
+        //     }
+        // },
+        "header" : "Meldingen met overig kenmerk",
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-
-        "label": "Status naar doorlooptijd",
         "slug": "specials_ballenbak_status",
-        "mapping": [[
+        "graph": "Ballenbak",
+        "parameters": [[
 
             {
                 "label": 'Agro',
@@ -329,43 +306,45 @@ export const dashboardSpecials : GraphObject[] = [
             }
         ]
         ],
-        "config": {
-            "graphType": "Ballenbak",
-            "xScaleType": "band",
-            "yScaleType": "linear",
-            "xParameter": "label",
-            "yParameter": "value",
-            "padding": {
-                "top": 0,
-                "bottom": 40,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 140,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "header" : "Status openstaande speciale dossiers",
-                "paddingInner" : 1,
-                "paddingOuter" : 1,
-                "minRadius" : 4,
-                "radiusOffset" : 1.8,
-                "radiusFactor": 1
-            }
-        },
+        // "config": {
+          
+        //     "xScaleType": "band",
+        //     "yScaleType": "linear",
+        //     "xParameter": "label",
+        //     "yParameter": "value",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 40,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 140,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+              
+        //         "paddingInner" : 1,
+        //         "paddingOuter" : 1,
+        //         "minRadius" : 4,
+        //         "radiusOffset" : 1.8,
+        //         "radiusFactor": 1
+        //     }
+        // },
+        "header" : "Status openstaande speciale dossiers",
         "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
         "endpoint": "specials",
         "segment": "all",
-        "publishDate": false,
+        "publishDate": null,
         "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
-        "label" : "Statussen met gemeenteselectie",
         "slug" : "specials_bandbars_statussen",
-        "mapping": [
+        "args" : ["alternateTicks"],
+        "graph": "BandBars",
+        "parameters": [
             [
                 {
                     "label": "Ontvangst en analyse",
@@ -389,42 +368,43 @@ export const dashboardSpecials : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "BandBars",
-            "xScaleType" : 'band',
-            "yScaleType" : 'linear',
-            "xParameter" : 'label',
-            "yParameter" : "value",
-            "padding": {
-                "top": 20,
-                "bottom": 70,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 120,
-                "left": 0,
-                "right": 0
-            },
-            "extra" : {
-                "currencyLabels" : false,
-                "paddingInner" : .1,
-                "paddingOuter" : .1,
-                "municipalitySelect": true,
-                "alternateTicks" : true,
-                "header" : "Specials per status naar gemeente"
-            }
-        },
+        // "config": {
+           
+        //     "xScaleType" : 'band',
+        //     "yScaleType" : 'linear',
+        //     "xParameter" : 'label',
+        //     "yParameter" : "value",
+        //     "padding": {
+        //         "top": 20,
+        //         "bottom": 70,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 120,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra" : {
+        //         "currencyLabels" : false,
+        //         "paddingInner" : .1,
+        //         "paddingOuter" : .1,
+        //         "municipalitySelect": true,
+        //         "alternateTicks" : true,
+                
+        //     }
+        // },
+        "header" : "Specials per status",
         "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
-        "endpoint": "specials?limit=60",  // ivm in-graph gemeentekiezer
-        "segment": false,
+        "endpoint": "specials?limit=61",  // ivm in-graph gemeentekiezer
+        "segment": null,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {
-        "label" : "Kaart specials",
         "slug" : "specials_kaart_schademeldingen",
-        "mapping": [
+        "graph": "Map",
+        "parameters": [
             [
                 {
                     "label": "Specials",
@@ -433,34 +413,11 @@ export const dashboardSpecials : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "Map",
-            "xScaleType" : false,
-            "yScaleType" : false,
-            "xParameter" : false,
-            "yParameter" : false,
-            "padding": {
-                "top": 0,
-                "bottom": 10,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom":0,
-                "left": 0,
-                "right": 0
-            },
-            "extra" : {
-                "legendWidth" : 240,
-                "currencyLabels" : false,
-                "header" : "Spreiding speciale dossiers"
-            }
-        },
+        "header" : "Spreiding speciale dossiers",
         "description" : "Het aantal binnengekomen schademelding met speciale kenmerken dat per gemeente sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet. ",
-        "endpoint": "specials?limit=60",
-        "segment": false,
-        "publishDate": false,
+        "endpoint": "specials?limit=61",
+        "segment": null,
+        "publishDate": null,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
     }
 ]

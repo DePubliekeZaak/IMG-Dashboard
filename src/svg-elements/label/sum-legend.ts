@@ -16,6 +16,8 @@ export default class SumLegend {
 
     draw(data: DataPart[][]) {
 
+        const config = this.ctrlr.config ? this.ctrlr.config : this.ctrlr.graphObject.config;
+
         let legendEl = this.ctrlr.element.querySelector('.legend');
 
          if (legendEl) {
@@ -46,17 +48,19 @@ export default class SumLegend {
 
          let legendDimensions = {
 
-             width : this.ctrlr.graphObject.config.extra.legendWidth,
+             width : config.extra.legendWidth,
              height : this.rowHeight * dataLength,
-             svgWidth : this.ctrlr.graphObject.config.extra.legendWidth,
+             svgWidth : config.extra.legendWidth,
              svgHeight : this.rowHeight * dataLength,
          }
 
-        this.legend = new ChartSVG(legendContainer,this.ctrlr.graphObject.config,legendDimensions,newSVGObject);
+        this.legend = new ChartSVG(legendContainer,config,legendDimensions,newSVGObject);
 
     }
 
     redraw(data: DataPart[][]) {
+
+        const config = this.ctrlr.config ? this.ctrlr.config : this.ctrlr.graphObject.config;
 
         let dataLength = data[0].length;
 
@@ -65,9 +69,9 @@ export default class SumLegend {
 
         let legendDimensions = {
 
-            width : this.ctrlr.graphObject.config.extra.legendWidth,
+            width : config.extra.legendWidth,
             height : this.rowHeight * dataLength,
-            svgWidth : this.ctrlr.graphObject.config.extra.legendWidth,
+            svgWidth : config.extra.legendWidth,
             svgHeight : this.rowHeight * dataLength,
         }
 
@@ -77,6 +81,8 @@ export default class SumLegend {
             .remove();
         //
         data[0].forEach( (d,i) => {
+
+            
 
             this.legend.svg.layers.legend.append("rect")
                 .attr("y", (i * this.rowHeight) - 2)
@@ -95,9 +101,9 @@ export default class SumLegend {
 
             this.legend.svg.layers.legend.append("text")
                 .attr("class", "small-label")
-                .attr("dx", this.ctrlr.graphObject.config.extra.legendWidth)
+                .attr("dx", config.extra.legendWidth)
                 .attr("dy", (i * this.rowHeight) + 8)
-                .text( (this.ctrlr.graphObject.config.extra.currencyLabels) ? convertToCurrency(d['value']) : d['value'])
+                .text( (this.ctrlr.mapping.parameters[0][i].format === 'currency') ? convertToCurrency(d['value']) : d['value'])
                 .attr("width", this.ctrlr.dimensions.svgWidth)
                 .style("opacity", 1)
                 .style("text-anchor", "end");
@@ -112,7 +118,7 @@ export default class SumLegend {
                 .attr("class", "small-label")
                 .attr("y", ((data[0].length) * this.rowHeight)  - 3)
                 .attr("height", .5)
-                .attr("width", this.ctrlr.graphObject.config.extra.legendWidth)
+                .attr("width", config.extra.legendWidth)
                 .style("opacity", 1)
                 .style("fill", 'black');
 
@@ -125,9 +131,9 @@ export default class SumLegend {
 
             this.legend.svg.layers.legend.append("text")
                 .attr("class", "small-label")
-                .attr("dx", this.ctrlr.graphObject.config.extra.legendWidth)
+                .attr("dx", config.extra.legendWidth)
                 .attr("dy", ((data[0].length) * this.rowHeight) + 16)
-                .text( (this.ctrlr.graphObject.config.extra.currencyLabels) ? convertToCurrency(data[1][0]['value']) : data[1][0]['value'])
+                .text( (this.ctrlr.mapping.parameters[1][0].format === 'currency') ? convertToCurrency(data[1][0]['value']) : data[1][0]['value'])
                 .attr("width", this.ctrlr.dimensions.svgWidth)
                 .style("opacity", 1)
                 .style("text-anchor", "end");
@@ -153,9 +159,9 @@ export default class SumLegend {
 
             this.legend.svg.layers.legend.append("text")
                 .attr("class", "small-label")
-                .attr("dx", this.ctrlr.graphObject.config.extra.legendWidth)
+                .attr("dx", config.extra.legendWidth)
                 .attr("dy", ((data[0].length + 1.5) * this.rowHeight) + 16)
-                .text( (this.ctrlr.graphObject.config.extra.currencyLabels) ? convertToCurrency(data[2][0]['value']) : data[2][0]['value'])
+                .text( (config.extra.currencyLabels) ? convertToCurrency(data[2][0]['value']) : data[2][0]['value'])
                 .attr("width",this.ctrlr.dimensions.svgWidth)
                 .style("opacity", 1)
                 .style("text-anchor", "end");

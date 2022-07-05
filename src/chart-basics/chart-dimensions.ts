@@ -1,25 +1,24 @@
 import { Dimensions } from "../types/dimensions";
-import { GraphConfig } from "../types/graphConfig";
+import { GraphConfig, IGraphConfigV2 } from "../types/graphConfig";
 
 export interface IChartDimensions {
     element: HTMLElement,
-    config: GraphConfig,
+    config: GraphConfig|IGraphConfigV2,
     measure: (Dimensions) =>  Dimensions
 }
-
 
 export class ChartDimensions implements IChartDimensions {
 
     element: HTMLElement;
-    config: GraphConfig;
+    config: GraphConfig|IGraphConfigV2;
     dimensions: Dimensions;
 
     constructor(
         
         element : HTMLElement,
-        config : GraphConfig
+        config : GraphConfig|IGraphConfigV2
     ) {
-        this.config = config;
+       this.config = config;
         this.element = element
     }
 

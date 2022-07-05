@@ -41,7 +41,7 @@ export default class ChartBarHorizon {
             .attr("class", "bar_balance");
         ;
 
-        this.line= this.ctrlr.svg.layers.data.selectAll("path")
+        this.line = this.ctrlr.svg.layers.data.selectAll("path")
             .data([slice])
             .join("path")
             .attr("fill", 'transparent')
@@ -52,13 +52,18 @@ export default class ChartBarHorizon {
 
     redraw(data: GraphData) {
 
+        // console.log(this.ctrlr.scales.x.scale.domain());
+        // console.log(this.ctrlr.scales.x.scale.range());
+        // console.log(this.ctrlr.scales.y.scale.domain());
+        // console.log(this.ctrlr.scales.y.scale.range());
+
         let self = this;
 
         let middle = this.ctrlr.dimensions.height / 2;
 
         let line = d3.line()
-                .x(d =>  this.ctrlr.xScale(d[this.ctrlr.xParameter]))
-                .y(d =>  this.ctrlr.yScale(-d['diff']) + middle)
+                .x(d =>  this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x]))
+                .y(d =>  this.ctrlr.scales.y.scale(-d['diff']) + middle)
                 .curve(d3.curveLinear);
 
         this.line
@@ -67,19 +72,19 @@ export default class ChartBarHorizon {
 
         this.barsUp
             .attr("x", (d: DataPart)  => {
-                return self.ctrlr.xScale(d[self.ctrlr.xParameter]);
+                return self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]);
             })
             .attr("width", self.ctrlr.dimensions.width / data.slice.length - 2)
             .attr("y", (d) => { 
 
-                return  /* this.ctrlr.yScale(-d['diff']) +  */ middle - self.ctrlr.yScale(d[self.ctrlr.yParameter])
+                return  /* this.ctrlr.yScale(-d['diff']) +  */ middle - self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y])
                 
             }) 
-            .attr("height", (d) => self.ctrlr.yScale(d[self.ctrlr.yParameter]))
+            .attr("height", (d) => self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]))
 
         this.barsDown
             .attr("x", (d: DataPart)  => {
-                return self.ctrlr.xScale(d[self.ctrlr.xParameter]);
+                return self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]);
             })
             .attr("y", self.ctrlr.dimensions.height)
             .attr("width", self.ctrlr.dimensions.width / data.slice.length - 2)
@@ -88,20 +93,20 @@ export default class ChartBarHorizon {
                 return /* this.ctrlr.yScale(-d['diff'])  +  */ middle
                 
             })
-            .attr("height", (d) => self.ctrlr.yScale(d[self.ctrlr.y2Parameter]))
+            .attr("height", (d) => self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y2]))
             
         this.barsUp
             .on("mouseover", function (event: any, d: any) {
 
                 d3.select(this).attr("fill", () => colours['orange'][0]);
             
-                let date = new Date(d[self.ctrlr.xParameter]);
+                let date = new Date(d[self.ctrlr.parameters.x]);
 
                 d3.select('.tooltip')
                     .html(() => {
                             return `Week: ` + d._week 
-                            + `<br/>Meldingen: ` + d[self.ctrlr.yParameter] 
-                            + `<br/>Afgehandeld: ` + d[self.ctrlr.y2Parameter]
+                            + `<br/>Meldingen: ` + d[self.ctrlr.parameters.y2] 
+                            + `<br/>Afgehandeld: ` + d[self.ctrlr.parameters.y2]
                             + `<br/>Verschil: ` + d.diff;  
                     })
                     .style("left", (event.pageX) + "px")
@@ -127,13 +132,13 @@ export default class ChartBarHorizon {
 
                 d3.select(this).attr("fill", () => colours['lightBlue'][0]);
             
-                let date = new Date(d[self.ctrlr.xParameter]);
+                let date = new Date(d[self.ctrlr.parameters.x]);
 
                 d3.select('.tooltip')
                     .html(() => {
                             return `Week: ` + d._week 
-                            + `<br/>Meldingen: ` + d[self.ctrlr.yParameter] 
-                            + `<br/>Afgehandeld: ` + d[self.ctrlr.y2Parameter]
+                            + `<br/>Meldingen: ` + d[self.ctrlr.parameters.y] 
+                            + `<br/>Afgehandeld: ` + d[self.ctrlr.parameters.y2]
                             + `<br/>Verschil: ` + d.diff;  
                     })
                     .style("left", (event.pageX) + "px")

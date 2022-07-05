@@ -1,18 +1,13 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid } from '../svg-elements/module';
-import {  HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../html-elements/module';
-
-import * as d3 from "d3";
 import { breakpoints } from "../_styleguide/_breakpoints";
-import {colours} from "../_styleguide/_colours";
 import {convertToCurrency, flattenColumn, thousands} from "../d3-services/_helpers";
-import { GraphController } from './graph';
+
 import { GraphObject } from '../types/graphObject';
 import { filterLatest, getNeededColumns } from '../d3-services/data.functions';
 import { DataPart, GraphData } from '../types/data';
+import { GraphControllerV2 } from "./graph-v2";
+import { IGraphMapping } from "../types/mapping";
 
-export default class TickerNumbers extends GraphController {
+export default class TickerNumbers extends GraphControllerV2 {
 
     htmlCircle;
 
@@ -20,10 +15,17 @@ export default class TickerNumbers extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre() {
+
+        this._addMargin(0,0,0,0);
+        this._addPadding(0,4,0,0);
     }
 
     init() {
@@ -66,7 +68,7 @@ export default class TickerNumbers extends GraphController {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        let neededColumns = getNeededColumns(data,this.graphObject);
+        let neededColumns = getNeededColumns(data,this.mapping);
 
         return {
             "history" : null,
@@ -87,7 +89,7 @@ export default class TickerNumbers extends GraphController {
         let table = document.createElement('table');
         table.style.lineHeight = '1.55';
      
-        for (let mapping of this.graphObject.mapping[0]) {
+        for (let mapping of this.mapping.parameters[0]) {
 
             let row = document.createElement('tr');
 
@@ -109,9 +111,7 @@ export default class TickerNumbers extends GraphController {
                     v = thousands(v) + ' dossiers';
                     break;
                 case "decimal" : 
-                    console.log(v);
                     v = (Math.round(parseFloat(v) * 10) / 10).toString();
-
             }
 
             value.innerText = v;

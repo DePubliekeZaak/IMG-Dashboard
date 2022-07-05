@@ -65,14 +65,14 @@ export default class ChartMap   {
                 const c = (colour) ? colour : d.properties.colour;
                 return (property !== undefined && d.properties[property] > 0) ? (colours[c][0] || colours[c][0] ): '#eee'
             } )
-            .attr("fill-opacity", (d) => (d.properties[property] > 0) ? this.ctrlr.scale(d.properties[property]) : 1)
+            .attr("fill-opacity", (d) => (d.properties[property] > 0) ? this.ctrlr.scales.y.scale(d.properties[property]) : 1)
             .on("mouseover", function (event: any, d: any) {
 
                 let html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + d.properties[property] + "</div>";
 
-                if (self.ctrlr.graphObject.config.extra.currencyLabels) {
+                if (self.ctrlr.firstMapping.format === 'currency') {
                     html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + convertToCurrency(d.properties[property]) + "</div>";
-                } else if (self.ctrlr.graphObject.config.extra.percentage) {
+                } else if (self.ctrlr.firstMapping.format === 'percentage') {
                     html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + d.properties[property] + "%</div>";
                 }
 
@@ -95,12 +95,7 @@ export default class ChartMap   {
             .on("mouseout", function (event, d) {
 
                 d3.select(event.target)
-                    .attr("fill-opacity", (e: any) => (e.properties[property] > 0) ? self.ctrlr.scale(d.properties[property]) : 1)
-
-                // self.svg.layers.data.selectAll("path")
-                    // .style("stroke", "#fff");
-                //     .attr("fill", d => (d.properties[property] > 0) ? colours[d.properties.colour][0] : '#eee')
-                //     .attr("fill-opacity", d => (d.properties[property] > 0) ? scale(d.properties[property]) : 1);
+                    .attr("fill-opacity", (e: any) => (e.properties[property] > 0) ? self.ctrlr.scales.y.fn(d.properties[property]) : 1)
 
                 d3.select('.tooltip')
                     .transition()
@@ -109,23 +104,23 @@ export default class ChartMap   {
             });
 
 
-            this.ctrlr.svg.values
-                .text(function (d) {
+            // this.ctrlr.svg.values
+            //     .text(function (d) {
 
-                    if (window.innerWidth > breakpoints.sm && d.properties[property] > 0) {
+            //         if (window.innerWidth > breakpoints.sm && d.properties[property] > 0) {
 
-                        if (self.ctrlr.graphObject.config.extra.currencyLabels) {
-                            return shortenCurrency(convertToCurrency(d.properties[property]));
+            //             if (self.ctrlr.firstMapping.format === 'currency') {
+            //                 return shortenCurrency(convertToCurrency(d.properties[property]));
 
-                        } else if (self.ctrlr.graphObject.config.extra.percentage) {
+            //             } else if (self.ctrlr.firstMapping.format === 'percentage') {
 
-                            return parseInt(d.properties[property]).toString() + '%';
-                        } else {
+            //                 return parseInt(d.properties[property]).toString() + '%';
+            //             } else {
 
-                            return d.properties[property];
-                        }
-                    }
-                });
+            //                 return d.properties[property];
+            //             }
+            //         }
+                // });
 
     }
 

@@ -1,17 +1,22 @@
-import { GraphController } from "./graph";
-
 import {ChartPie, SumLegend } from '../svg-elements/module';
-import { HtmlMuniSelector } from '../html-elements/module';
-
-import { convertToCurrency } from '../d3-services/_helpers';
-import { colours } from '../_styleguide/_colours';
-import { GraphObject } from "../types/graphObject";
 import { DataPart, GraphData } from "../types/data";
-import { parseForPie } from "../d3-services/data.functions";
+import { parseForPieV2 } from "../d3-services/data.functions";
+import { IGraphMapping } from "../types/mapping";
+import { GraphControllerV2 } from "./graph-v2";
+
+// const config : IGraphConfigV2=   {
 
 
+//     "extra" :{
+//         "currencyLabels" : false,
+//         "legendWidth" : 220,
+//         "maxRadius" : 100,
+//         "innerRadius" : 20,
+        
+//     }
+// };
 
-export default class PieChartSum extends GraphController  {
+export default class PieChartSumV2 extends GraphControllerV2  {
 
     graphEl;
     chartPie;
@@ -19,16 +24,26 @@ export default class PieChartSum extends GraphController  {
     htmlMuniSelector;
     legend;
 
-   
-
     constructor(
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre() {
+
+        this._addMargin(0,15,0,0);
+        this._addPadding(0,0,0,0);
+
+        this.config.extra.municipalitySelect = false;
+        
+        this.config.extra.maxRadius = 100;
+        this.config.extra.innerRadius = 20;
     }
 
 
@@ -40,7 +55,7 @@ export default class PieChartSum extends GraphController  {
 
         super._init();
 
-        let svgId = "pie-element-" + this.graphObject.slug
+        let svgId = "pie-element-" + this.mapping.slug
         let flowEl = document.createElement('div');
         flowEl.id = svgId;
         flowEl.style.width = '100%';
@@ -49,31 +64,17 @@ export default class PieChartSum extends GraphController  {
 
         super._svg(flowEl);
 
+        this.config.extra.legendWidth = this.dimensions.width > 240 ? 240 : this.dimensions.width;
+
         this.chartPie = new ChartPie(this);
         this.legend = new SumLegend(this)
 
-        // let data = this.prepareData(this.data,'all');
-    
-
-        // this.htmlMuniSelector = new HtmlMuniSelector(this.element,'vergoedingen_taart_afgewezen'); // later koppelen aan GraphObject.slug
-
-        // if(this.graphObject.config.extra.municipalitySelect) {
-        //     this.htmlMuniSelector.draw();
-
-        //     const municipalitySelect = document.querySelector('.municipality_select_' + 'vergoedingen_taart_afgewezen' ) as HTMLSelectElement;
-
-        //     municipalitySelect.addEventListener("change", function () {
-        //         self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value, true);
-        //     });
-        // }
-
         this.update(this.data,this.segment, false);
-
     }
 
     prepareData(data: DataPart[]) : GraphData {
 
-        const slice = parseForPie(this.graphObject,"all",data)
+        const slice = parseForPieV2(this.config,this.mapping,"all",data)
 
         return {
             latest: null,
@@ -93,7 +94,6 @@ export default class PieChartSum extends GraphController  {
             this.chartPie.draw(clonedData[0]);
 
         } else {
-
             this.chartPie.draw(data.slice)
         }
     }
@@ -109,6 +109,5 @@ export default class PieChartSum extends GraphController  {
     update(data: GraphData, segment: string, update: boolean) {
 
         super._update(data,segment,update);
-
     }
 }

@@ -1,10 +1,11 @@
 import { GraphObject} from '../types/graphObject';
+import { IGraphMapping } from '../types/mapping';
 
-export const tickerImmaterieel : GraphObject[] = [
+export const tickerImmaterieel : IGraphMapping[] = [
     {
-        "label" : "Bol aanvragen",
         "slug" : "bol_aanvragen",
-        "mapping": [
+        "graph" : "TickerNumbers",
+        "parameters": [
             [
                 {
                     "label": "Verleend",
@@ -26,41 +27,42 @@ export const tickerImmaterieel : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "TickerNumbers",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "noDots": true,
-                "smartColours" : 'down',
-                "thinLines" : true,
-                "units": "aanvragen"
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerNumbers",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "li,near",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "noDots": true,
+        //         "smartColours" : 'down',
+        //         "thinLines" : true,
+        //         "units": "aanvragen"
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "immateriele_schade",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
     {
-        "label" : "Bol aanvragers",
         "slug" : "bol_aanvragers",
-        "mapping": [
+        "graph" : "TickerHorizon",
+        "parameters": [
             [
                 {
                     "label": "Vorige week: nieuw",
@@ -77,37 +79,39 @@ export const tickerImmaterieel : GraphObject[] = [
                 {
                     "label": "in behandeling",
                     "column": "immateriele_schade_in_behandeling",
-                    "colour": "blue"
+                    "colour": "blue",
+                    "units": "besluiten"
                 } 
             ]
         ],
-        "config": {
-            "graphType": "TickerHorizon",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "noDots": true,
-                "smartColours" : 'up',
-                "thinLines" : true,
-                "units": "besluiten",
-                "link": "tevredenheid",
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerHorizon",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "noDots": true,
+        //         "smartColours" : 'up',
+        //         "thinLines" : true,
+        //         
+        //         "link": "tevredenheid",
+        //     }
+        // },
+        "header": null,
         "description" : "",
         "endpoint": "immateriele_schade",
         "segment": "all",

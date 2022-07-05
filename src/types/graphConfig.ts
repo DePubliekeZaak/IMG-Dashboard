@@ -9,12 +9,13 @@ export interface IScale {
     parameter?: string // is fit nodig? 
 }
 
-export interface IAxes {
+export interface IAxis {
 
     slug: string,
     scale: string,
     position: string,
     format?: string,
+    extra?: string,
     label?: string,
     
 }
@@ -27,8 +28,25 @@ export interface GraphConfig {
     yScaleType : string | boolean,
     xParameter : string | boolean,
     yParameter : string | boolean,
-    scales?: IScale[],
-    axes?: IAxes[],
+    padding?: {
+        top : number,
+        bottom : number,
+        left : number,
+        right : number
+    },
+    margin?: {
+        top : number,
+        bottom : number,
+        left : number,
+        right : number
+    },
+    paddingInner?: number,
+    paddingOuter? : number,
+    extra? : any
+}
+
+export interface IGraphConfigV2 {
+
     padding: {
         top : number,
         bottom : number,
@@ -41,7 +59,9 @@ export interface GraphConfig {
         left : number,
         right : number
     },
+    scales: IScale[],
+    axes: IAxis[],
     paddingInner?: number,
     paddingOuter? : number,
-    extra : any
+    extra? : any
 }

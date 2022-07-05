@@ -1,10 +1,11 @@
-import { GraphObject} from '../types/graphObject';
 
-export const tickerFysiekeSchade : GraphObject[] = [
+import { IGraphMapping } from '../types/mapping';
+
+export const tickerFysiekeSchade : IGraphMapping[] = [
     {
-        "label" : "Bol afgehandelde meldingen",
         "slug" : "bol_afgehandelde_meldingen",
-        "mapping": [
+        "graph" : "TickerNumbers",
+        "parameters": [
             [
                 {
                     "label": "Verleend",
@@ -26,34 +27,35 @@ export const tickerFysiekeSchade : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "TickerNumbers",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "noDots": true,
-                "smartColours" : 'up',
-                "thinLines" : true,
-                "units": "meldingen"
+        // "config": {
+        //     "graphType": "TickerNumbers",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "noDots": true,
+        //         "smartColours" : 'up',
+        //         "thinLines" : true,
+        //         "units": "meldingen"
 
-                // "units": "afgehandeld"
-            }
-        },
+        //         // "units": "afgehandeld"
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "vergoedingen",
         "segment": "all",
@@ -61,9 +63,9 @@ export const tickerFysiekeSchade : GraphObject[] = [
 
     },
     {
-        "label" : "Bol schademeldingen",
         "slug" : "bol_schademeldingen",
-        "mapping": [
+        "graph": "TickerHorizon",
+        "parameters": [
             [
                 {
                     "label": "Vorige week",
@@ -79,7 +81,8 @@ export const tickerFysiekeSchade : GraphObject[] = [
                 {
                     "label": "In behandeling",
                     "column": "in_behandeling",
-                    "colour": "moss"
+                    "colour": "moss",
+                    "units": "dossiers"
                 }
                 // {
                 //     "label": "Schade-meldingen",
@@ -88,120 +91,127 @@ export const tickerFysiekeSchade : GraphObject[] = [
                 // }
             ]
         ],
-        "config": {
-            "graphType": "TickerHorizon",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "noDots": true,
-                "smartColours" : 'down',
-                "thinLines" : true,
-                "units": "dossiers"
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerHorizon",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "noDots": true,
+        //         "smartColours" : 'down',
+        //         "thinLines" : true,
+        //         
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
     {
-        "label" : "Bol percentage binnen half jaar",
         "slug" : "bol_binnen_half_jaar",
-        "mapping": [
+        "graph": "TickerBars",
+        "args": ["up"],
+        "parameters": [
             [
                 {
                     "label": "In half jaar afgehandeld",
                     "column": "percentage_binnen_half_jaar",
-                    "colour": "moss"
+                    "colour": "moss",
+                    "units": "%"
                 }
             ]
         ],
-        "config": {
-            "graphType": "TickerBars",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "units": "%",
-                "noDots": true,
-                "notNull": true,
-                "smartColours" : 'up',
-                "thinLines" : true,
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerBars",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         
+        //         "noDots": true,
+        //         "notNull": true,
+        //         "smartColours" : 'up',
+        //         "thinLines" : true,
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
     {
-        "label" : "Bol gerealiseerde doorlooptijd",
         "slug" : "bol_doorlooptijd",
-        "mapping": [
+        "graph": "TickerBars",
+        "args": ["down"],
+        "parameters": [
             [
                 {
                     "label": "Gem. tijd tot besluit",
                     "column": "mediaan_doorlooptijd",
-                    "colour": "moss"
+                    "colour": "moss",
+                    "units": "dagen"
                 }
             ]
         ],
-        "config": {
-            "graphType": "TickerBars",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "units": "dagen",
-                "noDots": true,
-                "notNull": true,
-                "smartColours" : 'down',
-                "thinLines" : true,
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerBars",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "
+        //         "noDots": true,
+        //         "notNull": true,
+        //         "smartColours" : 'down',
+        //         "thinLines" : true,
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "voortgang",
         "segment": "all",

@@ -35,15 +35,15 @@ export default class ChartStackedArea {
         let self = this;
 
         let newArea = d3.area()
-            .x((d : any)  => self.ctrlr.xScale(new Date(d.data._date)))
-            .y0(d => self.ctrlr.yScale(d[0]))
-            .y1(d => self.ctrlr.yScale(d[0]))
+            .x((d : any)  => self.ctrlr.scales.x.scale(new Date(d.data._date)))
+            .y0(d => self.ctrlr.scales.y.scale(d[0]))
+            .y1(d => self.ctrlr.scales.y.scale(d[0]))
             .curve(d3.curveCatmullRom);
 
         let area = d3.area()
-            .x(function(d : any ) { return self.ctrlr.xScale(new Date(d.data._date)); })
-            .y0(d => self.ctrlr.yScale(d[0]))
-            .y1(d => self.ctrlr.yScale(d[1]))
+            .x(function(d : any ) { return self.ctrlr.scales.x.scale(new Date(d.data._date)); })
+            .y0(d => self.ctrlr.scales.y.scale(d[0]))
+            .y1(d => self.ctrlr.scales.y.scale(d[1]))
             .curve(d3.curveCatmullRom);
 
         this.prevArea = area;
@@ -56,7 +56,7 @@ export default class ChartStackedArea {
             .duration(200)
             .attr('d', area)
             .style('fill', (d) => {
-                return colours[this.ctrlr.graphObject.mapping[0].find( (map) => { return map.column === d.key})['colour']][0];
+                return colours[this.ctrlr.mapping.parameters[0].find( (map) => { return map.column === d.key})['colour']][0];
             })
             ;
     }

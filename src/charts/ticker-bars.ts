@@ -1,15 +1,16 @@
 import { ChartBarTicker  } from '../svg-elements/module';
 
 import { breakpoints } from "../_styleguide/_breakpoints";
-import { GraphController } from './graph';
 import { GraphObject } from '../types/graphObject';
 import { flattenColumn } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistory, groupByMonths } from '../d3-services/data-with-history.functions';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data-with-history.functions';
 import { DataPart, GraphData } from '../types/data';
 import { isSafeInteger } from 'lodash';
 import * as d3 from 'd3';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
 
-export default class TickerBars extends GraphController   {
+export default class TickerBars extends GraphControllerV2   {
 
     chartBars;
 
@@ -17,17 +18,31 @@ export default class TickerBars extends GraphController   {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
+        this.pre();
     }
+
+    pre() {
+        this._addScale("x","linear","horizontal","_week");
+        this._addScale("y","linear","vertical",flattenColumn(this.firstMapping.column));
+
+        this._addMargin(0,0,0,0);
+        this._addPadding(0,4,0,0);
+
+        this.parameters.y2 = flattenColumn(this.firstMapping.column);
+    }
+
 
     init() {
 
         let self = this;
 
-        this._init()
+        this._init();
+
+        this.config.extra.smartColours = this.mapping.args[0];
 
         this.styleMainElement();
 
@@ -48,7 +63,7 @@ export default class TickerBars extends GraphController   {
         labelContainer.style.width = '100%';
 
         labelContainer.style.textAlign = 'center';
-        labelContainer.innerText = this.graphObject.mapping[0][0].label;
+        labelContainer.innerText = this.mapping.parameters[0][0].label;
         this.element.appendChild(labelContainer);
 
         if (window.innerWidth < breakpoints.sm) {
@@ -68,14 +83,14 @@ export default class TickerBars extends GraphController   {
         numberContainer.style.width = 'calc(100% - ' +  graphWidth + ' - 1rem)';
      
         const number = document.createElement('div');
-        number.innerText = this.data[0][flattenColumn(this.graphObject.mapping[0][0].column)];
+        number.innerText = this.data[0][flattenColumn(this.mapping.parameters[0][0].column)];
         number.style.fontSize = '2.5rem';
         number.style.lineHeight = "1";
         number.style.fontFamily = "Replica";
         numberContainer.appendChild(number);
 
         const units = document.createElement('div');
-        units.innerText = this.graphObject.config.extra.units
+        units.innerText = this.mapping.parameters[0][0].units
         numberContainer.appendChild(units);
 
         this.element.appendChild(numberContainer);
@@ -123,7 +138,7 @@ export default class TickerBars extends GraphController   {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data,this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data,this.mapping);
         const history = filterWeeks(data,neededColumns);
 
         history.forEach( (week) => week['colour'] = "moss");
@@ -138,7 +153,7 @@ export default class TickerBars extends GraphController   {
 
     redraw(data: GraphData) {
 
-        this.yScale = this.chartYScale.set(data.slice.map( d => d[this.yParameter]));
+        this.yScale = this.scales.y.set(data.slice.map( d => d[this.parameters.y]));
 
         super.redraw(data);
         this.chartBars.redraw(data);
@@ -146,8 +161,8 @@ export default class TickerBars extends GraphController   {
 
     draw(data: GraphData) {
 
-        const xValues = data.slice.map(d => d[this.xParameter]);
-        this.xScale = this.chartXScale.set([xValues[xValues.length - 1]], xValues[0]);
+        const xValues = data.slice.map(d => d[this.parameters.x]);
+        this.xScale = this.scales.x.set([xValues[xValues.length - 1]], xValues[0]);
         this.chartBars.draw(data);
     }
 
@@ -157,8 +172,8 @@ export default class TickerBars extends GraphController   {
 
     average(data: any[]) : number {
 
-        data = data.filter( (d) => d[this.yParameter] > 0)
+        data = data.filter( (d) => d[this.parameters.y] > 0)
 
-        return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
+        return (data.reduce((a,b) => { return a + parseInt(b[this.parameters.y]); },0)) / (data.length);
     }
 }

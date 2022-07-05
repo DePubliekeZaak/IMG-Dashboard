@@ -1,10 +1,11 @@
 import { GraphObject} from '../types/graphObject';
+import { IGraphMapping } from '../types/mapping';
 
-export const tickerWaardedaling : GraphObject[] = [
+export const tickerWaardedaling : IGraphMapping[] = [
     {
-        "label" : "Bol aanvragen",
         "slug" : "bol_aanvragen",
-        "mapping": [
+        "graph" : "TickerNumbers",
+        "parameters": [
             [
                 {
                     "label": "Verleend",
@@ -26,41 +27,42 @@ export const tickerWaardedaling : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "TickerNumbers",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "noDots": true,
-                "smartColours" : 'down',
-                "thinLines" : true,
-                "units": "aanvragen"
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerNumbers",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "noDots": true,
+        //         "smartColours" : 'down',
+        //         "thinLines" : true,
+        //         "units": "aanvragen"
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "vergoedingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
     {
-        "label" : "Bol aanvragers",
         "slug" : "bol_aanvragers",
-        "mapping": [
+        "graph": "TickerHorizon",
+        "parameters": [
             [
                 {
                     "label": "in behandeling",
@@ -77,37 +79,39 @@ export const tickerWaardedaling : GraphObject[] = [
                 {
                     "label": "in behandeling",
                     "column": "waardedaling_in_behandeling",
-                    "colour": "orange"
+                    "colour": "orange",
+                    "units": "besluiten"
                 }
             ]
         ],
-        "config": {
-            "graphType": "TickerHorizon",
-            "xScaleType" : "linear",
-            "yScaleType" : "linear",
-            "xParameter" : "_week",
-            "yParameter" : "",
-            "padding": {
-                "top": 0,
-                "bottom": 4,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "useLineFill": true,
-                "noDots": true,
-                "smartColours" : 'up',
-                "thinLines" : true,
-                "units": "besluiten",
-                "link": "meldingen",
-            }
-        },
+        // "config": {
+        //     "graphType": "TickerHorizon",
+        //     "xScaleType" : "linear",
+        //     "yScaleType" : "linear",
+        //     "xParameter" : "_week",
+        //     "yParameter" : "",
+        //     "padding": {
+        //         "top": 0,
+        //         "bottom": 4,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "margin": {
+        //         "top": 0,
+        //         "bottom": 0,
+        //         "left": 0,
+        //         "right": 0
+        //     },
+        //     "extra": {
+        //         "useLineFill": true,
+        //         "noDots": true,
+        //         "smartColours" : 'up',
+        //         "thinLines" : true,
+        //         
+        //         "link": "meldingen",
+        //     }
+        // },
+        "header": null,
         "description" : null,
         "endpoint": "waardedaling",
         "segment": "all",

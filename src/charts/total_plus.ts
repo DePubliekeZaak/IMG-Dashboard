@@ -1,39 +1,33 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
+import { HtmlTotals, HtmlNumberNew, HtmlSegment } from '../html-elements/module';
 
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid } from '../svg-elements/module';
-import { HtmlCircle, HtmlTriangle, HtmlTotals, HtmlNumber, HtmlNumberNew, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../html-elements/module';
-
-import * as d3 from "d3";
-import { GraphController } from './graph';
+import { GraphControllerV2 } from './graph-v2';
 import { GraphObject } from '../types/graphObject';
 import { filterWeeks, getNeededColumnsForHistory } from '../d3-services/data-with-history.functions';
 import { DataPart, GraphData } from '../types/data';
+import { IGraphMapping } from '../types/mapping';
 
-export class TotalPlus extends GraphController  {
+export class TotalPlus extends GraphControllerV2  {
 
-    bottomAxis;
-    leftAxis;
-
-    chartLine;
-    chartBackgroundArea;
-    chartWeekGrid;
-    chartAvgLine;
-
-    htmlCircle;
     htmlTotals;
     htmlNumber;
-    htmlTriangle
     htmlSegment;
 
     constructor(
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
+        super(main,data,element,mapping,segment) 
+    }
 
-        super(main,data,element,graphObject,segment) 
+    pre() {
+
+        this._addMargin(200,0,10,0);
+        this._addPadding(0,20,0,0);
+
+        
     }
 
 
@@ -41,13 +35,11 @@ export class TotalPlus extends GraphController  {
 
         this._init();
 
-        this.graphObject.config.paddingInner = 0;
-        this.graphObject.config.paddingOuter = 0;
+        this.config.paddingInner = 0;
+        this.config.paddingOuter = 0;
+        this.config.extra.currency = true;
 
-        this.htmlTotals = new HtmlTotals(this.graphObject.config,this.graphObject.mapping,this.element,'');
         this.htmlNumber = new HtmlNumberNew(this);
-        this.htmlSegment = new HtmlSegment(this.element);
-
         this.htmlNumber.draw();
 
         this.update(this.data,this.segment,false);
@@ -56,15 +48,11 @@ export class TotalPlus extends GraphController  {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data,this.graphObject);
-        const history = filterWeeks(data, neededColumns);
-        
         return { 
-            "history" : history,
+            "history" : null,
             "latest" : data[0], 
-            "slice" : history.slice(0,8), 
+            "slice" : null, 
         };
-        
     }
 
     redraw(data: GraphData) {
@@ -72,14 +60,7 @@ export class TotalPlus extends GraphController  {
         this.htmlNumber.redraw(data); 
     }
 
-    draw(data: GraphData) {
-
-    }
-
-    // average(data) {
-
-    //     return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
-    // }
+    draw(data: GraphData) {}
 
     update(data: GraphData, segment: string, update: boolean) {
         super._update(data,segment,update);

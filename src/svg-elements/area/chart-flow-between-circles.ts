@@ -63,9 +63,7 @@ export class ChartFlowBetweenCircles {
                 // self.ctrlr.svg.layers.data
                 //     .attr("class","showturnover");
                 let i = data.indexOf(d);
-                console.log(i);
-                console.log(data);
-                console.log(d);
+        
 
                 let html = `
                 
@@ -126,43 +124,43 @@ export class ChartFlowBetweenCircles {
         let self = this;
     }
 
-    forceDirect(data: any[], rScale: any, oScale: any, direction: string) {
+    forceDirect(data: any[]) {
 
         let self = this;
-        let triangleSize = (direction === 'horizontal') ? 40 : 20;
+        let triangleSize = (this.ctrlr.scales.x.config.direction === 'horizontal') ? 40 : 20;
 
         // maak nog een scale for the outflows
 
-        if (direction === 'horizontal') {
+        if (this.ctrlr.scales.x.config.direction === 'horizontal') {
 
             self.flows
                 .attr('d', (d, i) => {
 
                     if (i < 1) {
 
-                        let schuineZijde2 = rScale(data[i].value);
+                        let schuineZijde2 = self.ctrlr.scales.r.scale(data[i].value);
 
                         let start1 = {
-                            x: this.ctrlr.xScale(data[i].cumulativeDuration),
+                            x: self.ctrlr.scales.x.scale(data[i].label),
                             y: data[1].y + (triangleSize / 2)
                         }
 
                         let start2 = {
-                            x: this.ctrlr.xScale(data[i].cumulativeDuration),
+                            x: self.ctrlr.scales.x.scale(data[i].label),
                             y: data[1].y - (triangleSize / 2)
                         }
 
                         let end1 = {
-                            x: this.ctrlr.xScale(data[i + 1].cumulativeDuration),
-                            y: data[1].y - rScale(data[1].value)
+                            x: self.ctrlr.scales.x.scale(data[i + 1].label),
+                            y: data[1].y - self.ctrlr.scales.r.scale(data[1].value)
                         }
 
                         let end2 = {
-                            x: this.ctrlr.xScale(data[i + 1].cumulativeDuration),
-                            y: data[1].y + rScale(data[1].value)
+                            x: self.ctrlr.scales.x.scale(data[i + 1].label),
+                            y: data[1].y +self.ctrlr.scales.r.scale(data[1].value)
                         }
 
-                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = 15; // (self.ctrlr.scales.r.scale(data[i].turnover) / self.ctrlr.scales.r.scale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2),
@@ -186,41 +184,41 @@ export class ChartFlowBetweenCircles {
 
                     } else if (i < data.length - 2) {
 
-                        let xDistance = this.ctrlr.xScale(data[i + 1].cumulativeDuration) - this.ctrlr.xScale(data[i].cumulativeDuration);
+                        let xDistance = self.ctrlr.scales.x.scale(data[i + 1].label) - self.ctrlr.scales.x.scale(data[i].label);
                         let yDistance = data[i + 1].y - data[i].y;
                         let lineAngle = Math.atan(xDistance / yDistance);
 
-                        let schuineZijde1 = rScale(data[i].value);
+                        let schuineZijde1 = self.ctrlr.scales.r.scale(data[i].value);
 
                         let xOffset1 = schuineZijde1 * Math.cos(lineAngle);
                         let yOffset1 = schuineZijde1 * Math.sin(lineAngle);
 
-                        let schuineZijde2 = rScale(data[i + 1].value);
+                        let schuineZijde2 = self.ctrlr.scales.r.scale(data[i + 1].value);
 
                         let xOffset2 = schuineZijde2 * Math.cos(lineAngle);
                         let yOffset2 = schuineZijde2 * Math.sin(lineAngle);
 
                         let start1 = {
-                            x: this.ctrlr.xScale(data[i].cumulativeDuration) - xOffset1,
+                            x: self.ctrlr.scales.x.scale(data[i].label) - xOffset1,
                             y: d.y + yOffset1
                         }
 
                         let start2 = {
-                            x: this.ctrlr.xScale(data[i].cumulativeDuration) + xOffset1,
+                            x: self.ctrlr.scales.x.scale(data[i].label) + xOffset1,
                             y: d.y - yOffset1
                         }
 
                         let end1 = {
-                            x: this.ctrlr.xScale(data[i + 1].cumulativeDuration) + xOffset2,
+                            x: self.ctrlr.scales.x.scale(data[i + 1].label) + xOffset2,
                             y: data[i + 1].y - yOffset2
                         }
 
                         let end2 = {
-                            x: this.ctrlr.xScale(data[i + 1].cumulativeDuration) - xOffset2,
+                            x: self.ctrlr.scales.x.scale(data[i + 1].label) - xOffset2,
                             y: data[i + 1].y + yOffset2
                         }
 
-                        let knijp = (window.innerWidth < breakpoints.md) ? 20 : oScale(data[i].outflow); // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = (window.innerWidth < breakpoints.md) ? 20 : self.ctrlr.scales.o.scale(data[i].outflow); // (self.ctrlr.scales.r.scale(data[i].turnover) / self.ctrlr.scales.r.scale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2) - (knijp * Math.cos(lineAngle)),
@@ -243,29 +241,29 @@ export class ChartFlowBetweenCircles {
 
                     } else if (i === data.length - 2) {
 
-                        let schuineZijde2 = rScale(data[i + 1].value);
+                        let schuineZijde2 = self.ctrlr.scales.r.scale(data[i + 1].value);
 
                         let start1 = {
-                            x: this.ctrlr.xScale(data[i].cumulativeDuration),
-                            y: d.y - rScale(data[i].value)
+                            x: this.ctrlr.scales.x.scale(data[i].label),
+                            y: d.y - self.ctrlr.scales.r.scale(data[i].value)
                         }
 
                         let start2 = {
-                            x: this.ctrlr.xScale(data[i].cumulativeDuration),
-                            y: d.y + rScale(data[i].value)
+                            x: this.ctrlr.scales.x.scale(data[i].label),
+                            y: d.y + self.ctrlr.scales.r.scale(data[i].value)
                         }
 
                         let end1 = {
-                            x: this.ctrlr.xScale(data[i + 1].cumulativeDuration),
+                            x: this.ctrlr.scales.x.scale(data[i + 1].label),
                             y: d.y + (triangleSize / 2)
                         }
 
                         let end2 = {
-                            x: this.ctrlr.xScale(data[i + 1].cumulativeDuration),
+                            x: this.ctrlr.scales.x.scale(data[i + 1].label),
                             y: d.y - (triangleSize / 2)
                         }
 
-                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = 15; // (self.ctrlr.scales.r.scale(data[i].turnover) / self.ctrlr.scales.r.scale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2),
@@ -298,29 +296,29 @@ export class ChartFlowBetweenCircles {
 
                     if ( i === 0) {
 
-                        let schuineZijde2 = rScale(data[i].value);
+                        let schuineZijde2 = self.ctrlr.scales.r.scale(data[i].value);
 
                         let start1 = {
                             x: data[1].x + (triangleSize / 4),
-                            y: self.ctrlr.xScale(data[i].cumulativeDuration)
+                            y: self.ctrlr.scales.x.scale(data[i].label)
                         }
 
                         let start2 = {
                             x: data[1].x - (triangleSize / 4),
-                            y: self.ctrlr.xScale(data[i].cumulativeDuration)
+                            y: self.ctrlr.scales.x.scale(data[i].label)
                         }
 
                         let end1 = {
-                            x: data[1].x - (rScale(data[1].value / 16)),
-                            y: self.ctrlr.xScale(data[i + 1].cumulativeDuration)
+                            x: data[1].x - (self.ctrlr.scales.r.scale(data[1].value / 16)),
+                            y: self.ctrlr.scales.x.scale(data[i + 1].label)
                         }
 
                         let end2 = {
-                            x: data[1].x + (rScale(data[1].value / 16)),
-                            y: self.ctrlr.xScale(data[i + 1].cumulativeDuration)
+                            x: data[1].x + (self.ctrlr.scales.r.scale(data[1].value / 16)),
+                            y: self.ctrlr.scales.x.scale(data[i + 1].label)
                         }
 
-                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = 15; // (self.ctrlr.scales.r.scale(data[i].turnover) / self.ctrlr.scales.r.scale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2),
@@ -344,41 +342,41 @@ export class ChartFlowBetweenCircles {
 
                     } else if ( i < data.length - 2 ) {
 
-                        let yDistance = self.ctrlr.xScale(data[i + 1].cumulativeDuration) - self.ctrlr.xScale(data[i].cumulativeDuration);
+                        let yDistance = self.ctrlr.scales.x.scale(data[i + 1].label) - self.ctrlr.scales.x.scale(data[i].label);
                         let xDistance = data[i + 1].x - data[i].x;
                         let lineAngle = Math.atan(xDistance / yDistance);
 
-                        let schuineZijde1 = rScale(data[i].value);
+                        let schuineZijde1 = self.ctrlr.scales.r.scale(data[i].value);
 
                         let xOffset1 = schuineZijde1 * Math.cos(lineAngle);
                         let yOffset1 = schuineZijde1 * Math.sin(lineAngle);
 
-                        let schuineZijde2 = rScale(data[i + 1].value);
+                        let schuineZijde2 = self.ctrlr.scales.r.scale(data[i + 1].value);
 
                         let xOffset2 = schuineZijde2 * Math.cos(lineAngle);
                         let yOffset2 = schuineZijde2 * Math.sin(lineAngle);
 
                         let start1 = {
                             x: d.x + xOffset1,
-                            y: self.ctrlr.xScale(data[i].cumulativeDuration) - yOffset1,
+                            y: self.ctrlr.scales.x.scale(data[i].label) - yOffset1,
                         }
 
                         let start2 = {
                             x: d.x - xOffset1,
-                            y: self.ctrlr.xScale(data[i].cumulativeDuration) + yOffset1
+                            y: self.ctrlr.scales.x.scale(data[i].label) + yOffset1
                         }
 
                         let end1 = {
                             x: data[i + 1].x - xOffset2,
-                            y: self.ctrlr.xScale(data[i + 1].cumulativeDuration) + yOffset2,
+                            y: self.ctrlr.scales.x.scale(data[i + 1].label) + yOffset2,
                         }
 
                         let end2 = {
                             x: data[i + 1].x + xOffset2,
-                            y: self.ctrlr.xScale(data[i + 1].cumulativeDuration) - yOffset2
+                            y: self.ctrlr.scales.x.scale(data[i + 1].label) - yOffset2
                         }
 
-                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = 15; // (self.ctrlr.scales.r.scale(data[i].turnover) / self.ctrlr.scales.r.scale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2) + (knijp * Math.cos(lineAngle)),
@@ -400,29 +398,29 @@ export class ChartFlowBetweenCircles {
                             ' Z';
                     } else if (i === data.length - 2) {
 
-                        let schuineZijde2 = rScale(data[i + 1].value);
+                        let schuineZijde2 = self.ctrlr.scales.r.scale(data[i + 1].value);
 
                         let start1 = {
-                            x: d.x - (rScale(data[i].value / 8)),
-                            y: self.ctrlr.xScale(data[i].cumulativeDuration)
+                            x: d.x - (self.ctrlr.scales.r.scale(data[i].value / 8)),
+                            y: self.ctrlr.scales.x.scale(data[i].label)
                         }
 
                         let start2 = {
-                            x: d.x + (rScale(data[i].value / 8)),
-                            y: self.ctrlr.xScale(data[i].cumulativeDuration)
+                            x: d.x + (self.ctrlr.scales.r.scale(data[i].value / 8)),
+                            y: self.ctrlr.scales.x.scale(data[i].label)
                         }
 
                         let end1 = {
                             x: d.x + (triangleSize / 2),
-                            y: self.ctrlr.xScale(data[i + 1].cumulativeDuration)
+                            y: self.ctrlr.scales.x.scale(data[i + 1].label)
                         }
 
                         let end2 = {
                             x: d.x - (triangleSize / 2),
-                            y: self.ctrlr.xScale(data[i + 1].cumulativeDuration)
+                            y: self.ctrlr.scales.x.scale(data[i + 1].label)
                         }
 
-                        let knijp = 15; // (rScale(data[i].turnover) / rScale(data[i].value)) * 150;
+                        let knijp = 15; // (self.ctrlr.scales.r.scale(data[i].turnover) / self.ctrlr.scales.r.scale(data[i].value)) * 150;
 
                         let halfWay1 = {
                             x: start2.x + ((end1.x - start2.x) / 2),
@@ -450,10 +448,10 @@ export class ChartFlowBetweenCircles {
 
         }
 
-        let xPosStart = self.ctrlr.xScale(data[0].cumulativeDuration);
+        let xPosStart = self.ctrlr.scales.x.scale(data[0].label);
         let startPoint;
 
-        if (direction === 'horizontal') {
+        if (this.ctrlr.scales.x.config.direction === 'horizontal') {
 
             startPoint = 'M' + xPosStart + ' ' + (data[1].y - triangleSize) +
                 ' L' + (xPosStart + triangleSize) + ' ' + data[1].y +
@@ -472,10 +470,10 @@ export class ChartFlowBetweenCircles {
         self.startPoint
             .attr("d", startPoint);
 
-        let xPosEnd = self.ctrlr.xScale(data[data.length - 1].cumulativeDuration);
+        let xPosEnd = self.ctrlr.scales.x.scale(data[data.length - 1].label);
         let endPoint;
 
-        if (direction === 'horizontal') {
+        if (this.ctrlr.scales.x.config.direction === 'horizontal') {
 
             endPoint = 'M' + xPosEnd + ' ' + (data[data.length - 2].y - triangleSize) +
                 ' L' + (xPosEnd + triangleSize) + ' ' + data[data.length - 2].y +
@@ -493,7 +491,7 @@ export class ChartFlowBetweenCircles {
         self.endPoint
             .attr("d", endPoint);
 
-        if (direction !== 'horizontal') {
+        if (this.ctrlr.scales.x.config.direction !== 'horizontal') {
 
             // self.startPoint
             //     .style("opacity",0)
@@ -510,14 +508,14 @@ export class ChartFlowBetweenCircles {
         //
         //         if (i < 1) {
         //
-        //             return 10 + xScale(data[i].cumulativeDuration) + (((xScale(data[i + 1].cumulativeDuration) - rScale(data[i + 1].value)) - (xScale(data[i].cumulativeDuration)) + rScale(data[i].value)) / 2);
+        //             return 10 + scales.x.scale(data[i].label) + (((scales.x.scale(data[i + 1].label) - self.ctrlr.scales.r.scale(data[i + 1].value)) - (scales.x.scale(data[i].label)) + self.ctrlr.scales.r.scale(data[i].value)) / 2);
         //
         //         } else if (i < data.length - 2) {
-        //             return xScale(data[i].cumulativeDuration) + (((xScale(data[i + 1].cumulativeDuration) - rScale(data[i + 1].value)) - (xScale(data[i].cumulativeDuration)) + rScale(data[i].value)) / 2);
+        //             return scales.x.scale(data[i].label) + (((scales.x.scale(data[i + 1].label) - self.ctrlr.scales.r.scale(data[i + 1].value)) - (scales.x.scale(data[i].label)) + self.ctrlr.scales.r.scale(data[i].value)) / 2);
         //
         //         } else if (i < data.length - 1) {
         //            // return 0;
-        //             return xScale(data[i].cumulativeDuration) + ((xScale(data[i + 1].cumulativeDuration) - xScale(data[i].cumulativeDuration)) / 1.5);
+        //             return scales.x.scale(data[i].label) + ((scales.x.scale(data[i + 1].label) - scales.x.scale(data[i].label)) / 1.5);
         //         } else {
         //             return 0;
         //         }

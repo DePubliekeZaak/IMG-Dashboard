@@ -25,7 +25,7 @@ export class ChartAvgLine {
                 .attr("font-size", ".75rem")
                 .style("fill", "black");
 
-            if(this.ctrlr.graphObject.config.extra.firstInLine) {
+            if(this.ctrlr.config.extra.firstInLine) {
 
                 this.ctrlr.svg.averageLabel = this.ctrlr.svg.averageGroup.append("text")
                     // .attr("class", "small-label smallest-label")
@@ -38,16 +38,16 @@ export class ChartAvgLine {
 
     redraw(data: GraphData) {
 
-            let av = (data.history.filter( (d) => d[this.ctrlr.yParameter] != undefined).reduce((a, b) => a + parseInt(b[this.ctrlr.yParameter]), 0)) / data.history.length;
+            let av = (data.history.filter( (d) => d[this.ctrlr.parameters.y] != undefined).reduce((a, b) => a + parseInt(b[this.ctrlr.parameters.y]), 0)) / data.history.length;
 
                 this.ctrlr.svg.averageGroup
                     .attr("transform", (d) => {
-                        return "translate(" + 0 + ", " + this.ctrlr.yScale(av) + ")"
+                        return "translate(" + 0 + ", " + this.ctrlr.scales.y.scale(av) + ")"
                     });
 
                 this.ctrlr.svg.averageLine
-                    .attr("x1", this.ctrlr.xScale(new Date(data.slice[data.slice.length - 1][this.ctrlr.graphObject.config.xParameter])) - 0)
-                    .attr("x2", this.ctrlr.xScale(new Date(data.slice[0][this.ctrlr.graphObject.config.xParameter])) + 10)
+                    .attr("x1", this.ctrlr.scales.x.scale(new Date(data.slice[data.slice.length - 1][this.ctrlr.parameters.x])) - 0)
+                    .attr("x2", this.ctrlr.scales.x.scale(new Date(data.slice[0][this.ctrlr.parameters.x])) + 10)
                     .attr("y1", 0)
                     .attr("y2", 0)
                     .attr("fill", "none")
@@ -63,7 +63,7 @@ export class ChartAvgLine {
 
                     //     return (this.ctrlr.yScale(Math.round(av)) - this.ctrlr.yScale(data.slice[0][this.ctrlr.yParameter]) < 0) ? 3 : 3;
                     // })
-                    .text( d => this.ctrlr.graphObject.config.extra.decimal ? Math.round(av *10) / 10 : Math.round(av));
+                    .text( d => this.ctrlr.config.extra.decimal ? Math.round(av *10) / 10 : Math.round(av));
 
             if(this.ctrlr.svg.averageLabel) {
 
@@ -71,7 +71,7 @@ export class ChartAvgLine {
                     .attr("dx", -40)
                     .attr("dy", function (d) {
 
-                        return (this.ctrlr.yScale(Math.round(av)) - this.ctrlr.yScale(data.slice[0][this.ctrlr.yParameter]) < 0) ? 3 : 3;
+                        return (this.ctrlr.scales.y.scale(Math.round(av)) - this.ctrlr.scales.y.scale(data.slice[0][this.ctrlr.parameters.y]) < 0) ? 3 : 3;
                     })
                     .text('gemiddeld:');
 

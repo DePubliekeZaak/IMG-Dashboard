@@ -1,24 +1,23 @@
+import { IGraphControllerV2 } from '../charts/graph-v2';
 import { GraphObject} from '../types/graphObject';
+import { IGraphMapping } from '../types/mapping';
 
 const pad = 40;
 const margin = 140;
 
-export const dashboardReacties : GraphObject[] = [
+export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
     {
-        "label" : "Tevredenheidscijfer algemeen",
         "slug" : "bol_tevredenheid_algemeen",
-        "mapping": [
+        "graph": "CijferDecimalPlus",
+        "parameters": [
             [
                 {
                     "label": "Doorlopend tevredenheidscijfer",
                     "column": "doorlopend_cijfer",
                     "colour": "moss"
-                },
-                {
-                    "label": "Tevredenheidscijfer",
-                    "column": "maandcijfer",
-                    "colour": "moss"
-                },
+                }
+            ],
+            [
                 {
                     "label": "Tevredenheidscijfer",
                     "column": "aantal_respondenten",
@@ -26,89 +25,23 @@ export const dashboardReacties : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "Cijfer",
-            "xScaleType" : "time",
-            "yScaleType" : "linear",
-            "xParameter" : "_date",
-            "yParameter" : "maandcijfer",
-            "padding": {
-                "top": 20,
-                "bottom": 0,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": margin,
-                "left": 10,
-                "right": 10
-            },
-            "extra": {
-                "useLineFill": true,
-                "decimal": true,
-                "segmentIndicator": false,
-                "noUpdate" : true,
-                "shape": "block",
-                "noRespondents": true,
-                "header": "Doorlopend tevredenheidscijfer"
-            }
-        },
+        "header": "Doorlopend tevredenheidscijfer",
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.<div class='formula'></div></div>",
         "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-container-bol']
     },
-    // {
-    //     "label" : "Tevredenheidscijfer algemeen",
-    //     "slug" : "bol_tevredenheid_algemeen_2",
-    //     "mapping": [
-    //         [
-    //             {
-    //                 "label": "Berekening doorlopend tevredenheidscijfer",
-    //                 "column": "doorlopend_cijfer",
-    //                 "colour": "moss"
-    //             }
-    //         ]
-    //     ],
-    //     "config": {
-    //         "graphType": "TevredenheidFormule",
-    //         "xScaleType" : "",
-    //         "yScaleType" : "",
-    //         "xParameter" : "",
-    //         "yParameter" : "",
-    //         "padding": {
-    //             "top": 20,
-    //             "bottom": pad,
-    //             "left": 0,
-    //             "right": 0
-    //         },
-    //         "margin": {
-    //             "top": 120,
-    //             "bottom": margin,
-    //             "left": 10,
-    //             "right": 10
-    //         },
-    //         "extra": {
-    //             "segmentIndicator": false,
-    //             "noUpdate" : true
-    //         }
-    //     },
-    //     "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
-    //     "endpoint": "waardedaling",
-    //     "segment": "all",
-    //     "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
-    // },
     {
-        "label" : "Rapportcijfers per maand",
         "slug" : "bol_tevredenheid_algemeen_3",
-        "mapping": [
+        "graph": "ShortTrend",
+        "args": ["_month"],
+        "parameters": [
             [
-                {
-                    "label": "Tevredenheidscijfer per maand",
-                    "column": "doorlopend_cijfer",
-                    "colour": "moss"
-                },
+                // {
+                //     "label": "Tevredenheidscijfer per maand",
+                //     "column": "doorlopend_cijfer",
+                //     "colour": "moss"
+                // },
                 {
                     "label": "Tevredenheidscijfer",
                     "column": "maandcijfer",
@@ -121,44 +54,17 @@ export const dashboardReacties : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "ShortTrend",
-            "xScaleType" : "band",
-            "yScaleType" : "linear",
-            "xParameter" : "_month",
-            "yParameter" : "maandcijfer",
-            "padding": {
-                "top": 20,
-                "bottom": pad,
-                "left": 0,
-                "right": 0
-            },
-            "margin": {
-                "top": 0,
-                "bottom": margin,
-                "left": 10,
-                "right": 10
-            },
-            "extra": {
-                "useLineFill": true,
-                "decimal": true,
-                "segmentIndicator": false,
-                "noUpdate" : true,
-                "shape": "block",
-                "paddingInner" : 0,
-                "paddingOuter" : 0,
-                "axisInMonths" : true,
-                "header": "Tevredenheidscijfer per maand"
-            }
-        },
+        "header": "Tevredenheidscijfer per maand",
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
         "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-container-shorttrend']
     },
-    {   "label": "Tevredenheid ratings",
+    {   
         "slug": "ratings_fs_doorlopend",
-        "mapping": 
+        "graph": "KTORatings",
+        "args" : ["fysieke_schade_aantal_respondenten_doorlopend","fysieke_schade_aantal_respondenten"],
+        "parameters": 
             [
                 [
                     {
@@ -287,43 +193,17 @@ export const dashboardReacties : GraphObject[] = [
                 },
             ]
         ],
-        "config": {
-            "graphType": "KTORatings",
-            "xScaleType": "linear",
-            "yScaleType": "band",
-            "xParameter": "value",
-            "yParameter": "label",
-            "padding": {
-                "top": 20,
-                "bottom": 0,
-                "left": 20,
-                "right": 80
-            },
-            "margin": {
-                "top": 20,
-                "bottom": 40,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "slug": "ratings_fs_doorlopend",
-                "header" : "Rapportcijfers besluiten fysieke schade",
-                "legend" : true,
-                "paddingInner" : .25,
-                "paddingOuter" : .25,
-                "columnForAverage" : ["fysieke_schade_aantal_respondenten_doorlopend","fysieke_schade_aantal_respondenten"],
-                "decimal" : true,
-                "noRespondents": true
-            }
-        },
+        "header" : "Rapportcijfers besluiten fysieke schade",
         "description" : "",
         "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
-    {   "label": "Tevredenheid ratings",
+    {   
         "slug": "ratings_w_doorlopend",
-        "mapping": [
+        "graph": "KTORatings",
+        "args": ["waardedaling_aantal_respondenten_doorlopend"],
+        "parameters": [
             [
                 {
                     "label": "Rapportcijfer waardedaling",
@@ -450,45 +330,19 @@ export const dashboardReacties : GraphObject[] = [
                     "colour": "moss"
                 },
             ]
-            
         ],
-        "config": {
-            "graphType": "KTORatings",
-            "xScaleType": "linear",
-            "yScaleType": "band",
-            "xParameter": "value",
-            "yParameter": "label",
-            "padding": {
-                "top": 20,
-                "bottom": 0,
-                "left": 20,
-                "right": 80
-            },
-            "margin": {
-                "top": 20,
-                "bottom": 40,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "slug": "ratings_w_doorlopend",
-                "header" : "Rapportcijfers besluiten waardedaling",
-                "legend" : true,
-                "paddingInner" : .25,
-                "paddingOuter" : .25,
-                "columnForAverage" : "waardedaling_aantal_respondenten_doorlopend",
-                "decimal": true,
-                "noRespondents": true
-            }
-        },
+    
+        "header" : "Rapportcijfers besluiten waardedaling",
         "description" : "",
         "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
-    {   "label": "Tevredenheid ratings",
+    {   
         "slug": "ratings_w_ves",
-        "mapping": [
+        "graph": "KTORatings",
+        "args": ["ves_aantal_respondenten_doorlopend"],
+        "parameters": [
             [
                 {
                     "label": "Rapportcijfer waardedaling",
@@ -616,43 +470,17 @@ export const dashboardReacties : GraphObject[] = [
                     },
                 ]
         ],
-        "config": {
-            "graphType": "KTORatings",
-            "xScaleType": "linear",
-            "yScaleType": "band",
-            "xParameter": "value",
-            "yParameter": "label",
-            "padding": {
-                "top": 20,
-                "bottom": 0,
-                "left": 20,
-                "right": 80
-            },
-            "margin": {
-                "top": 20,
-                "bottom": 40,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "slug": "ratings_ves_doorlopend",
-                "header" : "Rapportcijfers vaste vergoeding",
-                "legend" : true,
-                "paddingInner" : .25,
-                "paddingOuter" : .25,
-                "columnForAverage" : "ves_aantal_respondenten_doorlopend",
-                "decimal": true,
-                "noRespondents": true
-            }
-        },
+        "header" : "Rapportcijfers vaste vergoeding",
         "description" : "",
         "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
-    // {   "label": "Tevredenheid ratings",
+    // {   
     //     "slug": "ratings_w_ims",
-    //     "mapping": [
+    //     "graph": "KTORatings",
+    //     "args": ["ims_aantal_respondenten_doorlopend"],
+    //     "parameters": [
     //         [
     //             {
     //                 "label": "Rapportcijfer waardedaling",
@@ -780,43 +608,17 @@ export const dashboardReacties : GraphObject[] = [
     //                 },
     //             ]
     //     ],
-    //     "config": {
-    //         "graphType": "KTORatings",
-    //         "xScaleType": "linear",
-    //         "yScaleType": "band",
-    //         "xParameter": "value",
-    //         "yParameter": "label",
-    //         "padding": {
-    //             "top": 20,
-    //             "bottom": 0,
-    //             "left": 20,
-    //             "right": 80
-    //         },
-    //         "margin": {
-    //             "top": 20,
-    //             "bottom": 40,
-    //             "left": 0,
-    //             "right": 0
-    //         },
-    //         "extra": {
-    //             "slug": "ratings_ims_doorlopend",
-    //             "header" : "Rapportcijfers immateriele schade",
-    //             "legend" : true,
-    //             "paddingInner" : .25,
-    //             "paddingOuter" : .25,
-    //             "columnForAverage" : "ims_aantal_respondenten_doorlopend",
-    //             "decimal": true,
-    //             "noRespondents": true
-    //         }
-    //     },
+    //     "header" : "Rapportcijfers immateriele schade",
     //     "description" : "",
     //     "endpoint": "tevredenheid",
     //     "segment": "all",
     //     "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     // },
-    {   "label": "Tevredenheid door de tijd",
+    {   
         "slug": "trend_tevredenheid",
-        "mapping": [
+        "graph": "TrendLine",
+        "args": [],
+        "parameters": [
             [
                 {
                     "label": "Gewogen gemiddelde",
@@ -838,45 +640,18 @@ export const dashboardReacties : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            "graphType": "TrendLine",
-            "xScaleType": "time",
-            "yScaleType": "linear",
-            "xParameter": "_date",
-            "yParameter": "maandcijfer",
-            "padding": {
-                "top": 20,
-                "bottom": 40,
-                "left": 40,
-                "right": 0
-            },
-            "margin": {
-                "top": 80,
-                "bottom": 100,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "xScaleTicks": "timeMonth",
-                "useLineFill": true,
-                "header" : "Trend tevredenheidscijfers",
-                "segmentIndicator": false,
-                "legend" : true,
-                "hasFocus": true
-            }
-        },
+        "header" : "Trend tevredenheidscijfers",
         "description" : "",
         "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
     },
     {
-
-        "label": "Zienswijzen",
         "slug": "zienswijzen",
-        "mapping": [
+        'graph': 'StackedArea',
+        'args' : [],
+        "parameters": [
             [
-
                 {
                     "label": "Akkoord",
                     "column": "nieuw_adviesrapport_akkoord",
@@ -894,35 +669,12 @@ export const dashboardReacties : GraphObject[] = [
                 }
             ]
         ],
-        "config": {
-            'graphType': 'StackedArea',
-            'xScaleType': 'time',
-            'yScaleType': 'linear',
-            'xParameter': '_date',
-            'yParameter': 'nieuw_adviesrapport_akkoord',
-            "padding": {
-                "top": 20,
-                "bottom": 120,
-                "left": 60,
-                "right": 30
-            },
-            "margin": {
-                "top": 60,
-                "bottom": 100,
-                "left": 0,
-                "right": 0
-            },
-            "extra": {
-                "xScaleTicks": "timeMonth",
-                "muniSelect": false,
-                "header": "Trend reacties op adviesrapporten"
-            }
-        },
+        "header": "Trend reacties op adviesrapporten",
         "description" : "Schademelders krijgen gelegenheid te reageren op een adviesrapport. Dat heet een zienswijze. Er zijn drie opties: ‘akkoord geven’, een ‘zienswijze indienen’ en ‘niet reageren’. Als iemand niet reageert, dan wordt na twee weken de procedure voortgezet. Bijgaande cijfers betreffen de ingediende zienswijzes én de adviesrapporten waar geen reactie op kwam waar de reactietermijn is verstreken. Het is ook mogelijk die reactietermijn te laten verlengen. Een dergelijke reactie maakt geen onderdeel uit van de hier gepresenteerde cijfers.",
         "endpoint": "reacties",
         "segment": "all",
         "elementClasslist" : ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding'],
-        "publishDate": false
+        "publishDate": null
     }
 
 ]

@@ -2,11 +2,12 @@ import { ChartAxes } from '../chart-basics/module';
 
 import { ChartBar } from '../svg-elements/module';
 
-import { GraphController } from './graph';
 import { GraphObject } from '../types/graphObject';
 import { D3DataTypeLatest, DataPart, GraphData } from '../types/data';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
 
-export default class BandBars extends GraphController {
+export default class BandBars extends GraphControllerV2 {
 
     chartAxis;
     chartBar;
@@ -20,10 +21,23 @@ export default class BandBars extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
-        super(main,data,element,graphObject,segment) 
+        super(main,data,element,mapping,segment) 
+        this.pre();
+    }
+
+    pre() {
+
+        this._addMargin(0,120,0,0);
+        this._addPadding(20,70,30,0);
+
+        this._addScale('x','band','horizontal','label');
+        this._addScale('y','linear','vertical','value');
+
+        this._addAxis('x','x','bottom');
+        this._addAxis('y','y','left')
     }
 
     init() {
@@ -31,13 +45,9 @@ export default class BandBars extends GraphController {
         super._init();
         super._svg();
 
-        this.graphObject.config.extra.paddingInner = .25;
-      //  this.graphObject.config.extra.paddingOuter = .5;
+        this.config.paddingInner = .25;
+        this.config.paddingOuter = 0.25;
 
-
-        this.bottomAxis = new ChartAxes(this.graphObject.config, this.svg, 'bottom',this.chartXScale);
-        this.leftAxis = new ChartAxes(this.graphObject.config, this.svg,'left',this.chartYScale);
-        
         this.chartBar = new ChartBar(this);
 
 
@@ -53,16 +63,16 @@ export default class BandBars extends GraphController {
         //     });
         // }
 
-        this.update(this.data,(this.segment !== undefined) ? this.segment : "all", false);
+        this.update(this.data,"all", false);
     }
 
     prepareData(data: DataPart[]) : GraphData {
 
         let slice: D3DataTypeLatest[] = [];
 
-        let d = (this.graphObject.config.extra.municipalitySelect || this.graphObject.config.multiples) ? data.find( j => j['gemeente'] === this.segment) : data[0];
+        let d = data.find( j => j['gemeente'] === this.segment);
 
-        for (let mapping of this.graphObject.mapping[0]) {
+        for (let mapping of this.mapping.parameters[0]) {
 
             let column = Array.isArray(mapping) ? mapping[0].column : mapping.column;
 
@@ -85,20 +95,17 @@ export default class BandBars extends GraphController {
     }
 
     draw(data: GraphData) {
-    
-        this.xScale = this.chartXScale.set(data.slice.map(d => d[this.xParameter]));
+
+        this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
         this.chartBar.draw(data.slice);
     }
 
 
     redraw(data: GraphData) {
 
-        this.yScale = this.chartYScale.set(this.graphObject.config.extra.yMax ? [this.graphObject.config.extra.yMax] : data.slice.map ( d => d[this.yParameter]));
+        this.yScale = this.scales.y.set(data.slice.map ( d => d[this.parameters.y]));
 
         super.redraw(data);
-        
-        this.bottomAxis.redraw(this.graphObject.config.xScaleType, this.dimensions, this.xScale);
-        this.leftAxis.redraw(this.graphObject.config.yScaleType, this.dimensions, this.yScale);
         // redraw data
         this.chartBar.redraw(data.slice);
     }

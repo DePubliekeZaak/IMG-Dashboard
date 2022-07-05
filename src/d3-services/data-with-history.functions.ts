@@ -1,7 +1,8 @@
 import _ from "lodash";
 import { DataPart, IKeyValueObject } from "../types/data";
 import { GraphObject } from "../types/graphObject";
-import { Mapping } from "../types/mapping";
+import { IGraphMapping, Mapping } from "../types/mapping";
+import { flattenColumn } from "./_helpers";
 
 export function getNeededColumnsForHistory(data: any, graphObject: any): string[] {
 
@@ -25,6 +26,18 @@ export function getNeededColumnsForHistory(data: any, graphObject: any): string[
             }
         }
     })
+
+    return columns;
+}
+
+export function getNeededColumnsForHistoryV2(data: any, mapping: IGraphMapping): string[] {
+
+    let m = mapping.parameters;
+    let columns = ['_date','_month','_week','_year'];
+
+    for (let n of m) {
+            columns = columns.concat(n.map( (o) => flattenColumn(o.column)))
+    }
 
     return columns;
 }
@@ -78,7 +91,7 @@ export function filterWeeks(data: DataPart[], neededColumns: string[]) : DataPar
             if (week[column] !== null && week[column] !== undefined) {
                 clearWeek[column] = week[column]
             } else {
-                console.log(column);
+              //  console.log(column);
                 hasEnoughData = false;
             }
         }
@@ -119,26 +132,26 @@ export function trimLatest(week: DataPart, neededColumns: string[]) : DataPart  
     return latestData;
 }
 
-export function parseHistoryForStackedArea(graphObject: GraphObject, rawData: DataPart[]) {
+export function parseHistoryForStackedArea(mapping: IGraphMapping, rawData: DataPart[]) {
 
     let data = [];
-    let mapping;
+    let m;
 
     for (let week of rawData) {
         let o = {};
         let legit = true;
 
-        let columns = [].concat( ...graphObject.mapping[0].map( (map) => map.column ));
+        let columns = [].concat( ...mapping.parameters[0].map( (map) => map.column ));
 
         for (let column of columns)  {
 
-            mapping = graphObject.mapping[0].find( (map) => map.column === column);
+            m = mapping.parameters[0].find( (map) => map.column === column);
 
             o[column] = week[column];
             o['_date'] = week['_date'];
             o['gemeente'] = week['gemeente'];
-            o['label'] = mapping.label;
-            o['colour'] = mapping.colour;
+            o['label'] = m.label;
+            o['colour'] = m.colour;
 
             if (o[column] === null) {
                 legit = false;

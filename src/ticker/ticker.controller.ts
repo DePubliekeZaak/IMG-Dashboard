@@ -6,10 +6,11 @@ import {ResponseData} from "../types/data";
 import { tickerFysiekeSchade, tickerWaardedaling, tickerTevredenheid, tickerImmaterieel } from "../chart-configs/module";
 import { breakpoints} from "../_styleguide/_breakpoints";
 import { API_BASE } from '../env';
+import { IGraphMapping } from '../types/mapping';
 
 export class InitTicker {
 
-    graphObjectArray : GraphObject[]  = [];
+    graphObjectArray : IGraphMapping[]  = [];
     graphMethods = {};
     htmlContainer;
 
@@ -42,7 +43,7 @@ export class InitTicker {
         this.htmlContainer.parentNode.style.minHeight = '0';
     }
 
-    row(graphObjectArray: GraphObject[], rowName: string, count: number, className: string) {
+    row(graphObjectArray: IGraphMapping[], rowName: string, count: number, className: string) {
 
         let row = this.rowContainer(rowName,count,className);
 
@@ -72,7 +73,7 @@ export class InitTicker {
 
                 element.innerHTML = '';
 
-                let graphClass = new graphs[graphObject.config.graphType](this, data, element, graphObject, 'all');
+                let graphClass = new graphs[graphObject.graph](this, data, element, graphObject, 'all');
                 graphClass.init();
             }
         });

@@ -1,14 +1,12 @@
-import { GraphController } from './graph';
 import * as _ from "lodash";
-import {
-    ChartBlockTrend
-} from '../svg-elements/module';
-import { GraphObject } from '../types/graphObject';
-import { ChartAxes } from '../chart-basics/chart-axes';
+import { ChartBlockTrend } from '../svg-elements/module';
 import { DataPart, GraphData } from '../types/data';
-import { getNeededColumnsForHistory, groupByMonths } from '../d3-services/data-with-history.functions';
+import { getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data-with-history.functions';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
+import { flattenColumn } from '../d3-services/_helpers';
 
-export default class ShortTrend extends GraphController {
+export default class ShortTrend extends GraphControllerV2 {
 
     bottomAxis;
     chartBlockTrend;
@@ -17,23 +15,37 @@ export default class ShortTrend extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
 
-        super(main,data,element,graphObject,segment) 
+        super(main,data,element,mapping,segment)
+        this.pre();
+    }
+
+    pre() {
+
+        this.parameters.x = flattenColumn(this.mapping.parameters[0][0].column);
+
+        this._addScale("x","band","horizontal",this.mapping.args[0]); // week en maand 
+        this._addScale("y","linear","vertical",this.parameters.x);
+        this._addAxis("x","x","bottom");
+        this._addMargin(0,40,0,0);
+        this._addPadding(30,120,10,10);
     }
 
     init() {
 
-        this.graphObject.config.paddingInner = 0;
-        this.graphObject.config.paddingOuter = 0;
-
         super._init();
-        super._svg();
+        super._svg(this.element);
 
-        this.bottomAxis = new ChartAxes(this.graphObject.config, this.svg, 'bottom',this.chartXScale);
-        this.bottomAxis.draw();
+        this.config.paddingInner = 0.1;
+        this.config.paddingOuter = 0;
+        this.config.extra.decimal = true;
+
+        if(this.mapping.args[0] === "_month") {
+            this.config.extra.axisInMonths = true;
+        }
 
         this.chartBlockTrend = new ChartBlockTrend(this);
 
@@ -42,10 +54,10 @@ export default class ShortTrend extends GraphController {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = groupByMonths(data,neededColumns);
 
-        this.main.dataStore.setGraph(this.graphObject.slug, history)
+        this.main.dataStore.setGraph(this.mapping.slug, history)
 
         return { 
             "history" : history,
@@ -58,16 +70,13 @@ export default class ShortTrend extends GraphController {
     redraw(data: GraphData) {
 
         super.redraw(data);
- 
-        this.bottomAxis.redraw(this.graphObject.config.xScaleType,this.dimensions,this.xScale);
-
         this.chartBlockTrend.redraw();
     }
 
     draw(data: GraphData) {
 
-        this.xScale = this.chartXScale.set(data.slice.map(d => d[this.xParameter]));
-        this.yScale = this.chartYScale.set(data.history.map( d => d[this.yParameter]), 0);
+        this.scales.x.set(data.slice.map( m => m[this.parameters.x]))
+        this.scales.y.set(data.slice.map( m => m[this.parameters.y]),0)
 
         this.chartBlockTrend.draw(data.slice);
 

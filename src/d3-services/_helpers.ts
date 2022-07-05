@@ -1,5 +1,5 @@
 import { GraphObject } from "../types/graphObject";
-import { Mapping } from "../types/mapping";
+import { IGraphMapping, Mapping } from "../types/mapping";
 
 var trimColumns =  function(json,neededColumns) {
 
@@ -108,11 +108,35 @@ export function getFirstMapping(o: GraphObject) {
                 return {
                     column : m.column || "",
                     label: m.label,
-                    colour: m.colour
+                    colour: m.colour,
+                    units: m.units,
+                    format: m.format
                 }
             }
 
         }
+}
+
+export function getParameter(o: IGraphMapping, i: number) {
+    
+    let m: any = o.parameters[i];
+
+    while (true) {
+
+        if (!m.column) {
+            m = m[0]              
+        } else {
+           
+            return {
+                column : m.column || "",
+                label: m.label,
+                colour: m.colour,
+                units: m.units,
+                format: m.format
+            }
+        }
+
+    }
 }
 
 export function getMappingKey(m: Mapping, key: string) : string {

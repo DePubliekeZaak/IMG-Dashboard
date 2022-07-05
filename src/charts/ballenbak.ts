@@ -1,25 +1,19 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-import { colours} from "../_styleguide/_colours";
+import { ChartScale, ChartAxes } from '../chart-basics/module';
 import BallenbakSimulation from "../d3-services/ballenbak.simulation"
 
 import {
     ChartCircleGroups,
 } from '../svg-elements/module';
 
-import {
-    HtmlHeader,
-    HtmlPopup
-} from '../html-elements/module';
-
-
-import * as d3 from "d3";
 import * as _ from "lodash";
-import {breakpoints} from "../_styleguide/_breakpoints";
-import { GraphController } from './graph';
-import { GraphObject } from '../types/graphObject';
-import { DataPart, GraphData, IKeyValueObject } from '../types/data';
 
-export default class Ballenbak extends GraphController {
+import { GraphObject } from '../types/graphObject';
+import { DataPart, GraphData } from '../types/data';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
+import { flattenColumn } from '../d3-services/_helpers';
+
+export default class Ballenbak extends GraphControllerV2 {
 
     rScale;
     xScale;
@@ -38,31 +32,36 @@ export default class Ballenbak extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
 
-        super(main,data,element,graphObject,segment) 
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre() {
+        this._addScale('x','band','horizontal', 'group');
+        this._addScale('y','band','vertical-reverse', 'group');
+        this._addScale('r','linear','radius', 'value');
+        this._addMargin(20,0,0,0);
+        this._addPadding(0,160,0,0);
     }
 
     init() {
 
-        this.graphObject.config.paddingInner = 0;
-        this.graphObject.config.paddingOuter = 0;
+        this.config.paddingInner = 1;
+        this.config.paddingOuter = 1;
 
         super._init();
 
         super._svg();
 
-        this.chartRScale = new ChartScale('radius', this.graphObject.config, this.dimensions);
-        this.bottomAxis = new ChartAxes(this.graphObject.config, this.svg, 'bottom',this.chartXScale);
-        this.leftAxis = new ChartAxes(this.graphObject.config, this.svg,'left',this.chartRScale);
+        this.config.extra.minRadius = 4;
+        this.config.extra.radiusOffset = 1.8;
+        this.config.extra.radiusFactor = 1.25;
 
         this.chartCircleGroups = new ChartCircleGroups(this);
-      
-
-        this.bottomAxis.draw();
-        this.leftAxis.draw();
 
         this.update(this.data,this.segment,false);
     }
@@ -73,7 +72,7 @@ export default class Ballenbak extends GraphController {
   
         // add value from most recent week to mapping .. use mapping object in vis
 
-        for (let entry of this.graphObject.mapping[0]) {
+        for (let entry of this.mapping.parameters[0]) {
 
             let column = Array.isArray(entry.column) ? entry.column[0] : entry.column;
             let value = data[0][column];
@@ -100,27 +99,16 @@ export default class Ballenbak extends GraphController {
         let self = this;
 
         // with data we can init scales
-        this.xScale = this.chartXScale.set(_.uniq(data.slice.map( (d) => d['group'])));
-        this.yScale = this.chartYScale.set(_.uniq(data.slice.map( (d) => d['group'])));
-        this.rScale = this.chartRScale.set(_.uniq(data.slice.map( (d) => d['value']))); // = radius !!
+        this.xScale = this.scales.x.set(_.uniq(data.slice.map( (d) => d['group'])));
+        this.yScale = this.scales.y.set(_.uniq(data.slice.map( (d) => d['group'])));
+        this.rScale = this.scales.r.set(_.uniq(data.slice.map( (d) => d['value']))); // = radius !!
         
         this.chartCircleGroups.draw(data.grouped);
 
         for (let group of data.grouped) {
 
             this.simulation[group[0].group] = new BallenbakSimulation(this);
-
             this.simulation[group[0].group].supply(group.filter( (prop) => { return prop.value > 0 } ),data.grouped.length)
-            // this.simulation[group[0].group] = d3.forceSimulation()
-            //     .nodes(group.filter( (prop) => { return prop.value > 0 } ));
-
-            // this.initializeForces(group);
-
-            // this.simulation[group[0].group].on('tick', () => {
-
-            //     self.chartCircleGroups.forceDirect();
-
-            // });
         }
     }
 
@@ -128,9 +116,7 @@ export default class Ballenbak extends GraphController {
 
         super.redraw(data);
 
-        // this.xScale = this.chartXScale.reset('horizontal',this.dimensions,this.xScale);
-        // this.yScale = this.chartYScale.reset('vertical-reverse',this.dimensions,this.yScale);
-        this.rScale = this.chartRScale.reset('radius',this.dimensions,this.rScale);
+        this.scales.r.reset();
 
         this.chartCircleGroups.redraw(data.grouped);
 
@@ -138,16 +124,6 @@ export default class Ballenbak extends GraphController {
             this.simulation[group[0].group].redraw(data.grouped.length)
         });
     }
-
-    // initializeForces(group) {
-
-    //     this.simulation[group[0].group]
-    //         .force("collide", d3.forceCollide())
-    //         .force("center", d3.forceCenter())
-    //         .force("forceX", d3.forceX());
-
-    //     // this.updateForces(group)
-    // }
 
     updateForces(group) {
 
@@ -158,8 +134,8 @@ export default class Ballenbak extends GraphController {
 
         this.simulation[group[0].group].force("collide")
             .strength(forceStrength)
-            .radius(function(d : any) {
-                return self.rScale(d.value)
+            .radius((d : any) => {
+                return self.scales.r.scale(d.value)
             });
 
         this.simulation[group[0].group].force("center")

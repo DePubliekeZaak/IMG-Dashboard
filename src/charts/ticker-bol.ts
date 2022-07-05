@@ -1,18 +1,12 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-
-import { ChartAvgLine, ChartBackgroundArea, ChartRaggedLine, ChartWeekGrid } from '../svg-elements/module';
-import {  HtmlCircle, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../html-elements/module';
-
-import * as d3 from "d3";
 import { breakpoints } from "../_styleguide/_breakpoints";
 import {colours} from "../_styleguide/_colours";
 import {thousands} from "../d3-services/_helpers";
-import { GraphController } from './graph';
-import { GraphObject } from '../types/graphObject';
 import { filterLatest, getNeededColumns } from '../d3-services/data.functions';
 import { DataPart, GraphData } from '../types/data';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
 
-export default class TickerBol extends GraphController {
+export default class TickerBol extends GraphControllerV2 {
 
     htmlCircle;
 
@@ -20,10 +14,10 @@ export default class TickerBol extends GraphController {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
+        super(main,data,element,mapping,segment);
     }
 
     init() {
@@ -60,7 +54,7 @@ export default class TickerBol extends GraphController {
         labelContainer.style.width = '100%';
 
         labelContainer.style.textAlign = 'center';
-        labelContainer.innerText = this.graphObject.mapping[0][0]['label'];
+        labelContainer.innerText = this.mapping.parameters[0][0]['label'];
         this.element.appendChild(labelContainer);
 
         if (window.innerWidth < breakpoints.sm) {
@@ -81,7 +75,7 @@ export default class TickerBol extends GraphController {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        let neededColumns = getNeededColumns(data,this.graphObject);
+        let neededColumns = getNeededColumns(data,this.mapping);
 
         return {
             "history" : null,
@@ -92,7 +86,7 @@ export default class TickerBol extends GraphController {
 
     redraw(data: GraphData) {
 
-        let value =  (this.graphObject.config.extra.decimal) ? data.latest[this.yParameter ] : Math.round(data[0][this.yParameter ]);
+        let value =  (this.config.extra.decimal) ? data.latest[this.parameters.y ] : Math.round(data[0][this.parameters.y ]);
         let el = this.element.querySelector('.number') as HTMLElement;
         el.innerText = (value > 9999) ? thousands(value) : value;
    }
@@ -106,16 +100,16 @@ export default class TickerBol extends GraphController {
 
         let div = document.createElement('div');
         div.classList.add('number_circle');
-        div.style.backgroundColor =  colours[this.graphObject.mapping[0][0].colour][1];
-        div.style.border = '1px solid ' + colours[this.graphObject.mapping[0][0].colour][0];
+        div.style.backgroundColor =  colours[this.mapping.parameters[0][0].colour][1];
+        div.style.border = '1px solid ' + colours[this.mapping.parameters[0][0].colour][0];
         div.style.borderRadius = '50%';
         div.style.display =  'flex';
         div.style.position = 'relative';
         div.style.flexDirection = 'column';
         div.style.justifyContent = 'center';
         div.style.alignItems = 'center';
-        div.style.width = (this.graphObject.config.extra.circleRadius) ? this.graphObject.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
-        div.style.height = (this.graphObject.config.extra.circleRadius) ? this.graphObject.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
+        div.style.width = (this.config.extra.circleRadius) ? this.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
+        div.style.height = (this.config.extra.circleRadius) ? this.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
 
         let number = document.createElement('span');
         number.classList.add('number');

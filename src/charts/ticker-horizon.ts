@@ -1,17 +1,13 @@
-import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
-
 import { ChartBarHorizon } from '../svg-elements/module';
 
 import { breakpoints } from "../_styleguide/_breakpoints";
-import { GraphController } from './graph';
-import { GraphObject } from '../types/graphObject';
 import { flattenColumn, thousands } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistory, groupByMonths } from '../d3-services/data-with-history.functions';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data-with-history.functions';
 import { DataPart, GraphData } from '../types/data';
-import { isSafeInteger } from 'lodash';
-import * as d3 from 'd3';
+import { GraphControllerV2 } from './graph-v2';
+import { IGraphMapping } from '../types/mapping';
 
-export default class TickerHorizon extends GraphController   {
+export default class TickerHorizon extends GraphControllerV2 {
 
     y2Parameter;
     chartBars;
@@ -20,11 +16,22 @@ export default class TickerHorizon extends GraphController   {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ) {
-        super(main,data,element,graphObject,segment);
-        this.y2Parameter = this.graphObject.mapping[0][1].column;
+        super(main,data,element,mapping,segment);
+      
+        this.pre();
+    }
+
+    pre() {
+        this._addScale("x","linear","horizontal","_week");
+        this._addScale("y","linear","vertical-reverse",flattenColumn(this.firstMapping.column));
+
+        this._addMargin(0,0,0,0);
+        this._addPadding(0,4,0,0);
+
+        this.parameters.y2 = flattenColumn(this.mapping.parameters[0][1].column);
     }
 
     init() {
@@ -48,11 +55,8 @@ export default class TickerHorizon extends GraphController   {
             graphWidth = '142px'  
         }
 
-      
-
         const numberContainer = document.createElement('div');
         
-        // numberContainer.style.height = '3.75rem';
         numberContainer.style.display = 'flex';
         numberContainer.style.flexDirection = 'column';
         numberContainer.style.alignItems = 'flex-start';
@@ -60,26 +64,18 @@ export default class TickerHorizon extends GraphController   {
         numberContainer.style.marginTop = '-1.25rem';
 
         const label = document.createElement('div');
-        label.innerText = this.graphObject.mapping[1][0].label;
+        label.innerText = this.mapping.parameters[1][0].label;
         numberContainer.appendChild(label);
 
-        // if (window.innerWidth < breakpoints.sm) {
-        //     labelContainer.style.height = '2.4rem';
-        // } else if (window.innerWidth < breakpoints.md) {
-        //     labelContainer.style.height = '1.5rem';
-        // } else {
-        //     labelContainer.style.height = '2.5rem';
-        // }
-     
         const number = document.createElement('div');
-        number.innerText = thousands(this.data[0][flattenColumn(this.graphObject.mapping[1][0].column)]);
+        number.innerText = thousands(this.data[0][flattenColumn(this.mapping.parameters[1][0].column)]);
         number.style.fontSize = '2.5rem';
         number.style.lineHeight = "1.05";
         number.style.fontFamily = "Replica";
         numberContainer.appendChild(number);
 
         const units = document.createElement('div');
-        units.innerText = this.graphObject.config.extra.units
+        units.innerText = this.mapping.parameters[1][0].units;
         numberContainer.appendChild(units);
 
         this.element.appendChild(numberContainer);
@@ -124,16 +120,14 @@ export default class TickerHorizon extends GraphController   {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data,this.graphObject).concat(this.graphObject.mapping[1][0].column)
+        const neededColumns = getNeededColumnsForHistoryV2(data,this.mapping).concat(this.mapping.parameters[1][0].column)
         const history = filterWeeks(data,neededColumns);
 
-        let voorraad_bij_eind = history[0][flattenColumn(this.graphObject.mapping[1][0].column)];
+        let voorraad_bij_eind = history[0][flattenColumn(this.mapping.parameters[1][0].column)];
 
         history.forEach( (week) => { 
-            
-            week['diff'] = week[this.yParameter] - week[this.y2Parameter]
-            week['relative_diff'] = voorraad_bij_eind - week[flattenColumn(this.graphObject.mapping[1][0].column)]
-            
+            week['diff'] = week[this.parameters.y] - week[this.parameters.y2]
+            week['relative_diff'] = voorraad_bij_eind - week[flattenColumn(this.mapping.parameters[1][0].column)]
         });
 
         return {
@@ -146,20 +140,20 @@ export default class TickerHorizon extends GraphController   {
 
     redraw(data: GraphData) {
 
-        const yValues = data.slice.map( d => d[this.yParameter]).concat(data.slice.map( d => d[this.y2Parameter]))
+        const yValues = data.slice.map( d => d[this.parameters.y]).concat(data.slice.map( d => d[this.y2Parameter]))
 
-        this.yScale = this.chartYScale.set(yValues);
+        this.yScale = this.scales.y.set(yValues);
 
         super.redraw(data);
 
-        this.yScale = this.chartYScale.reset('vertical-reverse', this.dimensions, this.yScale);
+        this.yScale = this.scales.y.reset('vertical-reverse', this.dimensions, this.yScale);
         this.chartBars.redraw(data);
     }
 
     draw(data: GraphData) {
 
-        const xValues = data.slice.map(d => d[this.xParameter]);
-        this.xScale = this.chartXScale.set([xValues[xValues.length - 1]], xValues[0]);
+        const xValues = data.slice.map(d => d[this.parameters.x]);
+        this.scales.x.set([xValues[xValues.length - 1]], xValues[0]);
         this.chartBars.draw(data);
     }
 
@@ -169,8 +163,7 @@ export default class TickerHorizon extends GraphController   {
 
     average(data: any[]) : number {
 
-        data = data.filter( (d) => d[this.yParameter] > 0)
-
-        return (data.reduce((a,b) => { return a + parseInt(b[this.yParameter]); },0)) / (data.length);
+        data = data.filter( (d) => d[this.parameters.y] > 0)
+        return (data.reduce((a,b) => { return a + parseInt(b[this.parameters.y]); },0)) / (data.length);
     }
 }

@@ -1,11 +1,10 @@
 import { HtmlCircle } from '../html-elements/module';
-import { GraphController } from './graph';
-import { GraphObject } from '../types/graphObject';
 import { DataPart, GraphData } from '../types/data';
-import { filterWeeks, getNeededColumnsForHistory } from '../d3-services/data-with-history.functions';
-import { ChartDimensions } from '../chart-basics/chart-dimensions';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
+import { IGraphMapping } from '../types/mapping';
+import { GraphControllerV2 } from './graph-v2';
 
-export default class Cijfer extends GraphController   {
+export default class Cijfer extends GraphControllerV2   {
 
     htmlCircle;
 
@@ -13,11 +12,18 @@ export default class Cijfer extends GraphController   {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
 
-        super(main,data,element,graphObject,segment) 
+        super(main,data,element,mapping,segment) 
+    }
+
+    pre() {
+
+        this._addPadding(0,60,0,0);
+        this._addMargin(200,0,10,10);
+
     }
 
     init() {
@@ -25,7 +31,7 @@ export default class Cijfer extends GraphController   {
         super._init();
         // super._svg(this.elementID);
         
-        this.htmlCircle = new HtmlCircle(this.graphObject.config,this.graphObject.mapping,this.element,this.firstMapping);
+        this.htmlCircle = new HtmlCircle(this);
         this.htmlCircle.draw();
 
         this.update(this.data,this.segment,false);
@@ -34,10 +40,10 @@ export default class Cijfer extends GraphController   {
 
     prepareData(data: DataPart[])  {
 
-        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = filterWeeks(data,neededColumns);
 
-        this.main.dataStore.setGraph(this.graphObject.slug, history);
+        this.main.dataStore.setGraph(this.mapping.slug, history);
 
         return { 
             "history" : history,
@@ -50,7 +56,7 @@ export default class Cijfer extends GraphController   {
 
         super.redraw(data);
 
-        let noRespondents = (this.graphObject.mapping[0][2]) ? this.graphObject.mapping[0][2]['column'] : '';
+        let noRespondents = (this.mapping.parameters[0][2]) ? this.mapping.parameters[0][2]['column'] : '';
         this.htmlCircle.redraw([data.latest],this.firstMapping.column,noRespondents);
     }
 

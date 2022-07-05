@@ -3,6 +3,7 @@ import {munis} from "../d3-services/municipalities";
 import {dashboardMain} from "../chart-configs/dashboard";
 import DashboardInteractions from "./dashboard.interactions";
 import {GraphObject} from "../types/graphObject";
+import { IGraphMapping } from "../types/mapping";
 
 export default class DashboardHTML {
 
@@ -183,11 +184,11 @@ export default class DashboardHTML {
     }
 
 
-    createGraphGroupElement(graphObject : GraphObject,htmlContainer: HTMLScriptElement) {
+    createGraphGroupElement(graphObject : GraphObject, htmlContainer: HTMLScriptElement) {
 
         let element = document.createElement('article');
 
-        if (graphObject.config.extra.largeHeader) {
+        if (graphObject.config && graphObject.config.extra.largeHeader) {
 
             let header = document.createElement('h2');
             header.innerText = graphObject.label;

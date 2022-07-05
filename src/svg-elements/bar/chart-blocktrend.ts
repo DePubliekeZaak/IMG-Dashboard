@@ -7,7 +7,6 @@ export default class ChartBlockTrend {
 
     bars;
     barsEnter;
-
     barLabels;
     barLabelsEnter
 
@@ -42,26 +41,14 @@ export default class ChartBlockTrend {
         let self = this;
 
         this.bars
-            .attr("x", (d: any) => {
-                    return self.ctrlr.xScale(d[self.ctrlr.xParameter]);
-            })
+            .attr("x", (d: any) => self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]))
             .attr("y", this.ctrlr.dimensions.height)
             .attr("height", 0)
-            .attr("width", (d: any) => {
-
-                if (self.ctrlr.xParameter === '_date') {
-
-                    return 60;
-                } else {
-
-                    return self.ctrlr.xScale.bandwidth()
-                }
-
-            })
+            .attr("width", (d: any) =>  self.ctrlr.scales.x.scale.bandwidth())
             .transition()
             .duration(500)
-            .attr("y", (d) => (this.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.graphObject.config.yParameter] < 25) ? this.ctrlr.dimensions.height : this.ctrlr.yScale(d[self.ctrlr.graphObject.config.yParameter]))
-            .attr("height", (d) => (this.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.graphObject.config.yParameter] < 25) ? 0 : this.ctrlr.dimensions.height - this.ctrlr.yScale(d[self.ctrlr.graphObject.config.yParameter]))
+            .attr("y", (d) => this.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]))
+            .attr("height", (d) => this.ctrlr.dimensions.height - this.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]));
 
 
         this.bars
@@ -74,7 +61,7 @@ export default class ChartBlockTrend {
                     .html(() => {
 
                             return 'Maand: ' + getLongMonthFromNumber(d._month)+ '<br/>' +
-                                'Rapportcijfer: ' + Math.round(d[self.ctrlr.graphObject.config.yParameter] * 10) / 10  + '</b><br/>' +
+                                'Rapportcijfer: ' + Math.round(d[self.ctrlr.parameters.y] * 10) / 10  + '</b><br/>' +
                                 'Respondenten: ' + d['aantal_respondenten'];
 
 
@@ -98,11 +85,11 @@ export default class ChartBlockTrend {
         ;
 
         this.barLabels
-            .text((d: any) => Math.round(d[self.ctrlr.graphObject.config.yParameter] * 10) / 10)
+            .text((d: any) => Math.round(d[self.ctrlr.parameters.y] * 10) / 10)
             .attr('transform', (d: any) => {
 
-                    return 'translate(' + (this.ctrlr.xScale(d[self.ctrlr.graphObject.config.xParameter]) + (this.ctrlr.xScale.bandwidth() / 2)) + ',' +
-                        ((self.ctrlr.graphObject.config.extra.privacySensitive && d[self.ctrlr.graphObject.config.yParameter] < 25) ? this.ctrlr.dimensions.height : this.ctrlr.yScale(d[self.ctrlr.yParameter]))
+                    return 'translate(' + (this.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]) + (this.ctrlr.scales.x.scale.bandwidth() / 2)) + ',' +
+                        ((self.ctrlr.config.extra.privacySensitive && d[self.ctrlr.parameters.y] < 25) ? this.ctrlr.dimensions.height : this.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]))
                         + ')';
             })
             .attr('fill-opacity', 0)

@@ -1,13 +1,13 @@
-import { GraphController } from "./graph";
-
-import { ChartAvgLine, ChartBackgroundAreas, ChartRaggedLine, ChartWeekGrid  } from '../svg-elements/module';
+import { ChartAvgLine, ChartBackgroundAreas, ChartRaggedLine, ChartGridWeek  } from '../svg-elements/module';
 import { HtmlCircle } from '../html-elements/module';
 
-import { GraphObject } from '../types/graphObject';
 import { DataPart, GraphData } from "../types/data";
-import { filterWeeks, getNeededColumnsForHistory } from "../d3-services/data-with-history.functions";
+import { filterWeeks, getNeededColumnsForHistoryV2 } from "../d3-services/data-with-history.functions";
+import { GraphControllerV2 } from "./graph-v2";
+import { IGraphMapping } from '../types/mapping';
+import { flattenColumn } from '../d3-services/_helpers';
 
-export default class CijfersLine extends GraphController  {
+export default class CijfersLine extends GraphControllerV2  {
 
     chartLine;
     chartBackgroundAreas;
@@ -20,22 +20,31 @@ export default class CijfersLine extends GraphController  {
         public main: any,
         public data : any,
         public element : HTMLElement,
-        public graphObject: GraphObject,
+        public mapping: IGraphMapping,
         public segment: string  
     ){
-        super(main,data,element,graphObject,segment) 
+        super(main,data,element,mapping,segment);
+        this.pre();
+    }
+
+    pre() {
+
+        this._addScale("x","time","horizontal","_date");
+        this._addScale("y","linear","vertical",flattenColumn(this.mapping.parameters[0][0].column))
+        this._addPadding(20,40,0,0);
+        this._addMargin(120,140,10,10);
     }
 
     init() {
 
         super._init();
 
-        this.chartLine = new ChartRaggedLine(this.graphObject.config, this.svg);
-        this.chartBackgroundAreas = new ChartBackgroundAreas(this.graphObject.config, this.svg, false, false);
-        this.chartWeekGrid = new ChartWeekGrid(this.graphObject.config, this.svg);
+        this.chartLine = new ChartRaggedLine(this);
+        this.chartBackgroundAreas = new ChartBackgroundAreas(this);
+        this.chartWeekGrid = new ChartGridWeek(this);
         this.chartAvgLine = new ChartAvgLine(this);
 
-        this.htmlCircle = new HtmlCircle(this.graphObject.config,this.graphObject.mapping,this.element,this.firstMapping);
+        this.htmlCircle = new HtmlCircle(this);
         this.htmlCircle.draw();
 
         super._svg();
@@ -50,10 +59,10 @@ export default class CijfersLine extends GraphController  {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        const neededColumns = getNeededColumnsForHistory(data, this.graphObject);
+        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = filterWeeks(data,neededColumns);
 
-        this.main.dataStore.setGraph(this.graphObject.slug, history);
+        this.main.dataStore.setGraph(this.mapping.slug, history);
 
         return { 
             "history" : history,
@@ -69,18 +78,18 @@ export default class CijfersLine extends GraphController  {
         this.htmlCircle.redraw([data.latest],this.firstMapping.column);
 
         if(this.data.map( (i) => i[this.firstMapping.column]).filter( (i) => i !== null && i !== undefined).length > 2) {
-            this.chartBackgroundAreas.redraw(this.xScale, this.yScale, this.dimensions, data.slice, this.firstMapping.colour, this.graphObject.config.xParameter, this.yParameter);
-            this.chartWeekGrid.redraw(this.xScale, this.yScale, this.dimensions, data.slice, this.firstMapping.colour, this.yParameter);
-            this.chartLine.redraw(this.xScale, this.yScale, this.dimensions, data.slice, this.firstMapping.colour, this.graphObject.config.xParameter, this.yParameter);
+            this.chartBackgroundAreas.redraw(data.slice, this.firstMapping.colour);
+            this.chartWeekGrid.redraw(data.slice, this.firstMapping.colour);
+            this.chartLine.redraw(data.slice, this.firstMapping.colour);
             this.chartAvgLine.redraw(data);
         }
     }
 
     draw(data: GraphData) {
 
-        this.xScale = this.chartXScale.set(data.slice.map(d => d[this.xParameter]));
-        let minValue = (this.graphObject.config.extra.period === 'monthly') ? 7 : 0
-        this.yScale = this.chartYScale.set(data.history.map( d => d[this.yParameter]),minValue);
+        this.xScale = this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
+        let minValue = 0;
+        this.yScale = this.scales.y.set(data.history.map( d => d[this.parameters.y]),minValue);
 
         if(data.slice.map( (i) => i[this.firstMapping.column]).filter( (i) => i !== null && i !== undefined).length > 2) {
             this.chartBackgroundAreas.draw(data.slice);

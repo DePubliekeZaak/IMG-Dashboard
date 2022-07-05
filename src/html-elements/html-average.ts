@@ -18,7 +18,7 @@ export class HtmlAverage {
 
         let div = document.createElement('div');
         div.classList.add('number_circle');
-        div.style.border =  '5px solid ' + colours[this.ctrlr.graphObject.mapping[0][0].colour][0];
+        div.style.border =  '5px solid ' + colours[this.ctrlr.mapping.parameters[0][0].colour][0];
         div.style.borderRadius = '50%';
         div.style.display =  'flex';
         div.style.position = 'relative';
@@ -33,7 +33,7 @@ export class HtmlAverage {
         number.classList.add('total');
         number.style.fontSize = '3.5rem';
         number.style.lineHeight = "2";
-        number.style.color = colours[this.ctrlr.graphObject.mapping[0][0].colour][0];
+        number.style.color = colours[this.ctrlr.mapping.parameters[0][0].colour][0];
         number.style.fontFamily = "Replica";
         number.style.letterSpacing = '-4px';
 
@@ -48,7 +48,10 @@ export class HtmlAverage {
 
     redraw(data: GraphData) {
 
-        let value =  Math.round(100 * data.latest[this.ctrlr.yParameter]) / 100;
+        console.log(data.latest)
+        console.log(this.ctrlr.parameters.y)
+
+        let value =  Math.round(100 * data.latest[this.ctrlr.parameters.y]) / 100;
 
         this.ctrlr.element.querySelector('.total').innerText = (value > 9999) ? thousands(value) : value;
 

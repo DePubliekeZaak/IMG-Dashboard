@@ -60,34 +60,34 @@ export class ChartBarHorizontal {
 
         this.bars
             .attr("x", 0)
-            .attr("y", (d) =>  this.ctrlr.yScale(d[this.ctrlr.yParameter]))
+            .attr("y", (d) =>  this.ctrlr.scales.y.scale(d[this.ctrlr.parameters.y]))
             .attr("height", this.ctrlr.yScale.bandwidth())
             .transition()
             .duration(500)
-            .attr("width", (d) => self.ctrlr.xScale(d[self.ctrlr.xParameter]));
+            .attr("width", (d) => self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]));
 
         ;
 
         this.barLabels
             .text((d: any) => {
 
-                let text = d[self.ctrlr.yParameter];
+                let text = d[self.ctrlr.parameters.y];
 
                 return text ;
             })
             .attr('transform', function(d) {
-                    let offset = (window.innerWidth > breakpoints.bax) ? -(self.ctrlr.yScale.bandwidth() * .15) : 0;
-                    return 'translate(' + -self.ctrlr.graphObject.config.padding.left + ',' +  (self.ctrlr.yScale(d[self.ctrlr.yParameter]) + (self.ctrlr.yScale.bandwidth() + offset)) + ')';
+                    let offset = (window.innerWidth > breakpoints.bax) ? -(self.ctrlr.scales.y.scale.bandwidth() * .15) : 0;
+                    return 'translate(' + -self.ctrlr.config.padding.left + ',' +  (self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]) + (self.ctrlr.scales.y.scale.bandwidth() + offset)) + ')';
             })
             ;
 
         this.barValues
             .text(function(d) {
 
-                let text = d[self.ctrlr.graphObject.config.xParameter];
+                let text = d[self.ctrlr.parameters.x];
              
                 if (d.no_respondents) {
-                    let avg = (Math.round((10 * 100) * (d[self.ctrlr.xParameter] / d.no_respondents)) / 10).toString() + '%';
+                    let avg = (Math.round((10 * 100) * (d[self.ctrlr.parameters.x] / d.no_respondents)) / 10).toString() + '%';
                     text = text + ' (' + avg + ')';
                 }
 
@@ -95,8 +95,8 @@ export class ChartBarHorizontal {
             })
             .attr('transform', function(d) {
 
-                let offset = (window.innerWidth > breakpoints.bax) ? -(self.ctrlr.yScale.bandwidth() * .15) : 0;
-                return 'translate(' + (self.ctrlr.xScale(d[self.ctrlr.graphObject.config.xParameter]) + 6) + ',' +  (self.ctrlr.yScale(d[self.ctrlr.graphObject.config.yParameter]) + (self.ctrlr.yScale.bandwidth() + offset)) + ')';
+                let offset = (window.innerWidth > breakpoints.bax) ? -(self.ctrlr.scales.y.scale.bandwidth() * .15) : 0;
+                return 'translate(' + (self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]) + 6) + ',' +  (self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y]) + (self.ctrlr.scales.y.scale.bandwidth() + offset)) + ')';
             })
             .attr('fill-opacity', 0)
             .transition()

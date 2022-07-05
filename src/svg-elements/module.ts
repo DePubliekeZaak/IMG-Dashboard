@@ -2,13 +2,16 @@
 // line
 import { ChartAvgLine } from './line/chart-avg-line';
 import { ChartLine } from './line/chart-line';
-import { ChartLineV2 } from './line/chart-line-v2';
+import { ChartLineAccentTime } from './line/chart-line-accent-time';
+import { ChartLineIndependent } from './line/chart-line-independent';
+import  ChartLineDashArray from './line/chart-line-dasharray';
 import { ChartRaggedLine } from './line/chart-ragged-line';
 import { ChartBlockedLine } from './line/chart-blocked-line';
 
 // grid
-import { ChartWeekGrid } from './grid/chart-week-grid';
-import { ChartMonthGrid } from './grid/chart-month-grid';
+import { ChartGrid } from './grid/chart-grid';
+import { ChartGridWeek } from './grid/chart-week-grid';
+import { ChartGridMonth } from './grid/chart-month-grid';
 import { ChartAxisGrid } from './grid/chart-axis-grid';
 
 // bar
@@ -38,10 +41,11 @@ import { ChartFlowBetweenCircles } from './area/chart-flow-between-circles';
 
 // circle 
 import { ChartCircles } from './circle/chart-circles';
-import ChartCircleGroups  from './circle/chart-circle-groups';
+import ChartCircleGroups from './circle/chart-circle-groups';
 
 // interaction
-import { ChartFocus } from "./interaction/chart-focus";
+import ChartFocus from "./interaction/chart-focus";
+import ChartFocusTime from "./interaction/chart-focus-time";
 
 import { ChartBrackets } from './label/chart-brackets'; 
 import { ChartEndLabel} from "./label/chart-end-label";
@@ -55,10 +59,13 @@ export {
     ChartBackgroundAreas,
     ChartRaggedLine, 
     ChartLine,
-    ChartLineV2,
+    ChartLineAccentTime,
+    ChartLineIndependent,
+    ChartLineDashArray,
     ChartBlockedLine, 
-    ChartWeekGrid, 
-    ChartMonthGrid, 
+    ChartGrid,
+    ChartGridWeek, 
+    ChartGridMonth, 
     ChartAxisGrid, 
     ChartBar, 
     ChartStackedBars,
@@ -77,6 +84,7 @@ export {
     ChartStackedArea, 
     ChartStackedBarsNormalized, 
     ChartFocus,
+    ChartFocusTime,
     ChartBlockTrend,
     ChartFlowDuration,
     ChartEndLabel,

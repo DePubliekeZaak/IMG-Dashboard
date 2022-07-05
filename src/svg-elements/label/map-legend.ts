@@ -25,13 +25,13 @@ export default class MapLegend {
         bar.style.borderBottom = '1px solid black';
       //  bar.style.marginTop = '1.5rem';
 
-        let max = d3.max(data.features.map( f => f.properties[this.ctrlr.yParameter]));
+        let max = d3.max(data.features.map( f => f.properties[this.ctrlr.parameters.y]));
 
-        if (this.ctrlr.graphObject.config.extra.currencyLabels) {
+        if (this.ctrlr.firstMapping.format === 'currency') {
           max = shortenCurrency(convertToCurrency(max));
         } 
 
-        if (this.ctrlr.graphObject.config.extra.percentage) {
+        if (this.ctrlr.config.extra.percentage) {
           max = max + "%";
         } 
 
@@ -56,7 +56,7 @@ export default class MapLegend {
         let inner =  document.createElement('div');
         inner.style.height = '100%';
 
-        let gradient = 'linear-gradient(0deg, ' + colours.lightBlue[3] + ' 0%,' + colours[this.ctrlr.graphObject.mapping[0][0].colour][0] + ' 100%)';
+        let gradient = 'linear-gradient(0deg, ' + colours.lightBlue[3] + ' 0%,' + colours[this.ctrlr.mapping.parameters[0][0].colour][0] + ' 100%)';
         inner.style.background = gradient + ' no-repeat';
 
         bar.appendChild(inner);
