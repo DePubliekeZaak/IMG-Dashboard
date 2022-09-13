@@ -1,0 +1,99 @@
+
+.img-graph-container {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  &:empty {
+    display: none;
+  }
+
+}
+
+.img-graph-container-3 {
+
+  width : 100%;
+
+  @media (min-width : $breakpoint-sm) {
+    width: calc(50% - (4rem / 3));
+  }
+
+  @media (min-width : $breakpoint-bax) {
+    width: calc(25% - (3rem / 3));
+  }
+}
+
+.img-graph-container-4 {
+
+  width : 100%;
+
+  @media (min-width : $breakpoint-sm) {
+    width: calc(50% - (4rem / 3));
+  }
+
+  @media (min-width : $breakpoint-md) {
+    width: calc(33% - (3rem/2));
+  }
+}
+
+.img-graph-container-6 {
+  width: 100%;
+
+  @media (min-width : $breakpoint-bax) {
+    width: calc(50% - 2rem/2);
+  }
+}
+
+.img-graph-container-ipad-6 {
+
+  width: 100%;
+
+  @media (min-width : $breakpoint-md) {
+    width: calc(50% - 2rem/2);
+  }
+}
+
+.img-graph-container-8 {
+
+  width : 100%;
+  margin-bottom: 4rem;
+
+  @media (min-width : $breakpoint-md) {
+
+    width: calc(66% - (3rem/2));
+
+    > svg {
+      height: auto;
+    }
+  }
+
+  @media (min-width : $breakpoint-bax) {
+    > svg {
+      height: calc((100vw - 300px - 10rem) / 4);
+    }
+
+    > .legend {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.img-graph-container-9 {
+
+  width : 100%;
+
+  @media (min-width : $breakpoint-sm) {
+    width: calc(50% - (4rem / 3));
+  }
+
+  @media (min-width : $breakpoint-bax) {
+    width: calc(75% - (3rem / 3));
+  }
+}
+
+.img-graph-container-12 {
+  width: 100%;
+}
