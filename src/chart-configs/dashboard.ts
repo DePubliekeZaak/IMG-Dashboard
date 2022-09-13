@@ -456,34 +456,6 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-
-        //     "graphType": "PieChartSum",
-        //     "xScaleType" : false,
-        //     "yScaleType" : false,
-        //     "xParameter" : false,
-        //     "yParameter" : false,
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 15,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra" :{
-        //         "currencyLabels" : false,
-        //         "legendWidth" : 220,
-        //         "maxRadius" : 100,
-        //         "innerRadius" : 20,
-                
-        //         "segmentIndicator": true,
-        //     }
-        // },
         "header" : "Speciale dossiers",
         "description" : "Sommige schademeldingen hebben speciale aandacht nodig, zoals voor monumenten, bedrijven en agrariërs. Dit worden ook wel specials genoemd. De doorlooptijd voor de specials wijkt af van de reguliere schademeldingen voor woonhuizen zonder bijzondere omstandigheden.",
         "endpoint": "specials",

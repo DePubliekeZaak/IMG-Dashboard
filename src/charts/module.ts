@@ -1,4 +1,5 @@
 import Cijfer from './cijfer';
+import CijferV2 from './cijfer-v2';
 import CijferCurrency from './cijfer-currency';
 import CijferDecimalPlus from './cijfer-decimal-plus';
 import Average from './average';
@@ -33,11 +34,13 @@ import  KTORatings from './kto-ratings';
 import  ShortTrend from "./short-trend";
 // import { Results} from "./_results"
 import MuniSelector from "./muni-selector"
+import SectionHeader from "./section-header"
 
 
 export const graphs  = {
 
     Cijfer,
+    CijferV2,
     CijferCurrency,
     CijferDecimalPlus,
     CijfersLine,
@@ -65,5 +68,6 @@ export const graphs  = {
     StackedBars,
     KTORatings,
     ShortTrend,
-    MuniSelector
+    MuniSelector,
+    SectionHeader
 };

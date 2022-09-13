@@ -23,7 +23,7 @@ export default class DashboardHTML {
         const htmlContainer: HTMLScriptElement =  document.querySelector("[data-img-graph-preset='dashboard']");
         const parentEl = htmlContainer.parentElement;
         parentEl.classList.add('container');
-        parentEl.style.width = 'calc(100% - 2rem)';
+        parentEl.style.width = 'calc(100% - 0rem)';
         return htmlContainer;
 
     }

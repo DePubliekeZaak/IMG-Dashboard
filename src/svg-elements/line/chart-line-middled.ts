@@ -31,7 +31,7 @@ export default class ChartLineMiddled extends ChartLine {
 
             if (i > 3 && i < this.data.slice.length) {
 
-                let v = (this.data.slice[i - 3][yParameter] + this.data.slice[i - 2][yParameter] + this.data.slice[i - 1][yParameter] + this.data.slice[i][yParameter]) / 5;
+                let v = (this.data.slice[i - 3][yParameter] + this.data.slice[i - 2][yParameter] + this.data.slice[i - 1][yParameter] + this.data.slice[i][yParameter]) / 4;
                 return this.ctrlr.scales.y.scale(v)
 
             } else {

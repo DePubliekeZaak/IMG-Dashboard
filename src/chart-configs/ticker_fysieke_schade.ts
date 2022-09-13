@@ -111,7 +111,7 @@ export const tickerFysiekeSchade : IGraphMapping[] = [
         ],
         "header": null,
         "description" : null,
-        "endpoint": "voortgang",
+        "endpoint": "tevredenheid",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },

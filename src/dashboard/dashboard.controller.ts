@@ -63,6 +63,10 @@ export class InitDashboard {
             }
 
         }, false);
+
+        setTimeout( () => {
+            window.dispatchEvent(new Event('resize'));
+        }, 1000);
     }
 
     reloadHtml() {

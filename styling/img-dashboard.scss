@@ -4,7 +4,7 @@ main {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  min-height: 100vh;
+  // min-height: 100vh;
   align-items: center;
   justify-content: flex-start;
 }
@@ -14,15 +14,21 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  min-height: 100vh;
-
+  // min-height: 100vh;
   position: relative;
   justify-content: space-between;
   align-items: flex-start;
   flex: 1;
-  padding: 8rem 1rem 8rem 1rem;
-  width : calc(100% - 2rem); 
+  // padding: 8rem 1rem 8rem 1rem;
+  // width : calc(100% - 0rem); 
+  padding: 8rem 0rem 8rem 0rem;
+  width : calc(100% - 0rem);
   overflow: visible;
+
+  @media (min-width: $breakpoint-sm) {
+   
+    margin: 0;
+  }
 
 
   &.has_sidebar {
@@ -35,16 +41,29 @@ main {
 
     @media (min-width: $breakpoint-md) {
       padding: 2rem 2rem 0 280px;
-      width : calc(100% - 280px - 2rem); 
+      width : calc(100% - 0px - 2rem); 
       margin: 0;
     }
 
     @media (min-width: $breakpoint-bax) {
-      padding: 2rem 0rem 0rem 240px;
-      width : calc(100% - 240px - 0rem); 
+      padding: 0rem 0rem 0rem 240px;
+      width : calc(100% - 0px - 0rem); 
       margin: 0;
       
     }
+
+    // @media (min-width: $breakpoint-md) {
+    //   padding: 2rem 2rem 0 280px;
+    //   width : calc(100% - 280px - 2rem); 
+    //   margin: 0;
+    // }
+
+    // @media (min-width: $breakpoint-bax) {
+    //   padding: 2rem 0rem 0rem 240px;
+    //   width : calc(100% - 240px - 0rem); 
+    //   margin: 0;
+      
+    // }
   }
 }
 
@@ -149,8 +168,8 @@ aside {
 
   position: absolute;
   top: 0;
-  left: -1rem;
-  width: 100vw;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

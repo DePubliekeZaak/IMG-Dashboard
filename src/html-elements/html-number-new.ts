@@ -38,7 +38,7 @@ export class HtmlNumberNew {
 
             this.ctrlr.element.querySelector('.total').innerText = (this.ctrlr.graphObject.config.qualifier && this.ctrlr.graphObject.config.qualifier !== undefined) ? value + this.ctrlr.graphObject.config.qualifier : value;
 
-        } else if (this.ctrlr.config.extra.currency) {
+        } else if (this.ctrlr.mapping.parameters[0][0].format === "currency" || this.ctrlr.config.extra.currency) {
 
             this.ctrlr.element.querySelector('.total').innerText = convertToCurrency(value);
 

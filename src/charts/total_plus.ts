@@ -37,7 +37,9 @@ export class TotalPlus extends GraphControllerV2  {
 
         this.config.paddingInner = 0;
         this.config.paddingOuter = 0;
-        this.config.extra.currency = true;
+
+
+    //    this.config.extra.currency = true;
 
         this.htmlNumber = new HtmlNumberNew(this);
         this.htmlNumber.draw();

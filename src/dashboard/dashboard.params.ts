@@ -9,6 +9,7 @@ import {dashboardImmaterieleSchade} from "../chart-configs/dashboard-immateriele
 import {dashboardTrillingssnelheden} from "../chart-configs/dashboard-trillingssnelheden";
 import {dashboardOverzicht} from "../chart-configs/dashboard-overzicht";
 import {dashboardMain} from "../chart-configs/dashboard";
+import {dashboardHome} from "../chart-configs/module";
 import {munis} from "../d3-services/municipalities";
 import { dashboardGemeente } from "../chart-configs/dashboard-gemeente";
 
@@ -65,6 +66,10 @@ export default class DashboardParams {
             case 'gemeente' :
 
                 return dashboardGemeente;
+
+            case 'home' :
+
+                return dashboardHome;
 
             default :
 

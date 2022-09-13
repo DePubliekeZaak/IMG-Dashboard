@@ -25,6 +25,7 @@ import { tickerWaardedaling } from './ticker_waardedaling';
 import { tickerTevredenheid } from './ticker_tevredenheidscijfers';
 import { tickerImmaterieel } from "./ticker_immateriele_schade";
 
+import { dashboardHome } from './dashboard-home';
 import { dashboardMain } from './dashboard';
 import { dashboardMeldingen } from './dashboard-meldingen';
 import { dashboardVergoedingen } from './dashboard-vergoedingen';
@@ -59,6 +60,7 @@ export const configs = [
 
 ]
 
+export { dashboardHome }
 export { dashboardMain }
 export { dashboardMeldingen }
 export { dashboardVergoedingen }

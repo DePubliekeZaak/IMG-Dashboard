@@ -21,7 +21,7 @@
     width: calc(50% - (4rem / 3));
   }
 
-  @media (min-width : $breakpoint-bax) {
+  @media (min-width : $breakpoint-lg) {
     width: calc(25% - (3rem / 3));
   }
 }
@@ -34,7 +34,7 @@
     width: calc(50% - (4rem / 3));
   }
 
-  @media (min-width : $breakpoint-md) {
+  @media (min-width : $breakpoint-lg) {
     width: calc(33% - (3rem/2));
   }
 }
