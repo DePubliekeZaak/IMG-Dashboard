@@ -79,7 +79,7 @@ export default class ChartCircleGroups {
         this.circles = this.circleGroups
             .append("circle")
             .attr("class","circle")
-            .style("fill", (d) => colours[d.colour][1]);
+            .style("fill", (d) => colours[d.colour][0]);
 
         this.circlesText = this.circleGroups
             .append("text")
@@ -135,6 +135,9 @@ export default class ChartCircleGroups {
                 .attr("r", (d) => this.ctrlr.scales.r.fn(d.value))
                 .on("mouseover", function(event: any, d: any) {
 
+                    self.circles
+                        .style("fill", (dd: any) => colours[dd.colour][1]);
+
                     d3.select(event.target)
                         .style("fill", (dd: any) => colours[dd.colour][0]);
 
@@ -149,7 +152,7 @@ export default class ChartCircleGroups {
                 .on("mouseout", function(d) {
 
                     self.circles
-                        .style("fill", (dd: any) => colours[dd.colour][1]);
+                        .style("fill", (dd: any) => colours[dd.colour][0]);
 
                     self.tooltip
                         .transition()

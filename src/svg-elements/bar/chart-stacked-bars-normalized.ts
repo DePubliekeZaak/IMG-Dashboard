@@ -44,7 +44,7 @@ export class ChartStackedBarsNormalized {
             .attr('x', 0)
             .attr('dx', '0px')
             .attr('dy', '-6px')
-            .style("fill", "black")
+            .style("fill", "white")
             .style("text-anchor", "middle")
         ;
 
@@ -61,6 +61,7 @@ export class ChartStackedBarsNormalized {
             // .transition()
             // .delay(500)
             // .duration(500)
+      
             .attr('fill-opacity', 1);
     }
 
@@ -72,7 +73,7 @@ export class ChartStackedBarsNormalized {
 
         this.series
             .attr("class", (d: ID3DataStackedSerie, i: number) => "stackGroup " + slugify(d.key))
-            .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][1])
+            .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][0])
             .attr("transform", "translate(0," + (self.ctrlr.config.padding.top) + ")");
 
         this.bar

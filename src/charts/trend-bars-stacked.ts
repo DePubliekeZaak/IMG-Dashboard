@@ -96,7 +96,7 @@ export default class TrendBarsStacked extends GraphControllerV2 {
             return columnArray.indexOf(key) > -1
         })
 
-        console.log(this.keys);
+        // console.log(this.keys);
 
         this.stack = d3.stack()
             .keys(this.keys);

@@ -88,7 +88,7 @@ export default class SumLegend {
                 .attr("y", (i * this.rowHeight) - 2)
                 .attr("height",12)
                 .attr("width",12)
-                .attr("fill", colours[d['colour']][1] )
+                .attr("fill", colours[d['colour']][0] )
                 .style("opacity", 1);
 
             this.legend.svg.layers.legend.append("text")
