@@ -4,6 +4,7 @@ import {getMonth, getMonthFromNumber} from "../utils/date-object.utils";
 import { convertToCurrency } from '../d3-services/_helpers';
 import { Dimensions } from '../types/dimensions';
 import { DataPart, GraphData } from '../types/data';
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export class ChartAxesV2 {
 
@@ -101,7 +102,19 @@ export class ChartAxesV2 {
                         .ticks(4)
                         .tickFormat( d => convertToCurrency(d))
 
-                    } else if (this.config.format === 'weekLabels' && this.config.position === 'belowBottom') {
+                    } else if (this.config.format === 'quarterly') {
+
+                        let starts = data.filter( (w) => [1,14,,27,40].indexOf(w._week) > -1 ).map( (w) => w['_index']);
+
+                        this.axis
+                            .tickValues(starts)
+                            .tickFormat( (d, i) => {
+                                let week = data.find( (w) => w['_index'] == d);
+                                return /* 'w' + week['_week'] + ' ' +  */ 'w' + week['_week'] + ' - ' + week['_year']
+                            });
+                        break;
+
+                    } else if (this.config.format === 'yearly') {
 
                         let starts = data.filter( (w) => [1].indexOf(w._week) > -1 ).map( (w) => w['_index']);
 
@@ -113,15 +126,32 @@ export class ChartAxesV2 {
                             });
                         break;
 
-                    } else if (this.config.format === 'weekLabels') {
+                    } else if (this.config.format === 'weekly') {
 
                         let starts = data.filter( (w) => [1].indexOf(w._week) > -1 ).map( (w) => w['_index']);
 
                         this.axis
-                            .tickValues(data.map( d => d['_index']))
+                            .tickValues(data.filter( (d,i) => i % 2).map( (d) => d['_index']))
                             .tickFormat( (d, i) => {
-                                let week = data.find( (w) => w['_index'] == d);
-                                return  'w' + week['_week']; // + ' ' +   week['_year']
+
+                                    // if (window.innerWidth < breakpoints.sm) {
+
+                                    //     if(i % 2) {
+
+                                    //         let week = data.find( (w) => w['_index'] == d);
+                                    //         return  'w' + week['_week'];
+                                    //     }
+
+
+                                    // } else {
+
+                                        let week = data.find( (w) => w['_index'] == d);
+                                        return  'w' + week['_week'];
+
+                                    // }
+
+
+                                    
                             });
                         break;
 
@@ -141,12 +171,12 @@ export class ChartAxesV2 {
                 //    if(this.ctrlr.config.extra.xScaleTicks === 'quarterly') {
 
                        tickOrder = 'timeMonth';
-                       tickSpread = 3
+                       tickSpread = (window.innerWidth < breakpoints.sm) ? 12 : 3;
 
                 //    } else {
 
                 //        tickOrder = this.ctrlr.config.extra.xScaleTicks;
-                //        tickSpread = (window.innerWidth > 700) ? 1 : 3;
+                //        
                 //    }
 
                    this.axis
@@ -203,7 +233,6 @@ export class ChartAxesV2 {
                         .attr("transform", "translate(" + 0 + "," + 0 + ")");
                     break;
 
-
                 case 'right' :
 
                     this.axisGroup
@@ -220,13 +249,28 @@ export class ChartAxesV2 {
 
             if(this.ctrlr.mapping.args && this.ctrlr.mapping.args[0] === "alternateTicks") {
 
-                this.ctrlr.svg.layers.axes.selectAll("g.x-axis g.tick text")
+                if (window.innerWidth < breakpoints.sm) {
+
+                    this.ctrlr.svg.layers.axes.selectAll("g.x-axis g.tick text")
+                    .attr("text-anchor","end")
+                    .attr("transform","translate(-10,0) rotate(-45)")
+                    // .attr("dy", (d,i) => {
+                    //     return (i % 2 == 0 ) ? 16 : 32
+                    // } );
+
+
+                } else {
+
+                    this.ctrlr.svg.layers.axes.selectAll("g.x-axis g.tick text")
                     .attr("dy", (d,i) => {
                         return (i % 2 == 0 ) ? 16 : 32
                     } );
+                }
+
+                
             }
 
-            if(this.config.format === 'weekLabels') {
+            if(['weekly','monthly','quarterly','yearly'].indexOf(this.config.format) > -1) {
 
                 const offset = (this.ctrlr.dimensions.width / data.length) / 2;
 

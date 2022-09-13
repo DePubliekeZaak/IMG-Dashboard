@@ -57,7 +57,7 @@ export default class Cijfer extends GraphControllerV2   {
         super.redraw(data);
 
         let noRespondents = (this.mapping.parameters[0][2]) ? this.mapping.parameters[0][2]['column'] : '';
-        this.htmlCircle.redraw([data.latest],this.firstMapping.column,noRespondents);
+        this.htmlCircle.redraw([data.latest],this.firstMapping['column'],noRespondents);
     }
 
 

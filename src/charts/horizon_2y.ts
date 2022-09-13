@@ -1,4 +1,4 @@
-import { ChartBarHorizonWaardedaling, ChartFocus } from '../svg-elements/module';
+import { ChartBarHorizonY2, ChartFocus } from '../svg-elements/module';
 import { flattenColumn } from '../d3-services/_helpers';
 import { filterWeeks, getNeededColumnsForHistoryV2  } from '../d3-services/data-with-history.functions';
 import { DataPart, GraphData } from '../types/data';
@@ -6,6 +6,8 @@ import { DataPart, GraphData } from '../types/data';
 import HtmlLegendDotsLines from '../html-elements/html-legend-dots-lines';
 import { GraphControllerV2 } from './graph-v2';
 import { IGraphMapping } from '../types/mapping';
+import * as d3 from 'd3';
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export default class Horizon2Y extends GraphControllerV2   {
 
@@ -29,12 +31,22 @@ export default class Horizon2Y extends GraphControllerV2   {
     pre() {
 
         this._addScale('x','linear','horizontal','_index');
-        this._addScale('y','linear','vertical', flattenColumn(this.firstMapping.column));
-        this._addScale('y2','linear','vertical', flattenColumn(this.firstMapping.column));
-        this._addAxis('x','x','belowBottom','weekLabels');
+        this._addScale('y','linear','vertical', flattenColumn(this.mapping.parameters[1][0]['column']));
+        this._addScale('y2','linear','vertical', flattenColumn(this.firstMapping['column']));
+        this._addAxis('x','x','bottom','yearly');
         this._addAxis('y','y','left');
-        this._addMargin(0,160,30,0);
-        this._addPadding(0,60,40,0);
+        
+        if (window.innerWidth > breakpoints.sm ) {
+            this._addAxis('y2','y2','left');
+            this._addPadding(0,0,60,0);
+            this._addMargin(80,30,20,0);
+        
+        } else {
+            this._addMargin(20,0,0,0);
+            this._addPadding(0,0,30,0);
+        }
+        
+        
     }
 
     init() {
@@ -42,13 +54,25 @@ export default class Horizon2Y extends GraphControllerV2   {
         let self = this;
 
         this._init();
-        this._svg(this.element)
 
-        this.parameters.y2 = this.mapping.parameters[0][1].column;
-        this.parameters.y3 = this.mapping.parameters[1][0].column;
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = "400px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
 
-        this.chartBars = new ChartBarHorizonWaardedaling(this);
-        console.log("KKL");
+        this._svg(container)
+
+        // this.parameters.y2 = this.mapping.parameters[0][1].column;
+        // afgehandeld
+        this.parameters.y3 = flattenColumn(this.mapping.parameters[0][1].column);
+        // ves aanvragen
+        this.parameters.y4 = flattenColumn(this.mapping.parameters[0][2].column);
+        // ves besluiten
+        this.parameters.y5 = flattenColumn(this.mapping.parameters[0][3].column);
+
+        this.chartBars = new ChartBarHorizonY2(this);
         this.legend = new HtmlLegendDotsLines(this);
         this.chartFocus = new ChartFocus(this);
     
@@ -87,13 +111,41 @@ export default class Horizon2Y extends GraphControllerV2   {
 
     redraw(data: GraphData) {
 
-        const yValues = data.slice.map( d => d[this.parameters.y3] * 1.2);
+        const yValues = data.slice.map( d => d[this.parameters.y] * 1.2);
 
         this.scales.y.set(yValues,0);
 
+        const y2Values = data.slice.map( d => d[this.parameters.y2] * 1);
+        const y3Values = data.slice.map( d => -d[this.parameters.y3] * 1);
+
+        this.scales.y2.set(y2Values,d3.min(y3Values));
+
         super.redraw(data);
 
-        this.scales.y.reset('vertical', this.dimensions);
+        this.scales.y.scale.range([this.dimensions.height / 3, 0]);
+        
+        let offset = this.scales.y.fn(0) - this.scales.y2.fn(0); // 0 positie van scales.y? 
+
+        this.scales.y2.scale.range([(this.dimensions.svgHeight)+ offset, offset]);
+
+        for (let a of this.config.axes) {
+            this.axes[a.slug].redraw(this.dimensions,this.scales[a.scale].scale, data.slice)
+        }
+
+        this.axes.x.axisGroup
+            .attr("transform", "translate(" + 0 + "," + (this.scales.y.fn(0)) + ")");
+
+        if (window.innerWidth > breakpoints.sm ) {
+
+            this.axes.y.axisGroup
+                .attr("transform", "translate(" + -60 + "," + 0 + ")");
+
+        } else {
+
+            this.axes.y.axisGroup
+                .attr("transform", "translate(" + -0 + "," + 0 + ")");
+        }
+
         this.chartBars.redraw(data);
 
         this.chartFocus.redraw(data);

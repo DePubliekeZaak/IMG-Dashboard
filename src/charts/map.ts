@@ -33,8 +33,8 @@ export default class Map extends GraphControllerV2 {
     }
 
     pre() {
-        this._addScale('y','linear','opacity', flattenColumn(this.firstMapping.column));
-        this._addMargin(80,100,0,0);
+        this._addScale('y','linear','opacity', flattenColumn(this.firstMapping['column']));
+        this._addMargin(0,0,0,0);
         this._addPadding(20,40,40,0);
     }
 
@@ -45,6 +45,12 @@ export default class Map extends GraphControllerV2 {
 
         const svgId = "svg-wrapper-" + this.mapping.slug
         const container = document.createElement('section');
+        container.style.display = 'flex';
+        container.style.flexDirection = 'row';
+        container.style.justifyContent = 'center';
+        container.style.alignItems = 'center';
+        container.style.width = "100%";
+        container.style.maxWidth = "400px"
         container.style.height = "320px";
         container.style.marginTop = "-5%";
         container.id = svgId;
@@ -76,14 +82,12 @@ export default class Map extends GraphControllerV2 {
             })[0];
 
             if(muni && Object.entries(muni).length > 0) {
-
                 for (let prop of Object.entries(muni)) {
-
                     feature.properties[prop[0]] = prop[1];
                 }
             }
 
-            feature.properties.colour = this.firstMapping.colour;
+            feature.properties.colour = this.firstMapping['colour'];
         }
 
         return {
@@ -98,18 +102,13 @@ export default class Map extends GraphControllerV2 {
 
         this.chartMap.draw(data.features);    //   if (window.innerWidth < breakpoints.sm) {
         this.element.appendChild(this.legend.draw(data));
-
     }
 
     redraw(data: GraphData) {
 
-        console.log(data.features);
         this.scales.y.set(data.features.map( f => (f['properties'][this.parameters.y] !== undefined) ? f['properties'][this.parameters.y] : 0));
         super.redraw(data);
         this.chartMap.redraw(this.parameters.y,this.mapping.parameters[0][0]['colour']);
-
-        console.log(this.scales.y.domain());
-        console.log(this.scales.y.range());
     }
 
     update(data: GraphData, segment: string, update: boolean) {

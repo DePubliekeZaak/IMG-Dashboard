@@ -42,11 +42,13 @@ export default class ChartStackedBars {
 
         const mapping = this.ctrlr.mapping ? this.ctrlr.mapping.parameters : this.ctrlr.graphObject.mapping;
 
+        const width = self.ctrlr.dimensions.width / data[0].length - 1;
+
         this.bars
             .attr("x", (d: any)  => self.ctrlr.scales.x.scale(d.data[self.ctrlr.parameters.x]))
             .attr("y", self.ctrlr.dimensions.height)
             .attr("height", 0)
-            .attr("width", self.ctrlr.dimensions.width / data[0].length - 1)
+            .attr("width", width < 2 ? 1 : width)
             .transition()
             .duration(500)
             .attr("y", (d) => self.ctrlr.scales.y.scale(d[1]))

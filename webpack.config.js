@@ -22,7 +22,7 @@ const config = {
   },
   devServer: {
     open:true,
-    port: 3000,
+    port: 3003,
     hot: true,
     client: {
       overlay: true,

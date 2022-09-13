@@ -27,12 +27,12 @@ export default class TickerBars extends GraphControllerV2   {
 
     pre() {
         this._addScale("x","linear","horizontal","_week");
-        this._addScale("y","linear","vertical",flattenColumn(this.firstMapping.column));
+        this._addScale("y","linear","vertical",flattenColumn(this.firstMapping['column']));
 
         this._addMargin(0,0,0,0);
         this._addPadding(0,4,0,0);
 
-        this.parameters.y2 = flattenColumn(this.firstMapping.column);
+        this.parameters.y2 = flattenColumn(this.firstMapping['column']);
     }
 
 
@@ -62,8 +62,10 @@ export default class TickerBars extends GraphControllerV2   {
         const labelContainer = document.createElement('div');
         labelContainer.style.width = '100%';
 
-        labelContainer.style.textAlign = 'center';
-        labelContainer.innerText = this.mapping.parameters[0][0].label;
+        labelContainer.style.textAlign = 'left';
+        labelContainer.style.marginLeft = '.5rem';
+        labelContainer.style.marginBottom = '.5rem';
+        labelContainer.innerText = this.mapping.parameters[0][0].label + ":";
         this.element.appendChild(labelContainer);
 
         if (window.innerWidth < breakpoints.sm) {

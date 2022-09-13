@@ -88,7 +88,7 @@ export default class SumLegend {
                 .attr("y", (i * this.rowHeight) - 2)
                 .attr("height",12)
                 .attr("width",12)
-                .attr("fill", colours[d['colour']][0] )
+                .attr("fill", colours[d['colour']][1] )
                 .style("opacity", 1);
 
             this.legend.svg.layers.legend.append("text")
@@ -111,7 +111,7 @@ export default class SumLegend {
         });
         //
         // // som van totaal
-        if(data[1]) {
+        if(data[1] && data[1][0]) {
 
 
             this.legend.svg.layers.legend.append("rect")

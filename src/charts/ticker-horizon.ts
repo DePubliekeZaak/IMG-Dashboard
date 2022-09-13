@@ -26,7 +26,7 @@ export default class TickerHorizon extends GraphControllerV2 {
 
     pre() {
         this._addScale("x","linear","horizontal","_week");
-        this._addScale("y","linear","vertical-reverse",flattenColumn(this.firstMapping.column));
+        this._addScale("y","linear","vertical-reverse",flattenColumn(this.firstMapping['column']));
 
         this._addMargin(0,0,0,0);
         this._addPadding(0,4,0,0);

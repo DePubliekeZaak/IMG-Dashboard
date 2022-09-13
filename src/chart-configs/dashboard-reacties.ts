@@ -476,144 +476,144 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
-    // {   
-    //     "slug": "ratings_w_ims",
-    //     "graph": "KTORatings",
-    //     "args": ["ims_aantal_respondenten_doorlopend"],
-    //     "parameters": [
-    //         [
-    //             {
-    //                 "label": "Rapportcijfer waardedaling",
-    //                 "column": "ims_doorlopend_cijfer",
-    //                 "colour": "blue"
-    //             },
-    //             {
-    //                 "label": "Tevredenheidscijfer",
-    //                 "column": "ims_maandcijfer",
-    //                 "colour": "blue"
-    //             },
-    //             {
-    //                 "label": "Tevredenheidscijfer",
-    //                 "column": "ims_aantal_respondenten_doorlopend",
-    //                 "colour": "blue"
-    //             },
-    //             {
-    //                 "label": "Tevredenheidscijfer",
-    //                 "column": "ims_aantal_respondenten",
-    //                 "colour": "blue"
-    //             }
-    //         ],
-    //             [
-    //                 {
-    //                     "label": "1",
-    //                     "column": "ims_doorlopend_rapportcijfer_1",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "2",
-    //                     "column": "ims_doorlopend_rapportcijfer_2",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "3",
-    //                     "column": "ims_doorlopend_rapportcijfer_3",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "4",
-    //                     "column": "ims_doorlopend_rapportcijfer_4",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "5",
-    //                     "column": "ims_doorlopend_rapportcijfer_5",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "6",
-    //                     "column": "ims_doorlopend_rapportcijfer_6",
-    //                     "colour": "lightBlue"
-    //                 },
-    //                 {
-    //                     "label": "7",
-    //                     "column": "ims_doorlopend_rapportcijfer_7",
-    //                     "colour": "lightBlue"
-    //                 },
-    //                 {
-    //                     "label": "8",
-    //                     "column": "ims_doorlopend_rapportcijfer_8",
-    //                     "colour": "moss"
-    //                 },
-    //                 {
-    //                     "label": "9",
-    //                     "column": "ims_doorlopend_rapportcijfer_9",
-    //                     "colour": "moss"
-    //                 },
-    //                 {
-    //                     "label": "10",
-    //                     "column": "ims_doorlopend_rapportcijfer_10",
-    //                     "colour": "moss"
-    //                 },
-    //             ],
-    //             [
-    //                 {
-    //                     "label": "1",
-    //                     "column": "ims_maand_rapportcijfer_1",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "2",
-    //                     "column": "ims_maand_rapportcijfer_2",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "3",
-    //                     "column": "ims_maand_rapportcijfer_3",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "4",
-    //                     "column": "ims_maand_rapportcijfer_4",
-    //                     "colour": "orange"
-    //                 },
-    //                 {
-    //                     "label": "5",
-    //                     "column": "ims_maand_rapportcijfer_5",
-    //                     "colour": "lightBlue"
-    //                 },
-    //                 {
-    //                     "label": "6",
-    //                     "column": "ims_maand_rapportcijfer_6",
-    //                     "colour": "lightBlue"
-    //                 },
-    //                 {
-    //                     "label": "7",
-    //                     "column": "ims_maand_rapportcijfer_7",
-    //                     "colour": "lightBlue"
-    //                 },
-    //                 {
-    //                     "label": "8",
-    //                     "column": "ims_maand_rapportcijfer_8",
-    //                     "colour": "moss"
-    //                 },
-    //                 {
-    //                     "label": "9",
-    //                     "column": "ims_maand_rapportcijfer_9",
-    //                     "colour": "moss"
-    //                 },
-    //                 {
-    //                     "label": "10",
-    //                     "column": "ims_maand_rapportcijfer_10",
-    //                     "colour": "moss"
-    //                 },
-    //             ]
-    //     ],
-    //     "header" : "Rapportcijfers immateriele schade",
-    //     "description" : "",
-    //     "endpoint": "tevredenheid",
-    //     "segment": "all",
-    //     "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
-    // },
+    {   
+        "slug": "ratings_w_ims",
+        "graph": "KTORatings",
+        "args": ["ims_aantal_respondenten_doorlopend"],
+        "parameters": [
+            [
+                {
+                    "label": "Rapportcijfer waardedaling",
+                    "column": "ims_doorlopend_cijfer",
+                    "colour": "blue"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "ims_maandcijfer",
+                    "colour": "blue"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "ims_aantal_respondenten_doorlopend",
+                    "colour": "blue"
+                },
+                {
+                    "label": "Tevredenheidscijfer",
+                    "column": "ims_aantal_respondenten",
+                    "colour": "blue"
+                }
+            ],
+                [
+                    {
+                        "label": "1",
+                        "column": "ims_doorlopend_rapportcijfer_1",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "2",
+                        "column": "ims_doorlopend_rapportcijfer_2",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "3",
+                        "column": "ims_doorlopend_rapportcijfer_3",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "4",
+                        "column": "ims_doorlopend_rapportcijfer_4",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "5",
+                        "column": "ims_doorlopend_rapportcijfer_5",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "6",
+                        "column": "ims_doorlopend_rapportcijfer_6",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "7",
+                        "column": "ims_doorlopend_rapportcijfer_7",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "8",
+                        "column": "ims_doorlopend_rapportcijfer_8",
+                        "colour": "moss"
+                    },
+                    {
+                        "label": "9",
+                        "column": "ims_doorlopend_rapportcijfer_9",
+                        "colour": "moss"
+                    },
+                    {
+                        "label": "10",
+                        "column": "ims_doorlopend_rapportcijfer_10",
+                        "colour": "moss"
+                    },
+                ],
+                [
+                    {
+                        "label": "1",
+                        "column": "ims_maand_rapportcijfer_1",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "2",
+                        "column": "ims_maand_rapportcijfer_2",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "3",
+                        "column": "ims_maand_rapportcijfer_3",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "4",
+                        "column": "ims_maand_rapportcijfer_4",
+                        "colour": "orange"
+                    },
+                    {
+                        "label": "5",
+                        "column": "ims_maand_rapportcijfer_5",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "6",
+                        "column": "ims_maand_rapportcijfer_6",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "7",
+                        "column": "ims_maand_rapportcijfer_7",
+                        "colour": "lightBlue"
+                    },
+                    {
+                        "label": "8",
+                        "column": "ims_maand_rapportcijfer_8",
+                        "colour": "moss"
+                    },
+                    {
+                        "label": "9",
+                        "column": "ims_maand_rapportcijfer_9",
+                        "colour": "moss"
+                    },
+                    {
+                        "label": "10",
+                        "column": "ims_maand_rapportcijfer_10",
+                        "colour": "moss"
+                    },
+                ]
+        ],
+        "header" : "Rapportcijfers immateriele schade",
+        "description" : "",
+        "endpoint": "tevredenheid",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
+    },
     {   
         "slug": "trend_tevredenheid",
         "graph": "TrendLine",

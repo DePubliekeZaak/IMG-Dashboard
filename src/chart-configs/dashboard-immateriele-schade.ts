@@ -22,7 +22,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "description" : "Het totaal uitgekeerde bedrag",
         "endpoint": "immateriele_schade",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
 
@@ -41,7 +41,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
         "endpoint": "immateriele_schade",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
         "slug" : "combi_adressen",
@@ -59,7 +59,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
         "endpoint": "immateriele_schade",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
         "slug" : "combi_besluiten",
@@ -79,7 +79,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "segment": "all",
         "segmentIndicator": null,
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
         "slug" : "trend_aanvragen_en_besluiten",
@@ -114,7 +114,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "segment": "all",
         "segmentIndicator": null,
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
         "slug": "taart_schadevergoeding_totaal",
@@ -149,7 +149,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "endpoint": "immateriele_schade",
         "publishDate": null,
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol','img-graph-container-medium-high']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
         "slug" : "trend_aanvragen_en_besluiten",
@@ -195,6 +195,6 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "endpoint": "immateriele_schade",
         "segment": "all",
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-9','img-graph-container-trendline','img-graph-top-align']
+        "elementClasslist": ['img-graph-container','img-graph-container-9']
     }
 ]

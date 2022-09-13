@@ -19,7 +19,8 @@ export default class ChartFocus {
 
         const div = document.createElement('div')
         div.classList.add("focus-tooltip");
-        div.style.border = "1px solid #565656"
+        div.style.border = "1px solid #565656";
+        div.style.width = "120px";
         this.ctrlr.element.append(div);
 
         this.sensePad = this.ctrlr.svg.layers.data.append('rect')

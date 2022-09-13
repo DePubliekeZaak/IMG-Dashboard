@@ -21,10 +21,12 @@ export interface IGraphMapping {
     parameters: Mapping[][],
     header: string,
     description: string,
-    endpoint: string,
-    segment: string,
+    endpoint: string | boolean,
+    segment: string | boolean,
     segmentIndicator?: boolean,
     elementClasslist: string[],
     publishDate?: string,
     municipalitySelect?: boolean
 }
+
+export type IMappingOption = Mapping | boolean;

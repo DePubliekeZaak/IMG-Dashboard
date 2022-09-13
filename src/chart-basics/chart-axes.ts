@@ -80,6 +80,8 @@ export class ChartAxes {
 
     redraw(type, dimensions, scale, data) {
 
+        
+ 
            switch (type) {
 
 
@@ -98,6 +100,8 @@ export class ChartAxes {
 
                case 'linear' :
 
+               
+
                     if (this.config.extra.percentage) {
 
                         this.axis
@@ -110,7 +114,7 @@ export class ChartAxes {
                         .ticks(4)
                         .tickFormat( d => convertToCurrency(d))
 
-                    } else if (this.config.extra.weekLabels && this.position === 'belowBottom') {
+                    } else if (this.config == 'yearly') {
 
                         let starts = data.filter( (w) => [1].indexOf(w._week) > -1 ).map( (w) => w._index);
 

@@ -146,8 +146,18 @@ export class HtmlPopup {
         img.style.marginBottom = '.4rem';
         img.style.height = "1.5rem";
         img.style.width = "1.5rem";
-        img.src = 'https://img.publikaan.nl/graphs/img/i.svg';
-        img.onclick = () => this.pop(this.element);
+
+        if(this.description == "") {
+
+            img.style.visibility = "none";
+            img.style.opacity = "0";
+            
+
+        } else {
+
+            img.src = 'https://img.publikaan.nl/graphs/img/i.svg';
+            img.onclick = () => this.pop(this.element);
+        }
 
         // let a = document.createElement('a');
         // a.href = '';

@@ -40,10 +40,11 @@ export class ChartStackedBarsNormalized {
 
         this.barLabels = this.barGroup
             .append('text')
-            .attr('class','barLabel small-label white')
+            .attr('class','barLabel small-label')
             .attr('x', 0)
             .attr('dx', '0px')
             .attr('dy', '-6px')
+            .style("fill", "black")
             .style("text-anchor", "middle")
         ;
 
@@ -71,7 +72,7 @@ export class ChartStackedBarsNormalized {
 
         this.series
             .attr("class", (d: ID3DataStackedSerie, i: number) => "stackGroup " + slugify(d.key))
-            .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][0])
+            .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][1])
             .attr("transform", "translate(0," + (self.ctrlr.config.padding.top) + ")");
 
         this.bar

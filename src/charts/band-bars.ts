@@ -6,6 +6,7 @@ import { GraphObject } from '../types/graphObject';
 import { D3DataTypeLatest, DataPart, GraphData } from '../types/data';
 import { GraphControllerV2 } from './graph-v2';
 import { IGraphMapping } from '../types/mapping';
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export default class BandBars extends GraphControllerV2 {
 
@@ -30,8 +31,8 @@ export default class BandBars extends GraphControllerV2 {
 
     pre() {
 
-        this._addMargin(0,120,0,0);
-        this._addPadding(20,70,30,0);
+        this._addMargin(20,40,0,0);
+        this._addPadding(0,0,30,0);
 
         this._addScale('x','band','horizontal','label');
         this._addScale('y','linear','vertical','value');
@@ -43,27 +44,30 @@ export default class BandBars extends GraphControllerV2 {
     init() {
 
         super._init();
-        super._svg();
+
+        if(window.innerWidth < breakpoints.sm && this.mapping.args && this.mapping.args[0] === 'alternateTicks') {
+            this._addMargin(20,140,0,0);
+        }
+
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = (window.innerWidth < breakpoints.sm) ? "320px" : "320px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        super._svg(container);
+
+        
 
         this.config.paddingInner = .25;
         this.config.paddingOuter = 0.25;
 
         this.chartBar = new ChartBar(this);
 
-
-
-        // this.htmlMuniSelector = new HtmlMuniSelector(this.element,'specials_band_bars'); // later koppelen aan GraphObject.slug
-
-        // if (this.graphObject.config.extra.municipalitySelect) {
-
-        //     this.htmlMuniSelector.draw();
-        //     const municipalitySelect = document.querySelector('.municipality_select_' + 'specials_band_bars' ) as HTMLSelectElement;
-        //     municipalitySelect.addEventListener("change", function () {
-        //         self.update(self.data,municipalitySelect.options[municipalitySelect.selectedIndex].value);
-        //     });
-        // }
-
-        this.update(this.data,"all", false);
+        if(this.data[0][this.firstMapping['column']] != null && this.data[0][this.firstMapping['column']] != 0 ) {
+            this.update(this.data,"all", false);
+        }
     }
 
     prepareData(data: DataPart[]) : GraphData {

@@ -7,6 +7,7 @@ import HtmlLegendDots from "../html-elements/html-legend-dots";
 import { GraphControllerV2 } from "./graph-v2";
 import { IGraphMapping } from "../types/mapping";
 import { flattenColumn } from "../d3-services/_helpers";
+import { breakpoints } from "../_styleguide/_breakpoints";
 
 export default class StackedArea extends GraphControllerV2  {
 
@@ -36,19 +37,30 @@ export default class StackedArea extends GraphControllerV2  {
     pre() {
 
         this._addScale('x','time','horizontal','_date');
-        this._addScale('y','linear','vertical',flattenColumn(this.firstMapping.column));
+        this._addScale('y','linear','vertical',flattenColumn(this.firstMapping['column']));
 
         this._addAxis("x","x","bottom");
         this._addAxis("y","y","left");
 
-        this._addMargin(60,100,0,0);
-        this._addPadding(20,120,60,30);
+        this._addMargin(0,30,0,0);
+        this._addPadding(20,0,40,0);
     }
 
     init() {
 
         super._init();
-        super._svg();
+
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.display = 'flex';
+        container.style.flexDirection = window.innerWidth < breakpoints.sm ? 'column' : 'column';
+        container.style.marginBottom = '3rem';
+        container.style.height = "280px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        super._svg(container);
 
         this.config.paddingInner = 0;
         this.config.paddingOuter = 0;

@@ -2,7 +2,6 @@ import * as d3 from 'd3';
 import * as _ from "lodash";
 import { colours } from  '../../_styleguide/_colours'
 import {breakpoints} from "../../_styleguide/_breakpoints";
-import debug from "../../d3-services/_debugger"
 
 export default class ChartCircleGroups {
 
@@ -34,6 +33,8 @@ export default class ChartCircleGroups {
 
         let self = this;
 
+        const direction = this.ctrlr.scales.x.config.direction;
+
         this.headerGroup = this.ctrlr.svg.layers.data.selectAll('.headerGroup')
             .data(groupedData)
             .join("g")
@@ -46,10 +47,19 @@ export default class ChartCircleGroups {
 
         this.headerLabels = this.headerGroup
             .append('text')
-            .attr("text-anchor","middle")
+            .attr("text-anchor", (direction === 'horizontal') ? "middle" : "middle")
             .style("font-family", "NotoSans Regular")
             .style("font-size",".8rem")
-            .attr('dy', (d,i) => (i % 2 == 0) ? 0 : 32)
+            .attr('dy', (d,i) => {
+
+                if (direction === 'horizontal') {
+                    return (i % 2 == 0) ? 0 : 32
+                } else {
+                    return 0;
+                }
+                
+            })
+
             .text( (d) => d[0].group)
 
         this.headers_lines = this.headerGroup
@@ -69,7 +79,7 @@ export default class ChartCircleGroups {
         this.circles = this.circleGroups
             .append("circle")
             .attr("class","circle")
-            .style("fill", (d) => colours[d.colour][0]);
+            .style("fill", (d) => colours[d.colour][1]);
 
         this.circlesText = this.circleGroups
             .append("text")
@@ -80,13 +90,15 @@ export default class ChartCircleGroups {
             .style("font-size",".8rem");
 
         let groupWidth = this.ctrlr.dimensions.width / groupedData.length;
-        this.center = {x: (groupWidth / 2) , y: ((this.ctrlr.dimensions.height / 2) + 48) };
+        this.center = {x: (groupWidth / 2) , y: ((this.ctrlr.dimensions.height * .85) + 48) };
 
     }
 
     redraw(groupedData) {
 
         let self = this;
+
+        const direction = this.ctrlr.scales.x.config.direction;
 
         let groupWidth = this.ctrlr.dimensions.width / groupedData.length;
         this.center = {x: (groupWidth / 2) , y: ((this.ctrlr.dimensions.height / 2) + 48) };
@@ -98,33 +110,33 @@ export default class ChartCircleGroups {
 
         this.headerGroup
             .attr("transform", (d) => {
-                return "translate(" + self.ctrlr.scales.x.scale(d[0].group) + "," + self.ctrlr.config.padding.top + ")"
+
+                if(direction === 'horizontal') {
+                    return "translate(" + self.ctrlr.scales.x.scale(d[0].group) + "," + self.ctrlr.config.padding.top + ")"
+                } else {
+                    return "translate(" + (this.ctrlr.dimensions.width / 2) + "," + (self.ctrlr.scales.x.scale(d[0].group) - 100) + ")"
+                }
             });
 
         this.headers_lines
             .attr('height', (d,i) => {
-                return (i % 2 == 0) ? self.ctrlr.dimensions.height - 120 : self.ctrlr.dimensions.height - 154;
+
+                if(direction === 'horizontal') {
+                    return (i % 2 == 0) ? self.ctrlr.dimensions.height - 120 : self.ctrlr.dimensions.height - 154;
+                } else {
+                    return 0;
+                }
             })
             .attr('y', (d,i) => {
                 return (i % 2 == 0) ? 10 : 34;  // - (rScale(d.value) + 50);
             });
 
-            // this.circleGroupsEnter.merge(this.circleGroups)
-            //     .attr("transform", (d) => {  return "translate(" + this.center.x + "," + this.center.y + ")" })
-            // ;
-
-   
-
             this.circles
-                .attr("r", (d) => {
-
-                    // hoe kunnen we checken of een value Nan is en dan een handige foutmelding leveren inc
-                    // info over de scale enzo 
-
-                    return this.ctrlr.scales.r.fn(d.value);
-                
-                })
+                .attr("r", (d) => this.ctrlr.scales.r.fn(d.value))
                 .on("mouseover", function(event: any, d: any) {
+
+                    d3.select(event.target)
+                        .style("fill", (dd: any) => colours[dd.colour][0]);
 
                     self.tooltip
                         .html(popup(d))
@@ -136,14 +148,15 @@ export default class ChartCircleGroups {
                 })
                 .on("mouseout", function(d) {
 
+                    self.circles
+                        .style("fill", (dd: any) => colours[dd.colour][1]);
+
                     self.tooltip
                         .transition()
                         .duration(250)
                         .style("opacity", 0);
                 })
             ;
-
-       
 
         this.circlesText
             .text( d => (this.ctrlr.scales.r.fn(d.value) > 30) ? d.value : '');
@@ -152,16 +165,17 @@ export default class ChartCircleGroups {
     forceDirect() {
 
         let self = this;
-               
+
+        const direction = this.ctrlr.scales.x.config.direction;
+  
         this.circleGroups
             .attr("transform", (d,i) => {
-                if(!isNaN(d.x)) { // && !isNaN(d.x)
-                    // console.log(d);
-                // } else {
-                    return (window.innerWidth > breakpoints.sm) ? 
-                    "translate(" + (self.ctrlr.scales.x.fn(d.group) + d.x - this.center.x) + "," + (d.y ) + ")" 
-                    : 
-                    "translate(" + ((window.innerWidth / 2) - self.center.x) + "," + (self.ctrlr.scales.y.fn(d.group)) + ")"
+                if(!isNaN(d.x)) { 
+                    if (direction === 'horizontal') {
+                        return "translate(" + (self.ctrlr.scales.x.fn(d.group) + d.x - this.center.x) + "," + (d.y ) + ")" 
+                    } else {
+                        return "translate(" + (self.ctrlr.dimensions.width / 2 + d.x - self.center.x) + "," + (self.ctrlr.scales.x.fn(d.group) + d.y - self.center.y) + ")"
+                    }
                 }
             })
         ;

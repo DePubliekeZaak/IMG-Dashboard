@@ -1,18 +1,8 @@
 export const menuItems = [
-    // {
-    //     topic: false,
-    //     label: 'Fysieke schade'
-        
-    // },
     {
         topic: 'meldingen',
         label: 'Schademeldingen'
-    },
-    // {
-    //     topic: 'opnames',
-    //     label: 'Schade-opnames'
-    // },
-  
+    },  
     {
         topic: 'voortgang',
         label: 'Voortgang afhandeling'
@@ -26,6 +16,10 @@ export const menuItems = [
         label: 'Speciale dossiers'
     },
     {
+        topic: 'gemeente',
+        label: 'Per gemeente'
+    },
+    {
         topic: 'waardedaling',
         label: 'Waardedaling'
     },
@@ -36,9 +30,5 @@ export const menuItems = [
     {
         topic: 'reacties',
         label: 'Waardering en reacties'
-    },  //,
-    // {
-    //     topic: 'trillingssnelheden',
-    //     label: 'Trillingssnelheden'
-    // }
+    }
 ]

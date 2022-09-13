@@ -34,7 +34,7 @@ export default class BallenbakSimulation {
         this.s    
             .force("collide")
                 .strength(forceStrength)
-                .radius((d : any) => self.ctrlr.rScale(d.value));
+                .radius((d : any) => self.ctrlr.scales.r.fn(d.value));
         // this.s 
         //     .force("forceX")
         //         .strength(forceStrength);
@@ -60,7 +60,6 @@ export default class BallenbakSimulation {
         let groupWidth = this.ctrlr.dimensions.width / groupCount;
         let center = {x: (groupWidth / 2) , y: ((this.ctrlr.dimensions.height / 2) + 20) };
 
-    
         this.s 
             .force("center")
                 .x(center.x)
@@ -68,7 +67,7 @@ export default class BallenbakSimulation {
             
         this.s    
             .force("collide")
-                .radius((d : any) => this.ctrlr.rScale(d.value));
+                .radius((d : any) => this.ctrlr.scales.r.fn(d.value));
 
         // this.s
         //     .force("forceX")

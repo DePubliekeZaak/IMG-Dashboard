@@ -28,17 +28,6 @@ export default class KTORatings extends GraphControllerV2 {
 
     pre() {
 
-         // "config": {
-            
- 
-        //     "extra": {
-        //         "slug": "ratings_fs_doorlopend",
-                
-        //         "legend" : true,
-        //         "columnForAverage" : ,
-        //     }
-        // },
-
         this._addScale("x","linear","horizontal","value");
         this._addScale("y","band","vertical","label");
 
@@ -62,7 +51,8 @@ export default class KTORatings extends GraphControllerV2 {
         const svgWrapper = document.createElement('div');
         svgWrapper.id = svgId;
         svgWrapper.classList.add('svg-wrapper');
-        svgWrapper.style.height = "240px";
+        svgWrapper.style.height = "480px";
+        svgWrapper.style.width = "100%";
         this.element.appendChild(svgWrapper);
 
         this.htmlPeriodSelector = new HtmlPeriodSelector(this.element,this.mapping.slug); // later koppelen aan GraphObject.slug

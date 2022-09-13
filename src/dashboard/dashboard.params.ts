@@ -7,12 +7,10 @@ import {dashboardOpnames} from "../chart-configs/dashboard-opnames";
 import {dashboardWaardedalingsRegeling} from "../chart-configs/dashboard-waardedalingsregeling";
 import {dashboardImmaterieleSchade} from "../chart-configs/dashboard-immateriele-schade";
 import {dashboardTrillingssnelheden} from "../chart-configs/dashboard-trillingssnelheden";
-import {dashboardMultiplesMeldingen} from "../chart-configs/dashboard-multiples-meldingen";
-import {dashboardMultiplesVergoedingen} from "../chart-configs/dashboard-multiples-vergoedingen";
-import {dashboardMultiplesToegekend} from "../chart-configs/dashboard-multiples-toegekend";
 import {dashboardOverzicht} from "../chart-configs/dashboard-overzicht";
 import {dashboardMain} from "../chart-configs/dashboard";
 import {munis} from "../d3-services/municipalities";
+import { dashboardGemeente } from "../chart-configs/dashboard-gemeente";
 
 export default class DashboardParams {
 
@@ -56,18 +54,6 @@ export default class DashboardParams {
 
                 return dashboardTrillingssnelheden;
 
-            case 'multiples_meldingen' :
-
-                return dashboardMultiplesMeldingen;
-
-            case 'multiples_vergoedingen' :
-
-                return dashboardMultiplesVergoedingen;
-
-            case 'multiples_toegekend' :
-
-                return dashboardMultiplesToegekend;
-
             case 'overzicht' :
 
                 return dashboardOverzicht;
@@ -75,6 +61,10 @@ export default class DashboardParams {
             case 'immateriele_schade' :
 
                 return dashboardImmaterieleSchade;
+
+            case 'gemeente' :
+
+                return dashboardGemeente;
 
             default :
 

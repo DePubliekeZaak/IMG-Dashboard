@@ -23,7 +23,7 @@ export default class Average extends GraphControllerV2  {
     }
 
     pre() {
-        this.parameters.y = flattenColumn(this.firstMapping.column);
+        this.parameters.y = flattenColumn(this.firstMapping['column']);
     }
 
     init() {

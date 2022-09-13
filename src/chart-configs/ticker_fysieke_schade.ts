@@ -27,34 +27,6 @@ export const tickerFysiekeSchade : IGraphMapping[] = [
                 }
             ]
         ],
-        // "config": {
-        //     "graphType": "TickerNumbers",
-        //     "xScaleType" : "linear",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_week",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 4,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         "noDots": true,
-        //         "smartColours" : 'up',
-        //         "thinLines" : true,
-        //         "units": "meldingen"
-
-        //         // "units": "afgehandeld"
-        //     }
-        // },
         "header": null,
         "description" : null,
         "endpoint": "vergoedingen",
@@ -62,64 +34,84 @@ export const tickerFysiekeSchade : IGraphMapping[] = [
         "elementClasslist": ['img-graph-container','column']
 
     },
+    // {
+    //     "slug" : "bol_schademeldingen",
+    //     "graph": "TickerHorizon",
+    //     "parameters": [
+    //         [
+    //             {
+    //                 "label": "Vorige week",
+    //                 "column": "nieuw_schademeldingen",
+    //                 "colour": "moss"
+    //             },
+    //             {
+    //                 "label": "Vorige week: afgehandeld",
+    //                 "column": "nieuw_afgehandeld",
+    //                 "colour": "moss"
+    //             }
+    //         ],[
+    //             {
+    //                 "label": "In behandeling",
+    //                 "column": "in_behandeling",
+    //                 "colour": "moss",
+    //                 "units": "dossiers"
+    //             }
+    //             // {
+    //             //     "label": "Schade-meldingen",
+    //             //     "column": "schademeldingen",
+    //             //     "colour": "moss"
+    //             // }
+    //         ]
+    //     ],
+    //     // "config": {
+    //     //     "graphType": "TickerHorizon",
+    //     //     "xScaleType" : "linear",
+    //     //     "yScaleType" : "linear",
+    //     //     "xParameter" : "_week",
+    //     //     "yParameter" : "",
+    //     //     "padding": {
+    //     //         "top": 0,
+    //     //         "bottom": 4,
+    //     //         "left": 0,
+    //     //         "right": 0
+    //     //     },
+    //     //     "margin": {
+    //     //         "top": 0,
+    //     //         "bottom": 0,
+    //     //         "left": 0,
+    //     //         "right": 0
+    //     //     },
+    //     //     "extra": {
+    //     //         "useLineFill": true,
+    //     //         "noDots": true,
+    //     //         "smartColours" : 'down',
+    //     //         "thinLines" : true,
+    //     //         
+    //     //     }
+    //     // },
+    //     "header": null,
+    //     "description" : null,
+    //     "endpoint": "tevredenheid",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','column']
+    // },
     {
-        "slug" : "bol_schademeldingen",
-        "graph": "TickerHorizon",
+        "slug" : "bol_binnen_half_jaar",
+        "graph": "TickerBars",
+        "args": ["down"],
         "parameters": [
             [
-                {
-                    "label": "Vorige week",
-                    "column": "nieuw_schademeldingen",
-                    "colour": "moss"
-                },
-                {
-                    "label": "Vorige week: afgehandeld",
-                    "column": "nieuw_afgehandeld",
-                    "colour": "moss"
-                }
-            ],[
                 {
                     "label": "In behandeling",
                     "column": "in_behandeling",
                     "colour": "moss",
                     "units": "dossiers"
                 }
-                // {
-                //     "label": "Schade-meldingen",
-                //     "column": "schademeldingen",
-                //     "colour": "moss"
-                // }
             ]
         ],
-        // "config": {
-        //     "graphType": "TickerHorizon",
-        //     "xScaleType" : "linear",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_week",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 4,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         "noDots": true,
-        //         "smartColours" : 'down',
-        //         "thinLines" : true,
-        //         
-        //     }
-        // },
         "header": null,
         "description" : null,
-        "endpoint": "tevredenheid",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     },
@@ -137,33 +129,6 @@ export const tickerFysiekeSchade : IGraphMapping[] = [
                 }
             ]
         ],
-        // "config": {
-        //     "graphType": "TickerBars",
-        //     "xScaleType" : "linear",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_week",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 4,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         
-        //         "noDots": true,
-        //         "notNull": true,
-        //         "smartColours" : 'up',
-        //         "thinLines" : true,
-        //     }
-        // },
         "header": null,
         "description" : null,
         "endpoint": "voortgang",
@@ -184,33 +149,6 @@ export const tickerFysiekeSchade : IGraphMapping[] = [
                 }
             ]
         ],
-        // "config": {
-        //     "graphType": "TickerBars",
-        //     "xScaleType" : "linear",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_week",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 4,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         "
-        //         "noDots": true,
-        //         "notNull": true,
-        //         "smartColours" : 'down',
-        //         "thinLines" : true,
-        //     }
-        // },
         "header": null,
         "description" : null,
         "endpoint": "voortgang",

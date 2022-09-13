@@ -28,7 +28,7 @@ export default class DashboardInteractions {
 
         if (window.innerWidth > breakpoints.md) {
             this.updateMenuList(topic);
-            this.showHideSidebarElements(topic);
+            // this.showHideSidebarElements(topic);
         }
 
         if (history.pushState) {
@@ -37,22 +37,22 @@ export default class DashboardInteractions {
         }
     }
 
-    showHideSidebarElements(topic) {
+    // showHideSidebarElements(topic) {
 
-        let menuList : any = document.querySelector('ul.municipalities');
-        // let map : any = document.getElementById('img-graph-dashboard-map');
+    //     let menuList : any = document.querySelector('ul.municipalities');
+    //     // let map : any = document.getElementById('img-graph-dashboard-map');
 
 
-        if(!topic || topic === undefined || topic === '') {
+    //     if(!topic || topic === undefined || topic === '') {
 
-            menuList.style.display = 'block';
-            //map.style.display = 'block';
+    //         menuList.style.display = 'block';
+    //         //map.style.display = 'block';
 
-        } else {
-            menuList.style.display = 'none';
-           // map.style.display = 'none';
-        }
-    }
+    //     } else {
+    //         menuList.style.display = 'none';
+    //        // map.style.display = 'none';
+    //     }
+    // }
 
 
     updateMenuList(topic) {

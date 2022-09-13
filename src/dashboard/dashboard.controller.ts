@@ -13,6 +13,8 @@ import DashboardInteractions from "./dashboard.interactions";
 import DashboardData from "./dashboard.data.service";
 import DataStore from '../data.store';
 
+import { screenType } from './dashboard.resize'
+
 
 export class InitDashboard {
 
@@ -37,29 +39,51 @@ export class InitDashboard {
 
     init() {
 
-        this.htmlContainer = this.html.styleParentElement();
+        let self = this;
+
+        this.reloadHtml();
+        
         const { params, segment } = this.params.read();
         const dashboardArray = this.params.matchConfig(params.topic);
 
-        if (window.innerWidth > breakpoints.md) {
+        this.call(dashboardArray, segment, false);
+
+        let screen = screenType(window.innerWidth);
+
+        window.addEventListener("resize", () =>  {
+
+            let newScreen = screenType(window.innerWidth);
+
+            if ( screen != newScreen) {
+
+                setTimeout(() => {
+                    self.reloadHtml();
+                }, 500);
+                
+            }
+
+        }, false);
+    }
+
+    reloadHtml() {
+
+        this.htmlContainer = this.html.styleParentElement();
+
+        [].slice.call(document.getElementsByTagName("aside")).forEach( (a) => a.remove());
+        [].slice.call(document.getElementsByTagName("nav")).forEach( (a) => a.remove());
+
+        if (window.innerWidth >= breakpoints.md) {
 
             let aside = this.html.createSideBar(this.htmlContainer);
             aside.insertBefore(this.html.createMenu(this.htmlContainer), aside.childNodes[0]);
-            this.html.createList(segment);
-            // this.dashBoardMap = new DashboardMap(munis);
-            // this.dashBoardMap.update(false, "orange");
-
+      
         } else {
-            let mobileNav = this.html.createMobileNav(this.htmlContainer);
+            let mobileNavTop = this.html.createMobileNav(this.htmlContainer);
+            let mobileNavBottom = this.html.createMobileNav(this.htmlContainer);
         }
 
         this.html.createPopupElement();
 
-        this.call(dashboardArray, segment,false);
-
-        if (window.innerWidth > breakpoints.md && params.topic !== "") {
-            this.interactions.showHideSidebarElements(params.topic)
-        }
     }
 
     call(dashboardArray, segment: string, update: boolean) {
@@ -88,11 +112,11 @@ export class InitDashboard {
                 //     this.dashBoardMap.highlight(segment);
                 // }
             }
+         
 
             for (let graphObject of dashboardArray) {
 
                 let data = graphObject.segment ? weekData : muniData;
-
 
                 if (graphObject.config && graphObject.config.multiples) {
 
@@ -123,6 +147,7 @@ export class InitDashboard {
                         this.graphMethods[graphObject.slug].update(data, segment, true);
                     } else {
                         element.innerHTML = '';
+                    
                         this.graphMethods[graphObject.slug] = new graphs[graphType](this, data, element, graphObject, segment);
                         this.graphMethods[graphObject.slug].init();
                     }

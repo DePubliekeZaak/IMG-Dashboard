@@ -10,50 +10,7 @@ import * as d3 from "d3";
 import HtmlLegendDotsLines from "../html-elements/html-legend-dots-lines";
 import { IGraphMapping } from "../types/mapping";
 
-const config =  {
 
-    "scales": [
-   
-  
-        {
-            "slug": "y2",
-            "type": "linear",
-            "direction": "vertical",
-            "parameter": "percentage"
-        }
-    ],
-    "axes" : [
-        {
-            "slug": "x",
-            "scale": "x",
-            "position": "bottom",
-            "format": "weekLabels"
-        },
-        {
-            "slug": "y",
-            "scale": "y",
-            "position": "left"
-        },
-        {
-            "slug": "y2",
-            "scale": "y2",
-            "position": "right",
-            "format": "percentage"
-        }
-    ],
-    "padding": {
-        "top": 30,
-        "bottom": 60,
-        "left": 30,
-        "right": 0
-    },
-    "margin": {
-        "top": 0,
-        "bottom": 160,
-        "left": 0,
-        "right": 30
-    }
-}
 
 export default class StackedBars extends GraphControllerV2  {
 
@@ -83,18 +40,26 @@ export default class StackedBars extends GraphControllerV2  {
         this._addScale('y','linear','vertical','immateriele_schade_nieuw_besluiten');
         this._addScale('y2','linear','vertical','percentage');
 
-        this._addAxis('x','x','bottom','weekLabels');
+        this._addAxis('x','x','bottom','weekly');
         this._addAxis('y','y','left');
         this._addAxis('y2','y2','right');
 
-        this._addMargin(0,160,0,30);
-        this._addPadding(30,60,30,0);
+        this._addMargin(0,0,0,30);
+        this._addPadding(30,30,30,0);
     }
 
     init() {
 
         super._init();
-        super._svg();
+
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = "320px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        super._svg(container);
 
         this.chartStackedBars = new ChartStackedBars(this);
         this.chartLine = new ChartLineIndependent(this,'y2','black');
@@ -115,7 +80,6 @@ export default class StackedBars extends GraphControllerV2  {
             week['_index'] = i;     
             week['percentage'] = (week['immateriele_schade_toegewezen'] / week['immateriele_schade_besluiten']) * 100       
         });
-
 
         this.keys = Object.keys(history[0]).filter(key => {
             return [this.mapping.parameters[0][0].column,this.mapping.parameters[0][1].column].indexOf(key) > -1

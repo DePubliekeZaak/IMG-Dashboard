@@ -36,22 +36,29 @@ export default class TrendLine extends GraphControllerV2 {
     pre() {
 
         this._addScale('x','time','horizontal','_date');
-        this._addScale('y','linear','vertical',flattenColumn(this.firstMapping.column));
+        this._addScale('y','linear','vertical',flattenColumn(this.firstMapping['column']));
 
         this._addAxis('x','x','bottom');
-        this._addAxis('y','y','left',this.firstMapping.format);
+        this._addAxis('y','y','left',this.firstMapping['format']);
 
-        this._addMargin(80,100,0,0);
-        this._addPadding(20,40,40,0);
+        this._addMargin(20,60,0,0);
+        this._addPadding(0,0,30,0);
     }
 
     init() {
 
         super._init();
 
-        this.config.extra.xScaleTicks = "quarterly"
+        this.config.extra.xScaleTicks = "quarterly";
 
-        super._svg(this.element);
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = "240px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        super._svg(container);
 
         for (let i = 0;  i < this.mapping.parameters[0].length; i++) {
 
@@ -70,7 +77,7 @@ export default class TrendLine extends GraphControllerV2 {
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         let history = filterWeeks(data,neededColumns);
 
-        history.forEach( (w) => w['colour'] = getMappingKey(this.firstMapping,"colour"))
+        history.forEach( (w) => w['colour'] = getMappingKey(this.firstMapping,"colour")) 
 
         if(this.mapping.args && this.mapping.args[0]) {
             history = history.filter( (week) =>

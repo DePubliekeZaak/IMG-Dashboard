@@ -56,15 +56,16 @@ export class ChartCircles {
         this.circles = this.group
             .append("circle")
             .attr("class","circle")
-            .style("fill", d => { return colours['gray'][0] });
+            .style("stroke", d => { return 'black' })
+            .style("fill", d => { return 'white' }); // colours['gray'][0] });
 
         this.circlesText = this.group
             .append("text")
             .attr("class","small-label in-circle")
             .attr("text-anchor","middle")
             .style("font-size",".8rem")
-            .style("fill","black")
-            .style("fill","white");
+            .style("fill","black");
+          //  .style("fill","white");
     }
 
     redraw() {
@@ -75,7 +76,6 @@ export class ChartCircles {
             .attr("transform", (d) => {
 
                 if(this.ctrlr.scales.x.config.direction === 'horizontal'){
-
                     return "translate(" + this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x]) + "," + this.ctrlr.config.padding.top + ")"
 
                 } else {
@@ -91,9 +91,6 @@ export class ChartCircles {
 
                 return (i % 2 == 0 ) ? 0 : 24
             });
-
-        console.log(this.ctrlr.scales.r.scale.domain());
-        console.log(this.ctrlr.scales.r.scale.range());
 
         this.circles
             .attr("r", (d) => {  return this.ctrlr.scales.r.scale(d.value);  })
@@ -154,7 +151,7 @@ export class ChartCircles {
                         return "translate(" + self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]) + "," + (d.y + 0) + ")"
                     } else {
 
-                        return "translate(" + (d.x + 0) + "," + self.ctrlr.scales.x.scale(d.cumulativeDuration) + ")"
+                        return "translate(" + (d.x + 0) + "," + self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]) + ")"
                     }
                 }
             })

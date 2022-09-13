@@ -34,7 +34,7 @@ import { dashboardReacties } from './dashboard-reacties';
 import { dashboardOpnames } from './dashboard-opnames';
 import { dashboardWaardedalingsRegeling} from "./dashboard-waardedalingsregeling";
 import { dashboardImmaterieleSchade} from "./dashboard-immateriele-schade";
-
+import { dashboardGemeente} from "./dashboard-gemeente";
 
 export const configs = [
 
@@ -68,6 +68,7 @@ export { dashboardReacties }
 export { dashboardOpnames }
 export { dashboardWaardedalingsRegeling }
 export { dashboardImmaterieleSchade }
+export { dashboardGemeente }
 export { tickerFysiekeSchade }
 export { tickerWaardedaling }
 export { tickerTevredenheid }

@@ -27,19 +27,22 @@ export default class DashboardData {
 
         for (let endpoint of uniqueEndpoints) {
 
-            let url = (endpoint.indexOf('limit=') < 0) ? API_BASE + endpoint + restQuery : API_BASE + endpoint;
-            promises.push(
-                new Promise((resolve, reject) => {
-                    d3.json<ResponseData>(url)
-                        .then((data) => {
-                            resolve(data)
-                        })
-                        .catch((err) => {
-                            console.log('api call failed');
-                            console.log(err);
-                        })
-                })
-            )
+            if(endpoint) {
+
+                let url = (endpoint.indexOf('limit=') < 0) ? API_BASE + endpoint + restQuery : API_BASE + endpoint;
+                promises.push(
+                    new Promise((resolve, reject) => {
+                        d3.json<ResponseData>(url)
+                            .then((data) => {
+                                resolve(data)
+                            })
+                            .catch((err) => {
+                                console.log('api call failed');
+                                console.log(err);
+                            })
+                    })
+                )
+            }
         }
         return promises;
     }
@@ -71,7 +74,10 @@ export default class DashboardData {
             weekData.push(o);
         });
 
+
         if(arraysWithMunis && arraysWithMunis.length > 0) {
+
+           
 
             let recentWeeksOnly = arraysWithMunis[0].filter(o => o['_week'] === arraysWithMunis[0][0]['_week']);
             if (recentWeeksOnly && recentWeeksOnly.length > 0) {
@@ -91,6 +97,8 @@ export default class DashboardData {
                 });
             }
         }
+
+        
 
         muniData = this.createMapDataForEemsdelta(muniData);
 

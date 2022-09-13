@@ -1,6 +1,7 @@
 import { colours } from '../_styleguide/_colours';
 import {thousands} from "../d3-services/_helpers";
 import { Mapping } from '../types/mapping';
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export default class HtmlLegendDotsLines {
 
@@ -17,7 +18,8 @@ export default class HtmlLegendDotsLines {
         let legend = document.createElement('div');
         legend.classList.add('legend');
         legend.style.display = 'flex';
-        legend.style.flexDirection = 'row';
+        legend.style.flexDirection = window.innerWidth < breakpoints.md ? 'column' : 'row';
+        legend.style.paddingLeft = window.innerWidth < breakpoints.md ? this.ctrlr.config.padding.left + 'px' : '0';
         legend.style.justifyContent = 'center';
         legend.style.width = '100%';
 
@@ -27,7 +29,6 @@ export default class HtmlLegendDotsLines {
             item.appendChild(this.createCircle(map));
             item.appendChild(this.createLabel(map));
             legend.appendChild(item);
-
         });
 
 

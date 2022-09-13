@@ -29,11 +29,11 @@ export default class Horizon extends GraphControllerV2   {
     pre() {
 
         this._addScale('x','linear','horizontal','_index');
-        this._addScale('y','linear','vertical', flattenColumn(this.firstMapping.column));
-        this._addAxis('x','x','belowBottom','weekLabels');
+        this._addScale('y','linear','vertical', flattenColumn(this.firstMapping['column']));
+        this._addAxis('x','x','belowBottom','quarterly');
         this._addAxis('y','y','left');
-        this._addMargin(0,160,30,0);
-        this._addPadding(0,60,40,0);
+        this._addMargin(0,0,0,0);
+        this._addPadding(30,120,40,0);
     }
 
     init() {
@@ -41,13 +41,21 @@ export default class Horizon extends GraphControllerV2   {
         let self = this;
 
         this._init();
-        this._svg(this.element)
+
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = "400px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        this._svg(container)
 
         this.parameters.y2 = this.mapping.parameters[0][1].column;
         this.parameters.y3 = this.mapping.parameters[1][0].column;
 
         this.chartBars = new ChartBarHorizonWaardedaling(this);
-        console.log("KKL");
+
         this.legend = new HtmlLegendDotsLines(this);
         this.chartFocus = new ChartFocus(this);
     
@@ -60,9 +68,7 @@ export default class Horizon extends GraphControllerV2   {
         let history = filterWeeks(data,neededColumns);
 
         history = history.filter( (w) => {
-            
             return w[this.parameters.y] > 0 || w[this.parameters.y2] > 0;
-
         });
 
         let voorraad_bij_eind = history[0][flattenColumn(this.mapping.parameters[1][0].column)];

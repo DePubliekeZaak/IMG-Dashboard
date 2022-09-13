@@ -3,7 +3,7 @@ import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxesV2 } from
 import { Dimensions } from '../types/dimensions';
 
 import { GraphObject } from '../types/graphObject';
-import { IGraphMapping, Mapping } from '../types/mapping';
+import { IGraphMapping, IMappingOption, Mapping } from '../types/mapping';
 import { getFirstMapping, getParameter } from '../d3-services/_helpers';
 import { HtmlHeader, HtmlPopup, HtmlSegment } from '../html-elements/module';
 import { DataPart } from "../types/data";
@@ -20,19 +20,13 @@ export interface IGraphControllerV2 {
     config: IGraphConfigV2,
     segment: string,
 
-    // yParameter: string,
-    // xParameter : string,
     dimensions: Dimensions,
-    firstMapping: any;
+    firstMapping: IMappingOption;
     svg;
-    // yScale;
-    // xScale;
 
     // classes 
     chartDimensions : IChartDimensions,
     chartSVG? : any,
-    // chartXScale? : any,
-    // chartYScale? : any,
     htmlHeader? : any,
     htmlSegment? : any,
     popup? : any,
@@ -45,7 +39,7 @@ export class GraphControllerV2 implements IGraphControllerV2  {
     // yParameter: string;
     // xParameter : string;
     dimensions: Dimensions;
-    firstMapping: any;
+    firstMapping: IMappingOption;
     svg;
     yScale;
     xScale;
@@ -70,7 +64,7 @@ export class GraphControllerV2 implements IGraphControllerV2  {
         public segment: string
     ) {
         this.element = d3.select(element).node();
-        this.firstMapping = getParameter(this.mapping,0);
+        this.firstMapping = this.mapping.parameters[0] && this.mapping.parameters[0][0] ? getParameter(this.mapping,0) : false;
         this.parameters = {};
         this.scales = {};
         this.axes = {};
@@ -92,14 +86,14 @@ export class GraphControllerV2 implements IGraphControllerV2  {
             this.parameters[s.slug] = s.parameter;
         }
 
-        if (this.mapping.description) {
+        if (this.mapping.description || this.mapping.description === '' ) {
             this.popup = new HtmlPopup(this.element,this.mapping.description);
         }
 
         this.htmlSegment = new HtmlSegment(this.element);
        
         if (this.mapping.header) {
-            this.htmlHeader = new HtmlHeader(this.element, this.mapping.header != undefined ? this.mapping.header : this.firstMapping.label);
+            this.htmlHeader = new HtmlHeader(this.element, this.mapping.header != undefined ? this.mapping.header : this.firstMapping['label']);
             this.htmlHeader.draw(); 
         }
 
@@ -216,6 +210,5 @@ export class GraphControllerV2 implements IGraphControllerV2  {
             left,
             right
         }
-        
     }
 }

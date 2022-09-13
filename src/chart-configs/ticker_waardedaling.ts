@@ -27,32 +27,6 @@ export const tickerWaardedaling : IGraphMapping[] = [
                 }
             ]
         ],
-        // "config": {
-        //     "graphType": "TickerNumbers",
-        //     "xScaleType" : "linear",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_week",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 4,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         "noDots": true,
-        //         "smartColours" : 'down',
-        //         "thinLines" : true,
-        //         "units": "aanvragen"
-        //     }
-        // },
         "header": null,
         "description" : null,
         "endpoint": "vergoedingen",
@@ -60,61 +34,52 @@ export const tickerWaardedaling : IGraphMapping[] = [
         "elementClasslist": ['img-graph-container','column']
     },
     {
-        "slug" : "bol_aanvragers",
-        "graph": "TickerHorizon",
+        "slug" : "bol_binnen_half_jaar",
+        "graph": "TickerBars",
+        "args": ["down"],
         "parameters": [
-            [
-                {
-                    "label": "in behandeling",
-                    "column": "nieuw_aanvragen",
-                    "colour": "moss"
-                },
-                {
-                    "label": "Vorige week: nieuw",
-                    "column": "nieuw_besluiten",
-                    "colour": "orange"
-                }
-            ],
-            [
-                {
-                    "label": "in behandeling",
+            [{
+                    "label": "In behandeling",
                     "column": "waardedaling_in_behandeling",
                     "colour": "orange",
                     "units": "besluiten"
-                }
-            ]
+            }]
         ],
-        // "config": {
-        //     "graphType": "TickerHorizon",
-        //     "xScaleType" : "linear",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_week",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 4,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         "noDots": true,
-        //         "smartColours" : 'up',
-        //         "thinLines" : true,
-        //         
-        //         "link": "meldingen",
-        //     }
-        // },
         "header": null,
         "description" : null,
         "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','column']
     }
+    // {
+    //     "slug" : "bol_aanvragers",
+    //     "graph": "TickerHorizon",
+    //     "parameters": [
+    //         [
+    //             {
+    //                 "label": "in behandeling",
+    //                 "column": "nieuw_aanvragen",
+    //                 "colour": "moss"
+    //             },
+    //             {
+    //                 "label": "Vorige week: nieuw",
+    //                 "column": "nieuw_besluiten",
+    //                 "colour": "orange"
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 "label": "in behandeling",
+    //                 "column": "waardedaling_in_behandeling",
+    //                 "colour": "orange",
+    //                 "units": "besluiten"
+    //             }
+    //         ]
+    //     ],
+    //     "header": null,
+    //     "description" : null,
+    //     "endpoint": "waardedaling",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','column']
+    // }
 ]

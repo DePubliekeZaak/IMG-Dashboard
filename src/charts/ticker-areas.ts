@@ -137,7 +137,7 @@ export default class TickerAreas extends GraphControllerV2   {
 
         this.yScale = this.scales.y.set(data.slice.map( d => d[this.parameters.y]));
         super.redraw(data);
-        this.chartBackgroundAreas.redraw(data.slice, this.firstMapping.colour);
+        this.chartBackgroundAreas.redraw(data.slice, this.firstMapping['colour']);
     }
 
     draw(data: GraphData) {

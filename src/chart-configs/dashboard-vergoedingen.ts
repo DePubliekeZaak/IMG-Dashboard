@@ -46,7 +46,7 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
         "description" : "De diverse soorten schadevergoedingen die het IMG toekent uitgesplitst en als totaal opgeteld. De Stuwmeerregeling is afgelopen. Maar voor enkele van die dossiers worden nog vergoedingen toegekend omdat deze op basis van facturen van aannemers worden     kend.",
         "endpoint": "vergoedingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-ipad-6']
 
     },
     {
@@ -70,13 +70,13 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
         "description" : "De verhouding tussen besluiten met toekenning en besluiten met een afwijzing",
         "endpoint": "vergoedingen?limit=61",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-ipad-6']
     },
 
   
     {  
     "slug": "meldingen_trend_schademeldingen",
-    "graph": "TrendLine",
+    "graph": "TrendBars",
     "args": ['2019-10-01'],
     "parameters": [
         [
@@ -93,11 +93,11 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
     "description" : "De ontwikkeling van het gemiddelde bedrag aan schadevergoeding per besluit door de tijd heen.",
     "endpoint": "vergoedingen",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+    "elementClasslist": ['img-graph-container','img-graph-container-6']
 },
 {   
     "slug": "meldingen_trend_schademeldingen",
-    "graph": "TrendLine",
+    "graph": "TrendBars",
     "parameters": [
         [
             {
@@ -113,7 +113,7 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
     "description" : "De ontwikkeling van het gemiddelde bedrag aan schadevergoeding per besluit door de tijd heen.",
     "endpoint": "vergoedingen",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+    "elementClasslist": ['img-graph-container','img-graph-container-6']
 },
     {
         "graph": "BandBars",
@@ -146,7 +146,7 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
         "description" : "Het aantal besluiten onderverdeeld naar omvang van de toegekende schadevergoeding in het besluit.",
         "endpoint": "vergoedingen?limit=61",  // ivm in-graph gemeentekiezer
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
+        "elementClasslist": ['img-graph-container','img-graph-container-6']
     },
     {     
         "slug" : "vergoedingen_kaart_totaal_verleend",
@@ -166,7 +166,7 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
         "endpoint": "vergoedingen?limit=61",
         "segment": null,
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map']
     },
     
    

@@ -50,6 +50,7 @@ export default class DashboardHTML {
 
         let nav = document.createElement('nav');
         nav.classList.add('mobile_nav');
+        
 
         let select = document.createElement('select');
 
@@ -93,7 +94,7 @@ export default class DashboardHTML {
         header.style.fontWeight = '700';
         // header.style.fontFamily = 'Noto Sans';
 
-        header.innerText = "Meer grafieken";
+        header.innerText = "Fysieke schade";
 
         div.appendChild(header);
 
@@ -178,9 +179,12 @@ export default class DashboardHTML {
 
     createPopupElement() {
 
-        let popup = document.createElement('div');
-        popup.id = 'img-dashboard_popup';
-        document.getElementsByTagName('body')[0].appendChild(popup);
+        if (!document.getElementById('img-dashboard_popup')) {
+
+            let popup = document.createElement('div');
+            popup.id = 'img-dashboard_popup';
+            document.getElementsByTagName('body')[0].appendChild(popup);
+        }
     }
 
 

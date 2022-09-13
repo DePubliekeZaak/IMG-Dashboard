@@ -11,7 +11,7 @@ export class HtmlCircle {
     draw() {
 
 
-        const element = this.element != undefined ? this.element : this.ctrlr.element;
+        let element = this.element != undefined ? this.element : this.ctrlr.element;
 
         let miniContainer = document.createElement('div');
         miniContainer.style.display ='flex';
@@ -35,7 +35,8 @@ export class HtmlCircle {
 
         let div = document.createElement('div');
         div.classList.add('number_circle');
-        div.style.backgroundColor =  colours[this.ctrlr.firstMapping.colour][0];
+      //  div.style.backgroundColor =  colours[this.ctrlr.firstMapping.colour][1];
+        div.style.border =  '2px solid ' +  colours[this.ctrlr.firstMapping.colour][0];
         div.style.borderRadius = '50%';
         div.style.display =  'flex';
         div.style.position = 'relative';
@@ -50,7 +51,7 @@ export class HtmlCircle {
         number.classList.add('number');
         number.style.fontSize = '3rem';
         number.style.lineHeight = "1";
-        number.style.color = 'white';
+        number.style.color = 'black';
         number.style.fontFamily = "Replica";
 
         div.appendChild(number);
@@ -60,7 +61,7 @@ export class HtmlCircle {
             let units = document.createElement('span');
             units.classList.add('units');
             units.innerText = this.ctrlr.firstMapping.units;
-            units.style.color = 'white';
+            units.style.color = 'black';
             units.style.fontFamily = 'NotoSans Regular';
             units.style.fontSize = '0.8rem';
             units.style.display = 'block';
@@ -124,8 +125,10 @@ export class HtmlCircle {
 
     redraw(data,parameter,extraParameter) {
 
-        const element = this.element != undefined ? this.element : this.ctrlr.element;
-
+        let element = this.element != undefined ? this.element : this.ctrlr.element;
+        
+        if(element.tagName === 'SECTION') { element = element.parentNode;}
+        
         let value =  (this.ctrlr.config.extra.decimal) ? Math.round(data[0][parameter] * 10) / 10 : Math.round(data[0][parameter]);
 
         if (this.ctrlr.config.extra.segmentIndicator) {

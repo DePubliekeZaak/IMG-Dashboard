@@ -1,6 +1,7 @@
 import { colours } from '../_styleguide/_colours';
 import {thousands} from "../d3-services/_helpers";
 import { Mapping } from '../types/mapping';
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export default class HtmlLegendDots {
 
@@ -17,7 +18,8 @@ export default class HtmlLegendDots {
         let legend = document.createElement('div');
         legend.classList.add('legend');
         legend.style.display = 'flex';
-        legend.style.flexDirection = 'row';
+        legend.style.flexDirection = window.innerWidth < breakpoints.md ? 'column' : 'row';
+        legend.style.paddingLeft = window.innerWidth < breakpoints.md ? this.ctrlr.config.padding.left + 'px' : '0';
         legend.style.justifyContent = 'center';
         legend.style.width = '100%';
 
@@ -27,19 +29,7 @@ export default class HtmlLegendDots {
             item.appendChild(this.createCircle(map));
             item.appendChild(this.createLabel(map));
             legend.appendChild(item);
-
         });
-
-        // if(mapping[1]) {
-           
-        //     mapping[1].forEach( (map: Mapping,i:  number) => {
-
-        //         let item = this.createDiv();
-        //         item.appendChild(this.createLine(map));
-        //         item.appendChild(this.createLabel(map));
-        //         legend.appendChild(item);
-        //     });
-        // }
 
         this.ctrlr.element.insertBefore(legend,this.ctrlr.element.querySelector('svg'))
     }
@@ -54,18 +44,6 @@ export default class HtmlLegendDots {
 
         return item;
     }
-
-    // createLine(map: Mapping) : HTMLSpanElement {
-
-    //     let line = document.createElement('span');
-    //     line.style.width = (window.innerWidth > 700) ? '.75rem' : '.5rem';
-    //     line.style.height = '1px';
-    //     line.style.marginRight = (window.innerWidth > 700) ? '.5rem' : '.25rem';
-    //     line.style.display = 'inline-block';
-    //     line.style.borderBottom = '1px dotted black'
-
-    //     return line;
-    // }
 
     createCircle(map: Mapping) : HTMLSpanElement {
 

@@ -56,7 +56,7 @@ export default class ChartStackedArea {
             .duration(200)
             .attr('d', area)
             .style('fill', (d) => {
-                return colours[this.ctrlr.mapping.parameters[0].find( (map) => { return map.column === d.key})['colour']][0];
+                return colours[this.ctrlr.mapping.parameters[0].find( (map) => { return map.column === d.key})['colour']][1];
             })
             ;
     }

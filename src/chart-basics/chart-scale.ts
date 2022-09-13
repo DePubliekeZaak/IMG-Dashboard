@@ -104,6 +104,13 @@ export class ChartScale {
 
                 break;
 
+                case 'horizontal-reverse':
+
+                    this.scale
+                        .range([this.ctrlr.dimensions.width,0]);
+    
+                    break;
+
             case 'vertical-reverse':
 
                 this.scale
@@ -116,6 +123,7 @@ export class ChartScale {
                     .range([this.ctrlr.dimensions.height, 0]);
 
                 break;
+
 
             case 'radius':
 

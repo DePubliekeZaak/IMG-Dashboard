@@ -23,14 +23,14 @@ export default class ChartBarHorizonWaardedaling {
             .data(data.slice)
             .join("rect")
             .attr("class", "bar_up")
-            .attr("fill", (d) => colours["orange"][0])
+            .attr("fill", (d) => colours["orange"][1])
         ;
 
         this.barsDown = this.ctrlr.svg.layers.data.selectAll(".bar_down")
             .data(data.slice)
             .join("rect")
             .attr("class", "bar_down")
-            .attr("fill", (d) => colours["lightBlue"][0])
+            .attr("fill", (d) => colours["lightBlue"][1])
         ;
 
         this.line= this.ctrlr.svg.layers.data.selectAll("path")

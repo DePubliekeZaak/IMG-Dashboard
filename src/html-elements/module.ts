@@ -10,8 +10,8 @@ import { HtmlFormule } from './html-formule'
 import { HtmlLink } from './html-link';
 import { HtmlPopup } from './html-popup';
 import { HtmlSegment } from './html-segment';
-import { HtmlMuniSelector } from "./html-muniSelector";
-import HtmlPeriodSelector from "./html-periodSelector";
+import { HtmlMuniSelector } from "./html-muniselector";
+import HtmlPeriodSelector from "./html-periodselector";
 import HtmlLegendDots  from "./html-legend-dots";
 import HtmlLegendDotsLines  from "./html-legend-dots-lines"
 import HtmlSum from "./html-sum";

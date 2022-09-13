@@ -1,14 +1,7 @@
 
 import { ChartStackedBarsNormalized } from '../svg-elements/module';
-
-
-import { slugify } from '../utils/slugify.utils';
-
 import * as d3 from 'd3';
-import {colours} from "../_styleguide/_colours";
-import { GraphObject } from '../types/graphObject';
-import { ChartAxes } from '../chart-basics/chart-axes';
-import { DataPart, GraphData, IKeyValueObject } from '../types/data';
+import { DataPart, GraphData } from '../types/data';
 import _ from 'lodash';
 import { HtmlLegendDots } from "../html-elements/module";
 import { parseGroups } from '../d3-services/data.functions';
@@ -20,14 +13,11 @@ export default class NormalisedBars extends GraphControllerV2  {
     keys : string[];
     labels : string[];
     legend;
-
     chartMultiBars;
     chartAxisGrid;
     chartStackedBarsNormalized;
-
     normalizedStack;
     stack;
-
 
     constructor(
         public main: any,
@@ -43,8 +33,8 @@ export default class NormalisedBars extends GraphControllerV2  {
     pre(){
         this._addScale('x','linear','horizontal', 'group');
         this._addScale('y','band','vertical-reverse', 'group');
-        this._addMargin(0,60,0,0);
-        this._addPadding(0,160,0,0);
+        this._addMargin(0,30,0,0);
+        this._addPadding(0,0,0,0);
     }
 
     init() {
@@ -55,7 +45,15 @@ export default class NormalisedBars extends GraphControllerV2  {
         this.config.paddingOuter = .5;
 
         super._init();
-        super._svg();
+
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = "280px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        super._svg(container);
 
         this.chartStackedBarsNormalized = new ChartStackedBarsNormalized(this);
         

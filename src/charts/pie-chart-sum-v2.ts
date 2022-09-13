@@ -68,19 +68,28 @@ export default class PieChartSumV2 extends GraphControllerV2  {
 
         this.chartPie = new ChartPie(this);
         this.legend = new SumLegend(this)
+        
 
-        this.update(this.data,this.segment, false);
+        if(this.data[0][this.firstMapping['column']] != null) {
+
+            this.update(this.data,this.segment, false);
+
+        }
     }
 
     prepareData(data: DataPart[]) : GraphData {
 
-        const slice = parseForPieV2(this.config,this.mapping,"all",data)
+        
+
+        const slice = parseForPieV2(this.config,this.mapping,"all",data);
 
         return {
             latest: null,
             slice,
             history: null
         }   
+
+        
     }
 
     draw(data: GraphData) {

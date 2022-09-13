@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import { convertToCurrency, shortenCurrency } from "../../d3-services/_helpers";
 import { GraphData } from "../../types/data";
+import { breakpoints } from "../../_styleguide/_breakpoints";
 import { colours } from "../../_styleguide/_colours";
 
 export default class MapLegend {
@@ -16,10 +17,10 @@ export default class MapLegend {
         bar.style.display = 'flex';
         bar.style.flexDirection = 'column';
         bar.style.position ='absolute';
-        bar.style.right = "0rem";
-        bar.style.top = "calc(50% - 100px)"
-        bar.style.height = '200px';
-        bar.style.width = '1.5rem';
+        bar.style.left = (window.innerWidth > breakpoints.sm && window.innerWidth < breakpoints.bax) ? "3rem" : ".75rem";
+        bar.style.top = window.innerWidth > breakpoints.sm ? "calc(50% - 100px)" : "calc(50% - 80px)"
+        bar.style.height = window.innerWidth > breakpoints.sm ? '200px' : '160px';
+        bar.style.width = '.75rem';
         bar.style.background = '#eee';
         bar.style.borderTop = '1px solid black';
         bar.style.borderBottom = '1px solid black';
@@ -40,7 +41,7 @@ export default class MapLegend {
         topSpan.style.fontSize = '0.7rem';
         topSpan.style.height = '0';
         topSpan.style.alignSelf ='flex-start';
-        topSpan.style.marginLeft = '1.75rem';
+        topSpan.style.marginLeft = '1rem';
         topSpan.style.marginTop = '-.35rem';
         topSpan.style.marginBottom = '.35rem';
         bar.appendChild(topSpan);
@@ -50,7 +51,7 @@ export default class MapLegend {
         bottomSpan.style.fontSize = '0.7rem';
         bottomSpan.style.height = '0';
         bottomSpan.style.alignSelf ='flex-start';
-        bottomSpan.style.marginLeft = '1.75rem';
+        bottomSpan.style.marginLeft = '1rem';
         bottomSpan.style.marginTop= '-.35rem';
 
         let inner =  document.createElement('div');

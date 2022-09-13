@@ -5,6 +5,7 @@ import { ChartLine } from './line/chart-line';
 import { ChartLineAccentTime } from './line/chart-line-accent-time';
 import { ChartLineIndependent } from './line/chart-line-independent';
 import  ChartLineDashArray from './line/chart-line-dasharray';
+import  ChartLineMiddled from './line/chart-line-middled';
 import { ChartRaggedLine } from './line/chart-ragged-line';
 import { ChartBlockedLine } from './line/chart-blocked-line';
 
@@ -20,12 +21,14 @@ import ChartStackedBars  from './bar/chart-stacked-bars';
 import { ChartBarTicker } from './bar/chart-bar-ticker';
 import ChartBarHorizon  from './bar/chart-bar-horizon';
 import ChartBarHorizonWaardedaling  from './bar/chart-bar-horizon-waardedaling';
+import ChartBarHorizonY2 from './bar/chart-bar-horizon-y2'
 import { ChartBarStackedHorizontal } from './bar/chart-bar-stacked-horizontal';
 import { ChartBarHorizontal } from './bar/chart-bar-horizontal';
 import { ChartMultiBars } from './bar/chart-multibar';
 import { ChartBarsIncrease } from './bar/chart-bars-increase';
 import { ChartStackedBarsNormalized } from "./bar/chart-stacked-bars-normalized";
 import  ChartBlockTrend from "./bar/chart-blocktrend";
+import  ChartBarTrend from "./bar/chart-bar-trend";
 
 // radial
 import { ChartPie } from './radial/chart-pie';
@@ -62,6 +65,7 @@ export {
     ChartLineAccentTime,
     ChartLineIndependent,
     ChartLineDashArray,
+    ChartLineMiddled,
     ChartBlockedLine, 
     ChartGrid,
     ChartGridWeek, 
@@ -72,10 +76,12 @@ export {
     ChartBarTicker,
     ChartBarHorizon,
     ChartBarHorizonWaardedaling,
+    ChartBarHorizonY2,
     ChartBarHorizontal, 
     ChartBarStackedHorizontal, 
     ChartMultiBars, 
     ChartBarsIncrease, 
+    ChartBarTrend,
     ChartPie, 
     ChartMap, 
     ChartCircles, 

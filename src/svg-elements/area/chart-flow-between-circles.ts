@@ -35,7 +35,7 @@ export class ChartFlowBetweenCircles {
         this.startPoint = this.ctrlr.svg.layers.data
             .append("path")
             .style("fill", (d) => {
-                return colours.moss[0];
+                return colours.moss[1];
             });
         // .style("opacity", (d) => {
         //     return .75;
@@ -44,7 +44,7 @@ export class ChartFlowBetweenCircles {
         this.endPoint = this.ctrlr.svg.layers.data
             .append("path")
             .style("fill", (d) => {
-                return colours.orange[0];
+                return colours.orange[1];
             });
 
     }
@@ -57,7 +57,7 @@ export class ChartFlowBetweenCircles {
             .data(data)
             .join("path")
             .attr("class","flow")
-            .style("fill", (d) => { return colours[d.colour][0] })
+            .style("fill", (d) => { return colours[d.colour][1] })
             .on("mouseover", function(event: any, d: any) {
 
                 // self.ctrlr.svg.layers.data

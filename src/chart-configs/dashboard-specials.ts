@@ -56,33 +56,6 @@ export const dashboardSpecials : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-
-            
-        //     "xScaleType" : false,
-        //     "yScaleType" : false,
-        //     "xParameter" : false,
-        //     "yParameter" : false,
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 15,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra" :{
-        //         "currencyLabels" : false,
-        //         "legendWidth" : 220,
-        //         "maxRadius" : 100,
-        //         "innerRadius" : 20,
-                
-        //     }
-        // },
         "header" : "Meldingen met erfgoed kenmerk",
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "meldingen",
@@ -113,33 +86,6 @@ export const dashboardSpecials : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-
-            
-        //     "xScaleType" : false,
-        //     "yScaleType" : false,
-        //     "xParameter" : false,
-        //     "yParameter" : false,
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 15,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra" :{
-        //         "currencyLabels" : false,
-        //         "legendWidth" : 220,
-        //         "maxRadius" : 100,
-        //         "innerRadius" : 20,
-                
-        //     }
-        // },
         "header" : "Meldingen met MKB kenmerk",
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "meldingen",
@@ -170,33 +116,6 @@ export const dashboardSpecials : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-
-            
-        //     "xScaleType" : false,
-        //     "yScaleType" : false,
-        //     "xParameter" : false,
-        //     "yParameter" : false,
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 15,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra" :{
-        //         "currencyLabels" : false,
-        //         "legendWidth" : 220,
-        //         "maxRadius" : 100,
-        //         "innerRadius" : 20,
-                
-        //     }
-        // },
         "header" : "Meldingen met overig kenmerk",
         "description" : "Het totaal aantal schademeldingen met speciale kenmerken dat sinds 19 maart 2018 is binnengekomen. Eerst bij de TCMG (dat tijdelijk was) en sinds 1 juli 2020 bij het IMG, dat het werk van de TCMG structureel voortzet.",
         "endpoint": "meldingen",
@@ -306,33 +225,6 @@ export const dashboardSpecials : (GraphObject|IGraphMapping)[] = [
             }
         ]
         ],
-        // "config": {
-          
-        //     "xScaleType": "band",
-        //     "yScaleType": "linear",
-        //     "xParameter": "label",
-        //     "yParameter": "value",
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 40,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 140,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-              
-        //         "paddingInner" : 1,
-        //         "paddingOuter" : 1,
-        //         "minRadius" : 4,
-        //         "radiusOffset" : 1.8,
-        //         "radiusFactor": 1
-        //     }
-        // },
         "header" : "Status openstaande speciale dossiers",
         "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
         "endpoint": "specials",
@@ -368,37 +260,10 @@ export const dashboardSpecials : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-           
-        //     "xScaleType" : 'band',
-        //     "yScaleType" : 'linear',
-        //     "xParameter" : 'label',
-        //     "yParameter" : "value",
-        //     "padding": {
-        //         "top": 20,
-        //         "bottom": 70,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 120,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra" : {
-        //         "currencyLabels" : false,
-        //         "paddingInner" : .1,
-        //         "paddingOuter" : .1,
-        //         "municipalitySelect": true,
-        //         "alternateTicks" : true,
-                
-        //     }
-        // },
         "header" : "Specials per status",
         "description" : "Het totaal aantal openstaande schademeldingen met speciale kenmerken naar status in de schadeprocedure, onderverdeeld naar type speciaal dossier.",
         "endpoint": "specials?limit=61",  // ivm in-graph gemeentekiezer
-        "segment": null,
+        "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding','img-grap-container-medium-high']
     },
     {

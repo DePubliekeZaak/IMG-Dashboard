@@ -32,7 +32,7 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
         "endpoint": "tevredenheid",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
     "slug" : "bol_schademeldingen",
@@ -57,7 +57,7 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
     "endpoint": "meldingen",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+    "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {
     "slug" : "bol_afgehandelde_meldingen",
@@ -81,7 +81,7 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "description" : "Het aantal schademeldingen dat afgelopen week is afgehandeld. Op sommige adressen lopen er meerdere schademeldingen. Die worden waar mogelijk met een enkel besluit afgehandeld.",
     "endpoint": "voortgang",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+    "elementClasslist": ['img-graph-container','img-graph-container-3']
 
     },
     {
@@ -100,11 +100,11 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
         "endpoint": "voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     },
     {   
         "slug": "trend_schademeldingen",
-        "graph": "TrendLine",
+        "graph": "TrendBars",
         "parameters": [
             [
                 {
@@ -125,12 +125,12 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "description" : "Het aantal nieuwe en afgehandelde schademeldingen door de tijd heen.",
         "endpoint": "voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
     },
     {   
         
         "slug": "trend_in_behandeling",
-        "graph": "TrendLine",
+        "graph": "TrendBars",
         "parameters": [
             [
                 {
@@ -145,46 +145,13 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
                     "colour": "purple",
                     "short": "rapport"
                 },
-                // {
-                //     "label": "Besluiten",
-                //     "column": "nieuw_besluiten",
-                //     "colour": "blue"
-                // }
             ]
         ],
-        // "config": {
-        //     "graphType": "",
-        //     "xScaleType": "time",
-        //     "yScaleType": "linear",
-        //     "xParameter": "_date",
-        //     "yParameter": "WERKVOORRAAD_IN_BEHANDELING",
-        //     "padding": {
-        //         "top": 20,
-        //         "bottom": 40,
-        //         "left": 40,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 80,
-        //         "bottom": 100,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra": {
-        //         "xScaleTicks": "quarterly",
-        //         "useLineFill": true,
-                
-        //         "segmentIndicator": false,
-        //         "legend": true,
-        //         "hasFocus": true,
-        //         "noUpdate": true
-        //     }
-        // },
         "header" : "Trend schade-opnames en adviesrapporten",
         "description" : "Het aantal schade-opnames en adviesrapporten door de tijd heen. De schade-opname en het adviesrapport zijn voor vrijwel alle schademeldingen nodig om te komen tot een besluit. De trend laat daarmee het potentieel van de schadeafhandeling zien.",
         "endpoint": "opnames",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
     },
     {
     "slug": "flow_doorlooptijden",
@@ -253,7 +220,7 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "description" : "Een schademelding doorloopt een aantal stappen in de procedure voor afhandeling. Zolang er wekelijks ongeveer net zoveel schademeldingen naar een volgende stap in de procedure gaan als er nieuw binnenkomen, dan is de de capaciteit van de totale schadeafhandeling op niveau. De grafiek toont dus de mate waarin er voortgang is in het totaal van schademeldingen die in behandeling zijn. ",
     "endpoint": "productie",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-flow']
+    "elementClasslist": ['img-graph-container','img-graph-container-12']
   },
   {
     "slug": "taart_schadevergoeding_totaal",
@@ -288,34 +255,6 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
             }
         ]
     ],
-    // "config": {
-
-    //     "graphType": "",
-    //     "xScaleType" : false,
-    //     "yScaleType" : false,
-    //     "xParameter" : false,
-    //     "yParameter" : false,
-    //     "padding": {
-    //         "top": 0,
-    //         "bottom": 0,
-    //         "left": 0,
-    //         "right": 0
-    //     },
-    //     "margin": {
-    //         "top": 0,
-    //         "bottom": 15,
-    //         "left": 0,
-    //         "right": 0
-    //     },
-    //     "extra" :{
-    //         "currencyLabels" : true,
-    //         "legendWidth" : 220,
-    //         "maxRadius" : 100,
-    //         "innerRadius" : 20,
-            
-    //         "segmentIndicator": true,
-    //     }
-    // },
     "header" : "Schadevergoedingen",
     "description" : "De diverse soorten schadevergoedingen die het IMG toekent uitgesplitst en als totaal opgeteld. De Stuwmeerregeling is afgelopen. Maar voor enkele van die dossiers worden nog vergoedingen toegekend omdat deze op basis van facturen van aannemers worden toegekend.",
     "endpoint": "vergoedingen",
@@ -346,34 +285,6 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-
-        //     "graphType": "PieChartSum",
-        //     "xScaleType" : false,
-        //     "yScaleType" : false,
-        //     "xParameter" : false,
-        //     "yParameter" : false,
-        //     "padding": {
-        //         "top": 0,
-        //         "bottom": 0,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 0,
-        //         "bottom": 15,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "extra" :{
-        //         "currencyLabels" : false,
-        //         "legendWidth" : 220,
-        //         "maxRadius" : 100,
-        //         "innerRadius" : 20,
-        //         "tieten": false,
-                
-        //     }
-        // },
         "header" : "Wel/niet acuut onveilige situatie",
         "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
         "endpoint": "voortgang",

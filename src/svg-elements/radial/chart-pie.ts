@@ -24,7 +24,7 @@ export class ChartPie {
             .data(pie(data[0]), (d => d.data.label))
             .join("path")
             .attr("class", "arc")
-            .attr("fill", (d: any) => colours[d.data.colour][0])
+            .attr("fill", (d: any) => colours[d.data.colour][1])
             .attr("stroke", "#fff")
             .attr("stroke-width", "2px")
             .on("mouseover", function (event: any, d: any, array: any[]) {
@@ -51,7 +51,7 @@ export class ChartPie {
             .on("mouseout", function (event: any, d: any) {
 
                 self.ctrlr.svg.arcs
-                    .attr("fill", (dd:any) => colours[dd.data.colour][0]);
+                    .attr("fill", (dd:any) => colours[dd.data.colour][1]);
 
                 d3.select('.tooltip')
                     .transition()

@@ -12,6 +12,7 @@ import { DataPart, GraphData } from '../types/data';
 import { GraphControllerV2 } from './graph-v2';
 import { IGraphMapping } from '../types/mapping';
 import { flattenColumn } from '../d3-services/_helpers';
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export default class Ballenbak extends GraphControllerV2 {
 
@@ -41,11 +42,17 @@ export default class Ballenbak extends GraphControllerV2 {
     }
 
     pre() {
-        this._addScale('x','band','horizontal', 'group');
+     
+        if (window.innerWidth < breakpoints.sm) {
+            this._addScale('x','band','vertical-reverse','group')
+        } else {
+            this._addScale('x','band','horizontal','group')
+        }
+        
         this._addScale('y','band','vertical-reverse', 'group');
         this._addScale('r','linear','radius', 'value');
         this._addMargin(20,0,0,0);
-        this._addPadding(0,160,0,0);
+        this._addPadding(10,0,0,0);
     }
 
     init() {
@@ -55,11 +62,31 @@ export default class Ballenbak extends GraphControllerV2 {
 
         super._init();
 
-        super._svg();
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = (window.innerWidth < breakpoints.sm) ? "600px" : "360px";
+        container.style.width = "100%";
+        container.id = svgId;
+        this.element.appendChild(container);
+
+        super._svg(container);
 
         this.config.extra.minRadius = 4;
         this.config.extra.radiusOffset = 1.8;
         this.config.extra.radiusFactor = 1.25;
+
+        if (window.innerWidth < breakpoints.sm) {
+            this.config.margin.top = 121;
+            this.config.margin.bottom = 30;
+            this.config.padding.right = 0;   
+            this.config.paddingInner = 1;
+            this.config.paddingOuter = 0;
+            this.config.extra.minRadius = 8;
+            this.config.extra.radiusOffset = 1.5;
+            this.config.extra.radiusFactor = 1;
+        }
+
+        
 
         this.chartCircleGroups = new ChartCircleGroups(this);
 

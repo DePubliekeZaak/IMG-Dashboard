@@ -9,6 +9,7 @@ import { flattenColumn } from '../d3-services/_helpers';
 
 export default class CijfersLine extends GraphControllerV2  {
 
+    parentEl;
     chartLine;
     chartBackgroundAreas;
     chartWeekGrid;
@@ -31,11 +32,13 @@ export default class CijfersLine extends GraphControllerV2  {
 
         this._addScale("x","time","horizontal","_date");
         this._addScale("y","linear","vertical",flattenColumn(this.mapping.parameters[0][0].column))
-        this._addPadding(20,40,0,0);
-        this._addMargin(120,140,10,10);
+        this._addPadding(0,0,0,0);
+        this._addMargin(0, 0,10,10);
     }
 
     init() {
+
+        this.parentEl = this.element;
 
         super._init();
 
@@ -47,9 +50,17 @@ export default class CijfersLine extends GraphControllerV2  {
         this.htmlCircle = new HtmlCircle(this);
         this.htmlCircle.draw();
 
-        super._svg();
+        const svgId = "svg-wrapper-" + this.mapping.slug
+        const container = document.createElement('section');
+        container.style.height = "100px";
+        container.style.width = "100%";
+        container.style.marginBottom = '3rem';
+        container.id = svgId;
+        this.element.appendChild(container);
 
-        if(this.data.map( (i) => i[this.firstMapping.column]).filter( (i) => i !== null && i !== undefined).length > 2) {
+        super._svg(container);
+
+        if(this.data.map( (i) => i[this.firstMapping['column']]).filter( (i) => i !== null && i !== undefined).length > 2) {
             this.chartAvgLine.draw();
         }
 
@@ -75,12 +86,12 @@ export default class CijfersLine extends GraphControllerV2  {
 
         super.redraw(data);
 
-        this.htmlCircle.redraw([data.latest],this.firstMapping.column);
+        this.htmlCircle.redraw([data.latest],this.firstMapping['column']);
 
-        if(this.data.map( (i) => i[this.firstMapping.column]).filter( (i) => i !== null && i !== undefined).length > 2) {
-            this.chartBackgroundAreas.redraw(data.slice, this.firstMapping.colour);
-            this.chartWeekGrid.redraw(data.slice, this.firstMapping.colour);
-            this.chartLine.redraw(data.slice, this.firstMapping.colour);
+        if(this.data.map( (i) => i[this.firstMapping['column']]).filter( (i) => i !== null && i !== undefined).length > 2) {
+            this.chartBackgroundAreas.redraw(data.slice, this.firstMapping['colour']);
+            this.chartWeekGrid.redraw(data.slice, this.firstMapping['colour']);
+            this.chartLine.redraw(data.slice, this.firstMapping['colour']);
             this.chartAvgLine.redraw(data);
         }
     }
@@ -91,7 +102,7 @@ export default class CijfersLine extends GraphControllerV2  {
         let minValue = 0;
         this.yScale = this.scales.y.set(data.history.map( d => d[this.parameters.y]),minValue);
 
-        if(data.slice.map( (i) => i[this.firstMapping.column]).filter( (i) => i !== null && i !== undefined).length > 2) {
+        if(data.slice.map( (i) => i[this.firstMapping['column']]).filter( (i) => i !== null && i !== undefined).length > 2) {
             this.chartBackgroundAreas.draw(data.slice);
             this.chartLine.draw(data.slice);
             this.chartWeekGrid.draw(data.slice);

@@ -20,7 +20,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "description" : "",
         "endpoint": "meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
         "slug" : "cijfer_schademeldingen_totaal",
@@ -39,7 +39,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "description" : "",
         "endpoint": "meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
         "slug" : "cijfer_schademeldingen_totaal",
@@ -58,7 +58,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "description" : "",
         "endpoint": "voortgang",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-grap-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
         "slug" : "trend_aanvragen_en_besluiten",
@@ -66,21 +66,34 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "parameters": [
             [
                 {
-                    "label": "Aanvragen",
+                    "label": "Schademeldingen",
                     "column": "nieuw_schademeldingen",
                     "short": "aanvragen",
+                    "colour": "yellow"
+                },
+                {
+                    "label": "Afgehandeld",
+                    "column": "nieuw_afgehandeld",
+                    "short": "besluiten",
+                    "colour": "lightBlue"
+                },
+                {
+                    "label": "Vaste vergoeding aanvragen",
+                    "column": "vaste_vergoeding_nieuwe_meldingen",
+                    "short": "ves aanvragen",
                     "colour": "orange"
                 },
                 {
-                    "label": "Besluiten",
-                    "column": "nieuw_besluiten",
-                    "short": "besluiten",
+                    "label": "Vaste vergoeding besluiten",
+                    "column": "vaste_vergoeding_nieuw_afgehandeld",
+                    "short": "ves besluiten",
                     "colour": "blue"
-                }
+                },
+
             ],
             [
                 {
-                    "label": "aanvragen in behandeling",
+                    "label": "Totaal in behandeling",
                     "column": "in_behandeling",
                     "short": "in beh",
                     "colour": "black"
@@ -92,32 +105,36 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "endpoint": "voortgang",
         "segment": "all",
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-trendline','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
         "slug": "stacked_area_doorlooptijden",
-        "graph": "StackedArea",
+        "graph": "TrendBarsStacked",
         "parameters": [
             [
                 {
                     "label": '2 jaar en ouder',
                     "column": 'langer_dan_twee_jaar_in_procedure',
-                    "colour": "blue"
+                    "colour": "blue",
+                    "short": "> 2 jaar"
                 },
                 {
                     "label": '1-2 jaar oud',
                     "column": 'tussen_jaar_en_twee_jaar_in_procedure',
-                    "colour": "orange"
+                    "colour": "orange",
+                    "short": "1 t/m 2 jaar"
                 },
                 {
                     "label": '0,5-1 jaar oud',
                     "column": 'tussen_half_jaar_en_jaar_in_procedure',
-                    "colour": "moss"
+                    "colour": "moss",
+                    "short": "1/2 t/m 1 jaar"
                 },
                 {
                     "label": '0,5 jaar oud',
                     "column": 'minder_dan_half_jaar_in_procedure',
-                    "colour": "lightBlue"
+                    "colour": "lightBlue",
+                    "short": "< 1/2 jaar"
                 }
             ]
         ],
@@ -126,7 +143,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "endpoint": "voortgang",
         "segment": "all",
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-medium-high','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
         "slug" : "bol_binnen_half_jaar",
@@ -144,7 +161,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "description" : "Het percentage schademeldingen dat in minder dan een half jaar tijd sinds de binnenkomst van een schademelding is afgehandeld. Het IMG streeft ernaar alle reguliere schademeldingen binnen een half jaar (182 dagen) af te handelen. Het percentage wordt berekend over de laatste 2.500 besluiten over schademeldingen. Het vertoont daarmee een voortschrijdend gemiddelde. Gem. tijd tot besluit: Doorlooptijd afgehandeld dossiers",
         "endpoint": "meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
         "slug" : "bol_binnen_half_jaar",
@@ -158,35 +175,11 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-            
-        //     "xScaleType" : "time",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_date",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 20,
-        //         "bottom": 40,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 90,
-        //         "bottom": 160,
-        //         "left": 10,
-        //         "right": 10
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         "units": "dagen",
-                
-        //     }
-        // },
         "header": "Doorlooptijd afgehandeld dossiers",
         "description" : "Dit is bij benadering het aantal dagen waarin de schademelding is afgehandeld sinds de schademelding is binnengekomen. Het gaat daarbij om de mediaan. Vijftig procent van de schademeldingen is daarmee in minder dan het genoemde aantal dagen afgehandeld en vijftig procent in meer dagen. De mediaan wordt berekend over de laatset 2.500 besluiten over schademeldingen.",
         "endpoint": "meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
         "slug" : "bol_binnen_half_jaar",
@@ -201,86 +194,42 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 }
             ]
         ],
-        // "config": {
-        //     "graphType": "CijfersLine",
-        //     "xScaleType" : "time",
-        //     "yScaleType" : "linear",
-        //     "xParameter" : "_date",
-        //     "yParameter" : "",
-        //     "padding": {
-        //         "top": 20,
-        //         "bottom": 40,
-        //         "left": 0,
-        //         "right": 0
-        //     },
-        //     "margin": {
-        //         "top": 90,
-        //         "bottom": 160,
-        //         "left": 10,
-        //         "right": 10
-        //     },
-        //     "extra": {
-        //         "useLineFill": true,
-        //         ,
-                
-        //     }
-        // },
         "header": "Verwachte doorlooptijd nieuw dossier",
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
         "endpoint": "meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4','img-graph-container-bol']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {   
         'slug': 'stacked_area_in_behandeling',
-        'graph': 'StackedArea',
+        'graph': 'TrendBarsStacked',
         'parameters': [
             [
                 {
                     'label': 'Open meldingen CVW',
                     'column': 'schademeldingen_cvw',
-                    'colour': 'lightBlue'
+                    'colour': 'lightBlue',
+                    "short" : "CVW"
                 },
                 {
                     'label': 'Open meldingen voor Westerwijtwerd',
                     'column': 'schademeldingen_voor_westerwijtwerd',
-                    'colour': 'moss'
+                    'colour': 'moss',
+                    "short" : "voor WWW"
                 },
                 {
                     'label': 'Open meldingen na Westerwijtwerd',
                     'column': 'schademeldingen_na_westerwijtwerd',
-                    'colour': 'orange'
+                    'colour': 'orange',
+                    "short" : "na WWW"
                 }
             ]
         ],
-        // 'config': {
-            
-        //     'xScaleType': 'time',
-        //     'yScaleType': 'linear',
-        //     'xParameter': '_date',
-        //     'yParameter': 'MELDING_NA_WESTERWIJTWERD',
-        //     'padding': {
-        //         'top': 20,
-        //         'bottom': 80,
-        //         'left': 60,
-        //         'right': 30
-        //     },
-        //     'margin': {
-        //         'top': 60,
-        //         'bottom': 150,
-        //         'left': 0,
-        //         'right': 0
-        //     },
-        //     'extra': {
-        //         'xScaleTicks': 'timeMonth',
-                
-        //     }
-        // },
         'header': 'Openstaande schademeldingen Westerwijtwerd',
         "description" : "Het aantal schademeldingen dat nog in behandeling is voor de beving van Westerwijtwerd van mei 2019 en van na die beving. Bij de start van de TCMG op 19 maart 2018 kwamen ook ruim 13.000 openstaande schademeldingen binnen van het Centrum Veilig Wonen (CVW) dat voor de NAM de schadeafhandeling verzorgde. De schademeldingen die daarvan nog openstaan, worden hier ook getoond.",
         'endpoint': 'meldingen',
         'segment': 'all',
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-grap-container-medium-high','img-graph-container-vertical-padding']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
         "slug": "ballenbak_status",
@@ -390,7 +339,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
         "endpoint": "voortgang",
         "segment": "all",
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-ballenbak']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
         "slug" : "normalised_status",
@@ -514,48 +463,22 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
     {   
 
         "slug": "meldingen_trend_aos_meldingen",
-        "graph": "TrendLine",
+        "graph": "TrendBars",
         "parameters": [
             [
                 {
                     "label": "Schade opnames",
                     "column": "nieuw_schade_opnames",
-                    "colour": "blue"
+                    "colour": "blue",
+                    "short": "opnames"
                 }
             ]
         ],
-    //     "config": {
-        
-    //         "xScaleType": "time",
-    //         "yScaleType": "linear",
-    //         "xParameter": "_date",
-    //         "yParameter": "nieuw_schade_opnames",
-    //         "padding": {
-    //         "top": 20,
-    //             "bottom": 40,
-    //             "left": 40,
-    //             "right": 0
-    //     },
-    //     "margin": {
-    //         "top": 120,
-    //             "bottom": 40,
-    //             "left": 0,
-    //             "right": 0
-    //     },
-    //     "extra": {
-    //         "xScaleTicks": "quarterly",
-    //             "useLineFill": true,
-    //             "largeHeader" : false,
-                
-    //             "link": "de voortgang",
-    //             "legend": true,
-    //     }
-    // },
     "header" : "Trend schade-opnames",
     "description" : "Het aantal schade-opnames dat voor de gewone schadeprocedure is uitgevoerd vergeleken met het aantal nulmetingen die in het kader van de Stuwmeerregeling zijn uitgevoerd. Bij een schade-opname wordt ook een schadecalculatie gemaakt. Bij de nulmeting wordt alleen de schade vastgelegd en in het kader van de Stuwmeerregeling met een vooraf vastgestelde schadevergoeding afgehandeld. In een klein aantal gevallen gebeurt dat op basis van facturen van een aannemer.",
     "endpoint": "opnames",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-trendline','img-graph-container-vertical-padding']
+    "elementClasslist": ['img-graph-container','img-graph-container-6']
 }
 
 ]

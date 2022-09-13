@@ -16,6 +16,8 @@ import TickerHorizon from './ticker-horizon';
 import TickerBol  from "./ticker-bol";
 import TickerNumbers  from "./ticker-numbers";
 import TrendLine  from './trend-line';
+import TrendBars  from './trend-bars';
+import TrendBarsStacked  from './trend-bars-stacked';
 import BandBars from './band-bars';
 // import { MultiBarProgression } from './_multibar-progression';
 // import { BarProgression } from './_bar-progression';
@@ -30,6 +32,7 @@ import StackedBars from './stacked-bars';
 import  KTORatings from './kto-ratings';
 import  ShortTrend from "./short-trend";
 // import { Results} from "./_results"
+import MuniSelector from "./muni-selector"
 
 
 export const graphs  = {
@@ -50,6 +53,8 @@ export const graphs  = {
     TickerBol,
     TickerNumbers,
     TrendLine,
+    TrendBars,
+    TrendBarsStacked,
     BandBars,
     PieChartSumV2,
     Map,
@@ -59,5 +64,6 @@ export const graphs  = {
     NormalisedBars,
     StackedBars,
     KTORatings,
-    ShortTrend
+    ShortTrend,
+    MuniSelector
 };
