@@ -188,7 +188,7 @@ export default class DashboardHTML {
     }
 
 
-    createGraphGroupElement(graphObject : GraphObject, htmlContainer: HTMLScriptElement) {
+    createGraphGroupElement(graphObject : GraphObject, htmlContainer: HTMLElement) {
 
         let element = document.createElement('article');
 
@@ -210,6 +210,8 @@ export default class DashboardHTML {
                 element.classList.add(className);
             }
         }
+
+        console.log(htmlContainer);
 
         htmlContainer.appendChild(element);
 

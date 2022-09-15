@@ -53,54 +53,58 @@ export default class DashboardData {
 
         let weekData = [];
         let muniData = [];
-        // hoe herken ik arrays met alle gemeentes
-        const arraysWithWeeks = arrays.filter( a => a.length < 2 || a[0].gemeente === a[1].gemeente || eemsdelta.indexOf(a[0].gemeente));
-        const arraysWithMunis = arrays.filter( a => a.length > 1 && a[0]._week === a[1]._week);
-        // make sure data are merged into array with most weeks ..
-        arraysWithWeeks.sort(function (a, b) {
-            return b.length - a.length;
-        });
+        // uitzondering for Grid
+        if(arrays.length > 0) {
+            // hoe herken ik arrays met alle gemeentes
+            const arraysWithWeeks = arrays.filter( a => a.length < 2 || a[0].gemeente === a[1].gemeente || eemsdelta.indexOf(a[0].gemeente));
+            const arraysWithMunis = arrays.filter( a => a.length > 1 && a[0]._week === a[1]._week);
+            // make sure data are merged into array with most weeks ..
+            arraysWithWeeks.sort(function (a, b) {
+                return b.length - a.length;
+            });
 
-        arraysWithWeeks[0].map((item,i)=>{
-            let o = {};
-            if (arraysWithWeeks.length > 1) {
-                for (let i = 1; i < arraysWithWeeks.length; i++) {
-                    let objectToMerge = arraysWithWeeks[i].find(object => object.gemeente === item.gemeente && object._date === item._date);
-                    o = Object.assign(o, item, objectToMerge)
-                }
-            } else {
-                o = item;
-            }
-            weekData.push(o);
-        });
-
-
-        if(arraysWithMunis && arraysWithMunis.length > 0) {
-
-           
-
-            let recentWeeksOnly = arraysWithMunis[0].filter(o => o['_week'] === arraysWithMunis[0][0]['_week']);
-            if (recentWeeksOnly && recentWeeksOnly.length > 0) {
-
-                recentWeeksOnly.map((item, i) => {
-                    let o = {};
-                    if (arraysWithMunis.length > 1) {
-                        for (let i = 1; i < arraysWithMunis.length; i++) {
-                            let objectToMerge = arraysWithMunis[i].find(object => object._date === item._date);
-                            o = Object.assign(o, item, objectToMerge)
-                        }
-                    } else {
-                        o = item;
+            arraysWithWeeks[0].map((item,i)=>{
+                let o = {};
+                if (arraysWithWeeks.length > 1) {
+                    for (let i = 1; i < arraysWithWeeks.length; i++) {
+                        let objectToMerge = arraysWithWeeks[i].find(object => object.gemeente === item.gemeente && object._date === item._date);
+                        o = Object.assign(o, item, objectToMerge)
                     }
-                    muniData.push(o);
+                } else {
+                    o = item;
+                }
+                weekData.push(o);
+            });
 
-                });
+
+            if(arraysWithMunis && arraysWithMunis.length > 0) {
+
+            
+
+                let recentWeeksOnly = arraysWithMunis[0].filter(o => o['_week'] === arraysWithMunis[0][0]['_week']);
+                if (recentWeeksOnly && recentWeeksOnly.length > 0) {
+
+                    recentWeeksOnly.map((item, i) => {
+                        let o = {};
+                        if (arraysWithMunis.length > 1) {
+                            for (let i = 1; i < arraysWithMunis.length; i++) {
+                                let objectToMerge = arraysWithMunis[i].find(object => object._date === item._date);
+                                o = Object.assign(o, item, objectToMerge)
+                            }
+                        } else {
+                            o = item;
+                        }
+                        muniData.push(o);
+
+                    });
+                }
             }
+
+            
+
+            muniData = this.createMapDataForEemsdelta(muniData);
+
         }
-
-        
-
-        muniData = this.createMapDataForEemsdelta(muniData);
 
         return { weekData, muniData };
     }

@@ -1,0 +1,13 @@
+.img-graph-grid-start-1 {
+    grid-column-start: 1;
+}
+
+.img-graph-grid-start-4 {
+    grid-column-start: 4;
+}
+
+.img-graph-grid-end-4 {
+
+    grid-column-end: 4;
+    // grid-column-end: span col4-start;
+}

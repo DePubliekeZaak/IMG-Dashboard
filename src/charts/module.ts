@@ -5,6 +5,7 @@ import CijferDecimalPlus from './cijfer-decimal-plus';
 import Average from './average';
 import CijfersLine  from './cijfers-line';
 import CijfersMonths  from "./cijfers-months";
+import Grid from "./grid";
 // import { CijfersTotals } from "./_cijfers-totals";
 // import { CijfersLineTotals } from "./_cijfers-line-totals";
 import { TotalPlus } from "./total_plus";
@@ -45,6 +46,7 @@ export const graphs  = {
     CijferDecimalPlus,
     CijfersLine,
     CijfersMonths,
+    Grid,
     Horizon,
     Horizon2Y,
     Average,

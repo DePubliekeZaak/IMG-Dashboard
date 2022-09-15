@@ -1,6 +1,7 @@
 
 import { HtmlCircle } from './html-circle';
 import { HtmlAccented} from './html-accented';
+import { HtmlMulti} from './html-multi';
 import { HtmlTriangle } from './html-triangle';
 import { HtmlTotals } from './html-totals';
 import { HtmlNumber } from './html-number';
@@ -21,6 +22,7 @@ export {
     
     HtmlCircle, 
     HtmlAccented,
+    HtmlMulti,
     HtmlTotals, 
     HtmlNumber, 
     HtmlNumberNew, 

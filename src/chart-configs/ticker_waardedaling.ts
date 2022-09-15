@@ -42,7 +42,7 @@ export const tickerWaardedaling : IGraphMapping[] = [
                     "label": "In behandeling",
                     "column": "waardedaling_in_behandeling",
                     "colour": "orange",
-                    "units": "besluiten"
+                    "units": "dossiers"
             }]
         ],
         "header": null,

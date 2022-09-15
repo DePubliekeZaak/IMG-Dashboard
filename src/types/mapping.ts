@@ -26,7 +26,8 @@ export interface IGraphMapping {
     segmentIndicator?: boolean,
     elementClasslist: string[],
     publishDate?: string,
-    municipalitySelect?: boolean
+    municipalitySelect?: boolean,
+    children? : IGraphMapping[]
 }
 
 export type IMappingOption = Mapping | boolean;

@@ -49,6 +49,7 @@ export class HtmlCircle {
 
         let number = document.createElement('span');
         number.classList.add('number');
+        number.classList.add('in_circle');
         number.style.fontSize = '3rem';
         number.style.lineHeight = "1";
         number.style.color = 'black';
@@ -133,15 +134,15 @@ export class HtmlCircle {
 
         if (this.ctrlr.config.extra.segmentIndicator) {
 
-            element.querySelector('.number').innerText = (this.ctrlr.config.qualifier && this.ctrlr.config.qualifier !== undefined) ? value + this.ctrlr.config.qualifier : value;
+            element.querySelector('.number.in_circle').innerText = (this.ctrlr.config.qualifier && this.ctrlr.config.qualifier !== undefined) ? value + this.ctrlr.config.qualifier : value;
 
         } else {
-            element.querySelector('.number').innerText = (value > 9999) ? thousands(value) : value;
+            element.querySelector('.number.in_circle').innerText = (value > 9999) ? thousands(value) : value;
         }
 
         if(value > 9999) {
 
-            element.querySelector('.number').style.fontSize = '2rem'
+            element.querySelector('.number.in_circle').style.fontSize = '2rem'
         }
 
         if(this.ctrlr.config.extra.noRespondents) {
