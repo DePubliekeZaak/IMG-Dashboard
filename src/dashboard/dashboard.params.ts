@@ -23,6 +23,10 @@ export default class DashboardParams {
 
         switch (topic) {
 
+            case 'fysieke_schade' :
+
+                return dashboardMain;
+
             case 'meldingen' :
 
                 return dashboardMeldingen;
@@ -73,7 +77,7 @@ export default class DashboardParams {
 
             default :
 
-                return dashboardMain;
+                return dashboardHome;
         }
     }
 

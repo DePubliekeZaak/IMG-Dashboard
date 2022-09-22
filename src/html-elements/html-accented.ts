@@ -1,5 +1,6 @@
 import { colours } from '../_styleguide/_colours';
 import {convertToCurrency, thousands} from "../d3-services/_helpers";
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export class HtmlAccented {
 
@@ -15,6 +16,15 @@ export class HtmlAccented {
 
       //  console.log(this.ctrlr.mapping.parameters);
 
+      let marginTop = '0';
+
+      if (window.innerWidth < breakpoints.sm) {
+        marginTop = '1.5rem';
+      } else if(window.innerWidth < breakpoints.lg) {
+        marginTop = '.5rem';
+      }
+
+
         let miniContainer = document.createElement('div');
         miniContainer.style.display ='flex';
         miniContainer.style.flexDirection = 'column';
@@ -27,10 +37,12 @@ export class HtmlAccented {
         div.style.position = 'relative';
         div.style.flexDirection = 'column';
         div.style.justifyContent = 'center';
-        div.style.alignItems = 'flex-end';
+        div.style.alignItems = window.innerWidth < breakpoints.lg ? 'center' : 'center';
         div.style.width = 'auto';
       //  div.style.height = (this.ctrlr.config.extra.circleRadius) ? this.ctrlr.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
-        div.style.marginBottom = '1.5rem';
+        div.style.marginBottom = marginTop;
+        div.style.marginTop = marginTop;
+
 
         let number = document.createElement('span');
         number.classList.add('number');
@@ -53,8 +65,8 @@ export class HtmlAccented {
             units.style.fontSize = '.8rem';
             // units.style.textTransform = 'uppercase'
             units.style.display = 'block';
-            units.style.marginTop = '.5rem';
-            units.style.textAlign = 'right';
+            units.style.marginTop = '.37rem';
+            units.style.textAlign =  window.innerWidth < breakpoints.lg ? 'center' : 'right';
             div.appendChild(units);
         }
 
@@ -72,12 +84,12 @@ export class HtmlAccented {
         
         if(element.tagName === 'SECTION') { element = element.parentNode;}
         
-        
-        if(this.ctrlr.firstMapping.format === "currency") {
+        if (this.ctrlr.firstMapping.format === "currency") {
 
             element.querySelector('.number.accented').innerText = convertToCurrency(data[0][this.ctrlr.mapping.parameters[0][0]['column']]);
 
         } else {
+            // console.log(this.ctrlr.config.extra.decimal);
             let value =  (this.ctrlr.config.extra.decimal) ? Math.round(data[0][this.ctrlr.mapping.parameters[0][0]['column']] * 10) / 10 : Math.round(data[0][this.ctrlr.mapping.parameters[0][0]['column']]);
             element.querySelector('.number.accented').innerText = (value > 9999) ? thousands(value) : value;
         }

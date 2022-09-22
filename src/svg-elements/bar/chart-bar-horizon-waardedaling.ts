@@ -23,6 +23,7 @@ export default class ChartBarHorizonWaardedaling {
             .data(data.slice)
             .join("rect")
             .attr("class", "bar_up")
+            .attr("stroke", (d) => colours["orange"][0])
             .attr("fill", (d) => colours["orange"][1])
         ;
 
@@ -30,7 +31,8 @@ export default class ChartBarHorizonWaardedaling {
             .data(data.slice)
             .join("rect")
             .attr("class", "bar_down")
-            .attr("fill", (d) => colours["lightBlue"][1])
+            .attr("stroke", (d) => colours["blue"][0])
+            .attr("fill", (d) => colours["blue"][1])
         ;
 
         this.line= this.ctrlr.svg.layers.data.selectAll("path")
@@ -67,7 +69,7 @@ export default class ChartBarHorizonWaardedaling {
             .attr("x", (d: DataPart)  => {
                 return self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]);
             })
-            .attr("width", self.ctrlr.dimensions.width / data.slice.length - 2)
+            .attr("width", self.ctrlr.dimensions.width / data.slice.length - 4)
             .attr("y", (d) => this.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y])) 
             .attr("height", (d) => {
                return  self.ctrlr.dimensions.height - self.ctrlr.scales.y.scale(d[self.ctrlr.parameters.y])
@@ -78,7 +80,7 @@ export default class ChartBarHorizonWaardedaling {
                 return self.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]);
             })
             .attr("y", self.ctrlr.dimensions.height)
-            .attr("width", self.ctrlr.dimensions.width / data.slice.length - 2)
+            .attr("width", self.ctrlr.dimensions.width / data.slice.length - 4)
             .attr("y", (d) => self.ctrlr.dimensions.height) 
 
             .attr("height", (d) => self.ctrlr.scales.y.scale(-d[self.ctrlr.parameters.y2]) - self.ctrlr.dimensions.height )

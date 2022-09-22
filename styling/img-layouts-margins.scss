@@ -3,6 +3,13 @@
     margin-bottom: 2rem;
   
   }
+
+  .img-graph-grid-container .img-graph-container.img-mobile-margin-vertical {
+
+  @media (max-width : $breakpoint-sm) {
+    margin: 2.5rem auto 2rem auto;
+  }
+}
   
 
 // .img-graph-container-mb {

@@ -24,6 +24,9 @@ export default class DashboardHTML {
         const parentEl = htmlContainer.parentElement;
         parentEl.classList.add('container');
         parentEl.style.width = 'calc(100% - 0rem)';
+
+     
+
         return htmlContainer;
 
     }
@@ -99,6 +102,7 @@ export default class DashboardHTML {
         div.appendChild(header);
 
         let ul = document.createElement('ul');
+        ul.style.flexDirection = 'column';
         ul.classList.add('dashboard_nav');
 
         // let fs = document.createElement('li');
@@ -108,15 +112,28 @@ export default class DashboardHTML {
         // fs.style.fontWeight = '700';
         // ul.appendChild(fs);
 
+        let li_1 = document.createElement('li');
+        li_1.innerText = 'Dashboard';
+        li_1.style.fontWeight = '700';
+        li_1.style.padding = '.125rem 0 0rem 0';
+        li_1.style.marginBottom = '1.5rem';
+        li_1.style.lineHeight = '1.5';
+        li_1.style.cursor = 'pointer';
+        li_1.classList.add('active');
+        // li_1.style.width = '100%';
+        li_1.setAttribute('data-slug', '');
+        li_1.onclick = () =>  this.interactions.switchTopic('','all');
+        ul.appendChild(li_1);
+
         let li = document.createElement('li');
         li.innerText = 'Fysieke schade';
         li.style.fontWeight = '700';
         li.style.padding = '.125rem 0';
         li.style.lineHeight = '1.5';
         li.style.cursor = 'pointer';
-        li.classList.add('active');
-        li.setAttribute('data-slug', '');
-        li.onclick = () =>  this.interactions.switchTopic('','all');
+        // li.classList.add('active');
+        li.setAttribute('data-slug', 'fysieke_schade');
+        li.onclick = () =>  this.interactions.switchTopic('fysieke_schade','all');
         ul.appendChild(li);
 
         for (let i of menuItems) {
@@ -137,6 +154,18 @@ export default class DashboardHTML {
 
             ul.appendChild(li);
         }
+
+        let li3 = document.createElement('li');
+        li3.innerText = 'Publieke data';
+        li3.style.fontWeight = '700';
+        li3.style.padding = '.125rem 0';
+        li3.style.lineHeight = '1.5';
+        li3.style.cursor = 'pointer';
+        li3.style.marginTop = '1rem';
+        // li.classList.add('active');
+        // li3.setAttribute('data-slug', 'fysieke_schade');
+        li3.onclick = () =>  window.open('https://img.publikaan.nl/publieke-data/docs/');;
+        ul.appendChild(li3);
 
         div.appendChild(ul);
 
@@ -210,8 +239,6 @@ export default class DashboardHTML {
                 element.classList.add(className);
             }
         }
-
-        console.log(htmlContainer);
 
         htmlContainer.appendChild(element);
 

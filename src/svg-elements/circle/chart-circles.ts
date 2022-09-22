@@ -96,6 +96,9 @@ export class ChartCircles {
             .attr("r", (d) => {  return this.ctrlr.scales.r.scale(d.value);  })
             .on("mouseover", function (event: any, d: any) {
 
+                // d3.select(event.target)
+                //     .style("fill", d => { return 'black' });
+
                 let html = `
                 
                     Begin deze week bevinden zich ` + d.value + ` dossiers in de fase ` + d.label.toLowerCase() + `
@@ -112,6 +115,9 @@ export class ChartCircles {
                 
             })
             .on("mouseout", function (event, d) {
+
+                this.circles    
+                    .style("fill", d => { return 'white' });
 
                 d3.select('.tooltip')
                     .transition()

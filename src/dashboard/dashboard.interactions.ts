@@ -24,7 +24,7 @@ export default class DashboardInteractions {
             el.parentNode.removeChild(el);
         }
 
-        this.controller.call(newConfig, segment,false);
+        this.controller.call(topic, newConfig, segment,false);
 
         if (window.innerWidth > breakpoints.md) {
             this.updateMenuList(topic);
@@ -35,6 +35,24 @@ export default class DashboardInteractions {
             const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?topic=' + topic;
             window.history.pushState({path:newurl},'',newurl);
         }
+
+        let mobileNav = document.querySelector('.mobile_nav_v2');
+        if (mobileNav) {
+            mobileNav.classList.remove('is-open');
+        } 
+        
+        let mobileNavButton = document.querySelector('.img_dashboard_mobile_nav_button')
+        if(mobileNavButton) {
+            mobileNavButton.classList.remove('is-active');
+        }
+    }
+
+    openMenu() {
+        document.querySelector('.mobile_nav_v2').classList.add('is-open');
+    }
+
+    closeMenu() {
+        document.querySelector('.mobile_nav_v2').classList.remove('is-open');
     }
 
     // showHideSidebarElements(topic) {

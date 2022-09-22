@@ -90,13 +90,14 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "parameters": [
           [
             {
-              "label": "Verwachte duur afhandeling",
+              "label": "Verwachte duur",
               "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
-              "colour": "brown"
+              "colour": "brown",
+              "units": "dagen"
             }
           ]
         ],
-        "header": "Verwachte duur afhandeling",
+        "header": "Verwachte duur",
         "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
         "endpoint": "voortgang",
         "segment": "all",
@@ -228,30 +229,36 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "parameters":  [
         [
             {
-                "label": "Waardedaling",
-                "column": "waardedalingsregeling_totaal_verleend",
-                "colour": "moss",
-                "format": "currency"
+                "label": "Mijnbouwschade",
+                "column": "fysieke_schade_schadebedrag",
+                "colour": "brown",
+                "format" : "currency"
             },
             {
-                "label": "Fysieke schade",
-                "column": "fysieke_schade_totaal_verleend",
+                "label": "Stuwmeerregeling",
+                "column": "fysieke_schade_stuwmeerregeling_bedrag",
                 "colour": "blue",
-                "format": "currency"
+                "format" : "currency"
             },
             {
-                "label": "Immateriele schade",
-                "column": "immateriele_schade_totaal_verleend",
+                "label": "Bijkomende kosten",
+                "column": "fysieke_schade_bijkomende_kosten_bedrag",
+                "colour": "moss",
+                "format" : "currency"
+            },
+            {
+                "label": "Wettelijke rente",
+                "column": "fysieke_schade_wettelijke_rente_bedrag",
                 "colour": "orange",
-                "format": "currency"
+                "format" : "currency"
             }
         ],
         [
             {
                 "label": "Totaal",
-                "column": "waardedalingsregeling_totaal_verleend",
+                "column": "fysieke_schade_totaal_verleend",
                 "colour": "gray",
-                "format": "currency"
+                "format" : "currency"
             }
         ]
     ],
@@ -261,177 +268,93 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
+    // {
+    //     "slug": "meldingen_taart_aos_meldingen",
+    //     "graph": "PieChartSumV2",
+    //     "parameters":  [
+    //         [
+    //             {
+    //                 "label": "Wel",
+    //                 "column": "aos_meldingen_gegrond",
+    //                 "colour": "moss"
+    //             },
+    //             {
+    //                 "label": "Niet",
+    //                 "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
+    //                 "colour": "blue"
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 "label": "Totaal",
+    //                 "column": "aos_meldingen",
+    //                 "colour": "gray"
+    //             }
+    //         ]
+    //     ],
+    //     "header" : "Wel/niet acuut onveilige situatie",
+    //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
+    //     "endpoint": "voortgang",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-4']
+    // },
     {
-        "slug": "meldingen_taart_aos_meldingen",
+        "slug": "taart_bezwaren",
         "graph": "PieChartSumV2",
         "parameters":  [
             [
                 {
-                    "label": "Wel",
-                    "column": "aos_meldingen_gegrond",
+                    "label": "Gegrond",
+                    "column": "bezwaren_gegrond",
                     "colour": "moss"
                 },
                 {
-                    "label": "Niet",
-                    "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
+                    "label": "Deels gegrond",
+                    "column": "bezwaren_deels_gegrond",
+                    "colour": "orange"
+                },
+                {
+                    "label": "Ongegrond",
+                    "column": "bezwaren_ongegrond",
                     "colour": "blue"
+                },
+                {
+                    "label": "Niet ontvankelijk",
+                    "column": "bezwaren_niet_ontvankelijk",
+                    "colour": "purple"
+                },
+                {
+                    "label": "Ingetrokken",
+                    "column": "bezwaren_ingetrokken",
+                    "colour": "brown"
+                },
+                {
+                    "label": "Naar schadeprocedure",
+                    "column": "bezwaren_doorgezet",
+                    "colour": "orange"
                 }
             ],
             [
                 {
-                    "label": "Totaal",
-                    "column": "aos_meldingen",
-                    "colour": "gray"
+                    "label": "Totaal afgehandeld",
+                    "column": null,
+                    "colour": "black"
+                }
+            ],
+            [
+                {
+                    "label": "In behandeling",
+                    "column": "bezwaren_in_behandeling",
+                    "colour": "yellow"
                 }
             ]
         ],
-        "header" : "Wel/niet acuut onveilige situatie",
-        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-        "endpoint": "voortgang",
+        "header" : "Bezwaren",
+        "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
+        "endpoint": "reacties",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
-// //         // {
-// //         //     "label": "Taart AOS Gegrond",
-// //         //     "slug": "meldingen_taart_aos_meldingen",
-// //         //     "mapping":  [[
-// //         //         [
-// //         //             {
-// //         //                 "label": "Wel",
-// //         //                 "column": "aos_meldingen_gegrond",
-// //         //                 "colour": "moss"
-// //         //             },
-// //         //             {
-// //         //                 "label": "Niet",
-// //         //                 "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
-// //         //                 "colour": "blue"
-// //         //             }
-// //         //         ],
-// //         //         [
-// //         //             {
-// //         //                 "label": "Totaal",
-// //         //                 "column": "aos_meldingen",
-// //         //                 "colour": "gray"
-// //         //             }
-// //         //         ]
-// //         //     ]],
-// //         //     "config": {
-// //         //
-// //         //         "graphType": "PieChartSum",
-// //         //         "xScaleType" : false,
-// //         //         "yScaleType" : false,
-// //         //         "xParameter" : false,
-// //         //         "yParameter" : false,
-// //         //         "padding": {
-// //         //             "top": 0,
-// //         //             "bottom": 0,
-// //         //             "left": 0,
-// //         //             "right": 0
-// //         //         },
-// //         //         "margin": {
-// //         //             "top": 0,
-// //         //             "bottom": 15,
-// //         //             "left": 0,
-// //         //             "right": 0
-// //         //         },
-// //         //         "extra" :{
-// //         //             "currencyLabels" : false,
-// //         //             "legendWidth" : 220,
-// //         //             "maxRadius" : 100,
-// //         //             "innerRadius" : 20,
-// //         //             "tieten": false,
-// //         //             "header" : "Wel/niet acuut onveilige situatie"
-// //         //         }
-// //         //     },
-// //         //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-// //         //     "endpoint": "voortgang",
-// //         //     "segment": "all",
-// //         //     "elementClasslist": ['img-graph-container','img-graph-container-4']
-// //         // },
-// //     // {
-// //     //     "label": "Taart Bezwaren",
-// //     //     "slug": "taart_bezwaren",
-// //     //     "mapping":  [
-// //     //         [
-// //     //             {
-// //     //                 "label": "Gegrond",
-// //     //                 "column": "bezwaren_gegrond",
-// //     //                 "colour": "moss"
-// //     //             },
-// //     //             {
-// //     //                 "label": "Deels gegrond",
-// //     //                 "column": "bezwaren_deels_gegrond",
-// //     //                 "colour": "orange"
-// //     //             },
-// //     //             {
-// //     //                 "label": "Ongegrond",
-// //     //                 "column": "bezwaren_ongegrond",
-// //     //                 "colour": "blue"
-// //     //             },
-// //     //             {
-// //     //                 "label": "Niet ontvankelijk",
-// //     //                 "column": "bezwaren_niet_ontvankelijk",
-// //     //                 "colour": "purple"
-// //     //             },
-// //     //             {
-// //     //                 "label": "Ingetrokken",
-// //     //                 "column": "bezwaren_ingetrokken",
-// //     //                 "colour": "brown"
-// //     //             },
-// //     //             {
-// //     //                 "label": "Naar schadeprocedure",
-// //     //                 "column": "bezwaren_doorgezet",
-// //     //                 "colour": "orange"
-// //     //             }
-// //     //         ],
-// //     //         [
-// //     //             {
-// //     //                 "label": "Totaal afgehandeld",
-// //     //                 "column": false,
-// //     //                 "colour": false
-// //     //             }
-// //     //         ],
-// //     //         [
-// //     //             {
-// //     //                 "label": "In behandeling",
-// //     //                 "column": "bezwaren_in_behandeling",
-// //     //                 "colour": "gray"
-// //     //             }
-// //     //         ]
-// //     //     ],
-// //     //     "config": {
-
-// //     //         "graphType": "PieChartSum",
-// //     //         "xScaleType" : false,
-// //     //         "yScaleType" : false,
-// //     //         "xParameter" : false,
-// //     //         "yParameter" : false,
-// //     //         "padding": {
-// //     //             "top": 0,
-// //     //             "bottom": 0,
-// //     //             "left": 0,
-// //     //             "right": 0
-// //     //         },
-// //     //         "margin": {
-// //     //             "top": 0,
-// //     //             "bottom": 15,
-// //     //             "left": 0,
-// //     //             "right": 0
-// //     //         },
-// //     //         "extra" :{
-// //     //             "currencyLabels" : false,
-// //     //             "legendWidth" : 220,
-// //     //             "maxRadius" : 100,
-// //     //             "innerRadius" : 20,
-// //     //             "header" : "Bezwaren",
-// //     //             "segmentIndicator": true,
-// //     //         }
-// //     //     },
-// //     //     "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
-// //     //     "endpoint": "reacties",
-// //     //     "segment": "all",
-// //     //     "elementClasslist": ['img-graph-container','img-graph-container-4']
-// //     // },
     {
         "slug": "taart_specials",
         "graph": "PieChartSumV2",

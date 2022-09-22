@@ -86,9 +86,11 @@ export default class SumLegend {
 
             this.legend.svg.layers.legend.append("rect")
                 .attr("y", (i * this.rowHeight) - 2)
-                .attr("height",12)
-                .attr("width",12)
-                .attr("fill", colours[d['colour']][0] )
+                .attr("height",11)
+                .attr("width",11)
+                .attr("fill", colours[d['colour']][1] )
+                .attr("stroke", colours[d['colour']][0] )
+                .attr("stroke-width", 1 )
                 .style("opacity", 1);
 
             this.legend.svg.layers.legend.append("text")
@@ -120,7 +122,8 @@ export default class SumLegend {
                 .attr("height", .5)
                 .attr("width", config.extra.legendWidth)
                 .style("opacity", 1)
-                .style("fill", 'black');
+                .attr("fill", "black")
+     
 
             this.legend.svg.layers.legend.append("text")
                 .attr("class", "small-label")
@@ -144,9 +147,10 @@ export default class SumLegend {
 
             this.legend.svg.layers.legend.append("rect")
                 .attr("y", ((data[0].length + 1.5) * this.rowHeight) + 6)
-                .attr("height",12)
-                .attr("width",12)
-                .attr("fill", colours[data[2][0]['colour']][0])
+                .attr("height",11)
+                .attr("width",11)
+                .attr("fill", colours[data[2][0]['colour']][1])
+                .attr("stroke", colours[data[2][0]['colour']][0])
                 .style("opacity", 1);
 
             this.legend.svg.layers.legend.append("text")

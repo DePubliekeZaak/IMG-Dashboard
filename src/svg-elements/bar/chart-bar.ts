@@ -21,7 +21,8 @@ export class ChartBar {
             .data(data)
             .join("rect")
             .attr("class", "bar")
-            .attr("fill", (d) => colours[d.colour][0])
+            .attr("fill", (d) => colours[d.colour][1])
+            .attr("stroke", (d) => colours[d.colour][0])
         ;
 
         this.barLabels = this.ctrlr.svg.layers.data.selectAll(".barLabel")

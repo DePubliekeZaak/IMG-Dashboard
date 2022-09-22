@@ -33,11 +33,11 @@ export default class Cijfer extends GraphControllerV2   {
         this.htmlCircle = new HtmlCircle(this);
         this.htmlCircle.draw();
 
-        this.update(this.data,this.segment,false);
-
         if(this.mapping.parameters[0][0].format == "decimal") {
             this.config.extra.decimal = true;
         }
+
+        this.update(this.data,this.segment,false);
 
     }
 

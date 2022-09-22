@@ -20,6 +20,8 @@ export interface IGraphMapping {
     args?: string[],
     parameters: Mapping[][],
     header: string,
+    linkLabel?: string,
+    linkTopic?: string,
     description: string,
     endpoint: string | boolean,
     segment: string | boolean,

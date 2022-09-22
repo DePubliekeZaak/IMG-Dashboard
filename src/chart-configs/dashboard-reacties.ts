@@ -117,12 +117,12 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     {
                         "label": "6",
                         "column": "fysieke_schade_doorlopend_rapportcijfer_6",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "7",
                         "column": "fysieke_schade_doorlopend_rapportcijfer_7",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "8",
@@ -169,12 +169,12 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": "6",
                     "column": "fysieke_schade_maand_rapportcijfer_6",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 },
                 {
                     "label": "7",
                     "column": "fysieke_schade_maand_rapportcijfer_7",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 },
                 {
                     "label": "8",
@@ -255,12 +255,12 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": "6",
                     "column": "waardedaling_doorlopend_rapportcijfer_6",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 },
                 {
                     "label": "7",
                     "column": "waardedaling_doorlopend_rapportcijfer_7",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 },
                 {
                     "label": "8",
@@ -302,17 +302,17 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": "5",
                     "column": "waardedaling_maand_rapportcijfer_5",
-                    "colour": "lightBlue"
+                    "colour": "orange"
                 },
                 {
                     "label": "6",
                     "column": "waardedaling_maand_rapportcijfer_6",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 },
                 {
                     "label": "7",
                     "column": "waardedaling_maand_rapportcijfer_7",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 },
                 {
                     "label": "8",
@@ -394,12 +394,12 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     {
                         "label": "6",
                         "column": "ves_doorlopend_rapportcijfer_6",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "7",
                         "column": "ves_doorlopend_rapportcijfer_7",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "8",
@@ -441,17 +441,17 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     {
                         "label": "5",
                         "column": "ves_maand_rapportcijfer_5",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "6",
                         "column": "ves_maand_rapportcijfer_6",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "7",
                         "column": "ves_maand_rapportcijfer_7",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "8",
@@ -532,12 +532,12 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     {
                         "label": "6",
                         "column": "ims_doorlopend_rapportcijfer_6",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "7",
                         "column": "ims_doorlopend_rapportcijfer_7",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "8",
@@ -579,17 +579,17 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     {
                         "label": "5",
                         "column": "ims_maand_rapportcijfer_5",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "6",
                         "column": "ims_maand_rapportcijfer_6",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "7",
                         "column": "ims_maand_rapportcijfer_7",
-                        "colour": "lightBlue"
+                        "colour": "blue"
                     },
                     {
                         "label": "8",
@@ -665,7 +665,7 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": "Geen reactie",
                     "column": "nieuw_adviesrapport_geen_reactie",
-                    "colour": "lightBlue"
+                    "colour": "blue"
                 }
             ]
         ],

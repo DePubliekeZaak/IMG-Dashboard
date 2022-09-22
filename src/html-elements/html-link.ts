@@ -1,34 +1,55 @@
+import { breakpoints } from "../_styleguide/_breakpoints";
+
 export class HtmlLink {
 
+    linkElement;
+
     constructor(
+        private main : any,
         private element : HTMLElement,
         private label : string,
-        private url : string
+        private topic : string
     ){
-       this.create();
+    //    this.draw();
     }
 
 
-    create() {
+    draw() {
 
-        let div = document.createElement('div');
-        div.classList.add('dashboard_link');
-        div.style.marginTop = '.5rem';
+        this.linkElement = document.createElement('div');
+        this.linkElement.style.width = '100%';
 
         let a = document.createElement('a');
-        a.href = '';
-        a.innerText = 'Meer over ' + this.label;
-        a.style.fontFamily = 'NotoSans Regular';
-        a.style.textTransform = 'lowercase';
+        a.onclick = () => this.main.interactions.switchTopic(this.topic,'all');
+        a.innerHTML = `<span style="line-height: 1.25; border-bottom: 1px solid;">` + this.label + `</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30" style="margin-left: .5rem"><path d="M20.4 7H1v15.9h19.4l9.6-8L20.4 7z" fill="#000"></path></svg>`; 
+        a.style.justifyContent = window.innerWidth < breakpoints.sm ? 'center' : 'flex-start';
+        a.style.alignSelf = 'flex-end';
         a.style.color = 'black';
         a.style.textDecoration = 'none';
-        a.style.borderBottom = '1px solid black';
-        a.style.cursor = 'pointer';
-        a.style.fontSize = '.8rem';
+        a.style.display = 'flex';
+        a.style.flexDirection = 'row';
+        a.style.padding = window.innerWidth < breakpoints.sm ? '2rem 0 2.5rem 0' : '2.5rem 0 0.5rem 0';
 
-        div.appendChild(a);
+        this.linkElement.appendChild(a);
 
-        this.element.appendChild(div);
+        this.element.appendChild(this.linkElement);
+    }
+
+    hide() {
+        this.linkElement.style.opacity = '0';
+    }
+
+    show() {
+        this.linkElement.style.opacity = '1';
     }
 
 }
+
+
+
+// const link = document.createElement('a');
+// link.href = '/dashboard';
+// link.innerHTML = `<span style="padding-right:.5rem;line-height: 1.25;">Meer cijfers en grafieken</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30"><path d="M20.4 7H1v15.9h19.4l9.6-8L20.4 7z" fill="#000"></path></svg>`;
+
+
+// this.htmlContainer.appendChild(link);

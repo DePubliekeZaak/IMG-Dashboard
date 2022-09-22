@@ -3,7 +3,7 @@ import { slugify } from '../../utils/slugify.utils';
 
 import { GraphData, ID3DataStackedSerie, ID3DataStackedItem, IKeyValueObject } from '../../types/data';
 
-const colourArray = ['moss','lightBlue','blue','purple'];
+const colourArray = ['moss','orange','blue','purple'];
 
 export class ChartStackedBarsNormalized {
 
@@ -44,7 +44,7 @@ export class ChartStackedBarsNormalized {
             .attr('x', 0)
             .attr('dx', '0px')
             .attr('dy', '-6px')
-            .style("fill", "white")
+            .style("fill", "black")
             .style("text-anchor", "middle")
         ;
 
@@ -57,11 +57,6 @@ export class ChartStackedBarsNormalized {
             .attr('dy', '2px')
             .style("text-anchor", "start")
             .style("font-size",".8rem")
-            // .attr('fill-opacity', 0)
-            // .transition()
-            // .delay(500)
-            // .duration(500)
-      
             .attr('fill-opacity', 1);
     }
 
@@ -73,7 +68,8 @@ export class ChartStackedBarsNormalized {
 
         this.series
             .attr("class", (d: ID3DataStackedSerie, i: number) => "stackGroup " + slugify(d.key))
-            .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][0])
+            .attr('stroke', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][0])
+            .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][1])
             .attr("transform", "translate(0," + (self.ctrlr.config.padding.top) + ")");
 
         this.bar
@@ -83,7 +79,7 @@ export class ChartStackedBarsNormalized {
             // .duration(200)
             .attr("x", (d: ID3DataStackedItem)  => this.ctrlr.scales.x.fn(d[0]))
 
-            .attr("width", (d: ID3DataStackedItem) => this.ctrlr.scales.x.fn(d[1]) - this.ctrlr.scales.x.fn(d[0]))
+            .attr("width", (d: ID3DataStackedItem) => this.ctrlr.scales.x.fn(d[1]) - this.ctrlr.scales.x.fn(d[0]) - 5)
            ;
 
         this.barLabels
@@ -101,6 +97,8 @@ export class ChartStackedBarsNormalized {
                 return 'translate(' + (this.ctrlr.scales.x.fn(d[0]) - xOffset) + ',' + ((this.ctrlr.scales.y.fn(d.data['label']) + ( this.ctrlr.scales.y.scale.bandwidth() / 2)) + 11) +')';
             })
             .attr('fill-opacity', 0)
+            .attr('stroke', (d: ID3DataStackedSerie, i: number)  => "transparent")
+            .attr('fill', (d: ID3DataStackedSerie, i: number)  => "black")
             .transition()
             .delay(500)
             .duration(500)

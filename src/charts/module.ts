@@ -23,16 +23,17 @@ import TrendBarsStacked  from './trend-bars-stacked';
 import BandBars from './band-bars';
 // import { MultiBarProgression } from './_multibar-progression';
 // import { BarProgression } from './_bar-progression';
-import  PieChartSumV2 from './pie-chart-sum-v2';
-import  Map  from './map';
-import  FlowDossierCount from './flow-dossier-count';
+import PieChartSumV2 from './pie-chart-sum-v2';
+import PieChartV2 from './pie-chart-v2';
+import Map  from './map';
+import FlowDossierCount from './flow-dossier-count';
 import Ballenbak  from './ballenbak';
 import StackedArea from './stacked-area';
 import NormalisedBars from './normalised_bars';
 import StackedBars from './stacked-bars';
 // import { Ratings } from './ratings';
-import  KTORatings from './kto-ratings';
-import  ShortTrend from "./short-trend";
+import KTORatings from './kto-ratings';
+import ShortTrend from "./short-trend";
 // import { Results} from "./_results"
 import MuniSelector from "./muni-selector"
 import SectionHeader from "./section-header"
@@ -62,6 +63,7 @@ export const graphs  = {
     TrendBarsStacked,
     BandBars,
     PieChartSumV2,
+    PieChartV2,
     Map,
     FlowDossierCount,
     Ballenbak,

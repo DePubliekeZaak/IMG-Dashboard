@@ -1,5 +1,6 @@
 import { colours } from '../_styleguide/_colours';
 import {thousands} from "../d3-services/_helpers";
+import { breakpoints } from '../_styleguide/_breakpoints';
 
 export class HtmlCircle {
 
@@ -45,7 +46,7 @@ export class HtmlCircle {
         div.style.alignItems = 'center';
         div.style.width = (this.ctrlr.config.extra.circleRadius) ? this.ctrlr.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
         div.style.height = (this.ctrlr.config.extra.circleRadius) ? this.ctrlr.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
-        div.style.marginBottom = '1.5rem';
+        div.style.margin = window.innerWidth < breakpoints.sm ? '2rem 0'  : '0 0 1.5rem 0';
 
         let number = document.createElement('span');
         number.classList.add('number');

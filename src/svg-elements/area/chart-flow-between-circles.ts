@@ -34,17 +34,24 @@ export class ChartFlowBetweenCircles {
 
         this.startPoint = this.ctrlr.svg.layers.data
             .append("path")
+            .style("stroke", (d) => {
+                return colours.moss[0]
+            })
             .style("fill", (d) => {
-                return colours.moss[0];
-            });
+                return colours.moss[1];
+            })
+            .raise();
         // .style("opacity", (d) => {
         //     return .75;
         // });
 
         this.endPoint = this.ctrlr.svg.layers.data
             .append("path")
-            .style("fill", (d) => {
+            .style("stroke", (d) => {
                 return colours.orange[0];
+            })
+            .style("fill", (d) => {
+                return colours.orange[1];
             });
 
     }
@@ -57,17 +64,22 @@ export class ChartFlowBetweenCircles {
             .data(data)
             .join("path")
             .attr("class","flow")
-            .style("fill", (d) => { return colours[d.colour][0] })
-            .on("mouseover", function(event: any, d: any) {
+            .style("stroke", (d) => { return colours[d.colour][0] })
+            .style("fill", (d) => { return colours[d.colour][1] })
+            .on("mouseover", function(event: any, dd: any) {
 
                 // self.ctrlr.svg.layers.data
                 //     .attr("class","showturnover");
-                let i = data.indexOf(d);
+
+                d3.select(event.target)
+                .style("fill", (d: any) => { return colours[d.colour][0] })
+
+                let i = data.indexOf(dd);
         
 
                 let html = `
                 
-                    Begin deze week kwamen ` + d.outflow + ` dossiers in de fase ` + data[i + 1]['label'].toLowerCase() + `
+                    Begin deze week kwamen ` + dd.outflow + ` dossiers in de fase ` + data[i + 1]['label'].toLowerCase() + `
                 
                 `;
                 
@@ -80,6 +92,10 @@ export class ChartFlowBetweenCircles {
                     .style("opacity", 1);
             })
             .on("mouseout", function(d) {
+
+                d3.select('.tooltip').style("opacity", 0);
+
+                self.flows.style("fill", (d: any) => { return colours[d.colour][1] })
 
                 self.ctrlr.svg.layers.data
                     .attr("class","");

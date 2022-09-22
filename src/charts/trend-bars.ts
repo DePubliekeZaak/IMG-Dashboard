@@ -68,8 +68,6 @@ export default class TrendBars extends GraphControllerV2 {
                 this.chartLines.push(new ChartLineMiddled(this, getMappingKey(this.mapping.parameters[0][i],"column"), getMappingKey(this.mapping.parameters[0][i],"colour")));
         }
 
-        
-
         this.chartFocus = new ChartFocusTime(this);
         this.legend = new HtmlLegendDots(this);
 
@@ -117,8 +115,6 @@ export default class TrendBars extends GraphControllerV2 {
     }
 
     draw(data: GraphData) {
-
-      
 
         this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
 

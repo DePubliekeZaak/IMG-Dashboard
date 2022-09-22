@@ -25,7 +25,7 @@ export const menuItems = [
     },
     {
         topic: 'immateriele_schade',
-        label: 'Immateriele schade'
+        label: 'Immateriële schade'
     },
     {
         topic: 'reacties',

@@ -141,13 +141,14 @@ export const dashboardWaardedalingsRegeling : (GraphObject|IGraphMapping)[] = [
     },
     {
         "slug" : "gem_aanvragen",
-        "graph": "Average",
+        "graph": "Cijfer",
         "parameters": [
             [
                 {
                     "label": "Gem. aantal aanvragen per adres",
                     "column": "gemiddeld_aantal_aanvragen_per_adres",
-                    "colour": "orange"
+                    "colour": "orange",
+                    "format": "decimal"
                 }
             ]
         ],
@@ -159,13 +160,14 @@ export const dashboardWaardedalingsRegeling : (GraphObject|IGraphMapping)[] = [
     },
     {
         "slug" : "gem_aanvragers",
-        "graph": "Average",
+        "graph": "Cijfer",
         "parameters": [
             [
                 {
                     "label": "Gem. aantal aanvragers per adres",
                     "column": "gemiddeld_aantal_aanvragers_per_adres",
-                    "colour": "moss"
+                    "colour": "moss",
+                    "format": "decimal"
                 }
             ]
         ],

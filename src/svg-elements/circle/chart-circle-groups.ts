@@ -79,7 +79,8 @@ export default class ChartCircleGroups {
         this.circles = this.circleGroups
             .append("circle")
             .attr("class","circle")
-            .style("fill", (d) => colours[d.colour][0]);
+            .style("stroke", (d) => colours[d.colour][0])
+            .style("fill", (d) => colours[d.colour][1]);
 
         this.circlesText = this.circleGroups
             .append("text")
@@ -152,7 +153,7 @@ export default class ChartCircleGroups {
                 .on("mouseout", function(d) {
 
                     self.circles
-                        .style("fill", (dd: any) => colours[dd.colour][0]);
+                        .style("fill", (dd: any) => colours[dd.colour][1]);
 
                     self.tooltip
                         .transition()

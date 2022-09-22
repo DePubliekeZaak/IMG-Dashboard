@@ -27,7 +27,8 @@ export default class ChartStackedBars {
             .data(data)
             .join("g")
             .attr("class", (d,i) => "serie " + mapping[0][i]['colour'])
-            .attr("fill", (d,i) => colours[mapping[0][i]['colour']][0])
+            .attr("stroke", (d,i) => colours[mapping[0][i]['colour']][0])
+            .attr("fill", (d,i) => colours[mapping[0][i]['colour']][1])
 
         this.bars = this.series.selectAll(".bar")
             .data(d => d)
@@ -48,11 +49,15 @@ export default class ChartStackedBars {
             .attr("x", (d: any)  => self.ctrlr.scales.x.scale(d.data[self.ctrlr.parameters.x]))
             .attr("y", self.ctrlr.dimensions.height)
             .attr("height", 0)
-            .attr("width", width < 2 ? 1 : width)
+            .attr("width", width < 2 ? 1 : width - 1.5)
             .transition()
             .duration(500)
             .attr("y", (d) => self.ctrlr.scales.y.scale(d[1]))
-            .attr("height", (d) => self.ctrlr.scales.y.scale(d[0]) - self.ctrlr.scales.y.scale(d[1]))
+            .attr("height", (d, i) => {
+                let h = self.ctrlr.scales.y.scale(d[0]) - self.ctrlr.scales.y.scale(d[1]);
+                // console.log(d)
+                return h;
+            })
         ;
 
         this.bars
@@ -62,7 +67,7 @@ export default class ChartStackedBars {
        
 
             d3.select(event.target)
-                .attr("fill", colours[colour][1])
+                .attr("fill", colours[colour][0])
 
             d3.select('.tooltip')
                 .html(() => {

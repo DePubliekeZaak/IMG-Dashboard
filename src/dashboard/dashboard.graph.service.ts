@@ -13,7 +13,7 @@ export default class DashboardGraph {
 
     }
 
-    call(dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
+    call(params, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
 
      
 
@@ -72,7 +72,7 @@ export default class DashboardGraph {
 
                 const graphType = graphObject.config ? graphObject.config.graphType : graphObject.graph;
 
-                const element = this.ctrlr.html.createGraphGroupElement(graphObject, htmlContainer);
+                const element = this.ctrlr.html.createGraphGroupElement(graphObject, htmlContainer); // htmlContainer.querySelector('#img-dashboard-container'
 
                 if (update) {
                     this.graphMethods[graphObject.slug].update(data, segment, true);

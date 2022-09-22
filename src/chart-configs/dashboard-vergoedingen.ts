@@ -83,7 +83,7 @@ export const dashboardVergoedingen : (GraphObject|IGraphMapping)[] = [
             {
                 "label": "Percentage toegewezen",
                 "column": "fysieke_schade_week_percentage_toegewezen_besluiten",
-                "colour": "lightBlue",
+                "colour": "blue",
                 "short": "toegewezen",
                 "format": "percentage"
             }

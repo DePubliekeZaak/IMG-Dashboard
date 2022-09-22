@@ -1,5 +1,7 @@
 export default class HtmlHeader {
 
+    headerElement;
+
     constructor(
         private element,
         private label
@@ -7,19 +9,20 @@ export default class HtmlHeader {
 
     draw() {
 
-        let headerEelement = this.element.querySelector('.article_header')
+        const prevHeaderElement = this.element.querySelector('.article_header')
 
-        if (headerEelement) {
-            headerEelement.parentNode.removeChild(headerEelement)
+        if (prevHeaderElement) {
+            prevHeaderElement.parentNode.removeChild(this.headerElement)
         }
 
-        let headerContainer = document.createElement('div');
-        headerContainer.classList.add('article_header');
-        headerContainer.style.borderBottom = '1px solid black';
-        headerContainer.style.position = 'relative'
-        headerContainer.style.width = 'calc(100% - 0px)';
-        headerContainer.style.paddingBottom = '.75rem';
-        headerContainer.style.marginBottom = '1.5rem';
+        this.headerElement = document.createElement('div');
+        this.headerElement.classList.add('article_header');
+        this.headerElement.style.position = 'relative';
+        this.headerElement.style.borderBottom = '1px solid black';
+        this.headerElement.style.width = 'calc(100% - 0px)';
+        this.headerElement.style.paddingBottom = '.75rem';
+        this.headerElement.style.marginBottom = '2.5rem';
+
 
         let h = document.createElement('h3');
         h.innerText = this.label;
@@ -29,7 +32,7 @@ export default class HtmlHeader {
         h.style.lineHeight = '1.44';
         h.style.margin = '0';
 
-        headerContainer.appendChild(h);
+        this.headerElement.appendChild(h);
 
         for (let i = 0; i < 3; i++) {
 
@@ -52,14 +55,22 @@ export default class HtmlHeader {
                 span.style.right =  '0';
             }
 
-            headerContainer.appendChild(span);
+            this.headerElement.appendChild(span);
         }
 
-        this.element.appendChild(headerContainer);
+        this.element.appendChild(this.headerElement);
        // this.element.insertBefore(headerContainer,this.element.childNodes[0]);
        return true;
     }
 
     redraw() {
+    }
+
+    hide() {
+        this.headerElement.style.opacity = '0';
+    }
+
+    show() {
+        this.headerElement.style.opacity = '1';
     }
 }

@@ -24,9 +24,9 @@ export class ChartPie {
             .data(pie(data[0]), (d => d.data.label))
             .join("path")
             .attr("class", "arc")
-            .attr("fill", (d: any) => colours[d.data.colour][0])
-            .attr("stroke", "#fff")
-            .attr("stroke-width", "2px")
+            .attr("fill", (d: any) => colours[d.data.colour][1])
+            .attr("stroke", (d: any) => colours[d.data.colour][0])
+            .attr("stroke-width", "1px")
             .on("mouseover", function (event: any, d: any, array: any[]) {
 
                 self.ctrlr.svg.arcs
@@ -51,7 +51,7 @@ export class ChartPie {
             .on("mouseout", function (event: any, d: any) {
 
                 self.ctrlr.svg.arcs
-                    .attr("fill", (dd:any) => colours[dd.data.colour][0]);
+                    .attr("fill", (dd:any) => colours[dd.data.colour][1]);
 
                 d3.select('.tooltip')
                     .transition()
@@ -80,7 +80,9 @@ export class ChartPie {
 
             arc = d3.arc()
                 .outerRadius(radius - 0)
-                .innerRadius(innerRadius);
+                .innerRadius(innerRadius)
+                .padAngle(4)
+                .padRadius(4);
 
         } else {
 
@@ -103,7 +105,9 @@ export class ChartPie {
 
             arc = d3.arc()
                 .outerRadius(config.extra.maxRadius)
-                .innerRadius(config.extra.innerRadius);
+                .innerRadius(config.extra.innerRadius)
+                .padAngle(4)
+                .padRadius(4);
         }
 
         function arcTween(a) {

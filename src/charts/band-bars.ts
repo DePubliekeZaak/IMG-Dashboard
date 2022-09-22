@@ -58,8 +58,6 @@ export default class BandBars extends GraphControllerV2 {
 
         super._svg(container);
 
-        
-
         this.config.paddingInner = .25;
         this.config.paddingOuter = 0.25;
 
@@ -86,7 +84,6 @@ export default class BandBars extends GraphControllerV2 {
                     value: d[column],
                     gemeente: d['gemeente'],
                     _date: d['_date']
-
                 }
             )
         }

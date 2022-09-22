@@ -5,7 +5,7 @@ import { Dimensions } from '../types/dimensions';
 import { GraphObject } from '../types/graphObject';
 import { IGraphMapping, IMappingOption, Mapping } from '../types/mapping';
 import { getFirstMapping, getParameter } from '../d3-services/_helpers';
-import { HtmlHeader, HtmlPopup, HtmlSegment } from '../html-elements/module';
+import { HtmlHeader, HtmlPopup, HtmlPopupV2, HtmlSegment } from '../html-elements/module';
 import { DataPart } from "../types/data";
 import { IChartDimensions } from "../chart-basics/chart-dimensions";
 import { IGraphConfigV2 } from "../types/graphConfig";
@@ -86,8 +86,8 @@ export class GraphControllerV2 implements IGraphControllerV2  {
             this.parameters[s.slug] = s.parameter;
         }
 
-        if (this.mapping.description || this.mapping.description === '' ) {
-            this.popup = new HtmlPopup(this.element,this.mapping.description);
+        if (this.mapping.description && this.mapping.description !== '' ) {
+            this.popup = new HtmlPopupV2(this.element,this.mapping.description);
         }
 
         this.htmlSegment = new HtmlSegment(this.element);

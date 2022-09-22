@@ -70,9 +70,6 @@ export default class TrendBarsStacked extends GraphControllerV2 {
         this.chartStackedBars = new ChartStackedBars(this);
               //  this.chartLines.push(new ChartLineMiddled(this, getMappingKey(this.mapping.parameters[0][i],"column"), getMappingKey(this.mapping.parameters[0][i],"colour")));
         
-
-        
-
         this.chartFocus = new ChartFocusTime(this);
         this.legend = new HtmlLegendDots(this);
 
@@ -96,8 +93,6 @@ export default class TrendBarsStacked extends GraphControllerV2 {
             return columnArray.indexOf(key) > -1
         })
 
-        // console.log(this.keys);
-
         this.stack = d3.stack()
             .keys(this.keys);
 
@@ -112,9 +107,7 @@ export default class TrendBarsStacked extends GraphControllerV2 {
     redraw(data: GraphData) {
 
         super.redraw(data);
-
         this.chartStackedBars.redraw(data.stacked);
-
         this.chartFocus.redraw(data);
     }
 

@@ -78,15 +78,15 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                     "colour": "lightBlue"
                 },
                 {
-                    "label": "Vaste vergoeding aanvragen",
+                    "label": "Vaste vergoeding (vv) aanvragen",
                     "column": "vaste_vergoeding_nieuwe_meldingen",
-                    "short": "ves aanvragen",
+                    "short": "vv aanvragen",
                     "colour": "orange"
                 },
                 {
-                    "label": "Vaste vergoeding besluiten",
+                    "label": "Vaste vergoeding (vv) besluiten",
                     "column": "vaste_vergoeding_nieuw_afgehandeld",
-                    "short": "ves besluiten",
+                    "short": "vv besluiten",
                     "colour": "blue"
                 },
 
@@ -115,19 +115,19 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": '2 jaar en ouder',
                     "column": 'langer_dan_twee_jaar_in_procedure',
-                    "colour": "blue",
+                    "colour": "yellow",
                     "short": "> 2 jaar"
                 },
                 {
                     "label": '1-2 jaar oud',
                     "column": 'tussen_jaar_en_twee_jaar_in_procedure',
-                    "colour": "orange",
+                    "colour": "moss",
                     "short": "1 t/m 2 jaar"
                 },
                 {
                     "label": '0,5-1 jaar oud',
                     "column": 'tussen_half_jaar_en_jaar_in_procedure',
-                    "colour": "moss",
+                    "colour": "orange",
                     "short": "1/2 t/m 1 jaar"
                 },
                 {
@@ -208,7 +208,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     'label': 'Open meldingen CVW',
                     'column': 'schademeldingen_cvw',
-                    'colour': 'lightBlue',
+                    'colour': 'yellow',
                     "short" : "CVW"
                 },
                 {
@@ -220,7 +220,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     'label': 'Open meldingen na Westerwijtwerd',
                     'column': 'schademeldingen_na_westerwijtwerd',
-                    'colour': 'orange',
+                    'colour': 'lightBlue',
                     "short" : "na WWW"
                 }
             ]
@@ -355,7 +355,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": 'Planning opname',
                     "column" : 'langer_dan_twee_jaar_in_fase_planning_opname',
-                    "colour" : "lightBlue",
+                    "colour" : "orange",
                     "group" : 'Langer dan twee jaar'
                 },
                 {
@@ -381,7 +381,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": 'Planning opname',
                     "column" : 'tussen_jaar_en_twee_jaar_in_fase_planning_opname',
-                    "colour" : "lightBlue",
+                    "colour" : "orange",
                     "group" : 'Tussen een en twee jaar'
                 },
                 {
@@ -407,7 +407,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": 'Planning opname',
                     "column" : 'tussen_half_jaar_in_fase_planning_opname',
-                    "colour" : "LightBlue",
+                    "colour" : "orange",
                     "group" : 'Tussen half jaar en een jaar'
                 },
                 {
@@ -433,7 +433,7 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": 'Planning opname',
                     "column" : 'minder_dan_half_jaar_in_fase_planning_opname',
-                    "colour" : "lightBlue",
+                    "colour" : "orange",
                     "group" : 'Minder dan een half jaar'
                 },
                 {

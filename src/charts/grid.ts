@@ -3,13 +3,14 @@ import { IGraphMapping } from '../types/mapping';
 
 import DashboardGraph from "../dashboard/dashboard.graph.service";
 
-import { HtmlHeader } from '../html-elements/module';
+import { HtmlHeader, HtmlLink } from '../html-elements/module';
 
 
 export default class Grid   {
 
     graphService;
     htmlHeader;
+    htmlLink;
 
     constructor(
         public main: any,
@@ -19,9 +20,6 @@ export default class Grid   {
         public segment: string,
 
     ){
-
-
-       
 
         this.graphService = new DashboardGraph(this.main)
     }
@@ -39,15 +37,29 @@ export default class Grid   {
         if (this.mapping.header) {
             this.htmlHeader = new HtmlHeader(this.element, this.mapping.header);
             this.htmlHeader.draw(); 
+            this.htmlHeader.hide();
         }
 
         let section = document.createElement('section');
-        section.style.display = "grid";
-        section.style.width = "100%";
-        section.style.gridTemplateColumns = "repeat(12, 1fr)";
+        section.classList.add("img-graph-grid-container");
         this.element.appendChild(section);
         // console.log(section);
-        this.graphService.call(this.mapping.children, this.segment, false, section)
+        this.graphService.call('',this.mapping.children, this.segment, false, section);
+
+        if (this.mapping.linkTopic) {
+            this.htmlLink = new HtmlLink(this.main, this.element, this.mapping.linkLabel, this.mapping.linkTopic);
+            this.htmlLink.draw(); 
+            this.htmlLink.hide();
+        }
+
+        setTimeout( () => {
+
+            this.htmlHeader.show(); 
+            if (this.mapping.linkTopic) {
+                this.htmlLink.show(); 
+            }
+        }, 1000)
+
     }
 
     prepareData(data: DataPart[])  {
@@ -58,6 +70,7 @@ export default class Grid   {
     redraw(data: GraphData) {
 
      
+        
     }
 
 
