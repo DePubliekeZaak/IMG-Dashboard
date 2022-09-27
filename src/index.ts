@@ -72,7 +72,7 @@ export class InitGraph {
         const link  = document.createElement('link');
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'https://img.publikaan.nl/graphs/styles/main.css'; //; //  ; //  graphObject
+        link.href = 'https://img.publikaan.nl/graphs/styles/main.css?v=6'; //; //  ; //  graphObject
         link.media = 'all';
         head.appendChild(link);
     }

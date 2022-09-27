@@ -65,39 +65,15 @@ export class HtmlPopupV2 {
 
         }
 
-
-
-
         this.popupElement.append(description);
-
-
-
-        // linkje
-
-        // const link = document.createElement('div');
-        // link.classList.add('popup_more_link');
-        // link.style.display = 'flex';
-        // link.style.flexDirection = 'row';
-        // link.style.alignItems = 'center';
-        // link.style.marginTop = '1rem';
-        //
-        // link.innerHTML = `<svg width="32px" height="16px" viewBox="0 0 74 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        //         <g id="Group" fill="#000000">
-        //             <rect id="Rectangle" x="0" y="1" width="52" height="43"></rect>
-        //             <rect id="Rectangle-2" transform="translate(52.366745, 22.463203) rotate(45.000000) translate(-52.366745, -22.463203) " x="37.1167446" y="7.21320344" width="30.5" height="30.5"></rect>
-        //         </g>
-        //     </svg><a href="/dashboard/?topic=meldingen" style="display:inline-block;margin-left:.75rem;line-height: 2">Meer over ...</a>
-        //
-        // `;
-        //
-        // this.popupElement.append(link);
 
         // sluit knop
         const closeButton = document.createElement('div');
         closeButton.classList.add('popup_close_button');
-        closeButton.style.position = 'absolute';
-        closeButton.style.right = '1.5rem';
-        closeButton.style.bottom = '1.5rem';
+        closeButton.style.position = 'relative';
+        closeButton.style.alignSelf = 'flex-end';
+        closeButton.style.marginTop = '1.5rem';
+        // closeButton.style.bottom = '1.5rem';
         closeButton.onclick = () => this.close();
 
         closeButton.innerHTML = `
@@ -130,7 +106,7 @@ export class HtmlPopupV2 {
             this.popupElement.style.left =  leftPos.toString() + 'px';
         }
 
-        this.popupElement.style.display = "block";
+        this.popupElement.style.display = "flex";
     }
 
     attachData(data: DataPart[]) {
@@ -145,40 +121,16 @@ export class HtmlPopupV2 {
     create() {
 
         this.element.addEventListener( 'mouseover', (event) => {
-            
             this.element.style.cursor = 'help'
-         
         })
 
         this.element.addEventListener( 'mouseout', (event) => {
-      
             this.element.style.cursor = 'default'
         })
 
-        this.element.addEventListener( 'click', (event) => {
-            
+        this.element.addEventListener( 'click', (event) => {  
             this.pop(event)
         })
-
-        // let img = document.createElement('img');
-        // img.classList.add('popup_link');
-        // img.style.marginBottom = '.4rem';
-        // img.style.height = "1.5rem";
-        // img.style.width = "1.5rem";
-
-        // if(this.description == "") {
-
-        //     img.style.visibility = "none";
-        //     img.style.opacity = "0";
-            
-
-        // } else {
-
-        //     img.src = 'https://img.publikaan.nl/graphs/img/i.svg';
-        //     img.onclick = () => this.pop(this.element);
-        // }
-
-        // this.element.appendChild(img);
     }
 
     formule() {

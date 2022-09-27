@@ -37,7 +37,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     ]
                 ],
                 "header": "",
-                "description" : "hallo",
+                "description" : "",
                 "endpoint": "meldingen",
                 "segment": "all",
                 "elementClasslist": [
@@ -62,7 +62,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     ]
                 ],
                 "header": "",
-                "description" : "toch maar even een verhaaltje",
+                "description" : "",
                 "endpoint": "voortgang",
                 "segment": "all",
                 "elementClasslist": [

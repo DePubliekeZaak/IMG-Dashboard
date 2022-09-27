@@ -50,8 +50,6 @@ export class InitDashboard {
 
             let newScreen = screenType(window.innerWidth);
 
-            console.log(newScreen);
-
             if ( screen != newScreen) {
 
                 setTimeout(() => {
@@ -68,8 +66,6 @@ export class InitDashboard {
     }
 
     reloadHtml() {
-
-        console.log('reload');
 
         this.htmlContainer = this.html.styleParentElement();
 
