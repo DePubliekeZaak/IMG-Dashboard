@@ -1,13 +1,13 @@
 {
-  "name": "graphness",
+  "name": "IMG Dashboard",
   "version": "1.0.0",
-  "description": "graphness met typescript",
+  "description": "",
   "main": "init.js",
   "license": "MIT",
   "author": {
     "name": "JRM",
-    "email": "joeramulders@gmail.com",
-    "url": "https://joeramulders.com"
+    "email": "joera@joeramulders.com",
+    "url": "https://schadedoormijnbouw.nl"
   },
   "dependencies": {
     "axios": "^0.24.0",
