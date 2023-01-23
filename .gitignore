@@ -1,9 +1,11 @@
+assets
 bower_components
 node_modules
 dist
 app
 *.log
 .DS_Store
+package-lock.json
 bundle.js
 public/styles
 public/scripts
