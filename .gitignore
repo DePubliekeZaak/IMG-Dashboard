@@ -5,7 +5,8 @@ dist
 app
 *.log
 .DS_Store
+.idea
 package-lock.json
 bundle.js
-public/styles
-public/scripts
+public
+public
