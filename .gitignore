@@ -10,3 +10,5 @@ package-lock.json
 bundle.js
 public
 public
+deploy.sh
+.npmignore 
