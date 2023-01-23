@@ -20,19 +20,22 @@ export class ChartLine {
 
         const yParameter = this.ctrlr.parameters[this.yParameter] != undefined ? this.ctrlr.parameters[this.yParameter] : this.yParameter;
 
-        this.line = this.ctrlr.svg.layers.data.selectAll('.' + yParameter)
+        this.line = this.ctrlr.svg.layers.data.selectAll('.line-' + yParameter)
             .data([data.slice])
             .join("path")
-            .attr("class", yParameter);
+            .attr("class", "line-" + yParameter);
     }
 
     lineMaker() : d3.Line<[number, number]> {
 
         const yParameter = this.ctrlr.parameters[this.yParameter] != undefined ? this.ctrlr.parameters[this.yParameter] : this.yParameter;
 
+        // console.log(yParameter)
+
         return d3.line()
-            .x(d => this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x] + .5 ))
-            .y(d => this.ctrlr.scales.y.scale(d[yParameter]) )
+            .x(d => this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x]  ))
+            .y(d => { 
+                return this.ctrlr.scales.y.scale(d[yParameter]) })
             .curve(d3.curveBasis);
     }
 

@@ -21,7 +21,7 @@ const config = {
     },
   },
   devServer: {
-    open:true,
+    open:false,
     port: 3003,
     hot: true,
     client: {

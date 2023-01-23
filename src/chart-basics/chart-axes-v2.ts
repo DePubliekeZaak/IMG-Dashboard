@@ -102,6 +102,31 @@ export class ChartAxesV2 {
                         .ticks(4)
                         .tickFormat( d => convertToCurrency(d))
 
+                    // } else if (this.config.format === 'monthly') {
+
+                    //     let months = [];
+                    //     let ticks = [];
+
+                    //     for (let w of data) {
+                    //         if (months.indexOf(w._month) < 0)  {
+                    //             months.push(w._month);
+                    //             ticks.push(w["_index"]);
+                    //         } else {
+                    //            console.log(w._date + "-" + w._month);
+                    //         }
+                    //     };
+
+                    //     console.log(ticks);
+
+                    //     this.axis
+                    //         .tickValues(ticks)
+                    //         .tickFormat( (d, i) => {
+                    //             console.log(d);
+                    //             let week = data.find( (w) => w['_index'] == d);
+                    //             return week._month;
+                    //         });
+                    //     break;
+                        
                     } else if (this.config.format === 'quarterly') {
 
                         let starts = data.filter( (w) => [1,14,,27,40].indexOf(w._week) > -1 ).map( (w) => w['_index']);
@@ -128,7 +153,9 @@ export class ChartAxesV2 {
 
                     } else if (this.config.format === 'weekly') {
 
-                        let starts = data.filter( (w) => [1].indexOf(w._week) > -1 ).map( (w) => w['_index']);
+                    //    let starts = data.filter( (w) => [1].indexOf(w._week) > -1 ).map( (w) => w['_index']);
+
+                        data = data.slice(0,data.length -2);
 
                         this.axis
                             .tickValues(data.filter( (d,i) => i % 2).map( (d) => d['_index']))

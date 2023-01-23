@@ -18,9 +18,7 @@ export default class ChartLineMiddled extends ChartLine {
     draw(data: DataPart[]) {
 
         this.data = data;
-
         super.draw(data);
-
     }
 
     lineMaker() : d3.Line<[number, number]> {
@@ -40,8 +38,17 @@ export default class ChartLineMiddled extends ChartLine {
         }
 
         return d3.line()
-            .x(d => this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x] + .5 ))
-            .y( (d,i) => middle(d,i) )
+            .x(d => {
+                
+                let k = this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x] + .5 );
+                return k;
+                
+            })
+            .y( (d,i) => {
+               let m =  middle(d,i) 
+               return m;
+                
+            })
             .curve(d3.curveBasis);
     }
    

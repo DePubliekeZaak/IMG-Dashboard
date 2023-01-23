@@ -18,6 +18,7 @@ import TickerHorizon from './ticker-horizon';
 import TickerBol  from "./ticker-bol";
 import TickerNumbers  from "./ticker-numbers";
 import TrendLine  from './trend-line';
+import TrendLineSmooth  from './trend-line-smooth';
 import TrendBars  from './trend-bars';
 import TrendBarsStacked  from './trend-bars-stacked';
 import BandBars from './band-bars';
@@ -59,6 +60,7 @@ export const graphs  = {
     TickerBol,
     TickerNumbers,
     TrendLine,
+    TrendLineSmooth,
     TrendBars,
     TrendBarsStacked,
     BandBars,

@@ -8,6 +8,7 @@ import  ChartLineDashArray from './line/chart-line-dasharray';
 import  ChartLineMiddled from './line/chart-line-middled';
 import { ChartRaggedLine } from './line/chart-ragged-line';
 import { ChartBlockedLine } from './line/chart-blocked-line';
+import { ChartLineVV } from './line/chart-line-vv';
 
 // grid
 import { ChartGrid } from './grid/chart-grid';
@@ -48,6 +49,7 @@ import ChartCircleGroups from './circle/chart-circle-groups';
 
 // interaction
 import ChartFocus from "./interaction/chart-focus";
+import ChartFocusV2 from "./interaction/chart-focus-v2";
 import ChartFocusTime from "./interaction/chart-focus-time";
 
 import { ChartBrackets } from './label/chart-brackets'; 
@@ -66,6 +68,7 @@ export {
     ChartLineIndependent,
     ChartLineDashArray,
     ChartLineMiddled,
+    ChartLineVV,
     ChartBlockedLine, 
     ChartGrid,
     ChartGridWeek, 
@@ -90,6 +93,7 @@ export {
     ChartStackedArea, 
     ChartStackedBarsNormalized, 
     ChartFocus,
+    ChartFocusV2,
     ChartFocusTime,
     ChartBlockTrend,
     ChartFlowDuration,

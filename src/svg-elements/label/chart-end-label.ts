@@ -9,45 +9,45 @@ export class ChartEndLabel {
     labelGroup;
 
     constructor(
-        private config : GraphConfig,
-        private svgLayers : any,
-        private yParameter: string,
-        private colour: string
+        public ctrlr : any,
+        public yParameter: string,
+        public label: string,
+        public colour: string
     ) {
 
 
     }
 
-    draw(parameter,label) {
+    draw() {
 
-        this.svgLayers.data.selectAll('.label_group.' + slugify(parameter)).remove();
+        this.ctrlr.svg.layers.data.selectAll('.label_group.' + this.yParameter).remove();
 
-        this.labelGroup = this.svgLayers.data
+        this.labelGroup = this.ctrlr.svg.layers.data
             .append('g')
-            .attr('class','label_group ' + slugify(parameter));
+            .attr('class','label_group ' + this.yParameter);
 
-        this.labelGroup
-            .append('rect')
-            .attr('y',-8)
-            .attr('width',((label.length + 3) * 5))
-            .attr('height',16)
-            .style('fill',colours[this.colour][0])
+        // this.labelGroup
+        //     .append('rect')
+        //     .attr('y',-8)
+        //     .attr('width',((this.label.length + 3) * 5))
+        //     .attr('height',16)
+        //     .style('fill',colours[this.colour][0])
 
 
         this.labelGroup
             .append('text')
-            .text(label)
+            .text(this.label)
             .attr('dx',4)
             .attr('dy',4)
             .style('font-size','.66rem')
-            .attr('fill','white')
+            .attr('fill', colours[this.colour][0])
             .style('text-transform','lowercase');
     }
 
-    redraw(xScale: any, yScale : any, dimensions : Dimensions, data : any) {
+    redraw(data : any) {
 
         this.labelGroup
-            .attr("transform","translate(" + dimensions.width + "," + yScale(data[data.length - 1][this.yParameter])+ ")");
+            .attr("transform","translate(" + this.ctrlr.dimensions.width + "," + this.ctrlr.scales.y.scale(data[this.yParameter])+ ")");
 
     }
 

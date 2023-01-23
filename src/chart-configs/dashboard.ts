@@ -32,7 +32,7 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "description" : "Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
         "endpoint": "tevredenheid",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3']
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
     "slug" : "bol_schademeldingen",
@@ -57,7 +57,7 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "description" : "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
     "endpoint": "meldingen",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3']
+    "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
     {
     "slug" : "bol_afgehandelde_meldingen",
@@ -81,28 +81,28 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "description" : "Het aantal schademeldingen dat afgelopen week is afgehandeld. Op sommige adressen lopen er meerdere schademeldingen. Die worden waar mogelijk met een enkel besluit afgehandeld.",
     "endpoint": "voortgang",
     "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-3']
+    "elementClasslist": ['img-graph-container','img-graph-container-4']
 
     },
-    {
-        "slug" : "bol_doorlooptijd",
-        "graph": "CijfersLine",
-        "parameters": [
-          [
-            {
-              "label": "Verwachte duur",
-              "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
-              "colour": "brown",
-              "units": "dagen"
-            }
-          ]
-        ],
-        "header": "Verwachte duur",
-        "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
-        "endpoint": "voortgang",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3']
-    },
+    // {
+    //     "slug" : "bol_doorlooptijd",
+    //     "graph": "CijfersLine",
+    //     "parameters": [
+    //       [
+    //         {
+    //           "label": "Verwachte duur",
+    //           "column": "verwacht_aantal_dagen_tussen_melding_en_besluit",
+    //           "colour": "brown",
+    //           "units": "dagen"
+    //         }
+    //       ]
+    //     ],
+    //     "header": "Verwachte duur",
+    //     "description" : "Voor nieuwe, reguliere schademeldingen streeft het IMG naar een maximale doorlooptijd van indiening tot besluit van een half jaar (182 dagen). We berekenen op basis van de huidige voortgang hoeveel dagen het op dit moment bij benadering duurt om een nieuwe schademelding af te handelen. Onder meer de huidige capaciteit van bijvoorbeeld schade-opnames, het opleveren van adviesrapporten en het voorbereiden van besluiten wordt daarbij meegewogen.",
+    //     "endpoint": "voortgang",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-3']
+    // },
     {   
         "slug": "trend_schademeldingen",
         "graph": "TrendBars",

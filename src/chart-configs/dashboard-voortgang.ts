@@ -479,6 +479,93 @@ export const dashboardVoortgang : (GraphObject|IGraphMapping)[] = [
     "endpoint": "opnames",
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-6']
-}
+},
+
+{
+   
+    "slug": "taart_opnamevarianten",
+    "graph": "PieChartSumV2",
+    "parameters":  [
+        [
+            {
+                "label": "Regulier",
+                "column": "schadeopnames_regulier",
+                "colour": "gray"
+            },
+            {
+                "label": "Aannemersvariant",
+                "column": "schadeopnames_via_aannemersvariant",
+                "colour": "orange"
+            },
+            {
+                "label": "Wooncorporaties",
+                "column": "schadeopnames_door_wooncorporaties",
+                "colour": "blue"
+            },
+            {
+                "label": "Digitaal",
+                "column": "schadeopnames_digitaal",
+                "colour": "brown"
+            },
+            {
+                "label": "Schade-opnemers",
+                "column": "schadeopnames_via_opnemersvariant",
+                "colour": "moss"
+            }
+        ],
+        [
+            {
+                "label": "Totaal",
+                "column": null,
+                "colour": null
+            }
+    
+        ]
+    ],
+    "header" : "Opnamevarianten totaal",
+    "description" : "De schade-opname is een belangrijk onderdeel van de procedure van schade aan gebouwen en objecten. Er volgt daarna een advies van een onafhankelijke deskundige. Omdat deskundigen schaars zijn, worden ook anderen ingezet om de schade-opname te doen, op basis waarvan een deskundige daarna een advies uitbrengt. De deskundige gaat dan niet zelf ter plekke, wat tijd bespaart.",
+    "endpoint": "opnames",
+    "segment": "all",
+    "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
+    },
+    // {
+   
+    //     "slug": "trend_opnamevarianten",
+    //     "graph": "TrendBarsStacked",
+    //     "parameters":  [
+    //         [
+    //             {
+    //                 "label": "Regulier",
+    //                 "column": "schadeopnames_regulier",
+    //                 "colour": "yellow"
+    //             },
+    //             {
+    //                 "label": "Aannemersvariant",
+    //                 "column": "schadeopnames_via_aannemersvariant",
+    //                 "colour": "lightBlue"
+    //             },
+    //             {
+    //                 "label": "Wooncorporaties",
+    //                 "column": "schadeopnames_door_wooncorporaties",
+    //                 "colour": "orange"
+    //             },
+    //             {
+    //                 "label": "Digitaal",
+    //                 "column": "schadeopnames_digitaal",
+    //                 "colour": "blue"
+    //             },
+    //             {
+    //                 "label": "Schade-opnemers",
+    //                 "column": "schadeopnames_via_opnemersvariant",
+    //                 "colour": "moss"
+    //             }
+    //         ]
+    //     ],
+    //     "header" : "Opnamevarianten totaal",
+    //     "description" : "De schade-opname is een belangrijk onderdeel van de procedure van schade aan gebouwen en objecten. Er volgt daarna een advies van een onafhankelijke deskundige. Omdat deskundigen schaars zijn, worden ook anderen ingezet om de schade-opname te doen, op basis waarvan een deskundige daarna een advies uitbrengt. De deskundige gaat dan niet zelf ter plekke, wat tijd bespaart.",
+    //     "endpoint": "opnames",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-12','img-graph-container-vertical-padding']
+    //     }
 
 ]

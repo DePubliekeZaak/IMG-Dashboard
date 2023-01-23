@@ -26,7 +26,7 @@ export default class TickerBars extends GraphControllerV2   {
     }
 
     pre() {
-        this._addScale("x","linear","horizontal","_week");
+        this._addScale("x","linear","horizontal","_index");
         this._addScale("y","linear","vertical",flattenColumn(this.firstMapping['column']));
 
         this._addMargin(0,0,0,0);
@@ -145,6 +145,14 @@ export default class TickerBars extends GraphControllerV2   {
 
         history.forEach( (week) => week['colour'] = "moss");
 
+        let slice = history.slice(0, 20).reverse();
+
+        slice.forEach((s: any, i: number) => {
+
+            s._index = i;
+
+        });
+
         return {
             "history" : history.slice(0, history.length),
             "latest" : data[0], 
@@ -164,7 +172,8 @@ export default class TickerBars extends GraphControllerV2   {
     draw(data: GraphData) {
 
         const xValues = data.slice.map(d => d[this.parameters.x]);
-        this.xScale = this.scales.x.set([xValues[xValues.length - 1]], xValues[0]);
+        console.log(xValues);
+        this.xScale = this.scales.x.set([xValues[0],xValues[xValues.length - 1]]);
         this.chartBars.draw(data);
     }
 
