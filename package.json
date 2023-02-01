@@ -53,6 +53,8 @@
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "stage": "cd public && python3 -m http.server 8008",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "deploy:live": "cd public && git add . && git commit -am 'changes' && git push img master",
+    "deploy:staging": "cd public && git add . && git commit -am 'changes' && git push staging master"
   }
 }

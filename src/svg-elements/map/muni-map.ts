@@ -75,7 +75,7 @@
 //         this.chartMap = new ChartMap(this);
 //         // this.chartMap.init();
 
-//         d3.json('https://graphs.publikaan.nl/graphs/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
+//         d3.json('../geojson/gemeenten2021.topojson').then( (topojsonObject) => {
 //             const features = this.prepareData(this.data, topojsonObject);
 //             self.draw(features);
 //         });
