@@ -3,7 +3,9 @@ import {ResponseData} from "../types/data";
 import {breakpoints} from "../_styleguide/_breakpoints";
 import {graphs} from "../charts/module";
 import * as _ from 'lodash';
-import { API_BASE } from '../env';
+//import { API_BASE } from '../env';
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 
 export default class DashboardData {
 
@@ -28,8 +30,8 @@ export default class DashboardData {
         for (let endpoint of uniqueEndpoints) {
 
             if(endpoint) {
-
-                let url = (endpoint.indexOf('limit=') < 0) ? API_BASE + endpoint + restQuery : API_BASE + endpoint;
+        // @ts-ignore
+                let url = (endpoint.indexOf('limit=') < 0) ? DOMAIN + APIBASE + endpoint + restQuery : DOMAIN + APIBASE + endpoint;
                 promises.push(
                     new Promise((resolve, reject) => {
                         d3.json<ResponseData>(url)

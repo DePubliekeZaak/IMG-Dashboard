@@ -155,7 +155,7 @@ export class HtmlPopup {
 
         } else {
 
-            img.src = 'https://img.publikaan.nl/graphs/img/i.svg';
+            img.src = './img/i.svg';
             img.onclick = () => this.pop(this.element);
         }
 

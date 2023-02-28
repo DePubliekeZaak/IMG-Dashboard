@@ -4,6 +4,8 @@ import {dashboardMain} from "../chart-configs/dashboard";
 import DashboardInteractions from "./dashboard.interactions";
 import {GraphObject} from "../types/graphObject";
 import { IGraphMapping } from "../types/mapping";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export default class DashboardHTML {
 
@@ -164,7 +166,7 @@ export default class DashboardHTML {
         li3.style.marginTop = '1rem';
         // li.classList.add('active');
         // li3.setAttribute('data-slug', 'fysieke_schade');
-        li3.onclick = () =>  window.open('https://img.publikaan.nl/publieke-data/docs/');;
+        li3.onclick = () =>  window.open(process.env.DOMAIN + '/publieke-data/docs/');;
         ul.appendChild(li3);
 
         div.appendChild(ul);

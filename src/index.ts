@@ -3,11 +3,15 @@ import '../styling/main.scss'
 import 'babel-polyfill';
 import 'isomorphic-fetch';
 
-import { ENV } from "./env";
+// import { ENV } from "./env";
+// import 'dotenv/config.js';
+// dotenv.config();
 import { InitDashboard } from "./dashboard/dashboard.controller";
 import { InitTicker } from "./ticker/ticker.controller";
 import { InitSingle} from "./single.controller";
 import DataStore  from "./data.store"
+
+
 
 export class InitGraph {
 
@@ -72,7 +76,7 @@ export class InitGraph {
         const link  = document.createElement('link');
         link.rel  = 'stylesheet';
         link.type = 'text/css';
-        link.href = 'https://img.publikaan.nl/graphs/styles/main.css?v=6'; //; //  ; //  graphObject
+        link.href = './styles/main.css'; //; //  ; //  graphObject
         link.media = 'all';
         head.appendChild(link);
     }

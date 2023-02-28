@@ -1,6 +1,6 @@
 {
   "name": "IMG Dashboard",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "init.js",
   "license": "MIT",
@@ -13,10 +13,13 @@
     "axios": "^0.24.0",
     "d3": "^7.4.4",
     "d3-selection": "^3.0.0",
+    "dotenv": "^16.0.3",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
@@ -49,12 +52,10 @@
     "wepack-cli": "^0.0.1-security"
   },
   "scripts": {
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "watch": "webpack --watch",
-    "stage": "cd public && python3 -m http.server 8008",
-    "serve": "webpack serve",
-    "deploy:live": "cd public && git add . && git commit -am 'changes' && git push img master",
-    "deploy:staging": "cd public && git add . && git commit -am 'changes' && git push staging master"
+    "build:prod": "webpack --env ENV=prod DOMAIN=https://img.publikaan.nl APIBASE=/open-data/api/",
+    "build:staging": "webpack --env ENV=dev DOMAIN=https://img.de-publieke-zaak.nl APIBASE=/open-data/staging/api/",
+    "deploy:prod": "cd public && git add . && git commit -am 'changes' && git push old master",
+    "deploy:staging": "cd public && git add . && git commit -am 'changes' && git push staging master",
+    "serve": "webpack serve --env ENV=dev DOMAIN=https://img.publikaan.nl APIBASE=/open-data/staging/api/"
   }
 }

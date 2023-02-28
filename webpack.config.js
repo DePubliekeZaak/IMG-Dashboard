@@ -1,65 +1,77 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 const isProduction = process.env.NODE_ENV == "production";
 
-const config = {
-  entry: "./src/index.ts",
-  output: {
-    path: path.resolve(__dirname, "public/"),
-    chunkFilename: 'scripts/bundle.js',
-    filename: 'scripts/bundle.js',
-    assetModuleFilename: (pathData) => {
-      const filepath = path
-          .dirname(pathData.filename)
-          .split("/")
-          .slice(1)
-          .join("/");
-      return `./styles/${filepath}/[name].[hash][ext][query]`;
+const config = (env) =>  {
+
+  return {
+    entry: "./src/index.ts",
+    output: {
+      path: path.resolve(__dirname, "public/"),
+      chunkFilename: 'scripts/bundle.js',
+      filename: 'scripts/bundle.js',
+      assetModuleFilename: (pathData) => {
+        const filepath = path
+            .dirname(pathData.filename)
+            .split("/")
+            .slice(1)
+            .join("/");
+        return `./styles/${filepath}/[name].[hash][ext][query]`;
+      },
     },
-  },
-  devServer: {
-    open:false,
-    port: 3003,
-    hot: true,
-    client: {
-      overlay: true,
-      progress: true,
-      reconnect: true,
+    devServer: {
+      open:false,
+      port: 3003,
+      hot: true,
+      client: {
+        overlay: true,
+        progress: true,
+        reconnect: true,
+      },
     },
-  },
-  devtool:'source-map',
-  plugins: [
+    devtool:'source-map',
+    plugins: [
       new MiniCssExtractPlugin({
         filename: "./styles/main.css"
+      }),
+      new webpack.DefinePlugin({
+        ENV: JSON.stringify(env.ENV),
+        DOMAIN: JSON.stringify(env.DOMAIN),
+        APIBASE: JSON.stringify(env.APIBASE)
       })
   ],
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/i,
-        loader: "ts-loader",
-        exclude: ["/node_modules/"],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset/resource",
-      }
-    ],
-  },
-  resolve: {
-    extensions: [".ts",".js"],
-  },
+    module: {
+      rules: [
+        {
+          test: /\.(ts|tsx)$/i,
+          loader: "ts-loader",
+          exclude: ["/node_modules/"],
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+          type: "asset/resource",
+        }
+      ],
+    },
+    resolve: {
+      extensions: [".ts",".js"]
+    }
+  }
 };
 
-module.exports = () => {
+module.exports = (env) => {
+
+  let c = config(env);
+
   if (isProduction) {
-    config.mode = "production";
+    c.mode = "production";
   } else {
-    config.mode = "development";
+    c.mode = "development";
   }
-  return config;
+  return c;
 };

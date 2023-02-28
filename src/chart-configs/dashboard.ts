@@ -268,93 +268,93 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
     "segment": "all",
     "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
-    // {
-    //     "slug": "meldingen_taart_aos_meldingen",
-    //     "graph": "PieChartSumV2",
-    //     "parameters":  [
-    //         [
-    //             {
-    //                 "label": "Wel",
-    //                 "column": "aos_meldingen_gegrond",
-    //                 "colour": "moss"
-    //             },
-    //             {
-    //                 "label": "Niet",
-    //                 "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
-    //                 "colour": "blue"
-    //             }
-    //         ],
-    //         [
-    //             {
-    //                 "label": "Totaal",
-    //                 "column": "aos_meldingen",
-    //                 "colour": "gray"
-    //             }
-    //         ]
-    //     ],
-    //     "header" : "Wel/niet acuut onveilige situatie",
-    //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-    //     "endpoint": "voortgang",
-    //     "segment": "all",
-    //     "elementClasslist": ['img-graph-container','img-graph-container-4']
-    // },
     {
-        "slug": "taart_bezwaren",
+        "slug": "meldingen_taart_aos_meldingen",
         "graph": "PieChartSumV2",
         "parameters":  [
             [
                 {
-                    "label": "Gegrond",
-                    "column": "bezwaren_gegrond",
+                    "label": "Wel",
+                    "column": "aos_meldingen_gegrond",
                     "colour": "moss"
                 },
                 {
-                    "label": "Deels gegrond",
-                    "column": "bezwaren_deels_gegrond",
-                    "colour": "orange"
-                },
-                {
-                    "label": "Ongegrond",
-                    "column": "bezwaren_ongegrond",
+                    "label": "Niet",
+                    "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
                     "colour": "blue"
-                },
-                {
-                    "label": "Niet ontvankelijk",
-                    "column": "bezwaren_niet_ontvankelijk",
-                    "colour": "purple"
-                },
-                {
-                    "label": "Ingetrokken",
-                    "column": "bezwaren_ingetrokken",
-                    "colour": "brown"
-                },
-                {
-                    "label": "Naar schadeprocedure",
-                    "column": "bezwaren_doorgezet",
-                    "colour": "orange"
                 }
             ],
             [
                 {
-                    "label": "Totaal afgehandeld",
-                    "column": null,
-                    "colour": "black"
-                }
-            ],
-            [
-                {
-                    "label": "In behandeling",
-                    "column": "bezwaren_in_behandeling",
-                    "colour": "yellow"
+                    "label": "Totaal",
+                    "column": "aos_meldingen",
+                    "colour": "gray"
                 }
             ]
         ],
-        "header" : "Bezwaren",
-        "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
-        "endpoint": "reacties",
+        "header" : "Wel/niet acuut onveilige situatie",
+        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
+        "endpoint": "voortgang",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
+    // {
+    //     "slug": "taart_bezwaren",
+    //     "graph": "PieChartSumV2",
+    //     "parameters":  [
+    //         [
+    //             {
+    //                 "label": "Gegrond",
+    //                 "column": "bezwaren_gegrond",
+    //                 "colour": "moss"
+    //             },
+    //             {
+    //                 "label": "Deels gegrond",
+    //                 "column": "bezwaren_deels_gegrond",
+    //                 "colour": "orange"
+    //             },
+    //             {
+    //                 "label": "Ongegrond",
+    //                 "column": "bezwaren_ongegrond",
+    //                 "colour": "blue"
+    //             },
+    //             {
+    //                 "label": "Niet ontvankelijk",
+    //                 "column": "bezwaren_niet_ontvankelijk",
+    //                 "colour": "purple"
+    //             },
+    //             {
+    //                 "label": "Ingetrokken",
+    //                 "column": "bezwaren_ingetrokken",
+    //                 "colour": "brown"
+    //             },
+    //             {
+    //                 "label": "Naar schadeprocedure",
+    //                 "column": "bezwaren_doorgezet",
+    //                 "colour": "orange"
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 "label": "Totaal afgehandeld",
+    //                 "column": null,
+    //                 "colour": "black"
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 "label": "In behandeling",
+    //                 "column": "bezwaren_in_behandeling",
+    //                 "colour": "yellow"
+    //             }
+    //         ]
+    //     ],
+    //     "header" : "Bezwaren",
+    //     "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
+    //     "endpoint": "reacties",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-4']
+    // },
     {
         "slug": "taart_specials",
         "graph": "PieChartSumV2",

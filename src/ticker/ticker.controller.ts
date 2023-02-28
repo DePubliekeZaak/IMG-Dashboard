@@ -1,11 +1,8 @@
 import { graphs } from '../charts/module';
-import { munis } from '../d3-services/municipalities';
 import * as d3 from 'd3';
-import {GraphObject} from "../types/graphObject";
 import {ResponseData} from "../types/data";
 import { tickerFysiekeSchade, tickerWaardedaling, tickerTevredenheid, tickerImmaterieel } from "../chart-configs/module";
 import { breakpoints} from "../_styleguide/_breakpoints";
-import { API_BASE } from '../env';
 import { IGraphMapping } from '../types/mapping';
 
 export class InitTicker {
@@ -23,7 +20,6 @@ export class InitTicker {
         this.row(tickerFysiekeSchade,'Fysieke schade',4,'full-width')
         this.row(tickerWaardedaling,'Waardedaling',2,'img-graph-container-ipad-6');
         this.row(tickerImmaterieel,'Immateriele schade',2,'img-graph-container-ipad-6');
-        // this.row(tickerTevredenheid,'Tevredenheid',2,'full-width');
         this.addLink();
     }
 
@@ -90,14 +86,7 @@ export class InitTicker {
         headerDiv.style.marginBottom = '1rem';
         header.innerText = name;
         headerDiv.appendChild(header);
-
-        if (window.innerWidth > breakpoints.md) {
-            // headerDiv.style.width = '100%';
-        }
-
         return headerDiv;
-
-        // this.htmlContainer.appendChild(headerDiv);
     }
 
     addLink() {
@@ -220,7 +209,7 @@ export class InitTicker {
 
         for (let endpoint of uniqueEndpoints) {
 
-            let url = (endpoint.indexOf('limit=') < 0) ? API_BASE + endpoint  + '?gemeente=eq.' + segment + '&_date=gte.2018-11-01' : API_BASE +  endpoint;
+            let url = (endpoint.indexOf('limit=') < 0) ? process.env.DOMAIN + process.env.API_BASE + endpoint  + '?gemeente=eq.' + segment + '&_date=gte.2018-11-01' : process.env.DOMAIN + process.env.API_BASE +  endpoint;
 
             promises.push(
                 new Promise((resolve, reject) => {
