@@ -56,20 +56,20 @@ export function groupByMonths(newData: DataPart[], neededColumns: string[]) : Da
 
     for (let group of groupedArray) {
 
-            group.sort((a: any, b: any) => (a._year.toString() + a._week.toString()) - (b._year.toString() + b._week.toString()));
-            // if last has day <= 7
-            if (new Date(group.reverse()[0]._date).getDate() <= 7) {
+        group.sort((a: any, b: any) => (a._year.toString() + a._week.toString()) - (b._year.toString() + b._week.toString()));
 
-                let o = {};
-                for (let column of neededColumns) {
+        if (new Date(group.reverse()[0]._date).getDate() <= 7) {
 
-                    if (group[0][column] !== null) {
-                        o[column] = group[0][column]
-                    }
+            let o = {};
+            for (let column of neededColumns) {
+
+                if (group[0][column] !== null) {
+                    o[column] = group[0][column]
                 }
-
-                array.push(o);
             }
+
+            array.push(o);
+        }
     }
 
     return array;

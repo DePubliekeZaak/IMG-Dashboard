@@ -7,6 +7,7 @@ import {dashboardOpnames} from "../chart-configs/dashboard-opnames";
 import {dashboardWaardedalingsRegeling} from "../chart-configs/dashboard-waardedalingsregeling";
 import {dashboardImmaterieleSchade} from "../chart-configs/dashboard-immateriele-schade";
 import {dashboardTrillingssnelheden} from "../chart-configs/dashboard-trillingssnelheden";
+import { dashboardMms } from "../chart-configs/module"
 import {dashboardOverzicht} from "../chart-configs/dashboard-overzicht";
 import {dashboardMain} from "../chart-configs/dashboard";
 import {dashboardHome} from "../chart-configs/module";
@@ -58,6 +59,10 @@ export default class DashboardParams {
             case 'trillingssnelheden' :
 
                 return dashboardTrillingssnelheden;
+
+            case 'mms' :
+
+                return dashboardMms;
 
             case 'overzicht' :
 

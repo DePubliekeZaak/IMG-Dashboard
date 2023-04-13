@@ -92,7 +92,7 @@ export class ChartScale {
         if (!this.config.type) return;
 
         if(this.scale.domain().length < 2) {
-            console.log(this.config + this.scale.domain())
+            // console.log(this.config + this.scale.domain())
         }
 
         switch(this.config.direction) {
@@ -160,8 +160,8 @@ export class ChartScale {
 
             if(isNaN(p) || p == undefined) {
 
-                console.log(this.config.slug)
-                console.log(this.scale.range())
+                // console.log(this.config.slug)
+                // console.log(this.scale.range())
                 throw new RangeError();
             }
         }
@@ -170,10 +170,10 @@ export class ChartScale {
 
         if(isNaN(r)) {
 
-            console.log(this.config.slug + " : " + this.config.type)
-            console.log(x) 
-            console.log(this.scale.domain())
-            console.log(this.scale.range())
+            // console.log(this.config.slug + " : " + this.config.type)
+            // console.log(x) 
+            // console.log(this.scale.domain())
+            // console.log(this.scale.range())
 
         } else {
             return r;

@@ -28,6 +28,7 @@ import { tickerImmaterieel } from "./ticker_immateriele_schade";
 import { dashboardHome } from './dashboard-home';
 import { dashboardMain } from './dashboard';
 import { dashboardMeldingen } from './dashboard-meldingen';
+import { dashboardMms } from './dashboard-mms';
 import { dashboardVergoedingen } from './dashboard-vergoedingen';
 import { dashboardVoortgang } from './dashboard-voortgang';
 import { dashboardSpecials} from './dashboard-specials';
@@ -71,6 +72,7 @@ export { dashboardOpnames }
 export { dashboardWaardedalingsRegeling }
 export { dashboardImmaterieleSchade }
 export { dashboardGemeente }
+export { dashboardMms }
 export { tickerFysiekeSchade }
 export { tickerWaardedaling }
 export { tickerTevredenheid }

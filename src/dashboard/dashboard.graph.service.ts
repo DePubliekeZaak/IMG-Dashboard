@@ -13,10 +13,9 @@ export default class DashboardGraph {
 
     }
 
-    call(params, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
+    call(params: string, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
 
-     
-
+    
         const promises = this.ctrlr.dataService.createDashboardCalls(dashboardArray, segment,false);
 
         Promise.all(promises).then((values) => {
@@ -29,6 +28,12 @@ export default class DashboardGraph {
                 weekData = this.ctrlr.dataService.createHistoryForEemsdelta(weekData);
                 weekData = this.ctrlr.dataService.correctionForEemsdelta(weekData);
             }
+
+            if (params === 'mms') {
+
+                weekData = this.ctrlr.dataService.parseMmsData(weekData);
+            }
+           
 
             if (segment === 'het-hogeland') {
                 weekData = this.ctrlr.dataService.correctionForHetHogeland(weekData);

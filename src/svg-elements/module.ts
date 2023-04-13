@@ -28,11 +28,14 @@ import { ChartBarHorizontal } from './bar/chart-bar-horizontal';
 import { ChartMultiBars } from './bar/chart-multibar';
 import { ChartBarsIncrease } from './bar/chart-bars-increase';
 import { ChartStackedBarsNormalized } from "./bar/chart-stacked-bars-normalized";
+import { ChartStackedBarsNormalizedVertical } from "./bar/chart-stacked-bars-normalized-vertical";
+import { ChartStackedGroupMms } from "./bar/chart-stacked-group-mms";
 import  ChartBlockTrend from "./bar/chart-blocktrend";
 import  ChartBarTrend from "./bar/chart-bar-trend";
 
 // radial
 import { ChartPie } from './radial/chart-pie';
+import { ChartBullsEye } from './radial/chart_bullseye'
 
 // map 
 import  ChartMap from './map/chart-map';
@@ -62,6 +65,7 @@ export {
     ChartAvgLine, 
     ChartBackgroundArea, 
     ChartBackgroundAreas,
+    ChartBullsEye,
     ChartRaggedLine, 
     ChartLine,
     ChartLineAccentTime,
@@ -92,6 +96,8 @@ export {
     ChartFlowBetweenCircles, 
     ChartStackedArea, 
     ChartStackedBarsNormalized, 
+    ChartStackedBarsNormalizedVertical,
+    ChartStackedGroupMms,
     ChartFocus,
     ChartFocusV2,
     ChartFocusTime,

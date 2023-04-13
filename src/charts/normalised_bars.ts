@@ -75,6 +75,10 @@ export default class NormalisedBars extends GraphControllerV2  {
             .offset(d3.stackOffsetExpand)
             .keys(this.keys);
 
+            console.log(this.keys);
+
+            console.log(grouped);
+
         return { 
             "history" : null,
             "latest":  null, 

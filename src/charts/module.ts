@@ -19,6 +19,7 @@ import TickerBol  from "./ticker-bol";
 import TickerNumbers  from "./ticker-numbers";
 import TrendLine  from './trend-line';
 import TrendLineSmooth  from './trend-line-smooth';
+import TrendLineMms  from './trend-line-mms';
 import TrendBars  from './trend-bars';
 import TrendBarsStacked  from './trend-bars-stacked';
 import BandBars from './band-bars';
@@ -30,7 +31,10 @@ import Map  from './map';
 import FlowDossierCount from './flow-dossier-count';
 import Ballenbak  from './ballenbak';
 import StackedArea from './stacked-area';
+import StackedAreaMms from './stacked-area-mms';
 import NormalisedBars from './normalised_bars';
+import NormalisedBarsMms from './normalised-bars-mms';
+import ConcentricMms from './concentric-mms';
 import StackedBars from './stacked-bars';
 // import { Ratings } from './ratings';
 import KTORatings from './kto-ratings';
@@ -61,6 +65,7 @@ export const graphs  = {
     TickerNumbers,
     TrendLine,
     TrendLineSmooth,
+    TrendLineMms,
     TrendBars,
     TrendBarsStacked,
     BandBars,
@@ -70,7 +75,10 @@ export const graphs  = {
     FlowDossierCount,
     Ballenbak,
     StackedArea,
+    StackedAreaMms,
     NormalisedBars,
+    NormalisedBarsMms,
+    ConcentricMms,
     StackedBars,
     KTORatings,
     ShortTrend,

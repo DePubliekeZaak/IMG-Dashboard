@@ -124,7 +124,7 @@ export class GraphControllerV2 implements IGraphControllerV2  {
 
     redraw(data: any) {
 
-        if(this.svg && this.svg.body == undefined) return;
+        if (this.svg && this.svg.body == undefined) return;
 
         this.dimensions = this.chartDimensions.measure(this.dimensions);
  
@@ -154,7 +154,7 @@ export class GraphControllerV2 implements IGraphControllerV2  {
 
         let self = this;
 
-        if(update && this.config.extra.noUpdate) { return; }
+        if (update && this.config.extra.noUpdate) { return; }
 
         if (this.mapping.description) {
             this.popup.attachData(newData);

@@ -5,7 +5,7 @@ import { GraphData, ID3DataStackedSerie, ID3DataStackedItem, IKeyValueObject } f
 
 const colourArray = ['moss','orange','blue','purple','green','yellow','orange'];
 
-export class ChartStackedBarsNormalized {
+export class ChartStackedBarsNormalizedVertical {
 
     dataArray;
     series;
@@ -55,14 +55,14 @@ export class ChartStackedBarsNormalized {
             .attr('x', 0)
             .attr('dx', this.ctrlr.config.padding.left)
             .attr('dy', '2px')
-            .style("text-anchor", "start")
+            .style("text-anchor", "middle")
             .style("font-size",".8rem")
             .attr('fill-opacity', 1);
     }
 
     redraw() {
 
-        let xOffset;
+        let yOffset;
 
         let self = this;
 
@@ -73,13 +73,11 @@ export class ChartStackedBarsNormalized {
             .attr("transform", "translate(0," + (self.ctrlr.config.padding.top) + ")");
 
         this.bar
-            .attr("height", self.ctrlr.scales.y.scale.bandwidth())
-            .attr("y", (d: ID3DataStackedItem) =>  this.ctrlr.scales.y.fn(d.data['label']))
-            // .transition()
-            // .duration(200)
-            .attr("x", (d: ID3DataStackedItem)  => this.ctrlr.scales.x.fn(d[0]))
+            .attr("width", self.ctrlr.scales.x.scale.bandwidth())
+            .attr("x", (d: ID3DataStackedItem) =>  this.ctrlr.scales.x.fn(d.data['label']))
+            .attr("y", (d: ID3DataStackedItem)  => this.ctrlr.scales.y.fn(d[0]))
 
-            .attr("width", (d: ID3DataStackedItem) => this.ctrlr.scales.x.fn(d[1]) - this.ctrlr.scales.x.fn(d[0]) - 5)
+            .attr("height", (d: ID3DataStackedItem) => this.ctrlr.scales.y.fn(d[1]) - this.ctrlr.scales.y.fn(d[0]) - 5)
            ;
 
         this.barLabels
@@ -93,8 +91,12 @@ export class ChartStackedBarsNormalized {
             })
             .attr('transform', (d: ID3DataStackedItem) => {
 
-                xOffset = ((this.ctrlr.scales.x.fn(d[0]) - this.ctrlr.scales.x.fn(d[1])) / 2);
-                return 'translate(' + (this.ctrlr.scales.x.fn(d[0]) - xOffset) + ',' + ((this.ctrlr.scales.y.fn(d.data['label']) + ( this.ctrlr.scales.y.scale.bandwidth() / 2)) + 11) +')';
+                yOffset = ((this.ctrlr.scales.y.fn(d[0]) - this.ctrlr.scales.y.fn(d[1])) / 2);
+
+                const x = ((this.ctrlr.scales.x.fn(d.data['label']) + ( this.ctrlr.scales.x.scale.bandwidth() / 2)));
+                const y = (this.ctrlr.scales.y.fn(d[0]) - yOffset) + 11;
+
+                return `translate(${x},${y})`;
             })
             .attr('fill-opacity', 0)
             .attr('stroke', (d: ID3DataStackedSerie, i: number)  => "transparent")
@@ -105,8 +107,8 @@ export class ChartStackedBarsNormalized {
             .attr('fill-opacity', 1);
 
         this.groupLabels
-            .text( (d: IKeyValueObject,i: number) => (d.label === 'outflow') ? 'Aantal dossiers dat afgelopen week een stap in procedure heeft gemaakt' : d.label)
-            .attr('transform', (d: IKeyValueObject,i: number) => 'translate(' + self.ctrlr.config.margin.left + ',' + (self.ctrlr.scales.y.fn(d.label) - 10  ) + ')')
+            .text( (d: IKeyValueObject,i: number) => d.label)
+            .attr('transform', (d: IKeyValueObject,i: number) => 'translate(' + (self.ctrlr.scales.x.fn(d.label) + ( this.ctrlr.scales.x.scale.bandwidth() / 2 - 0)  ) + ',' + self.ctrlr.config.margin.left + ')')
         ;
     }
 }

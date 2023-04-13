@@ -208,8 +208,8 @@ export class InitTicker {
         let uniqueEndpoints : any = [... Array.from(new Set(configArray.map( (o) => o.endpoint)))];
 
         for (let endpoint of uniqueEndpoints) {
-
-            let url = (endpoint.indexOf('limit=') < 0) ? process.env.DOMAIN + process.env.API_BASE + endpoint  + '?gemeente=eq.' + segment + '&_date=gte.2018-11-01' : process.env.DOMAIN + process.env.API_BASE +  endpoint;
+            // @ts-ignore
+            let url = (endpoint.indexOf('limit=') < 0) ? DOMAIN + APIBASE + endpoint  + '?gemeente=eq.' + segment + '&_date=gte.2018-11-01' : DOMAIN + APIBASE +  endpoint;
 
             promises.push(
                 new Promise((resolve, reject) => {

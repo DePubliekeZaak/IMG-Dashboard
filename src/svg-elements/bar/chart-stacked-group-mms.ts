@@ -5,7 +5,7 @@ import { GraphData, ID3DataStackedSerie, ID3DataStackedItem, IKeyValueObject } f
 
 const colourArray = ['moss','orange','blue','purple','green','yellow','orange'];
 
-export class ChartStackedBarsNormalized {
+export class ChartStackedGroupMms {
 
     dataArray;
     series;
@@ -67,7 +67,9 @@ export class ChartStackedBarsNormalized {
         let self = this;
 
         this.series
-            .attr("class", (d: ID3DataStackedSerie, i: number) => "stackGroup " + slugify(d.key))
+            .attr("class", (d: ID3DataStackedSerie, i: number) => {
+                return "stackGroup " + slugify(d.key)
+            })
             .attr('stroke', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][0])
             .attr('fill', (d: ID3DataStackedSerie, i: number)  => colours[colourArray[i]][1])
             .attr("transform", "translate(0," + (self.ctrlr.config.padding.top) + ")");
@@ -75,10 +77,7 @@ export class ChartStackedBarsNormalized {
         this.bar
             .attr("height", self.ctrlr.scales.y.scale.bandwidth())
             .attr("y", (d: ID3DataStackedItem) =>  this.ctrlr.scales.y.fn(d.data['label']))
-            // .transition()
-            // .duration(200)
             .attr("x", (d: ID3DataStackedItem)  => this.ctrlr.scales.x.fn(d[0]))
-
             .attr("width", (d: ID3DataStackedItem) => this.ctrlr.scales.x.fn(d[1]) - this.ctrlr.scales.x.fn(d[0]) - 5)
            ;
 
@@ -102,11 +101,11 @@ export class ChartStackedBarsNormalized {
             .transition()
             .delay(500)
             .duration(500)
-            .attr('fill-opacity', 1);
+            .attr('fill-opacity', 0);
 
         this.groupLabels
-            .text( (d: IKeyValueObject,i: number) => (d.label === 'outflow') ? 'Aantal dossiers dat afgelopen week een stap in procedure heeft gemaakt' : d.label)
-            .attr('transform', (d: IKeyValueObject,i: number) => 'translate(' + self.ctrlr.config.margin.left + ',' + (self.ctrlr.scales.y.fn(d.label) - 10  ) + ')')
+            .text( (d: IKeyValueObject,i: number) => d.label)
+            .attr('transform', (d: IKeyValueObject,i: number) => 'translate(' + -(self.ctrlr.config.margin.left) + ',' + (self.ctrlr.scales.y.fn(d.label) + ( this.ctrlr.scales.y.scale.bandwidth() / 2) + 2) + ')')
         ;
     }
 }

@@ -234,4 +234,49 @@ export default class DashboardData {
 
         return weeks;
     }
+
+    parseMmsData(weeks) {
+
+        let parsedWeeks = [];
+        const props = ['afwijzingen','toekenningen','meldingen','gemiddeld_verleend']
+        let uniqueData: any = [...Array.from(new Set(weeks.map((w) => w._date)))];
+
+        for (let date of uniqueData) {
+
+            const all = weeks.filter( (w) => w._date === date);
+
+            let week = {
+                _date : all[0]._date,
+                _year : all[0]._year,
+                _month : all[0]._month,
+                _week : all[0]._week
+            };
+
+            for (let i = 0; i < 7; i++) {
+
+                const pgv = all.filter( w => parseInt(w.pgv) === i);
+
+                for (const j of pgv) {
+
+                    let history = "geen";
+
+                    if(j.historie_nam_cvw && j.historie_tcmg_img) {
+                        history = "beiden";
+                    } else if (j.historie_nam_cvw) {
+                        history = "cvw";
+                    } else if (j.historie_tcmg_img) {
+                        history = "img";
+                    } 
+
+                    for (let prop of props) {
+                        week[j.pgv + '-' + history + '-' + prop] = j[prop];
+                    }
+                }
+            }
+
+            parsedWeeks.push(week)
+        }
+
+        return parsedWeeks;
+    }
 }

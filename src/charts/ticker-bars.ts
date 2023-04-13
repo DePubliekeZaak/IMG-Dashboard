@@ -172,7 +172,6 @@ export default class TickerBars extends GraphControllerV2   {
     draw(data: GraphData) {
 
         const xValues = data.slice.map(d => d[this.parameters.x]);
-        console.log(xValues);
         this.xScale = this.scales.x.set([xValues[0],xValues[xValues.length - 1]]);
         this.chartBars.draw(data);
     }

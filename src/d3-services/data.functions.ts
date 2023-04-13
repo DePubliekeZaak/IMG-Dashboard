@@ -214,6 +214,7 @@ export function parseGroups(mapping: IGraphMapping, rawData: DataPart[]) : IKeyV
         grouped.push(group)
     }
 
+
     return grouped;
 
 }
