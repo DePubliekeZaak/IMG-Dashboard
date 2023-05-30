@@ -1,7 +1,4 @@
-import { convertToCurrency } from '../../d3-services/_helpers';
-import { D3DataTypeHistorical, D3DataTypeLatest } from '../../types/data';
-import { colours} from "../../_styleguide/_colours";
-import { DataPart } from "../../types/data";
+import { colours} from "../../img-modules/_styleguide";
 import * as d3 from 'd3';
 
 export default class ChartStackedBars {
@@ -78,15 +75,15 @@ export default class ChartStackedBars {
                                 html += p.short + ': ' + d.data[p.column] + '<br/>';
                         }
 
-                        html += 'cummulatief' + ': ' + Math.round(d.data['percentage'] * 10) / 10 + '%<br/>';
+                        html += 'cumulatief' + ': ' + Math.round(d.data['percentage'] * 10) / 10 + '%<br/>';
 
                         return html;
 
                 })
                 .style("left", (event.pageX) + "px")
                 .style("top", (event.pageY) + "px")
-                .transition()
-                .duration(250)
+                // .transition()
+                // .duration(250)
                 .style("opacity", 1);
         })
         .on("mouseout", function (event: any, d: any, i: number) {
@@ -95,8 +92,8 @@ export default class ChartStackedBars {
                 .attr("fill", "inherit")
 
             d3.select('.tooltip')
-                .transition()
-                .duration(250)
+                // .transition()
+                // .duration(250)
                 .style("opacity", 0);
         });
     ;

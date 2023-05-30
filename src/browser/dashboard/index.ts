@@ -1,0 +1,1 @@
+export { InitDashboard } from "./dashboard.controller"

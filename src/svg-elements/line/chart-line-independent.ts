@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { DataPart } from '../../types/data';
+import { DataPart } from '../../d3-modules/_d3_types';
 import { ChartLine } from './chart-line';
 
 export class ChartLineIndependent extends ChartLine {

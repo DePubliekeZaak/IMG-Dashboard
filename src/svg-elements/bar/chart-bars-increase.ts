@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import { thousands } from '../../d3-services/_helpers';
 
 export class ChartBarsIncrease {

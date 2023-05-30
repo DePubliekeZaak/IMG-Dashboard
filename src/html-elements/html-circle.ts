@@ -1,6 +1,5 @@
-import { colours } from '../_styleguide/_colours';
+import { colours, breakpoints } from '../img-modules/_styleguide';
 import {thousands} from "../d3-services/_helpers";
-import { breakpoints } from '../_styleguide/_breakpoints';
 
 export class HtmlCircle {
 

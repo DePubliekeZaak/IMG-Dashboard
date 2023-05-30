@@ -1,7 +1,7 @@
-import { colours} from "../../_styleguide/_colours";
+import { colours} from "../../img-modules/_styleguide";
 import * as d3 from "d3";
 import {getLongMonthFromNumber} from "../../utils/date-object.utils";
-import { DataPart } from '../../types/data';
+import { DataPart } from '../../d3-modules/_d3_types';
 
 export default class ChartBlockTrend {
 
@@ -68,8 +68,8 @@ export default class ChartBlockTrend {
                     })
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px")
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 1);
             })
             .on("mouseout", function (event: any, d: any) {
@@ -78,8 +78,8 @@ export default class ChartBlockTrend {
                     .attr("fill", colours['moss'][1])
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 0);
             });
         ;

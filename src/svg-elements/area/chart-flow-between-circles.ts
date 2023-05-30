@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
-import { colours } from  '../../_styleguide/_colours'
-import {breakpoints} from "../../_styleguide/_breakpoints";
-import { DataPart } from '../../types/data';
+import { breakpoints, colours } from  '../../img-modules/_styleguide'
+import { DataPart } from '../../d3-modules/_d3_types';
 
 export class ChartFlowBetweenCircles {
 
@@ -87,8 +86,7 @@ export class ChartFlowBetweenCircles {
                     .html(html)
                     .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 5) + "px")
-                    .transition()
-                    .duration(250)
+               
                     .style("opacity", 1);
             })
             .on("mouseout", function(d) {

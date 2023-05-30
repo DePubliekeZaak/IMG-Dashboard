@@ -1,7 +1,7 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import { slugify } from '../../utils/slugify.utils';
 
-import { GraphData, ID3DataStackedSerie, ID3DataStackedItem, IKeyValueObject } from '../../types/data';
+import { GraphData, ID3DataStackedSerie, ID3DataStackedItem, IKeyValueObject } from '../../d3-modules/_d3_types';
 
 const colourArray = ['moss','orange','blue','purple','green','yellow','orange'];
 

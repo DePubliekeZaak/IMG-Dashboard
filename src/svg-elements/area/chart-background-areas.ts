@@ -1,4 +1,4 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import * as d3 from 'd3';
 import { displayDate } from '../../d3-services/_helpers';
 
@@ -72,8 +72,8 @@ export class ChartBackgroundAreas {
                     })
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px")
-                    .transition()
-                    .duration(250)
+                    // .transition()
+                    // .duration(250)
                     .style("opacity", 1);
             })
             .on("mouseout", function (d) {
@@ -83,8 +83,8 @@ export class ChartBackgroundAreas {
                 });
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                    // .transition()
+                    // .duration(250)
                     .style("opacity", 0);
             });
         ;

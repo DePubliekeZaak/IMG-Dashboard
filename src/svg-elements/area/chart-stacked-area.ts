@@ -1,4 +1,4 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import * as d3 from 'd3';
 
 

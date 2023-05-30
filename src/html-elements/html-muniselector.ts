@@ -1,4 +1,4 @@
-import {colours} from "../_styleguide/_colours";
+import {colours} from "../img-modules/_styleguide";
 import {munis} from "../d3-services/municipalities";
 
 export class HtmlMuniSelector {

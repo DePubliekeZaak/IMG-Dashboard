@@ -2,7 +2,7 @@ import { convertToCurrency, displayDate } from '../../d3-services/_helpers';
 import * as d3 from 'd3';
 import { pointer as d3Pointer } from 'd3-selection';
 
-import { GraphData } from '../../types/data';
+import { GraphData } from '../../d3-modules/_d3_types';
 
 export default class ChartFocus {
 

@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { DataPart, GraphData } from '../../types/data';
+import { DataPart, GraphData } from '../../d3-modules/_d3_types';
 import { ChartLine } from './chart-line';
 
 export default class ChartLineMiddled extends ChartLine {

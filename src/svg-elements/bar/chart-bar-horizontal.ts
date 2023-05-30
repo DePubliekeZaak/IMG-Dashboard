@@ -1,6 +1,5 @@
 
-import { colours} from "../../_styleguide/_colours";
-import {breakpoints} from "../../_styleguide/_breakpoints";
+import { breakpoints, colours} from "../../img-modules/_styleguide";
 
 export class ChartBarHorizontal {
 

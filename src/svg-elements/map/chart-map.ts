@@ -1,7 +1,6 @@
 import * as d3 from "d3";
-import { colours } from '../../_styleguide/_colours';
+import { breakpoints, colours } from '../../img-modules/_styleguide';
 import { convertToCurrency, shortenCurrency, slugify } from '../../d3-services/_helpers';
-import {breakpoints} from "../../_styleguide/_breakpoints";
 
 export default class ChartMap   {
     projection;
@@ -87,8 +86,8 @@ export default class ChartMap   {
                         .html(html)
                         .style("left", (event.pageX + 5) + "px")
                         .style("top", (event.pageY - 5) + "px")
-                        .transition()
-                        .duration(250)
+                        // .transition()
+                        // .duration(250)
                         .style("opacity", 1);
                 }
             })
@@ -98,8 +97,8 @@ export default class ChartMap   {
                     .attr("fill-opacity", (e: any) => (e.properties[property] > 0) ? self.ctrlr.scales.y.fn(d.properties[property]) : 1)
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                    // .transition()
+                    // .duration(250)
                     .style("opacity", 0);
             });
 

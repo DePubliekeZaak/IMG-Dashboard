@@ -1,5 +1,5 @@
 // import * as d3 from "d3";
-// import {ResponseData} from "../../types/data";
+// import {ResponseData} from "../@local/d3_types";
 // import * as topojson from "topojson-client";
 
 // import { ChartObjects, ChartSVG, ChartDimensions, ChartScale} from "../../chart-basics/module";

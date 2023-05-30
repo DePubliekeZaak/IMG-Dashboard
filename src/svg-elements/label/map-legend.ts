@@ -1,8 +1,7 @@
 import * as d3 from "d3";
 import { convertToCurrency, shortenCurrency } from "../../d3-services/_helpers";
-import { GraphData } from "../../types/data";
-import { breakpoints } from "../../_styleguide/_breakpoints";
-import { colours } from "../../_styleguide/_colours";
+import { GraphData } from "../../d3-modules/_d3_types";
+import { colours, breakpoints } from "../../img-modules/_styleguide";
 
 export default class MapLegend {
 

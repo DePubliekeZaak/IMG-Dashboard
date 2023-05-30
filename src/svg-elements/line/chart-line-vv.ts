@@ -1,8 +1,7 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import * as d3 from 'd3';
-import { GraphConfig} from "../../types/graphConfig";
-import {Dimensions} from "../../types/dimensions";
-import { DataPart } from '../../types/data';
+import { GraphConfig, Dimensions} from "../../d3-modules/_d3_types";
+import { DataPart } from '../../d3-modules/_d3_types';
 
 export class ChartLineVV {
 

@@ -1,4 +1,4 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import { displayDate } from '../../d3-services/_helpers';
 import * as d3 from 'd3';
 
@@ -100,8 +100,8 @@ export class ChartRaggedLine {
                         // }
                     })
                     .attr("stroke-width", 2)
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .attr("r", 4);
 
             this.ctrlr.svg.circles
@@ -118,15 +118,15 @@ export class ChartRaggedLine {
                         })
                         .style("left", (event.pageX) + "px")
                         .style("top", (event.pageY) + "px")
-                        .transition()
-                        .duration(250)
+                        // .transition()
+                        // .duration(250)
                         .style("opacity", 1);
                 })
                 .on("mouseout", function (d) {
 
                     d3.select('.tooltip')
-                        .transition()
-                        .duration(250)
+                        // .transition()
+                        // .duration(250)
                         .style("opacity", 0);
                 });
 

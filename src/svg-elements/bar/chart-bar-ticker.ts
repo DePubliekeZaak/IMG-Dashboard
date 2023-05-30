@@ -1,7 +1,7 @@
 import { convertToCurrency, displayDate } from '../../d3-services/_helpers';
-import { D3DataTypeHistorical, D3DataTypeLatest, GraphData } from '../../types/data';
-import { colours} from "../../_styleguide/_colours";
-import { DataPart } from "../../types/data";
+import { D3DataTypeHistorical, D3DataTypeLatest, GraphData } from '../../d3-modules/_d3_types';
+import { colours} from "../../img-modules/_styleguide";
+import { DataPart } from "../../d3-modules/_d3_types";
 import * as d3 from 'd3';
 
 export class ChartBarTicker {
@@ -76,8 +76,8 @@ export class ChartBarTicker {
                     })
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px")
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 1);
             })
             .on("mouseout", function (event, d) {
@@ -85,8 +85,8 @@ export class ChartBarTicker {
                 d3.select(this).attr("fill", () => colours[self.smartColour(d,data)][1]);
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 0);
             });
         ;

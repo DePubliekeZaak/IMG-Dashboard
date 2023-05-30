@@ -1,7 +1,11 @@
 import * as d3 from 'd3';
-import { colours } from  '../../_styleguide/_colours'
-import {breakpoints} from "../../_styleguide/_breakpoints";
+import { select as d3Select } from 'd3-selection';
+import { transition as d3Transition } from 'd3-transition';
+d3Select.prototype.transition = d3Transition;
+import { breakpoints, colours } from  '../../img-modules/_styleguide'
 import { thousands } from "../../d3-services/_helpers";
+
+
 
 export class ChartCircles {
 
@@ -105,12 +109,12 @@ export class ChartCircles {
                 
                 `;
                 
-                d3.select('.tooltip')
+                d3.select('.tooltip') 
                     .html(html)
                     .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 5) + "px")
-                    .transition()
-                    .duration(250)
+                    // .transition()
+                    // .duration(250)
                     .style("opacity", 1);
                 
             })
@@ -120,8 +124,8 @@ export class ChartCircles {
                     .style("fill", d => { return 'white' });
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                    // .transition()
+                    // .duration(250)
                     .style("opacity", 0);
             });
 

@@ -1,4 +1,4 @@
-import { DataPart, GraphData } from "../../types/data";
+import { DataPart, GraphData } from "../../d3-modules/_d3_types";
 
 export class ChartAvgLine {
 

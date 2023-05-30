@@ -1,6 +1,6 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import { getWeek, getMonth } from '../../utils/date-object.utils';
-import { DataPart } from '../../types/data';
+import { DataPart } from '../../d3-modules/_d3_types';
 import { ChartGrid } from './chart-grid';
 
 export class ChartGridMonth extends ChartGrid {

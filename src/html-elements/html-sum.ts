@@ -1,7 +1,6 @@
 import { convertToCurrency } from "../d3-services/_helpers";
-import { DataPart } from "../types/data";
-import { breakpoints } from "../_styleguide/_breakpoints";
-import { colours } from "../_styleguide/_colours";
+import { DataPart } from "../d3-modules/_d3_types";
+import { breakpoints, colours } from "../img-modules/_styleguide";
 
 export default class HtmlSum {
 

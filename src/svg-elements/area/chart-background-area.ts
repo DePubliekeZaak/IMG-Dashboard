@@ -1,7 +1,7 @@
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 import * as d3 from 'd3';
 import { displayDate } from '../../d3-services/_helpers';
-import { GraphData } from '../../types/data';
+import { GraphData } from '../../d3-modules/_d3_types';
 
 export default class ChartBackgroundArea {
 

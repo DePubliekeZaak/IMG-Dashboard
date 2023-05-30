@@ -1,4 +1,4 @@
-import { breakpoints } from "../_styleguide/_breakpoints";
+import { breakpoints } from "../img-modules/_styleguide";
 
 export class HtmlLink {
 

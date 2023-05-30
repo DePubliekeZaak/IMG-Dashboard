@@ -1,7 +1,6 @@
-import { colours } from '../_styleguide/_colours';
+import { colours, breakpoints} from '../img-modules/_styleguide';
 import {thousands} from "../d3-services/_helpers";
-import { Mapping } from '../types/mapping';
-import { breakpoints } from '../_styleguide/_breakpoints';
+import { Mapping } from '../d3-modules/_d3_types';
 
 export default class HtmlLegendDotsLines {
 

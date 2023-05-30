@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { colours } from '../../_styleguide/_colours';
+import { colours } from '../../img-modules/_styleguide';
 // import {event as currentEvent} from 'd3-selection';
 
 
@@ -76,8 +76,8 @@ export class ChartMultiBars {
                     .html(tooltip(d))
                     .style("left", (event.pageX - 20) + "px")
                     .style("top", (event.pageY - 0) + "px")
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 1);
             })
             .on("mouseout", function(d) {
@@ -86,8 +86,8 @@ export class ChartMultiBars {
                     .style("fill", b => colours[b.colour][0]);
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 0);
             })// add
 

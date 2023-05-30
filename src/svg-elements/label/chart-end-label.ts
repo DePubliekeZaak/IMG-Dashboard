@@ -1,7 +1,5 @@
-import { GraphConfig} from "../../types/graphConfig";
-import {Dimensions} from "../../types/dimensions";
-import { colours } from "../../_styleguide/_colours"
-import { slugify} from "../../utils/slugify.utils";
+
+import { colours } from "../../img-modules/_styleguide"
 
 export class ChartEndLabel {
 

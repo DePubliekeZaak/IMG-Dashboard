@@ -1,6 +1,6 @@
-import { colours } from '../_styleguide/_colours';
+import { colours } from '../img-modules/_styleguide';
 import {thousands, convertToCurrency } from "../d3-services/_helpers";
-import { GraphData } from '../types/data';
+import { GraphData } from '../d3-modules/_d3_types';
 
 export class HtmlNumberNew {
 

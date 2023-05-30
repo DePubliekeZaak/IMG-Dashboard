@@ -1,6 +1,6 @@
-import { colours } from '../_styleguide/_colours';
+import { colours } from '../img-modules/_styleguide';
 import {convertToCurrency, thousands} from "../d3-services/_helpers";
-import { breakpoints } from '../_styleguide/_breakpoints';
+import { breakpoints } from '../img-modules/_styleguide';
 
 export class HtmlAccented {
 

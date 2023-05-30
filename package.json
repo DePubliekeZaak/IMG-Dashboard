@@ -10,8 +10,14 @@
     "url": "https://schadedoormijnbouw.nl"
   },
   "dependencies": {
+    "@local/d3_graphs": "file:src/d3-modules/_d3_graphs",
+    "@local/d3_types": "file:src/d3-modules/_d3_types",
+    "@local/styleguide": "file:src/img-modules/_styleguide",
+    "@local/charts": "file:src/img-modules/charts",
+    "@local/dashboard": "file:src/browser/dashboard",
+    "@local/configs": "file:src/configs/",
     "axios": "^0.24.0",
-    "d3": "^7.4.4",
+    "d3": "^7.8.4",
     "d3-selection": "^3.0.0",
     "dotenv": "^16.0.3",
     "es6-promise": "^4.2.8",
@@ -23,9 +29,9 @@
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
-    "@types/d3": "^7.1.0",
-    "@types/d3-scale": "^4.0.2",
-    "@types/d3-selection": "^3.0.2",
+    "@types/d3": "^7.4.0",
+    "@types/d3-scale": "^4.0.3",
+    "@types/d3-selection": "^3.0.5",
     "@types/lodash": "^4.14.182",
     "@types/node-sass": "^4.11.2",
     "@types/topojson-client": "^3.1.1",
@@ -45,7 +51,7 @@
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.8",
-    "typescript": "^3.8.3",
+    "typescript": "^5.0.4",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1",
@@ -53,8 +59,9 @@
   },
   "scripts": {
     "build:prod": "webpack --env ENV=prod DOMAIN=https://img.publikaan.nl APIBASE=/open-data/api/",
-    "build:staging": "webpack --env ENV=dev DOMAIN=https://img.de-publieke-zaak.nl APIBASE=/open-data/staging/api/",
+    "build:staging": "webpack --env ENV=dev DOMAIN=https://img.publikaan.nl APIBASE=/open-data/staging/api/",
     "deploy:prod": "cd public && git add . && git commit -am 'changes' && git push old master",
+    "deploy:oldstaging": "cd public && git add . && git commit -am 'changes' && git push oldstaging master",
     "deploy:staging": "cd public && git add . && git commit -am 'changes' && git push staging master",
     "serve": "webpack serve --env ENV=dev DOMAIN=https://img.publikaan.nl APIBASE=/open-data/staging/api/"
   }

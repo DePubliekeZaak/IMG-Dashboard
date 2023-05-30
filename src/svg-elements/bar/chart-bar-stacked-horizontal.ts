@@ -1,6 +1,5 @@
 
-import { colours} from "../../_styleguide/_colours";
-import {breakpoints} from "../../_styleguide/_breakpoints";
+import { colours, breakpoints } from "../../img-modules/_styleguide";
 import * as d3 from "d3";
 import {slugify} from "../../d3-services/_helpers";
 
@@ -138,7 +137,7 @@ export class ChartBarStackedHorizontal {
         this.barValue
             .text(function(d, i ) {
 
-                console.log(d);
+                // console.log(d);
 
                 let label = (i === 0) ? "Afgehandeld" : "In behandeling";
 

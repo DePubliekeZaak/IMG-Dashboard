@@ -1,7 +1,6 @@
 import { convertToCurrency } from '../../d3-services/_helpers';
-import { D3DataTypeHistorical, D3DataTypeLatest } from '../../types/data';
-import { colours} from "../../_styleguide/_colours";
-import { DataPart } from "../../types/data";
+import { D3DataTypeHistorical, D3DataTypeLatest, DataPart } from '../../d3-modules/_d3_types';
+import { colours} from "../../img-modules/_styleguide";
 
 export class ChartBar {
 

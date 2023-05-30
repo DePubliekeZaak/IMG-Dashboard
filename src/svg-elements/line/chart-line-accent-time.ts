@@ -1,8 +1,7 @@
-import { colours } from '../../_styleguide/_colours';
 import * as d3 from 'd3';
-import { GraphConfig} from "../../types/graphConfig";
-import {Dimensions} from "../../types/dimensions";
-import { DataPart } from '../../types/data';
+import { colours } from '../../img-modules/_styleguide';
+import { GraphConfig, Dimensions} from "../../d3-modules/_d3_types";
+import { DataPart } from '../../d3-modules/_d3_types';
 import { ChartLine } from './chart-line';
 
 export class ChartLineAccentTime extends ChartLine {

@@ -1,8 +1,6 @@
-import { convertToCurrency, displayDate } from '../../d3-services/_helpers';
-import { D3DataTypeHistorical, D3DataTypeLatest, GraphData } from '../../types/data';
-import { colours} from "../../_styleguide/_colours";
-import { DataPart } from "../../types/data";
 import * as d3 from 'd3';
+import { GraphData, DataPart } from '../../d3-modules/_d3_types';
+import { colours} from "../../img-modules/_styleguide";
 
 export default class ChartBarHorizon {
 
@@ -10,8 +8,6 @@ export default class ChartBarHorizon {
     barsDown;
     barsBalance;
     line;
-
-
 
     constructor(
         private ctrlr
@@ -111,8 +107,8 @@ export default class ChartBarHorizon {
                     })
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px")
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 1);
             })
             .on("mouseout", function (event, d) {
@@ -120,8 +116,8 @@ export default class ChartBarHorizon {
                 d3.select(this).attr("fill", () => colours['orange'][1]);
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 0);
             });
 
@@ -143,8 +139,8 @@ export default class ChartBarHorizon {
                     })
                     .style("left", (event.pageX) + "px")
                     .style("top", (event.pageY) + "px")
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 1);
             })
             .on("mouseout", function (event, d) {
@@ -152,8 +148,8 @@ export default class ChartBarHorizon {
                 d3.select(this).attr("fill", () => colours['lightBlue'][1]);
 
                 d3.select('.tooltip')
-                    .transition()
-                    .duration(250)
+                 //   .transition()
+  //                  .duration(250)
                     .style("opacity", 0);
             });
 

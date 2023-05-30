@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { convertToCurrency, displayDate, slugify } from "../../d3-services/_helpers";
-import { DataPart, GraphData } from "../../types/data";
-import { colours } from '../../_styleguide/_colours';
+import { DataPart, GraphData } from "../../d3-modules/_d3_types";
+import { colours } from '../../img-modules/_styleguide';
 
 export class ChartBullsEye {
 

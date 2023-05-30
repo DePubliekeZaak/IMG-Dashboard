@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { GraphData } from '../../types/data';
+import { GraphData } from '../../d3-modules/_d3_types';
 import ChartFocus from './chart-focus';
 
 export default class ChartFocusTime extends ChartFocus {

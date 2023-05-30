@@ -1,7 +1,6 @@
 import { convertToCurrency } from '../../d3-services/_helpers';
-import { D3DataTypeHistorical, D3DataTypeLatest } from '../../types/data';
-import { colours} from "../../_styleguide/_colours";
-import { DataPart } from "../../types/data";
+import { colours} from "../../img-modules/_styleguide";
+import { DataPart, D3DataTypeHistorical, D3DataTypeLatest } from "../../d3-modules/_d3_types";
 
 export default class ChartBarTrend {
 
@@ -32,7 +31,7 @@ export default class ChartBarTrend {
         let barWidth = this.ctrlr.dimensions.width / data.slice.length - 1;
 
         this.bars
-            .attr("x", (d: DataPart, i: Number)  => {
+            .attr("x", (d: DataPart, i: number)  => {
                 return i > 0 ? self.ctrlr.scales.x.fn(d[self.ctrlr.parameters.x]) - barWidth : 0;
             })
             .attr("y", self.ctrlr.dimensions.height)
@@ -46,7 +45,7 @@ export default class ChartBarTrend {
                 let h = self.ctrlr.dimensions.height - self.ctrlr.scales.y.fn(d[self.yParameter]);
 
                 if (h < 0) {
-                  console.log(d)
+                //   console.log(d)
                     h = 0;
                 }
                 

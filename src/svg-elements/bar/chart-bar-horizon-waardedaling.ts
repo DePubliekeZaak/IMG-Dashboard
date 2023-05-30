@@ -1,7 +1,7 @@
 import { convertToCurrency, displayDate } from '../../d3-services/_helpers';
-import { D3DataTypeHistorical, D3DataTypeLatest, GraphData } from '../../types/data';
-import { colours} from "../../_styleguide/_colours";
-import { DataPart } from "../../types/data";
+import { D3DataTypeHistorical, D3DataTypeLatest, GraphData } from '../../d3-modules/_d3_types';
+import { colours} from "../../img-modules/_styleguide";
+import { DataPart } from "../../d3-modules/_d3_types";
 import * as d3 from 'd3';
 
 
