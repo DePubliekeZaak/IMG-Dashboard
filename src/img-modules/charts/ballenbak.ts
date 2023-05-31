@@ -1,15 +1,14 @@
-import BallenbakSimulation from "../d3-services/ballenbak.simulation"
+import { BallenbakSimulation } from "@local/img-services"
 
 import {
     ChartCircleGroups,
-} from '../svg-elements/module';
+} from '@local/elements';
 
 import * as _ from "lodash";
 
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping } from '../d3-modules/_d3_types';
-import { breakpoints } from '../img-modules/_styleguide';
+import { IGraphMapping, DataPart, GraphData } from '@local/d3_types';
+import { breakpoints } from '@local/styleguide';
 
 export default class Ballenbak extends GraphControllerV2 {
 

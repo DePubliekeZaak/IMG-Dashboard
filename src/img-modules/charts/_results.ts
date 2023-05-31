@@ -2,7 +2,7 @@
 
 // import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 // import {ChartAxisGrid, ChartBarStackedHorizontal } from "../svg-elements/module";
-// import { HtmlHeader, HtmlPopup} from "../html-elements/module";
+// import { HtmlHeader, HtmlPopup} from "@local/elements";
 
 // export class Results  {
 

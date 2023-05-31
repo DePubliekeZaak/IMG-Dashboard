@@ -15,7 +15,7 @@ import {
     dashboardGemeente
 } from "@local/configs";
 
-import {munis} from "../../d3-services/municipalities";
+import {munis} from "@local/img-services";
 
 export default class DashboardParams {
 

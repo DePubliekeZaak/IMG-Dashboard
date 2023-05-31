@@ -1,9 +1,9 @@
 import { GraphControllerV2 } from '@local/d3_graphs';
 
-import { ChartBar } from '../svg-elements/module';
-import { D3DataTypeLatest, DataPart, GraphData } from '../d3-modules/_d3_types';
-import { IGraphMapping } from '../d3-modules/_d3_types';
-import { breakpoints } from '../img-modules/_styleguide';
+import { ChartBar } from '@local/elements';
+import { D3DataTypeLatest, DataPart, GraphData } from '@local/d3_types';
+import { IGraphMapping } from '@local/d3_types';
+import { breakpoints } from '@local/styleguide';
 
 export default class BandBars extends GraphControllerV2 {
 

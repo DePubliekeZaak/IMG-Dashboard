@@ -1,12 +1,12 @@
 
-import { ChartBackgroundArea, ChartFocusTime, ChartLineAccentTime } from "../svg-elements/module";
-import { HtmlLegendDots } from "../html-elements/module";
+import { ChartBackgroundArea, ChartFocusTime, ChartLineAccentTime } from "@local/elements";
+import { HtmlLegendDots } from "@local/elements";
 
-import { DataPart, GraphData } from "../d3-modules/_d3_types";
-import { flattenColumn, getMappingKey } from "../d3-services/_helpers";
-import { filterWeeks, getNeededColumnsForHistoryV2 } from "../d3-services/data-with-history.functions";
+import { DataPart, GraphData } from "@local/d3_types";
+import { flattenColumn, getMappingKey } from "@local/d3-services";
+import { filterWeeks, getNeededColumnsForHistoryV2 } from "@local/img-services";
 import { GraphControllerV2 } from "@local/d3_graphs";
-import { IGraphMapping } from "../d3-modules/_d3_types";
+import { IGraphMapping } from "@local/d3_types";
 
 export default class TrendLine extends GraphControllerV2 {
 

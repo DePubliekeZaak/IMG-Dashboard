@@ -1,7 +1,7 @@
 // import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
 // import { ChartBarHorizontal } from '../svg-elements/module';
-// import { HtmlHeader, HtmlPopup, HtmlMuniSelector } from '../html-elements/module';
+// import { HtmlHeader, HtmlPopup, HtmlMuniSelector } from '@local/elements';
 
 // import * as d3 from 'd3';
 

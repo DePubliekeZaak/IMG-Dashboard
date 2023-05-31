@@ -1,11 +1,11 @@
 
-import { ChartBarTrend, ChartFocusTime, ChartLineDashArray, ChartLineMiddled, ChartStackedBars } from "../svg-elements/module";
-import { HtmlLegendDots } from "../html-elements/module";
-import { flattenColumn, getMappingKey } from "../d3-services/_helpers";
-import { filterWeeks, getNeededColumnsForHistoryV2 } from "../d3-services/data-with-history.functions";
+import { ChartBarTrend, ChartFocusTime, ChartLineDashArray, ChartLineMiddled, ChartStackedBars } from "@local/elements";
+import { HtmlLegendDots } from "@local/elements";
+import { flattenColumn, getMappingKey } from "@local/d3-services";
+import { filterWeeks, getNeededColumnsForHistoryV2 } from "@local/img-services";
 import { GraphControllerV2 } from "@local/d3_graphs";
-import { IGraphMapping, DataPart, GraphData} from "../d3-modules/_d3_types";
-import { breakpoints } from "../img-modules/_styleguide";
+import { IGraphMapping, DataPart, GraphData} from "@local/d3_types";
+import { breakpoints } from "@local/styleguide";
 import * as d3 from "d3";
 
 export default class TrendBarsStacked extends GraphControllerV2 {

@@ -2,12 +2,12 @@ import * as d3 from "d3";
 
 import * as topojson from "topojson-client";
 
-import { ChartMap, MapLegend } from "../svg-elements/module";
-import { slugify } from "../utils/slugify.utils";
-import { DataPart, GraphData } from "../d3-modules/_d3_types";
+import { ChartMap, MapLegend } from "@local/elements";
+import { slugify } from "../../utils/slugify.utils";
+import { DataPart, GraphData } from "@local/d3_types";
 import { GraphControllerV2 } from "@local/d3_graphs";
-import { IGraphMapping } from "../d3-modules/_d3_types";
-import { flattenColumn } from "../d3-services/_helpers";
+import { IGraphMapping } from "@local/d3_types";
+import { flattenColumn } from "@local/d3-services";
 
 
 export default class Map extends GraphControllerV2 {

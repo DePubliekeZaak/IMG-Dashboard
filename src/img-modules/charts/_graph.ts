@@ -4,8 +4,8 @@
 
 // import { GraphObject } from '../types/graphObject';
 // import { Mapping } from '../types/mapping';
-// import { getFirstMapping } from '../d3-services/_helpers';
-// import { HtmlHeader, HtmlPopup, HtmlSegment } from '../html-elements/module';
+// import { getFirstMapping } from '@local/d3-services';
+// import { HtmlHeader, HtmlPopup, HtmlSegment } from '@local/elements';
 // import { DataPart } from "@local/d3_types";
 // import { IChartDimensions } from "../chart-basics/chart-dimensions";
 

@@ -1,10 +1,9 @@
 
-import { HtmlAverage } from '../html-elements/module';
-import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
-import { IGraphMapping } from '../d3-modules/_d3_types';
+import { HtmlAverage } from '@local/elements';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '@local/img-services';
+import { DataPart, GraphData, IGraphMapping } from '@local/d3_types';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { flattenColumn } from '../d3-services/_helpers';
+import { flattenColumn } from '@local/d3-services';
 
 export default class Average extends GraphControllerV2  {
 

@@ -1,7 +1,7 @@
-import { breakpoints } from "../img-modules/_styleguide";
-import {convertToCurrency, flattenColumn, thousands} from "../d3-services/_helpers";
-import { filterLatest, getNeededColumns } from '../d3-services/data.functions';
-import { DataPart, GraphData, IGraphMapping } from '../d3-modules/_d3_types';
+import { breakpoints } from "@local/styleguide";
+import {convertToCurrency, flattenColumn, thousands} from "@local/d3-services";
+import { filterLatest, getNeededColumns } from '@local/d3-services';
+import { DataPart, GraphData, IGraphMapping } from '@local/d3_types';
 import { GraphControllerV2 } from "@local/d3_graphs";
 
 export default class TickerNumbers extends GraphControllerV2 {

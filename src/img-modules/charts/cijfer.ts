@@ -1,7 +1,7 @@
-import { HtmlCircle } from '../html-elements/module';
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
-import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
-import { IGraphMapping } from '../d3-modules/_d3_types';
+import { HtmlCircle } from '@local/elements';
+import { DataPart, GraphData } from '@local/d3_types';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '@local/img-services';
+import { IGraphMapping } from '@local/d3_types';
 import { GraphControllerV2 } from '@local/d3_graphs';
 
 export default class Cijfer extends GraphControllerV2   {

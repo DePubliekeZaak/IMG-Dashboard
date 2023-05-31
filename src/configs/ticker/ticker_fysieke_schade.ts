@@ -1,5 +1,5 @@
 
-import { IGraphMapping } from '../@local/d3_types';
+import { IGraphMapping } from '@local/d3_types';
 
 export const tickerFysiekeSchade : IGraphMapping[] = [
     {

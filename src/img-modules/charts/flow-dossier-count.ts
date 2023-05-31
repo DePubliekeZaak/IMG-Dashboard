@@ -1,12 +1,12 @@
 import * as d3 from "d3";
 
-import { ChartCircles, ChartFlowBetweenCircles } from "../svg-elements/module";
-import { breakpoints} from "../img-modules/_styleguide";
-import { DataPart, GraphData } from "../d3-modules/_d3_types";
-import { filterWeeks, getNeededColumnsForHistoryV2 } from "../d3-services/data-with-history.functions";
-import { parseOutflowData } from "../d3-services/data.functions";
+import { ChartCircles, ChartFlowBetweenCircles } from "@local/elements";
+import { breakpoints} from "@local/styleguide";
+import { DataPart, GraphData } from "@local/d3_types";
+import { filterWeeks, getNeededColumnsForHistoryV2 } from "@local/img-services";
+import { parseOutflowData } from "@local/d3-services";
 import { GraphControllerV2 } from "@local/d3_graphs";
-import { IGraphMapping } from "../d3-modules/_d3_types";
+import { IGraphMapping } from "@local/d3_types";
 
 export default class FlowDossierCount extends GraphControllerV2 {
 

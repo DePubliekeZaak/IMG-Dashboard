@@ -2,8 +2,8 @@ import * as d3 from "d3";
 import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxesV2 } from './index';
 import { Dimensions } from '@local/d3_types';
 import { IGraphMapping, IMappingOption, Mapping, IGraphControllerV2, IGraphConfigV2 } from '@local/d3_types';
-import { getParameter } from '../d3-services/_helpers';
-import { HtmlHeader, HtmlPopupV2, HtmlSegment } from '../html-elements/module';
+import { getParameter } from '@local/d3-services';
+import { HtmlHeader, HtmlPopupV2, HtmlSegment } from '@local/elements';
 
 export default class GraphControllerV2 implements IGraphControllerV2  {
 

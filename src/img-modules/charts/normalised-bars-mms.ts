@@ -1,11 +1,10 @@
 
-import { ChartStackedGroupMms } from '../svg-elements/module';
+import { ChartStackedGroupMms } from '@local/elements';
 import * as d3 from 'd3';
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
+import { DataPart, GraphData, IGraphMapping } from '@local/d3_types';
 import _ from 'lodash';
-import { HtmlLegendDots } from "../html-elements/module";
+import { HtmlLegendDots } from "@local/elements";
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping } from '../d3-modules/_d3_types';
 
 const pgvLabels = ["2-5 mm/s","5-8.5 mm/s","8.5-16 mm/s","16-20 mm/s","20-40 mm/s","> 40 mm/s"];
 

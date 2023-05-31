@@ -1,9 +1,9 @@
 import {menuItems} from "./dashboard.menu";
-import {munis} from "../../d3-services/municipalities";
+import {munis} from "@local/img-services";
 import {dashboardMain} from "@local/configs";
 import DashboardInteractions from "./dashboard.interactions";
-import { GraphObject } from "../../d3-modules/_d3_types";
-import { colours, breakpoints } from "../../img-modules/_styleguide";
+import { GraphObject } from "@local/d3_types";
+import { colours, breakpoints } from "@local/styleguide";
 
 export default class DashboardHTMLV2 {
 

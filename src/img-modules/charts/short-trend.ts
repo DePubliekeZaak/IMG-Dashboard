@@ -1,10 +1,10 @@
 import * as _ from "lodash";
-import { ChartBlockTrend } from '../svg-elements/module';
+import { ChartBlockTrend } from '@local/elements';
 import { DataPart, GraphData } from '@local/d3_types';
-import { getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data-with-history.functions';
+import { getNeededColumnsForHistoryV2, groupByMonths } from '@local/img-services';
 import { GraphControllerV2 } from '@local/d3_graphs';
 import { IGraphMapping } from '@local/d3_types';
-import { flattenColumn } from '../d3-services/_helpers';
+import { flattenColumn } from '@local/d3-services';
 
 export default class ShortTrend extends GraphControllerV2 {
 

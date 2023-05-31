@@ -1,6 +1,6 @@
 // import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
-// import {HtmlCircle, HtmlFormule, HtmlHeader, HtmlPopup, HtmlSegment} from '../html-elements/module';
+// import {HtmlCircle, HtmlFormule, HtmlHeader, HtmlPopup, HtmlSegment} from '@local/elements';
 // import * as d3 from "d3";
 
 // export class TevredenheidFormule  {

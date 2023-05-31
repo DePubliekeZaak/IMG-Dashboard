@@ -1,7 +1,7 @@
-import { localTime } from '../d3-services/_formats';
+import { localTime } from '@local/d3-services';
 import * as d3 from "d3";
-import {getMonth, getMonthFromNumber} from "../utils/date-object.utils";
-import { convertToCurrency } from '../d3-services/_helpers';
+import {getMonth, getMonthFromNumber} from "../../utils/date-object.utils";
+import { convertToCurrency } from '@local/d3-services';
 
 export default class ChartAxes {
 

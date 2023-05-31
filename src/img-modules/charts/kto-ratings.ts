@@ -1,10 +1,10 @@
 
-import {ChartBarHorizontal } from '../svg-elements/module';
-import { HtmlPeriodSelector, HtmlCircle} from '../html-elements/module';
+import {ChartBarHorizontal } from '@local/elements';
+import { HtmlPeriodSelector, HtmlCircle} from '@local/elements';
 
-import {getCompleteMonths} from "../utils/date-object.utils";
+import {getCompleteMonths} from "../../utils/date-object.utils";
 import { DataPart, GraphData } from '@local/d3_types';
-import { getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data-with-history.functions';
+import { getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths } from '@local/img-services';
 import { GraphControllerV2 } from '@local/d3_graphs';
 import { IGraphMapping } from '@local/d3_types';
 

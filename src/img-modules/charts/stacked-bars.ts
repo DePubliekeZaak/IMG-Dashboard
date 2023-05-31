@@ -1,11 +1,11 @@
-import { ChartStackedBars, ChartLineIndependent} from "../svg-elements/module";
+import { ChartStackedBars, ChartLineIndependent} from "@local/elements";
 
 import { GraphControllerV2, ChartAxesV2 } from "@local/d3_graphs";
-import { DataPart, GraphData } from "../d3-modules/_d3_types";
-import { filterWeeks, getNeededColumnsForHistoryV2 } from "../d3-services/data-with-history.functions";
+import { DataPart, GraphData } from "@local/d3_types";
+import { filterWeeks, getNeededColumnsForHistoryV2 } from "@local/img-services";
 import * as d3 from "d3";
-import HtmlLegendDotsLines from "../html-elements/html-legend-dots-lines";
-import { IGraphMapping } from "../d3-modules/_d3_types";
+import { HtmlLegendDotsLines } from "@local/elements";
+import { IGraphMapping } from "@local/d3_types";
 
 
 

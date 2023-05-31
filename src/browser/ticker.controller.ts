@@ -1,7 +1,7 @@
-import { graphs } from '../charts/module';
+import { graphs } from '@local/charts';
 import * as d3 from 'd3';
-import { tickerFysiekeSchade, tickerWaardedaling, tickerTevredenheid, tickerImmaterieel } from "../configs/ticker";
-import { breakpoints} from "../img-modules/_styleguide";
+import { tickerFysiekeSchade, tickerWaardedaling, tickerTevredenheid, tickerImmaterieel } from "@local/configs";
+import { breakpoints} from "@local/styleguide";
 import { IGraphMapping, ResponseData } from '@local/d3_types';
 
 export class InitTicker {

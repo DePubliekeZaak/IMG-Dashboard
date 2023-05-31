@@ -1,4 +1,4 @@
-import { IGraphControllerV2, GraphObject, IGraphMapping } from '../../d3-modules/_d3_types';
+import { IGraphControllerV2, GraphObject, IGraphMapping } from '@local/d3_types';
 
 const pad = 40;
 const margin = 140;

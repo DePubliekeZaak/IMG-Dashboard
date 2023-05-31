@@ -1,11 +1,11 @@
-import { ChartBarHorizonWaardedaling, ChartFocus } from '../svg-elements/module';
-import { flattenColumn } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistoryV2  } from '../d3-services/data-with-history.functions';
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
+import { ChartBarHorizonWaardedaling, ChartFocus } from '@local/elements';
+import { flattenColumn } from '@local/d3-services';
+import { filterWeeks, getNeededColumnsForHistoryV2  } from '@local/img-services';
+import { DataPart, GraphData } from '@local/d3_types';
 
-import HtmlLegendDotsLines from '../html-elements/html-legend-dots-lines';
+import { HtmlLegendDotsLines } from '@local/elements';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping } from '../d3-modules/_d3_types';
+import { IGraphMapping } from '@local/d3_types';
 
 export default class Horizon extends GraphControllerV2   {
 

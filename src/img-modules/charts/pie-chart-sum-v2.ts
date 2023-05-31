@@ -1,7 +1,7 @@
-import {ChartPie, SumLegend } from '../svg-elements/module';
-import { DataPart, GraphData } from "../d3-modules/_d3_types";
-import { parseForPieV2 } from "../d3-services/data.functions";
-import { IGraphMapping } from "../d3-modules/_d3_types";
+import {ChartPie, SumLegend } from '@local/elements';
+import { DataPart, GraphData } from "@local/d3_types";
+import { parseForPieV2 } from "@local/d3-services";
+import { IGraphMapping } from "@local/d3_types";
 import { GraphControllerV2 } from "@local/d3_graphs";
 
 // const config : IGraphConfigV2=   {

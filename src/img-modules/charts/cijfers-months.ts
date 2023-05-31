@@ -1,10 +1,10 @@
 import * as _ from "lodash";
-import { ChartAvgLine, ChartBackgroundAreas, ChartRaggedLine, ChartGridMonth } from '../svg-elements/module';
-import { HtmlCircle } from '../html-elements/module';
-import { getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths} from "../d3-services/data-with-history.functions";
+import { ChartAvgLine, ChartBackgroundAreas, ChartRaggedLine, ChartGridMonth } from '@local/elements';
+import { HtmlCircle } from '@local/elements';
+import { getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths} from "@local/img-services";
 import { GraphControllerV2 } from "@local/d3_graphs";
-import { IGraphMapping, DataPart, GraphData  } from "../d3-modules/_d3_types";
-import { flattenColumn } from "../d3-services/_helpers";
+import { IGraphMapping, DataPart, GraphData  } from "@local/d3_types";
+import { flattenColumn } from "@local/d3-services";
 
 export default class CijfersMonths extends GraphControllerV2  {
 

@@ -1,6 +1,6 @@
-import { HtmlTotals, HtmlNumberNew, HtmlSegment } from '../html-elements/module';
+import { HtmlTotals, HtmlNumberNew, HtmlSegment } from '@local/elements';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping, DataPart, GraphData  } from '../d3-modules/_d3_types';
+import { IGraphMapping, DataPart, GraphData  } from '@local/d3_types';
 
 export class TotalPlus extends GraphControllerV2  {
 

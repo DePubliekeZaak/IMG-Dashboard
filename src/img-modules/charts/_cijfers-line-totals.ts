@@ -1,7 +1,7 @@
 // import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxes } from '../chart-basics/module';
 
 // import { ChartAvgLine, ChartBackgroundAreas, ChartRaggedLine, ChartWeekGrid } from '../svg-elements/module';
-// import { HtmlCircle, HtmlTotals, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '../html-elements/module';
+// import { HtmlCircle, HtmlTotals, HtmlHeader, HtmlLink, HtmlPopup, HtmlSegment } from '@local/elements';
 
 // import * as d3 from "d3";
 

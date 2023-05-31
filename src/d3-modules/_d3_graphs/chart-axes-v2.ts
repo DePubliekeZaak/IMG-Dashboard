@@ -1,10 +1,10 @@
-import { localTime } from '../d3-services/_formats';
+import { localTime } from '@local/d3-services';
 import * as d3 from "d3";
-import { getMonthFromNumber} from "../utils/date-object.utils";
-import { convertToCurrency } from '../d3-services/_helpers';
+import { getMonthFromNumber} from "../../utils/date-object.utils";
+import { convertToCurrency } from '@local/d3-services';
 import { Dimensions } from '@local/d3_types';
 import { DataPart, GraphData } from '@local/d3_types';
-import { breakpoints } from '../img-modules/_styleguide';
+import { breakpoints } from '@local/styleguide';
 
 export default class ChartAxesV2 {
 

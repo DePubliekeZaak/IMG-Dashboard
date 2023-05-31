@@ -1,9 +1,9 @@
 import { IGraphMapping, GraphData } from "@local/d3_types";
-import { HtmlMuniSelector } from "../html-elements/module"
-import { ChartMap } from "../svg-elements/module";
+import { HtmlMuniSelector } from "@local/elements"
+import { ChartMap } from "@local/elements";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import { slugify } from "../d3-services/_helpers";
+import { slugify } from "@local/d3-services";
 import { GraphControllerV2 } from "@local/d3_graphs";
 
 export default class MuniSelector extends GraphControllerV2 {

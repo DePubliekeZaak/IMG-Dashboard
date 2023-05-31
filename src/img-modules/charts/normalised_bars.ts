@@ -1,11 +1,11 @@
 
-import { ChartStackedBarsNormalized } from '../svg-elements/module';
+import { ChartStackedBarsNormalized } from '@local/elements';
 import * as d3 from 'd3';
 import _ from 'lodash';
-import { HtmlLegendDots } from "../html-elements/module";
-import { parseGroups } from '../d3-services/data.functions';
+import { HtmlLegendDots } from "@local/elements";
+import { parseGroups } from '@local/d3-services';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping, DataPart, GraphData  } from '../d3-modules/_d3_types';
+import { IGraphMapping, DataPart, GraphData  } from '@local/d3_types';
 
 export default class NormalisedBars extends GraphControllerV2  {
 

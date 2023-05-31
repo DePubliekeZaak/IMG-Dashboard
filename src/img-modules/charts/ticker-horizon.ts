@@ -1,11 +1,11 @@
-import { ChartBarHorizon } from '../svg-elements/module';
+import { ChartBarHorizon } from '@local/elements';
 
-import { breakpoints } from "../img-modules/_styleguide";
-import { flattenColumn, thousands } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data-with-history.functions';
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
+import { breakpoints } from "@local/styleguide";
+import { flattenColumn, thousands } from '@local/d3-services';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2, groupByMonths } from '@local/img-services';
+import { DataPart, GraphData } from '@local/d3_types';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping } from '../d3-modules/_d3_types';
+import { IGraphMapping } from '@local/d3_types';
 
 export default class TickerHorizon extends GraphControllerV2 {
 

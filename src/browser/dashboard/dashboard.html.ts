@@ -1,9 +1,8 @@
 import {menuItems} from "./dashboard.menu";
-import {munis} from "../d3-services/municipalities";
-import {dashboardMain} from "../chart-configs/dashboard";
+import {munis} from "@local/img-services";
+import {dashboardMain} from "@local/configs";
 import DashboardInteractions from "./dashboard.interactions";
-import {GraphObject} from "../types/graphObject";
-import { IGraphMapping } from "../types/mapping";
+import {GraphObject, IGraphMapping} from "@local/d3_types";
 import * as dotenv from 'dotenv';
 dotenv.config();
 

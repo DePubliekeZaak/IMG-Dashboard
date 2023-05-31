@@ -1,4 +1,4 @@
-import { HtmlCircle } from '../html-elements/module';
+import { HtmlCircle } from '@local/elements';
 import { DataPart, GraphData } from '@local/d3_types';
 import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
 import { IGraphMapping } from '../types/mapping';

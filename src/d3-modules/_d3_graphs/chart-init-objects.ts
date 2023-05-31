@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { colours } from "../img-modules/_styleguide";
+import { colours } from "@local/styleguide";
 
 let ChartObjects = function ChartObjects() {
 

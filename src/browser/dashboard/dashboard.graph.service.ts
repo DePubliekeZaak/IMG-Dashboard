@@ -1,5 +1,5 @@
-import { graphs } from '../../charts/module';
-import { munis } from '../../d3-services/municipalities';
+import { graphs } from '@local/charts';
+import { munis } from '@local/img-services';
 
 export default class DashboardGraph {
 

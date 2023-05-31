@@ -1,9 +1,9 @@
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
-import { IGraphMapping } from '../d3-modules/_d3_types';
+import { DataPart, GraphData } from '@local/d3_types';
+import { IGraphMapping } from '@local/d3_types';
 
-import DashboardGraph from "@local/browser/dashboard";
+import { DashboardGraph } from "@local/dashboard";
 
-import { HtmlHeader, HtmlLink } from '../html-elements/module';
+import { HtmlHeader, HtmlLink } from '@local/elements';
 
 
 export default class Grid   {

@@ -1,12 +1,12 @@
-import { ChartBarHorizonY2, ChartFocus } from '../svg-elements/module';
-import { flattenColumn } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistoryV2  } from '../d3-services/data-with-history.functions';
+import { ChartBarHorizonY2, ChartFocus } from '@local/elements';
+import { flattenColumn } from '@local/d3-services';
+import { filterWeeks, getNeededColumnsForHistoryV2  } from '@local/img-services';
 
-import HtmlLegendDotsLines from '../html-elements/html-legend-dots-lines';
+import { HtmlLegendDotsLines } from '@local/elements';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping,  DataPart, GraphData } from '../d3-modules/_d3_types';
+import { IGraphMapping,  DataPart, GraphData } from '@local/d3_types';
 import * as d3 from 'd3';
-import { breakpoints } from '../img-modules/_styleguide';
+import { breakpoints } from '@local/styleguide';
 
 export default class Horizon2Y extends GraphControllerV2   {
 

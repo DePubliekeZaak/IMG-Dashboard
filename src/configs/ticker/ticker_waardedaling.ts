@@ -1,4 +1,4 @@
-import { IGraphMapping, GraphObject } from '../@local/d3_types';
+import { IGraphMapping, GraphObject } from '@local/d3_types';
 
 export const tickerWaardedaling : IGraphMapping[] = [
     {

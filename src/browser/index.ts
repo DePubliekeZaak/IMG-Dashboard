@@ -1,4 +1,4 @@
-import '../styling/main.scss'
+import '../../styling/main.scss'
 
 import 'babel-polyfill';
 import 'isomorphic-fetch';

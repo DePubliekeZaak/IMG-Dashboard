@@ -1,12 +1,12 @@
-import { ChartStackedArea} from "../svg-elements/module";
+import { ChartStackedArea} from "@local/elements";
 
-import { parseHistoryForStackedArea } from "../d3-services/data-with-history.functions";
+import { parseHistoryForStackedArea } from "@local/img-services";
 import * as d3 from "d3";
-import HtmlLegendDots from "../html-elements/html-legend-dots";
+import { HtmlLegendDots } from "@local/elements";
 import { GraphControllerV2 } from "@local/d3_graphs";
-import { IGraphMapping, DataPart, GraphData } from "../d3-modules/_d3_types";
-import { flattenColumn } from "../d3-services/_helpers";
-import { breakpoints } from "../img-modules/_styleguide";
+import { IGraphMapping, DataPart, GraphData } from "@local/d3_types";
+import { flattenColumn } from "@local/d3-services";
+import { breakpoints } from "@local/styleguide";
 
 export default class StackedArea extends GraphControllerV2  {
 

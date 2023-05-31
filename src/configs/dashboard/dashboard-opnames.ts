@@ -1,4 +1,4 @@
-import { GraphObject} from '../../d3-modules/_d3_types';
+import { GraphObject} from '@local/d3_types';
 
 export const dashboardOpnames : GraphObject[] = [
     {   "label": "Schade opnames",

@@ -1,4 +1,4 @@
-import {breakpoints} from "../../img-modules/_styleguide";
+import {breakpoints} from "@local/styleguide";
 
 export default class DashboardInteractions {
 

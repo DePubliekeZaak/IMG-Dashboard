@@ -1,11 +1,11 @@
-import { ChartBackgroundAreas, ChartRaggedLine  } from '../svg-elements/module';
+import { ChartBackgroundAreas, ChartRaggedLine  } from '@local/elements';
 
-import { breakpoints } from "../img-modules/_styleguide";
-import { flattenColumn } from '../d3-services/_helpers';
-import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
-import { DataPart, GraphData } from '../d3-modules/_d3_types';
+import { breakpoints } from "@local/styleguide";
+import { flattenColumn } from '@local/d3-services';
+import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '@local/img-services';
+import { DataPart, GraphData } from '@local/d3_types';
 import { GraphControllerV2 } from '@local/d3_graphs';
-import { IGraphMapping } from '../d3-modules/_d3_types';
+import { IGraphMapping } from '@local/d3_types';
 
 export default class TickerAreas extends GraphControllerV2   {
 
