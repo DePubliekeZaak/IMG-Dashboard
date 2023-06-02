@@ -1,6 +1,6 @@
 import { HtmlCircle } from '../html-elements/module';
 import { DataPart, GraphData } from '../types/data';
-import { filterWeeks, getNeededColumnsForHistory, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
+import { filterWeeks, getNeededColumnsForHistoryV2 } from '../d3-services/data-with-history.functions';
 import { IGraphMapping } from '../types/mapping';
 import { GraphControllerV2 } from './graph-v2';
 import { flattenColumn } from '../d3-services/_helpers';

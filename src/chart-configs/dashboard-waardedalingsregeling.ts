@@ -176,5 +176,87 @@ export const dashboardWaardedalingsRegeling : (GraphObject|IGraphMapping)[] = [
         "endpoint": "waardedaling",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
+    },
+    {
+        "slug": "waardedaling_bezwaren_binnenkomst",
+        "graph": "PieChartSumV2",
+        "parameters":  [
+            [
+                {
+                    "label": "In afwachting van bezwaarschrift",
+                    "column": "waardedaling_bezwaren_in_afwachting",
+                    "colour": "orange"
+                },
+                {
+                    "label": "Volledig ingediende bezwaren",
+                    "column": "waardedaling_bezwaren_ingediend",
+                    "colour": "moss"
+                }
+            ],
+            [     
+                {
+                    "label": "Totaal",
+                    "column": "",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "header" : "Indiening bezwaren",
+        "description" : "Een bezwaar is pas ingediend wanneer er een bezwaarschrift is ingediend",
+        "endpoint": "waardedaling",
+        "segment": 'all',
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
+    },
+    {
+        "slug": "waardedaling_bezwaren_uitgaand",
+        "graph": "PieChartSumV2",
+        "parameters":  [
+            [
+                {
+                    "label": "Afgehandelde bezwaren",
+                    "column": "waardedaling_bezwaren_afgehandeld",
+                    "colour": "moss"
+                },
+                {
+                    "label": "Openstaande bezwaren",
+                    "column": "waardedaling_bezwaren_openstaand",
+                    "colour": "orange"
+                }
+            ],
+            [     
+                {
+                    "label": "Totaal",
+                    "column": "",
+                    "colour": "orange"
+                }
+            ]
+        ],
+        "header" : "Afhandeling bezwaren",
+        "description" : "De verhouding tussen het aantal openstaande en afgehandelde bezwaren",
+        "endpoint": "waardedaling",
+        "segment": 'all',
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
+    },{
+
+        "slug" : "waardedaling_bezwaarpercentage",
+        "graph": "Cijfer",
+        "parameters": [
+            [
+                {
+                    "label": "Totaal",
+                    "column": "waardedaling_bezwaarpercentage",
+                    "colour": "orange",
+                    "format": "decimal",
+                    "units": "%"
+
+                }
+            ]
+        ],
+        "header": "Bezwaarpercentage",
+        "description" : "Het percentage aanvragen waarbij een bezwaar is ingediend",
+        "endpoint": "immateriele_schade",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-3']
     }
+   
 ]

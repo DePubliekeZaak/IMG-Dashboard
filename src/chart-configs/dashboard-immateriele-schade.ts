@@ -117,41 +117,6 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "elementClasslist": ['img-graph-container','img-graph-container-12']
     },
     {
-        "slug": "taart_schadevergoeding_totaal",
-        "graph" : "PieChartSumV2",
-        "parameters":  [
-            [
-                {
-                    "label": "Toegewezen",
-                    "column": "immateriele_schade_toegewezen",
-                    "colour": "moss",
-                    "scale" : null
-                },
-                {
-                    "label": "Afgewezen",
-                    "column": "immateriele_schade_afgewezen",
-                    "colour": "orange",
-                    "scale" : "null"
-                },
-            ],
-            [
-                {
-                    "label": "Totaal",
-                    "column": "waardedalingsregeling_totaal_verleend",
-                    "colour": "gray",
-                    "scale" : "null"
-                }
-            ]
-        ],
-        "header" : "Toegewezen / afgewezen",
-        "segmentIndicator": null,
-        "description" : "",
-        "endpoint": "immateriele_schade",
-        "publishDate": null,
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-3']
-    },
-    {
         "slug" : "trend_aanvragen_en_besluiten",
         "graph" : "StackedBars",
         "parameters": [
@@ -195,6 +160,89 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
         "endpoint": "immateriele_schade",
         "segment": "all",
         "publishDate": null,
-        "elementClasslist": ['img-graph-container','img-graph-container-9']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
+    },
+    {
+        "slug": "taart_schadevergoeding_totaal",
+        "graph" : "PieChartSumV2",
+        "parameters":  [
+            [
+                {
+                    "label": "Toegewezen",
+                    "column": "immateriele_schade_toegewezen",
+                    "colour": "moss",
+                    "scale" : null
+                },
+                {
+                    "label": "Afgewezen",
+                    "column": "immateriele_schade_afgewezen",
+                    "colour": "orange",
+                    "scale" : "null"
+                },
+            ],
+            [
+                {
+                    "label": "Totaal",
+                    "column": "waardedalingsregeling_totaal_verleend",
+                    "colour": "gray",
+                    "scale" : "null"
+                }
+            ]
+        ],
+        "header" : "Besluiten",
+        "segmentIndicator": null,
+        "description" : "",
+        "endpoint": "immateriele_schade",
+        "publishDate": null,
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
+    },
+    {
+        "slug": "immateriele_schade_bezwaren",
+        "graph": "PieChartSumV2",
+        "parameters":  [
+            [
+                {
+                    "label": "Beschikte bezwaren",
+                    "column": "immateriele_schade_bezwaren_beschikt",
+                    "colour": "moss"
+                },
+                {
+                    "label": "Openstaande bezwaren",
+                    "column": "immateriele_schade_bezwaren_openstaand",
+                    "colour": "orange"
+                }
+            ],
+            [     
+            
+            ]
+        ],
+        "header" : "Bezwaren",
+        "description" : "",
+        "endpoint": "waardedaling",
+        "segment": 'all',
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
+    },
+    {
+
+        "slug" : "ims_bezwaarpercentage",
+        "graph": "Cijfer",
+        "parameters": [
+            [
+                {
+                    "label": "Totaal",
+                    "column": "immateriele_schade_bezwaarpercentage",
+                    "colour": "orange",
+                    "format": "decimal",
+                    "units": "%"
+
+                }
+            ]
+        ],
+        "header": "Bezwaarpercentage",
+        "description" : "Het percentage aanvragen waarbij een bezwaar is ingediend",
+        "endpoint": "immateriele_schade",
+        "segment": "all",
+        "elementClasslist": ['img-graph-container','img-graph-container-4']
     }
 ]

@@ -33,19 +33,19 @@ export default class Cijfer extends GraphControllerV2   {
         this.htmlCircle = new HtmlCircle(this);
         this.htmlCircle.draw();
 
-        if(this.mapping.parameters[0][0].format == "decimal") {
+        if (this.mapping.parameters[0][0].format == "decimal") {
+            this.config.extra.decimal = true;
+        } else if (this.mapping.parameters[0][0].format == "decimal") {
             this.config.extra.decimal = true;
         }
 
         this.update(this.data,this.segment,false);
-
     }
 
     prepareData(data: DataPart[])  {
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = filterWeeks(data,neededColumns);
-
         this.main.dataStore.setGraph(this.mapping.slug, history);
 
         return { 
@@ -56,18 +56,14 @@ export default class Cijfer extends GraphControllerV2   {
     }
 
     redraw(data: GraphData) {
-
         super.redraw(data);
-
         let noRespondents = (this.mapping.parameters[0][2]) ? this.mapping.parameters[0][2]['column'] : '';
         this.htmlCircle.redraw([data.latest],this.firstMapping['column'],noRespondents);
     }
 
 
     update(data: GraphData, segment: string, update: boolean) {
-
         super._update(data,segment,update);
-
     }
 
 }

@@ -1,4 +1,5 @@
 #!/bin/bash
+#!/bin/bash
 # graphs or staging
 scp public/styles/fonts/* img:/var/www/html/$1/styles/fonts/
 scp public/scripts/bundle.js img:/var/www/html/$1/scripts/bundle.js
