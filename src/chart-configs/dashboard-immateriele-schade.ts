@@ -208,13 +208,22 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
                     "colour": "moss"
                 },
                 {
+                    "label": "Ingetrokken bezwaren",
+                    "column": "immateriele_schade_bezwaren_ingetrokken",
+                    "colour": "blue"
+                },
+                {
                     "label": "Openstaande bezwaren",
                     "column": "immateriele_schade_bezwaren_openstaand",
                     "colour": "orange"
                 }
             ],
             [     
-            
+                {
+                    "label": "Ingediende bezwaren",
+                    "column": "immateriele_schade_bezwaren_ingediend",
+                    "colour": "orange"
+                }
             ]
         ],
         "header" : "Bezwaren",
