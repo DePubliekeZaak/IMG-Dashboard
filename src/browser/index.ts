@@ -8,8 +8,6 @@ import { InitTicker } from "./ticker.controller";
 import { InitSingle} from "./single.controller";
 import DataStore  from "../data.store"
 
-
-
 export class InitGraph {
 
     constructor(){

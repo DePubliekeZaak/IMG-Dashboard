@@ -20,6 +20,8 @@ export { dashboardTrillingssnelheden} from "./dashboard/dashboard-trillingssnelh
 export { dashboardOverzicht } from "./dashboard/dashboard-overzicht";
 export { dashboardGemeente} from "./dashboard/dashboard-gemeente";
 
+export { weekFs } from "./week/fs"
+
 import { staafSchademeldingen } from './single/staaf_schademeldingen';
 import { staafSchadeopnames } from './single/staaf_schade-opnames';
 import { multistaafBesluitenAfgehandeld } from './single/multistaaf_besluiten_afgehandeld';
