@@ -1,0 +1,40 @@
+.pie-container {
+
+  display: flex;
+  flex-direction: column;
+
+
+  .container.no-bottom-container, .container {
+    max-height: 180px;
+    padding: 20px 0 0 0;
+
+    @media (min-width: $breakpoint-xxsm) {
+      max-height: none;
+      padding: 0px 0 0 0;
+    }
+  }
+
+
+  @media (min-width: $breakpoint-xxsm) {
+
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+
+.arc {
+  stroke-width: 2px;
+  stroke: white;
+
+}
+
+path.arc.accented {
+
+    transform: translate(6px, -3px);
+
+    @media (min-width: $breakpoint-xxsm) {
+
+      transform: translate(12px, -6px);
+    }
+  }

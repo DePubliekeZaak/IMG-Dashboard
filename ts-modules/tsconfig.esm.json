@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "outDir": "./build/esm",
+      "moduleResolution": "node",
+      "module": "esnext"
+    }
+}

@@ -1,0 +1,47 @@
+.img-graph-container {
+
+    margin-bottom: 2rem;
+  
+  }
+
+  .img-graph-grid-container .img-graph-container.img-mobile-margin-vertical {
+
+  @media (max-width : $breakpoint-sm) {
+    margin: 2.5rem auto 2rem auto;
+  }
+}
+  
+
+// .img-graph-container-mb {
+
+//     margin-bottom: 2rem;
+
+//     // @media (min-width : $breakpoint-sm) {
+//     //     margin-bottom: 8rem;
+//     // }
+    
+//     @media (min-width : $breakpoint-bax) {
+//         margin-bottom: 3rem;
+//     }
+// }
+
+
+// .img-graph-container-vertical-padding {
+
+//     padding: 2rem 0 0 0;
+  
+//     @media (min-width : $breakpoint-md) {
+  
+//       padding: 0;
+//     }
+  
+//     @media (min-width : $breakpoint-bax) {
+//       padding: 2rem 0 2rem 0;
+//     }
+// }
+  
+// .img-graph-container-top-padding {
+  
+//     padding: 2rem 0 0 0;
+  
+//   }

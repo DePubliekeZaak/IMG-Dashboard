@@ -1,0 +1,43 @@
+{
+  "name": "d3-ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-specifier-resolution=node --loader=ts-node/esm ./ts/src/app.ts",
+    "starto": "npx nodemon  ./ts/src/app.ts",
+    "build": "npx tsc",
+    "deploy": "cd dist && git add . && git commit -am 'automated' && git push img master && cd .."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/d3": "^7.4.0",
+    "@types/d3-scale": "^4.0.3",
+    "@types/d3-selection": "^3.0.5",
+    "@types/node": "^18.14.1",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.278.0",
+    "@local/charts": "file:../ts-modules/build/cjs/img-modules/charts",
+    "@local/configs": "file:../ts-modules/build/cjs/configs",
+    "@local/d3_graphs": "file:../ts-modules/build/cjs/d3-modules/_d3_graphs",
+    "@local/d3_types": "file:../ts-modules/build/cjs/d3-modules/_d3_types",
+    "@local/d3-services": "file:../ts-modules/build/cjs/d3-modules/services",
+    "@local/elements": "file:../ts-modules/build/cjs/img-modules/elements",
+    "@local/img-services": "file:../ts-modules/build/cjs/img-modules/services",
+    "@local/styleguide": "file:../ts-modules/build/cjs/img-modules/_styleguide",
+    "d3": "^7.8.5",
+    "d3-selection": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "jsdom": "^22.1.0",
+    "node-fetch": "^3.3.1",
+    "slugify": "^1.6.6"
+  }
+}
