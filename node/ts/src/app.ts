@@ -1,3 +1,8 @@
+
+import fetch from 'node-fetch-polyfill'
+
+global.fetch = fetch;
+
 import express from 'express';
 import { SsrController} from './ssr.controller';
 import dotenv from 'dotenv'

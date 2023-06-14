@@ -17,7 +17,7 @@ export default class ChartDimensions implements IChartDimensions {
         element : HTMLElement,
         config : IGraphConfigV2
     ) {
-       this.config = config;
+        this.config = config;
         this.element = element
         this.dimensions = { svgHeight: 0,  svgWidth: 0, width: 0, height: 0}
     }
@@ -25,6 +25,7 @@ export default class ChartDimensions implements IChartDimensions {
     measure(dimensions: Dimensions) {
 
         this.dimensions = dimensions;
+
 
         // svgWidth enn svgHeight includes the padding for axes 
      

@@ -20,6 +20,9 @@ export class ChartGrid {
         let self = this;
         this.ctrlr.svg.gridLines
             .attr("x1", (d) => {
+            console.log(d);
+            console.log(self.ctrlr.parameters);
+            console.log(self.ctrlr.scales.x.scale(new Date(d[self.ctrlr.parameters.x])));
             return self.ctrlr.scales.x.scale(new Date(d[self.ctrlr.parameters.x]));
         })
             .attr("x2", function (d) {

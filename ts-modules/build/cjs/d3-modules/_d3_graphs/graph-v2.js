@@ -22,6 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const d3 = __importStar(require("d3"));
 const index_1 = require("./index");
@@ -83,38 +92,48 @@ class GraphControllerV2 {
         }
     }
     redraw(data) {
-        if (this.svg && this.svg.body == undefined)
-            return;
-        this.dimensions = this.chartDimensions.measure(this.dimensions);
-        this.chartSVG.redraw(this.dimensions);
-        if (this.config.scales) {
-            for (let c of this.config.scales) {
-                this.scales[c.slug].reset();
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.svg && this.svg.body == undefined)
+                return;
+            this.dimensions = this.chartDimensions.measure(this.dimensions);
+            console.log(this.dimensions);
+            this.chartSVG.redraw(this.dimensions);
+            if (this.config.scales) {
+                for (let c of this.config.scales) {
+                    this.scales[c.slug].reset();
+                }
             }
-        }
-        for (let a of this.config.axes) {
-            this.axes[a.slug].redraw(this.dimensions, this.scales[a.scale].scale, data.slice);
-        }
+            for (let a of this.config.axes) {
+                this.axes[a.slug].redraw(this.dimensions, this.scales[a.scale].scale, data.slice);
+            }
+            return;
+        });
     }
     draw(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return;
+        });
     }
     prepareData(data) {
     }
     _update(newData, segment, update) {
-        let self = this;
-        if (update && this.config.extra.noUpdate) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let self = this;
+            if (update && this.config.extra.noUpdate) {
+                return;
+            }
+            if (this.mapping.description) {
+                this.popup.attachData(newData);
+            }
+            let data = self.prepareData(newData);
+            yield self.draw(data);
+            yield self.redraw(data);
+            this.main.window.addEventListener("resize", () => self.redraw(data), false);
+            if (this.mapping.segmentIndicator) {
+                this.htmlSegment.draw(segment);
+            }
             return;
-        }
-        if (this.mapping.description) {
-            this.popup.attachData(newData);
-        }
-        let data = self.prepareData(newData);
-        self.draw(data);
-        self.redraw(data);
-        window.addEventListener("resize", () => self.redraw(data), false);
-        if (this.mapping.segmentIndicator) {
-            this.htmlSegment.draw(segment);
-        }
+        });
     }
     _addScale(slug, type, direction, parameter) {
         this.config.scales.push({

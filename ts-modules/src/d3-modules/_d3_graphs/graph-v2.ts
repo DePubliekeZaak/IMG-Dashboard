@@ -97,11 +97,13 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
         }
     }
 
-    redraw(data: any) {
+    async redraw(data: any): Promise<void> {
 
         if (this.svg && this.svg.body == undefined) return;
 
         this.dimensions = this.chartDimensions.measure(this.dimensions);
+
+        console.log(this.dimensions);
  
         this.chartSVG.redraw(this.dimensions);
 
@@ -114,10 +116,13 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
         for (let a of this.config.axes) {
             this.axes[a.slug].redraw(this.dimensions,this.scales[a.scale].scale, data.slice)
         }
+
+        return;
     }
 
-    draw(data: any) {
+    async draw(data: any): Promise<void> {
 
+        return;
     }
 
 
@@ -125,7 +130,7 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
 
     }
 
-    _update(newData: any,segment: string, update: boolean) {
+    async _update(newData: any,segment: string, update: boolean): Promise<void>{
 
         let self = this;
 
@@ -136,13 +141,15 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
         }
 
         let data = self.prepareData(newData);
-        self.draw(data);
-        self.redraw(data);
-        window.addEventListener("resize", () => self.redraw(data), false);
+        await self.draw(data);
+        await self.redraw(data);
+        this.main.window.addEventListener("resize", () => self.redraw(data), false);
 
         if(this.mapping.segmentIndicator) {
             this.htmlSegment.draw(segment);
         }
+
+        return;
     }
 
     _addScale(slug: string, type: string, direction: string, parameter?: string) {

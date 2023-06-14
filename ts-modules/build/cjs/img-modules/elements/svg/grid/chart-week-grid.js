@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChartGridWeek = void 0;
 const img_services_1 = require("@local/img-services");
-const chart_grid_1 = require("./dirty/chart-grid");
+const chart_grid_1 = require("./chart-grid");
 class ChartGridWeek extends chart_grid_1.ChartGrid {
     constructor(ctrlr) {
         super(ctrlr);

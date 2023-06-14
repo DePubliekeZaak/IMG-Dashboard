@@ -1,8 +1,7 @@
 import { JSDOM } from 'jsdom';
-import { html } from './html.factory'
+import { html, createGraphGroupElement } from './html.factory'
 import { DataService, IDataService } from '../../../ts-modules/build/esm/img-modules/services';
 import {weekFs} from '../../../ts-modules/build/esm/configs'
-
 
 interface Size {
     width: number,
@@ -11,47 +10,29 @@ interface Size {
 
 export interface ISsrController {
     create: (week: number, size: Size) => void,
-    dom: any
+    window: Window
 }
 
 export class SsrController implements ISsrController {
 
-    dom: any
     data: IDataService
+    createGraphGroupElement
+    window
 
     constructor() {
 
         this.data = new DataService(this);
-        
+        this.createGraphGroupElement = createGraphGroupElement;
     }
 
-    create(week:number, size: Size) : void {
+    async create(week:number, size: Size) : Promise<void> {
 
-        const window = (new JSDOM(html, { pretendToBeVisual: true })).window;
-//window.d3 = d3.select(window.document); //get d3 into the dom
+        this.window = (new JSDOM(html, { pretendToBeVisual: true })).window;
 
-        // stylesheets ?
-        // window.document.querySelector()
+        const htmlContainer: HTMLElement =  this.window.document.querySelector("[data-img-graph-preset='dashboard']");
 
-        const htmlContainer: HTMLElement =  window.document.querySelector("[data-img-graph-preset='dashboard']");
+        const renderedhtml = await this.data.call(null, weekFs, 'all', false, htmlContainer);
 
-        this.data.call(null, weekFs, 'all', false, htmlContainer);
-
-
-        
-        // graphservice 
-        //     -- calls -- simple week call -- is toch maar fs 
-        //     -- merge
-        // create container el
-        // set size
-        // new graph()
-
-
-        // get 
-        
-
-
+        console.log(renderedhtml);
     }
-
-
 }

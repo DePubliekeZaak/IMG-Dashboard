@@ -1,4 +1,3 @@
-import * as d3 from 'd3';
 declare let ChartObjects: () => {
     config: () => {
         margin: {
@@ -23,7 +22,7 @@ declare let ChartObjects: () => {
     svg: () => {
         body: any;
         layers: {};
-        tooltip: HTMLSpanElement | d3.Selection<d3.BaseType, unknown, HTMLElement, any>;
+        tooltip: any;
         yAxis: any;
         xAxis: any;
     };

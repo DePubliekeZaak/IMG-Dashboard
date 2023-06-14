@@ -1,5 +1,5 @@
 import { getWeek } from '@local/img-services';
-import { ChartGrid } from './dirty/chart-grid';
+import { ChartGrid } from './chart-grid';
 export class ChartGridWeek extends ChartGrid {
     constructor(ctrlr) {
         super(ctrlr);

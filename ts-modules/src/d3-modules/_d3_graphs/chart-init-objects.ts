@@ -34,36 +34,36 @@ let ChartObjects = function ChartObjects() {
 
     let svg = function svg(){
 
-        let tooltip = document.createElement('span');
-        tooltip.classList.add('tooltip');
-        tooltip.style.display = 'block';
-        tooltip.style.opacity = '0';
-        tooltip.style.position = 'absolute';
-        tooltip.style.zIndex = '10';
-        tooltip.style.width = 'auto';
-        tooltip.style.height = 'auto'
-        tooltip.style.maxWidth = '220px';
-        // tooltip.style.maxHeight = '180px';
-        tooltip.style.padding = '.5rem';
-        tooltip.style.background = 'white';
-        tooltip.style.border = '1px solid ' + colours.gray[0];
-        tooltip.style.fontFamily = 'NotoSans Regular';
-        tooltip.style.color = 'black';
-        tooltip.style.pointerEvents = 'none';
-        tooltip.style.fontSize = '.85rem';
+        const bodyEl: HTMLBodyElement = null;
+        let tooltip = null;
 
-        const bodyEl = document.querySelector('body'); 
+        if(typeof document !== 'undefined') {
 
-        if(bodyEl != null) {
+            let t = document.createElement('span');
+            t.classList.add('tooltip');
+            t.style.display = 'block';
+            t.style.opacity = '0';
+            t.style.position = 'absolute';
+            t.style.width = 'auto';
+            t.style.height = 'auto'
+            t.style.maxWidth = '220px';
+            t.style.padding = '.5rem';
+            t.style.background = 'white';
+            t.style.border = '1px solid ' + colours.gray[0];
+            t.style.fontFamily = 'NotoSans Regular';
+            t.style.color = 'black';
+            t.style.pointerEvents = 'none';
+            t.style.fontSize = '.85rem';
 
-            return {
-                body : null,
-                layers : {},
-                tooltip : (document.querySelector('.tooltip')) ? d3.select(".tooltip") : bodyEl.appendChild(tooltip),
-                yAxis : null,
-                xAxis : null
-            }
+            tooltip = (document.querySelector('.tooltip')) ? d3.select(".tooltip") : document.querySelector('body').appendChild(t)
+        }
 
+        return {
+            body : null,
+            layers : {},
+            tooltip,
+            yAxis : null,
+            xAxis : null
         }
     }
 
@@ -75,5 +75,3 @@ let ChartObjects = function ChartObjects() {
 }
 
 export default ChartObjects;
-
-

@@ -10,17 +10,19 @@ export class HtmlCircle {
 
     draw() {
 
+      //  const doc: Document = (typeof document === 'undefined') ? this.ctrlr.main.window.document : document;
+
 
         let element = this.element != undefined ? this.element : this.ctrlr.element;
 
-        let miniContainer = document.createElement('div');
+        let miniContainer = this.ctrlr.main.window.document.createElement('div');
         miniContainer.style.display ='flex';
         miniContainer.style.flexDirection = 'column';
         miniContainer.style.alignItems = 'center';
 
         if (this.ctrlr.config.extra.circleLabel) {
 
-            let qualifier = document.createElement('span');
+            let qualifier = this.ctrlr.main.window.document.createElement('span');
             qualifier.classList.add('label');
             qualifier.style.fontSize = '.8rem';
             qualifier.style.height = '1rem';
@@ -33,7 +35,7 @@ export class HtmlCircle {
         }
 
 
-        let div = document.createElement('div');
+        let div = this.ctrlr.main.window.document.createElement('div');
         div.classList.add('number_circle');
       //  div.style.backgroundColor =  colours[this.ctrlr.firstMapping.colour][1];
         div.style.border =  '2px solid ' +  colours[this.ctrlr.firstMapping.colour][0];
@@ -45,9 +47,9 @@ export class HtmlCircle {
         div.style.alignItems = 'center';
         div.style.width = (this.ctrlr.config.extra.circleRadius) ? this.ctrlr.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
         div.style.height = (this.ctrlr.config.extra.circleRadius) ? this.ctrlr.config.extra.circleRadius.toString() + 'rem' : '7.5rem';
-        div.style.margin = window.innerWidth < breakpoints.sm ? '2rem 0'  : '0 0 1.5rem 0';
+        div.style.margin = this.ctrlr.main.window.innerWidth < breakpoints.sm ? '2rem 0'  : '0 0 1.5rem 0';
 
-        let number = document.createElement('span');
+        let number = this.ctrlr.main.window.document.createElement('span');
         number.classList.add('number');
         number.classList.add('in_circle');
         number.style.fontSize = '3rem';
@@ -59,7 +61,7 @@ export class HtmlCircle {
 
         if(this.ctrlr.firstMapping.units) {
 
-            let units = document.createElement('span');
+            let units = this.ctrlr.main.window.document.createElement('span');
             units.classList.add('units');
             units.innerText = this.ctrlr.firstMapping.units;
             units.style.color = 'black';
@@ -72,7 +74,7 @@ export class HtmlCircle {
 
         if (this.ctrlr.config.extra.firstInLine) {
 
-            let period = document.createElement('span');
+            let period = this.ctrlr.main.window.document.createElement('span');
             period.classList.add('period');
             period.style.fontSize = '.8rem';
             period.style.height = '1rem';
@@ -89,7 +91,7 @@ export class HtmlCircle {
 
         if(this.ctrlr.config.extra.trendlineLabel) {
 
-            let label = document.createElement('span');
+            let label = this.ctrlr.main.window.document.createElement('span');
             label.classList.add('label');
             label.style.fontSize = '.8rem';
             label.style.height = '1rem';
@@ -103,7 +105,7 @@ export class HtmlCircle {
 
         if(this.ctrlr.config.extra.noRespondents) {
 
-            let label = document.createElement('span');
+            let label = this.ctrlr.main.window.document.createElement('span');
             label.classList.add('label');
             label.classList.add('no_respondents');
             label.classList.add(this.ctrlr.mapping.slug);
@@ -147,7 +149,7 @@ export class HtmlCircle {
 
         if(this.ctrlr.config.extra.noRespondents) {
 
-            const spanEl = document.querySelector('.label.no_respondents.' + this.ctrlr.mapping.slug +' span:first-child');
+            const spanEl = this.ctrlr.main.window.document.querySelector('.label.no_respondents.' + this.ctrlr.mapping.slug +' span:first-child');
             if (spanEl) {
                 spanEl.innerHTML = data[0][extraParameter];
             }

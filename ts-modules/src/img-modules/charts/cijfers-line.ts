@@ -36,9 +36,12 @@ export default class CijfersLine extends GraphControllerV2  {
         this._addMargin(0, 0,10,10);
     }
 
-    init() {
+    async init() {
 
         this.parentEl = this.element;
+
+        this.parentEl.innerWidth = '400px';
+        this.parentEl.innerHeight = 400;
 
         super._init();
 
@@ -51,9 +54,9 @@ export default class CijfersLine extends GraphControllerV2  {
         this.htmlCircle.draw();
 
         const svgId = "svg-wrapper-" + this.mapping.slug
-        const container = document.createElement('section');
+        const container = this.main.window.document.createElement('section');
         container.style.height = "100px";
-        container.style.width = "100%";
+        container.style.width = "600px";
         container.style.marginBottom = '3rem';
         container.id = svgId;
         this.element.appendChild(container);
@@ -64,7 +67,7 @@ export default class CijfersLine extends GraphControllerV2  {
             this.chartAvgLine.draw();
         }
 
-        this.update(this.data,this.segment,false);
+        await this.update(this.data,this.segment,false);
 
     }
 
@@ -73,7 +76,8 @@ export default class CijfersLine extends GraphControllerV2  {
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = filterWeeks(data,neededColumns);
 
-        this.main.dataStore.setGraph(this.mapping.slug, history);
+        // this data merging .. has been skipped
+        // console.log(neededColumns);
 
         return { 
             "history" : history,
@@ -82,11 +86,16 @@ export default class CijfersLine extends GraphControllerV2  {
         };
     }
 
-    redraw(data: GraphData) {
+    async redraw(data: GraphData): Promise<void> {
 
-        super.redraw(data);
+        console.log(this.main.window.innerWidth);
+        console.log(this.main.window.document);
+        console.log(this.main.window.document.getElementsByTagName("html")[0].offsetWidth);
+        console.log(this.main.window.document.querySelector("#kip").offsetWidth);
 
-        this.htmlCircle.redraw([data.latest],this.firstMapping['column']);
+        await super.redraw(data);
+
+        await this.htmlCircle.redraw([data.latest],this.firstMapping['column']);
 
         if(this.data.map( (i) => i[this.firstMapping['column']]).filter( (i) => i !== null && i !== undefined).length > 2) {
             this.chartBackgroundAreas.redraw(data.slice, this.firstMapping['colour']);
@@ -94,9 +103,12 @@ export default class CijfersLine extends GraphControllerV2  {
             this.chartLine.redraw(data.slice, this.firstMapping['colour']);
             this.chartAvgLine.redraw(data);
         }
+
+        return;
     }
 
-    draw(data: GraphData) {
+    async draw(data: GraphData): Promise<void> {
+
 
         this.xScale = this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
         let minValue = 0;
@@ -108,14 +120,18 @@ export default class CijfersLine extends GraphControllerV2  {
             this.chartWeekGrid.draw(data.slice);
         }
 
-        this.popup.attachData(data.latest)
+        if(this.popup !== undefined) {
+            this.popup.attachData(data.latest)
+        }   
+
+        return;
 
     }
 
 
-    update(data: GraphData, segment: string, update: boolean) {
+    async update(data: GraphData, segment: string, update: boolean) {
 
-        super._update(data,segment,update);
+        await super._update(data,segment,update);
 
     }
 }

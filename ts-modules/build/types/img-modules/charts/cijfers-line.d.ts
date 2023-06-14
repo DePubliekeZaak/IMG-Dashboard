@@ -15,9 +15,9 @@ export default class CijfersLine extends GraphControllerV2 {
     htmlCircle: any;
     constructor(main: any, data: any, element: HTMLElement, mapping: IGraphMapping, segment: string);
     pre(): void;
-    init(): void;
+    init(): Promise<void>;
     prepareData(data: DataPart[]): GraphData;
-    redraw(data: GraphData): void;
-    draw(data: GraphData): void;
-    update(data: GraphData, segment: string, update: boolean): void;
+    redraw(data: GraphData): Promise<void>;
+    draw(data: GraphData): Promise<void>;
+    update(data: GraphData, segment: string, update: boolean): Promise<void>;
 }

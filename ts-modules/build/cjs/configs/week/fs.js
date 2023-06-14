@@ -21,8 +21,8 @@ exports.weekFs = [
                 }
             ]
         ],
-        "header": "Nieuw binnen vorige week",
-        "description": "Het aantal nieuwe schademeldingen dat afgelopen week is binnengekomen.",
+        "header": "",
+        "description": "",
         "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container', 'img-graph-container-4']
