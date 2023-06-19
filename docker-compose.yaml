@@ -1,0 +1,9 @@
+# docker-compose.yml
+
+version: '3'
+services:
+  browserless:
+    image: browserless/chrome:latest
+    container_name: "browserless"
+    ports:
+      - "9090:3000"

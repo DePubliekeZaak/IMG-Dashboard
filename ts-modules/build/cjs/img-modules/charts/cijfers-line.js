@@ -36,9 +36,9 @@ class CijfersLine extends d3_graphs_1.GraphControllerV2 {
             _svg: { get: () => super._svg }
         });
         return __awaiter(this, void 0, void 0, function* () {
-            this.parentEl = this.element;
-            this.parentEl.innerWidth = '400px';
-            this.parentEl.innerHeight = 400;
+            //   this.parentEl = this.element;
+            // this.element.style.width = '400px';
+            // this.element.style.height = '200px';
             _super._init.call(this);
             this.chartLine = new elements_1.ChartRaggedLine(this);
             this.chartBackgroundAreas = new elements_1.ChartBackgroundAreas(this);
@@ -48,9 +48,9 @@ class CijfersLine extends d3_graphs_1.GraphControllerV2 {
             this.htmlCircle.draw();
             const svgId = "svg-wrapper-" + this.mapping.slug;
             const container = this.main.window.document.createElement('section');
-            container.style.height = "100px";
-            container.style.width = "600px";
-            container.style.marginBottom = '3rem';
+            container.style.height = "100%";
+            container.style.width = "100%";
+            // container.style.marginBottom = '3rem';
             container.id = svgId;
             this.element.appendChild(container);
             _super._svg.call(this, container);
@@ -64,7 +64,6 @@ class CijfersLine extends d3_graphs_1.GraphControllerV2 {
         const neededColumns = (0, img_services_1.getNeededColumnsForHistoryV2)(data, this.mapping);
         const history = (0, img_services_1.filterWeeks)(data, neededColumns);
         // this data merging .. has been skipped
-        // console.log(neededColumns);
         return {
             "history": history,
             "latest": data[0],
@@ -76,10 +75,8 @@ class CijfersLine extends d3_graphs_1.GraphControllerV2 {
             redraw: { get: () => super.redraw }
         });
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(this.main.window.innerWidth);
-            console.log(this.main.window.document);
-            console.log(this.main.window.document.getElementsByTagName("html")[0].offsetWidth);
-            console.log(this.main.window.document.querySelector("#kip").offsetWidth);
+            // console.log(this.main.window.innerWidth);
+            // console.log(this.main.window.document);
             yield _super.redraw.call(this, data);
             yield this.htmlCircle.redraw([data.latest], this.firstMapping['column']);
             if (this.data.map((i) => i[this.firstMapping['column']]).filter((i) => i !== null && i !== undefined).length > 2) {

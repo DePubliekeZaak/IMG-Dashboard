@@ -29,7 +29,7 @@ export class HtmlCircle {
             qualifier.style.color = 'black';
             qualifier.style.fontFamily = 'NotoSans Regular';
             qualifier.style.fontWeight = 'normal';
-            qualifier.innerText = this.ctrlr.config.extra.circleLabel;
+            qualifier.innerHTML = this.ctrlr.config.extra.circleLabel;
             qualifier.style.margin = '0 auto .75rem auto';
             miniContainer.appendChild(qualifier);
         }
@@ -57,13 +57,14 @@ export class HtmlCircle {
         number.style.color = 'black';
         number.style.fontFamily = "Replica";
 
+        // number.innerHTML = "999";
         div.appendChild(number);
 
         if(this.ctrlr.firstMapping.units) {
 
             let units = this.ctrlr.main.window.document.createElement('span');
             units.classList.add('units');
-            units.innerText = this.ctrlr.firstMapping.units;
+            units.innerHTML = this.ctrlr.firstMapping.units;
             units.style.color = 'black';
             units.style.fontFamily = 'NotoSans Regular';
             units.style.fontSize = '0.8rem';
@@ -83,7 +84,7 @@ export class HtmlCircle {
             period.style.left = '-130px';
             period.style.fontFamily = 'NotoSans Regular';
             // period.style.textTransform = 'uppercase';
-            period.innerText = 'deze week:';
+            period.innerHTML = 'deze week:';
             div.appendChild(period);
         }
 
@@ -98,7 +99,7 @@ export class HtmlCircle {
             label.style.color = 'black';
             label.style.fontFamily = 'NotoSans Regular';
             label.style.fontWeight = 'normal';
-            label.innerText = this.ctrlr.config.extra.trendlineLabel;
+            label.innerHTML = this.ctrlr.config.extra.trendlineLabel;
             label.style.margin = '0rem auto .75rem auto';
             miniContainer.appendChild(label);
         }
@@ -136,10 +137,10 @@ export class HtmlCircle {
 
         if (this.ctrlr.config.extra.segmentIndicator) {
 
-            element.querySelector('.number.in_circle').innerText = (this.ctrlr.config.qualifier && this.ctrlr.config.qualifier !== undefined) ? value + this.ctrlr.config.qualifier : value;
+            element.querySelector('.number.in_circle').innerHTML = (this.ctrlr.config.qualifier && this.ctrlr.config.qualifier !== undefined) ? value + this.ctrlr.config.qualifier : value;
 
         } else {
-            element.querySelector('.number.in_circle').innerText = (value > 9999) ? thousands(value) : value;
+            element.querySelector('.number.in_circle').innerHTML = (value > 9999) ? thousands(value) : value;
         }
 
         if(value > 9999) {

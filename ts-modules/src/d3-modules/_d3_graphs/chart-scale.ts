@@ -31,6 +31,7 @@ export default class ChartScale {
 
         this.dataLength = data.length;
 
+
         switch(this.config.type) {
 
             case 'linear':
@@ -44,6 +45,11 @@ export default class ChartScale {
 
             case 'time':
 
+                console.log('data');
+
+                console.log(data);
+
+
                 const dates: Date[] = [];
                 for (const d of data) {
                     if (new Date(d)) {
@@ -51,11 +57,17 @@ export default class ChartScale {
                     }
                 }
 
+                console.log(dates);
+
+
                 this.scale = d3.scaleTime()
                     .domain([
-                        d3.min(data),
-                        d3.max(data),
+                        d3.min(dates),
+                        d3.max(dates),
                     ]);
+
+                console
+
                 break;
 
             case 'band':

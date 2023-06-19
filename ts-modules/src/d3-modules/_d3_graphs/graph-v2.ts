@@ -104,6 +104,13 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
         this.dimensions = this.chartDimensions.measure(this.dimensions);
 
         console.log(this.dimensions);
+
+        this.dimensions = {
+            svgHeight: 400,
+            svgWidth: 400,
+            width: 400,
+            height: 400
+        }
  
         this.chartSVG.redraw(this.dimensions);
 

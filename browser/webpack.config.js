@@ -6,7 +6,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const config = (env) =>  {
 
   return {
-    entry: "./src/browser/index.ts",
+    entry: "./src/index.ts",
     output: {
       path: path.resolve(__dirname, "public/"),
       chunkFilename: 'scripts/bundle.js',

@@ -14,7 +14,6 @@ export default class DataStore {
     setGraph(slug: string, data: any) {
 
         this.graphs[slug] = data;
-
     }
 
     getGraph(slug) {

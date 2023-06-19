@@ -10,7 +10,6 @@ export class ChartBackgroundAreas {
 
     draw(data) {
 
-        console.log('area');
 
         this.ctrlr.svg.lineFill = this.ctrlr.svg.layers.underData.selectAll('path.line_fill.' + this.ctrlr.parameters.x)
             .data(data)

@@ -4,11 +4,12 @@ import { breakpoints } from "@local/styleguide";
 import DashboardParams from "./dashboard.params";
 import DashboardHTMLV2 from "./dashboard.html.v2";
 import DashboardInteractions from "./dashboard.interactions";
-import DashboardData from "./dashboard.data.service";
-import DashboardGraph from "./dashboard.graph.service";
-import { screenType } from './dashboard.resize'
+import DataService from "../services/data.service";
+import DashboardGraph from "../services/graph.service";
+import { screenType } from '../services/resize.factory'
+import { styleParentElement } from '../services/html.factory'
 
-import DataStore from '../../data.store';
+//import DataStore from '../../data.store';
 
 
 
@@ -30,8 +31,8 @@ export class InitDashboard {
 
         this.params = new DashboardParams();
         this.interactions = new DashboardInteractions(this,this.params);
-        this.dataStore = new DataStore()
-        this.dataService = new DashboardData();
+      //  this.dataStore = new DataStore()
+        this.dataService = new DataService();
         this.graphService = new DashboardGraph(this);
         this.html = new DashboardHTMLV2(this,this.interactions,this.dataService);
     }
@@ -66,7 +67,7 @@ export class InitDashboard {
 
     reloadHtml() {
 
-        this.htmlContainer = this.html.styleParentElement();
+        this.htmlContainer = styleParentElement();
 
         [].slice.call(document.getElementsByTagName("aside")).forEach( (a) => a.remove());
         [].slice.call(document.getElementsByTagName("nav")).forEach( (a) => a.remove());

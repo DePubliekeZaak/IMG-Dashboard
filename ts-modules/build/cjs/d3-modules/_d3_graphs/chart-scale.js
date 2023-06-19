@@ -50,17 +50,21 @@ class ChartScale {
                 ]);
                 break;
             case 'time':
+                console.log('data');
+                console.log(data);
                 const dates = [];
                 for (const d of data) {
                     if (new Date(d)) {
                         dates.push(new Date(d));
                     }
                 }
+                console.log(dates);
                 this.scale = d3.scaleTime()
                     .domain([
-                    d3.min(data),
-                    d3.max(data),
+                    d3.min(dates),
+                    d3.max(dates),
                 ]);
+                console;
                 break;
             case 'band':
                 this.scale = d3.scaleBand()

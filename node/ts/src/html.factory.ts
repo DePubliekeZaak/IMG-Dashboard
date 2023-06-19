@@ -14,7 +14,7 @@ export const html = () => {
       <meta name="description" content="">
       <meta name="author" content="Joera Mulders">
     
-      <link rel="stylesheet" href="./styles/main.css">
+      <link rel="stylesheet" href="https://img.publikaan.nl/staging-visualisations/styles/main.css">
 
       <style>
 
@@ -40,19 +40,7 @@ export const html = () => {
         }
 
       </style>
-    
-    </head>
-    
-    
-    <body id="development" style="width:100%;height:100%">
-    
-      <main id="kip" data-img-graph-preset="dashboard" style="width:100%;height:100%"></main>
-      <script src="./scripts/bundle.js"></script>
-    </body>
-    </html>
-
-    
-    `;
+    </head><body id="development" style="width:100%;height:100%"><main data-img-graph-preset="dashboard" style="width:100%;height:100%"></main></body></html>`;
 }
 
 export const createGraphGroupElement = (graphObject : GraphObject, window: Window, htmlContainer: HTMLElement) => {

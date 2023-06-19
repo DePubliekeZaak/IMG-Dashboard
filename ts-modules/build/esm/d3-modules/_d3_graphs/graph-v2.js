@@ -72,6 +72,12 @@ export default class GraphControllerV2 {
                 return;
             this.dimensions = this.chartDimensions.measure(this.dimensions);
             console.log(this.dimensions);
+            this.dimensions = {
+                svgHeight: 400,
+                svgWidth: 400,
+                width: 400,
+                height: 400
+            };
             this.chartSVG.redraw(this.dimensions);
             if (this.config.scales) {
                 for (let c of this.config.scales) {

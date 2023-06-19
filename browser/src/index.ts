@@ -1,12 +1,12 @@
-import '../../styling/main.scss'
+import '../../ts-modules/styling/main.scss'
 
 import 'babel-polyfill';
 import 'isomorphic-fetch';
 
-import { InitDashboard } from "./dashboard/dashboard.controller";
-import { InitTicker } from "./ticker.controller";
-import { InitSingle} from "./single.controller";
-import DataStore  from "../data.store"
+import { InitWeek } from "./week/week.controller";
+// import { InitTicker } from "./ticker.controller";
+// import { InitSingle} from "./single.controller";
+// import DataStore  from "../data.store"
 
 export class InitGraph {
 
@@ -29,41 +29,52 @@ export class InitGraph {
 
             switch (graph) {
 
+                case 'week' :
+
+                    this.week();
+
+                    break;
+
                 case 'dashboard' :
 
                     this.dashboard();
 
                     break;
 
-                case 'ticker' :
+                // case 'ticker' :
 
-                    this.ticker();
+                //     this.ticker();
 
-                    break;
+                //     break;
 
-                default :
+                // default :
 
-                    this.single();
+                //     this.single();
 
             }
         }
     }
 
-    single() {
-        const single = new InitSingle();
-        single.init();
-    }
+    // single() {
+    //     const single = new InitSingle();
+    //     single.init();
+    // }
 
     dashboard() {
-        const dashboard = new InitDashboard();
-        dashboard.init();
+        // const dashboard = new InitDashboard();
+        // dashboard.init();
     }
 
-    ticker() {
-
-        const ticker = new InitTicker();
-        ticker.init();
+    week() {
+        const week = new InitWeek();
+        week.init();
     }
+
+    // ticker() {
+
+    //     const ticker = new InitTicker();
+    //     ticker.init();
+    // }
 
     addStylesheets() {
 

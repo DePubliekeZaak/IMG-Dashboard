@@ -24,6 +24,6 @@ export const weekFs : IGraphMapping[] = [
         "description" : "",
         "endpoint": "meldingen",
         "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-4']
+        "elementClasslist": ['img-graph-container','img-graph-container-12']
         },
 ]

@@ -38,10 +38,10 @@ export default class CijfersLine extends GraphControllerV2  {
 
     async init() {
 
-        this.parentEl = this.element;
+     //   this.parentEl = this.element;
 
-        this.parentEl.innerWidth = '400px';
-        this.parentEl.innerHeight = 400;
+        // this.element.style.width = '400px';
+        // this.element.style.height = '200px';
 
         super._init();
 
@@ -55,9 +55,9 @@ export default class CijfersLine extends GraphControllerV2  {
 
         const svgId = "svg-wrapper-" + this.mapping.slug
         const container = this.main.window.document.createElement('section');
-        container.style.height = "100px";
-        container.style.width = "600px";
-        container.style.marginBottom = '3rem';
+        container.style.height = "100%";
+        container.style.width = "100%";
+        // container.style.marginBottom = '3rem';
         container.id = svgId;
         this.element.appendChild(container);
 
@@ -77,7 +77,6 @@ export default class CijfersLine extends GraphControllerV2  {
         const history = filterWeeks(data,neededColumns);
 
         // this data merging .. has been skipped
-        // console.log(neededColumns);
 
         return { 
             "history" : history,
@@ -88,10 +87,8 @@ export default class CijfersLine extends GraphControllerV2  {
 
     async redraw(data: GraphData): Promise<void> {
 
-        console.log(this.main.window.innerWidth);
-        console.log(this.main.window.document);
-        console.log(this.main.window.document.getElementsByTagName("html")[0].offsetWidth);
-        console.log(this.main.window.document.querySelector("#kip").offsetWidth);
+        // console.log(this.main.window.innerWidth);
+        // console.log(this.main.window.document);
 
         await super.redraw(data);
 
@@ -108,7 +105,6 @@ export default class CijfersLine extends GraphControllerV2  {
     }
 
     async draw(data: GraphData): Promise<void> {
-
 
         this.xScale = this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
         let minValue = 0;

@@ -35,7 +35,7 @@ export { weekFs } from "./week/fs";
 // import { bollenProcedureDuur } from './single/procedureduur';
 // import { trendSchademeldingen } from './single/trend_schademeldingen';
 // import { trendAanvragenWaardedaling } from './single/trend_aanvragen_waardedaling';
-// export const configs = [
+export const configs = [
 //     staafSchademeldingen,
 //     staafSchadeopnames,
 //     multistaafBesluitenAfgehandeld,
@@ -54,4 +54,4 @@ export { weekFs } from "./week/fs";
 //     bollenProcedureDuur,
 //     trendSchademeldingen,
 //     trendAanvragenWaardedaling
-// ]
+];

@@ -46,8 +46,9 @@ export { weekFs } from "./week/fs"
 
 
 
-// export const configs = [
+export const configs = [
 
+    
 //     staafSchademeldingen,
 //     staafSchadeopnames,
 //     multistaafBesluitenAfgehandeld,
@@ -67,4 +68,4 @@ export { weekFs } from "./week/fs"
 //     trendSchademeldingen,
 //     trendAanvragenWaardedaling
 
-// ]
+]

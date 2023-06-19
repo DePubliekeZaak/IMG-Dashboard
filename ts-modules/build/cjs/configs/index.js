@@ -4,7 +4,7 @@
 // export { tickerTevredenheid } from './ticker/ticker_tevredenheidscijfers';
 // export { tickerImmaterieel } from "./ticker/ticker_immateriele_schade";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.weekFs = void 0;
+exports.configs = exports.weekFs = void 0;
 // export { dashboardHome } from './dashboard/dashboard-home';
 // export { dashboardMain } from './dashboard/dashboard';
 // export { dashboardMeldingen } from './dashboard/dashboard-meldingen';
@@ -39,7 +39,7 @@ Object.defineProperty(exports, "weekFs", { enumerable: true, get: function () { 
 // import { bollenProcedureDuur } from './single/procedureduur';
 // import { trendSchademeldingen } from './single/trend_schademeldingen';
 // import { trendAanvragenWaardedaling } from './single/trend_aanvragen_waardedaling';
-// export const configs = [
+exports.configs = [
 //     staafSchademeldingen,
 //     staafSchadeopnames,
 //     multistaafBesluitenAfgehandeld,
@@ -58,4 +58,4 @@ Object.defineProperty(exports, "weekFs", { enumerable: true, get: function () { 
 //     bollenProcedureDuur,
 //     trendSchademeldingen,
 //     trendAanvragenWaardedaling
-// ]
+];
