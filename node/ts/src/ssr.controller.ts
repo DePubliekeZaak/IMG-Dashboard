@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 import { html, createGraphGroupElement } from './html.factory'
 import { DataService, IDataService } from '../../../ts-modules/build/esm/img-modules/services';
-import {weekFs} from '../../../ts-modules/build/esm/configs'
+import {weekFs} from '../../../ts-modules/build/esm/configs' // is dit wel nodig ???? 
 import { BucketService, IBucketService } from './bucket.service';
 import { convert} from './image.factory';
 import fs from 'fs';
@@ -34,16 +34,21 @@ export class SsrController implements ISsrController {
 
     async create(week:number, size: Size) : Promise<void> {
 
+        const _size = [800,300];
+
         this.window = (new JSDOM(html, { pretendToBeVisual: true })).window;
 
         global.document = this.window.document;
         global.window = this.window;
 
         const htmlContainer: HTMLElement = this.window.document.querySelector("[data-img-graph-preset='dashboard']");
-        const renderedhtml = await this.data.call(null, weekFs, 'all', false, htmlContainer);
+        const renderedhtml = await this.data.call(null, weekFs, 'all', false, htmlContainer,_size);
 
-        const r = await fs.writeFileSync('../svg/jsdom.html',renderedhtml)
-        // const svg = this.window.document.querySelector('svg');
+        console.log(renderedhtml);
+      //  const r = await fs.writeFileSync('../svg/jsdom.html',renderedhtml)
+      
+      
+      // const svg = this.window.document.querySelector('svg');
 
         // const fileData = svg.outerHTML;
 
@@ -69,12 +74,19 @@ export class SsrController implements ISsrController {
             }
           })
 
-        const imgBuffer = await takeImage({ selector: '[data-img-graph-preset="dashboard"]'});
+        try {
 
-        // console.log(img);
+            const imgBuffer = await takeImage({ selector: '[data-img-graph-preset="dashboard"]'});
+            const rr = await fs.writeFileSync('../svg/screenshot.png',imgBuffer,'binary');
+            await this.bucket.writeFile('../svg/screenshot.png',"test.png");
+        }
+
+        catch(error) {
+            console.log(error);
+        }
         
-       const rr = await fs.writeFileSync('../svg/screenshot.png',imgBuffer,'binary')
+    //    
 
-        await this.bucket.writeFile('../svg/screenshot.png',"test.png");
+    //     
     }
 }

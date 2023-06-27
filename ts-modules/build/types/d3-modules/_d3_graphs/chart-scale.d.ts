@@ -6,7 +6,7 @@ export default class ChartScale {
     scale: any;
     constructor(ctrlr: IGraphControllerV2, config: IScale);
     set(data: (string | number | any)[], minValue: any): any;
-    reset(): any;
+    reset(range?: number[]): any;
     fn(x: any): any;
     domain(): any;
     range(): any;

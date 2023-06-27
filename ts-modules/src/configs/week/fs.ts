@@ -1,28 +1,14 @@
 import { IGraphMapping} from '@local/d3_types';
 
-export const weekFs : IGraphMapping[] = [
+export const weekFs: IGraphMapping[] = [
     {
-        "slug" : "bol_schademeldingen",
-        "graph" : "CijfersLine",
+        "slug" : "week",
+        "graph" : "WeekV1",
         "args" : [],
-        "parameters": [
-            [
-              {
-                "label": "Nieuw binnen vorige week",
-                "column": "nieuw_schademeldingen",
-                "colour": "blue",
-                "units": "meldingen"
-              },
-              {
-                "label": "Schade-meldingen",
-                "column": "schademeldingen",
-                "colour": "blue"
-              }
-            ]
-        ],
+        "parameters": [[]],
         "header": "",
         "description" : "",
-        "endpoint": "meldingen",
+        "endpoint": "week",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12']
         },

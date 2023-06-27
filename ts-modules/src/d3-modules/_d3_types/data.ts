@@ -24,7 +24,8 @@ export interface GraphData {
     features?: any[],
     grouped?: any[],
     stacked?: ID3DataStackedSerie[]
-    average?: number
+    average?: number,
+    pie?: any[]
 }
 
 export interface D3Data {

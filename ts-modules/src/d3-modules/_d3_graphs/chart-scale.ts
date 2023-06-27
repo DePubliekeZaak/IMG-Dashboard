@@ -45,11 +45,6 @@ export default class ChartScale {
 
             case 'time':
 
-                console.log('data');
-
-                console.log(data);
-
-
                 const dates: Date[] = [];
                 for (const d of data) {
                     if (new Date(d)) {
@@ -57,16 +52,11 @@ export default class ChartScale {
                     }
                 }
 
-                console.log(dates);
-
-
                 this.scale = d3.scaleTime()
                     .domain([
                         d3.min(dates),
                         d3.max(dates),
                     ]);
-
-                console
 
                 break;
 
@@ -112,7 +102,7 @@ export default class ChartScale {
     }
 
 
-    reset() {
+    reset(range?: number[]) {
 
         if (!this.config.type) return;
 
@@ -129,12 +119,12 @@ export default class ChartScale {
 
                 break;
 
-                case 'horizontal-reverse':
+            case 'horizontal-reverse':
 
-                    this.scale
-                        .range([this.ctrlr.dimensions.width,0]);
-    
-                    break;
+                this.scale
+                    .range([this.ctrlr.dimensions.width,0]);
+
+                break;
 
             case 'vertical-reverse':
 
@@ -171,7 +161,16 @@ export default class ChartScale {
                 this.scale
                     .range([70,-70]);
 
-            
+                break;
+
+            case 'custom':
+
+                if (range) {
+
+                this.scale
+                    .range(range);
+
+                }
 
         }
 

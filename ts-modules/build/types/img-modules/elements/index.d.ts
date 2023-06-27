@@ -5,4 +5,7 @@ export { HtmlSegment } from './html/html-segment';
 export { ChartAvgLine } from './svg/line/chart-avg-line';
 export { ChartRaggedLine } from './svg/line/chart-ragged-line';
 export { ChartGridWeek } from './svg/grid/chart-week-grid';
+export { ChartBarWeekV1 } from './svg/bar/chart-bar-week';
+export { ChartPieWeek } from './svg/radial/chart-pie-week';
 export { ChartBackgroundAreas } from './svg/area/chart-background-areas';
+export { WeekMeldingenV1 } from './svg/week/meldingen';

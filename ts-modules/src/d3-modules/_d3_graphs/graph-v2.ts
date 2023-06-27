@@ -8,8 +8,6 @@ import { HtmlHeader, HtmlPopupV2, HtmlSegment } from '@local/elements';
 export default class GraphControllerV2 implements IGraphControllerV2  {
 
     config : IGraphConfigV2;
-    // yParameter: string;
-    // xParameter : string;
     dimensions: Dimensions;
     firstMapping: IMappingOption;
     svg;
@@ -33,7 +31,8 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
         public data : any,
         public element : HTMLElement,
         public mapping: IGraphMapping,
-        public segment: string
+        public segment: string,
+        public size?: number[]
     ) {
         this.element = d3.select(element).node()!;
         this.firstMapping = this.mapping.parameters[0] && this.mapping.parameters[0][0] ? getParameter(this.mapping,0) : false;
@@ -103,14 +102,16 @@ export default class GraphControllerV2 implements IGraphControllerV2  {
 
         this.dimensions = this.chartDimensions.measure(this.dimensions);
 
-        console.log(this.dimensions);
-
-        this.dimensions = {
-            svgHeight: 400,
-            svgWidth: 400,
-            width: 400,
-            height: 400
+        if (this.dimensions.width === 0) {
+            this.dimensions = this.chartDimensions.fix(this.size)
         }
+
+        // this.dimensions = {
+        //     svgHeight: 400,
+        //     svgWidth: 400,
+        //     width: 400,
+        //     height: 400
+        // }
  
         this.chartSVG.redraw(this.dimensions);
 

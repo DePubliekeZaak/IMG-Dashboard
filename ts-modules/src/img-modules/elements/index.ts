@@ -38,6 +38,7 @@ export { ChartGridWeek } from './svg/grid/chart-week-grid';
 
 // bar
 // export { ChartBar } from './svg/bar/chart-bar';
+export { ChartBarWeekV1 } from './svg/bar/chart-bar-week';
 // export { default as ChartStackedBars } from './svg/bar/chart-stacked-bars';
 // export { ChartBarTicker } from './svg/bar/chart-bar-ticker';
 // export { default as ChartBarHorizon}  from './svg/bar/chart-bar-horizon';
@@ -54,7 +55,7 @@ export { ChartGridWeek } from './svg/grid/chart-week-grid';
 // export  { default as ChartBarTrend  } from "./svg/bar/chart-bar-trend";
 
 // radial
-// export { ChartPie } from './svg/radial/dirty/chart-pie';
+export { ChartPieWeek } from './svg/radial/chart-pie-week';
 // export { ChartBullsEye } from './svg/radial/dirty/chart_bullseye'
 
 // map 
@@ -80,3 +81,5 @@ export { ChartBackgroundAreas } from './svg/area/chart-background-areas';
 // export { ChartFlowDuration } from "./svg/label/chart-flow-duration";
 // export { default as SumLegend } from "./svg/label/sum-legend";
 // export { default as MapLegend } from "./svg/label/map-legend";
+
+export { WeekMeldingenV1 } from './svg/week/meldingen'

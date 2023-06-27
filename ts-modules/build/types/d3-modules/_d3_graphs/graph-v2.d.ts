@@ -6,6 +6,7 @@ export default class GraphControllerV2 implements IGraphControllerV2 {
     element: HTMLElement;
     mapping: IGraphMapping;
     segment: string;
+    size?: number[];
     config: IGraphConfigV2;
     dimensions: Dimensions;
     firstMapping: IMappingOption;
@@ -20,7 +21,7 @@ export default class GraphControllerV2 implements IGraphControllerV2 {
     htmlHeader: any;
     htmlSegment: any;
     popup: any;
-    constructor(main: any, data: any, element: HTMLElement, mapping: IGraphMapping, segment: string);
+    constructor(main: any, data: any, element: HTMLElement, mapping: IGraphMapping, segment: string, size?: number[]);
     _init(): void;
     _svg(svgWrapper?: HTMLElement): void;
     redraw(data: any): Promise<void>;

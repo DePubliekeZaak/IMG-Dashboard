@@ -19,6 +19,7 @@ export interface GraphData {
     grouped?: any[];
     stacked?: ID3DataStackedSerie[];
     average?: number;
+    pie?: any[];
 }
 export interface D3Data {
     label: string;

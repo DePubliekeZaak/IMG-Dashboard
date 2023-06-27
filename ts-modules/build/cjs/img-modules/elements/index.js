@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ChartBackgroundAreas = exports.ChartGridWeek = exports.ChartRaggedLine = exports.ChartAvgLine = exports.HtmlSegment = exports.HtmlPopupV2 = exports.HtmlHeader = exports.HtmlCircle = void 0;
+exports.WeekMeldingenV1 = exports.ChartBackgroundAreas = exports.ChartPieWeek = exports.ChartBarWeekV1 = exports.ChartGridWeek = exports.ChartRaggedLine = exports.ChartAvgLine = exports.HtmlSegment = exports.HtmlPopupV2 = exports.HtmlHeader = exports.HtmlCircle = void 0;
 var html_circle_1 = require("./html/html-circle");
 Object.defineProperty(exports, "HtmlCircle", { enumerable: true, get: function () { return html_circle_1.HtmlCircle; } });
 // export { HtmlAccented} from './html/dirty/html-accented';
@@ -47,6 +47,8 @@ Object.defineProperty(exports, "ChartGridWeek", { enumerable: true, get: functio
 // export { ChartAxisGrid } from './svg/grid/dirty/chart-axis-grid';
 // bar
 // export { ChartBar } from './svg/bar/chart-bar';
+var chart_bar_week_1 = require("./svg/bar/chart-bar-week");
+Object.defineProperty(exports, "ChartBarWeekV1", { enumerable: true, get: function () { return chart_bar_week_1.ChartBarWeekV1; } });
 // export { default as ChartStackedBars } from './svg/bar/chart-stacked-bars';
 // export { ChartBarTicker } from './svg/bar/chart-bar-ticker';
 // export { default as ChartBarHorizon}  from './svg/bar/chart-bar-horizon';
@@ -62,7 +64,8 @@ Object.defineProperty(exports, "ChartGridWeek", { enumerable: true, get: functio
 // export { default as  ChartBlockTrend } from "./svg/bar/chart-blocktrend";
 // export  { default as ChartBarTrend  } from "./svg/bar/chart-bar-trend";
 // radial
-// export { ChartPie } from './svg/radial/dirty/chart-pie';
+var chart_pie_week_1 = require("./svg/radial/chart-pie-week");
+Object.defineProperty(exports, "ChartPieWeek", { enumerable: true, get: function () { return chart_pie_week_1.ChartPieWeek; } });
 // export { ChartBullsEye } from './svg/radial/dirty/chart_bullseye'
 // map 
 // export { default as  ChartMap } from './svg/map/dirty/chart-map';
@@ -84,3 +87,5 @@ Object.defineProperty(exports, "ChartBackgroundAreas", { enumerable: true, get: 
 // export { ChartFlowDuration } from "./svg/label/chart-flow-duration";
 // export { default as SumLegend } from "./svg/label/sum-legend";
 // export { default as MapLegend } from "./svg/label/map-legend";
+var meldingen_1 = require("./svg/week/meldingen");
+Object.defineProperty(exports, "WeekMeldingenV1", { enumerable: true, get: function () { return meldingen_1.WeekMeldingenV1; } });

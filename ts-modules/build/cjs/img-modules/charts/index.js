@@ -1,15 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.graphs = void 0;
 // import Cijfer from './cijfer';
 // import CijferV2 from './cijfer-v2';
 // import CijferCurrency from './cijfer-currency';
 // import CijferDecimalPlus from './cijfer-decimal-plus';
 // import Average from './average';
-const cijfers_line_1 = __importDefault(require("./cijfers-line"));
+//import CijfersLine  from './cijfers-line';
 // import CijfersMonths  from "./cijfers-months";
 // import Grid from "./grid";
 // import { TotalPlus } from "./total_plus";
@@ -42,12 +37,19 @@ const cijfers_line_1 = __importDefault(require("./cijfers-line"));
 // import ShortTrend from "./short-trend";
 // import MuniSelector from "./muni-selector"
 // import SectionHeader from "./section-header"
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.graphs = void 0;
+const week_v1_1 = __importDefault(require("./week-v1"));
 exports.graphs = {
     // Cijfer,
     // CijferV2,
     // CijferCurrency,
     // CijferDecimalPlus,
-    CijfersLine: cijfers_line_1.default,
+    //  CijfersLine,
+    WeekV1: week_v1_1.default
     // CijfersMonths,
     // Grid,
     // Horizon,

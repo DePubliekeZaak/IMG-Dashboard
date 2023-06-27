@@ -40,7 +40,7 @@ class DataService {
         this.ctrlr = ctrlr;
         this.graphMethods = {};
     }
-    call(params, pageConfig, segment, update, htmlContainer) {
+    call(params, pageConfig, segment, update, htmlContainer, size) {
         return __awaiter(this, void 0, void 0, function* () {
             const promises = this._createDashboardCalls(pageConfig, segment, false);
             yield Promise.all(promises).then((values) => __awaiter(this, void 0, void 0, function* () {
@@ -48,7 +48,8 @@ class DataService {
                 const data = weekData;
                 for (let graphMapping of pageConfig) {
                     const element = this.ctrlr.createGraphGroupElement(graphMapping, this.ctrlr.window, htmlContainer);
-                    this.graphMethods[graphMapping.slug] = new charts_1.graphs[graphMapping.graph](this.ctrlr, data, element, graphMapping, segment);
+                    console.log(graphMapping.graph);
+                    this.graphMethods[graphMapping.slug] = new charts_1.graphs[graphMapping.graph](this.ctrlr, data, element, graphMapping, segment, size);
                     yield this.graphMethods[graphMapping.slug].init();
                 }
             }));

@@ -14,8 +14,6 @@ export default class GraphService {
 
     call(params: string, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
 
-    
-        console.log(htmlContainer);
 
         const promises = this.ctrlr.dataService.createDashboardCalls(dashboardArray, segment,false);
 
@@ -52,7 +50,7 @@ export default class GraphService {
 
                 const graphType = graphObject.config ? graphObject.config.graphType : graphObject.graph;
              
-                const element = createGraphGroupElement(graphObject, htmlContainer); // htmlContainer.querySelector('#img-dashboard-container'
+                const element = htmlContainer; // createGraphGroupElement(graphObject, htmlContainer); // htmlContainer.querySelector('#img-dashboard-container'
                 
                 if (update) {
                     this.graphMethods[graphObject.slug].update(data, segment, true);

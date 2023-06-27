@@ -6,7 +6,7 @@ export interface IDataService {
 
     data: any,
     ctrlr: any,
-    call: (params: string, pageConfig: IGraphMapping[], segment: string, update: boolean, htmlContainer: HTMLElement, size? : number[]) => Promise<string> 
+    call: (params: string, pageConfig: IGraphMapping[], segment: string, update: boolean, htmlContainer: HTMLElement, size: number[]) => Promise<string> 
     _createDashboardCalls: (pageConfig: IGraphMapping[], segment: string, update: boolean) => any[],
     _mergeArrayObjects: (any) => any,
     graphMethods: any
@@ -19,7 +19,7 @@ export class DataService implements IDataService {
 
     constructor(public ctrlr) {}
 
-    async call(params: string, pageConfig, segment: string, update: boolean, htmlContainer: HTMLElement, size?: number[]) : Promise<string> {
+    async call(params: string, pageConfig, segment: string, update: boolean, htmlContainer: HTMLElement, size: number[]) : Promise<string> {
 
         const promises = this._createDashboardCalls(pageConfig, segment,false);
     

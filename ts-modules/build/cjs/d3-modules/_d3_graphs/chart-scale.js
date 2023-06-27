@@ -50,21 +50,17 @@ class ChartScale {
                 ]);
                 break;
             case 'time':
-                console.log('data');
-                console.log(data);
                 const dates = [];
                 for (const d of data) {
                     if (new Date(d)) {
                         dates.push(new Date(d));
                     }
                 }
-                console.log(dates);
                 this.scale = d3.scaleTime()
                     .domain([
                     d3.min(dates),
                     d3.max(dates),
                 ]);
-                console;
                 break;
             case 'band':
                 this.scale = d3.scaleBand()
@@ -93,7 +89,7 @@ class ChartScale {
         }
         return this.scale;
     }
-    reset() {
+    reset(range) {
         if (!this.config.type)
             return;
         if (this.scale.domain().length < 2) {
@@ -128,6 +124,12 @@ class ChartScale {
             case 'flow':
                 this.scale
                     .range([70, -70]);
+                break;
+            case 'custom':
+                if (range) {
+                    this.scale
+                        .range(range);
+                }
         }
         return this.scale;
     }

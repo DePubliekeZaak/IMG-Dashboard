@@ -12,12 +12,13 @@ import { ChartObjects, ChartSVG, ChartDimensions, ChartScale, ChartAxesV2 } from
 import { getParameter } from '@local/d3-services';
 import { HtmlHeader, HtmlPopupV2, HtmlSegment } from '@local/elements';
 export default class GraphControllerV2 {
-    constructor(main, data, element, mapping, segment) {
+    constructor(main, data, element, mapping, segment, size) {
         this.main = main;
         this.data = data;
         this.element = element;
         this.mapping = mapping;
         this.segment = segment;
+        this.size = size;
         this.element = d3.select(element).node();
         this.firstMapping = this.mapping.parameters[0] && this.mapping.parameters[0][0] ? getParameter(this.mapping, 0) : false;
         this.parameters = {};
@@ -71,13 +72,15 @@ export default class GraphControllerV2 {
             if (this.svg && this.svg.body == undefined)
                 return;
             this.dimensions = this.chartDimensions.measure(this.dimensions);
-            console.log(this.dimensions);
-            this.dimensions = {
-                svgHeight: 400,
-                svgWidth: 400,
-                width: 400,
-                height: 400
-            };
+            if (this.dimensions.width === 0) {
+                this.dimensions = this.chartDimensions.fix(this.size);
+            }
+            // this.dimensions = {
+            //     svgHeight: 400,
+            //     svgWidth: 400,
+            //     width: 400,
+            //     height: 400
+            // }
             this.chartSVG.redraw(this.dimensions);
             if (this.config.scales) {
                 for (let c of this.config.scales) {

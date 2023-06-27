@@ -3,7 +3,7 @@
 // import CijferCurrency from './cijfer-currency';
 // import CijferDecimalPlus from './cijfer-decimal-plus';
 // import Average from './average';
-import CijfersLine  from './cijfers-line';
+//import CijfersLine  from './cijfers-line';
 // import CijfersMonths  from "./cijfers-months";
 // import Grid from "./grid";
 // import { TotalPlus } from "./total_plus";
@@ -37,6 +37,7 @@ import CijfersLine  from './cijfers-line';
 // import MuniSelector from "./muni-selector"
 // import SectionHeader from "./section-header"
 
+import WeekV1  from './week-v1';
 
 export const graphs  = {
 
@@ -44,7 +45,8 @@ export const graphs  = {
     // CijferV2,
     // CijferCurrency,
     // CijferDecimalPlus,
-    CijfersLine,
+  //  CijfersLine,
+    WeekV1
     // CijfersMonths,
     // Grid,
     // Horizon,

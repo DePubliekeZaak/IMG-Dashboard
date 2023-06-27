@@ -3,10 +3,7 @@ import { GraphObject } from "@local/d3_types";
 
 export const styleParentElement = (document: Document) => {
 
-    console.log("hi");
-
     const htmlContainer: HTMLScriptElement =  document.querySelector("[data-img-graph-preset]");
-    console.log(htmlContainer);
     const parentEl = htmlContainer.parentElement;
     parentEl.classList.add('container');
     // parentEl.style.width = 'calc(100% - 0rem)';
