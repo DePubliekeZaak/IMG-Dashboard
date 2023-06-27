@@ -8,7 +8,7 @@ import { filterWeeks, getNeededColumnsForHistoryV2 } from "../d3-services/data-w
 import { GraphControllerV2 } from "./graph-v2";
 import { IGraphMapping } from "../types/mapping";
 
-export default class TrendLineClear extends GraphControllerV2 {
+export default class TrendLineKTO extends GraphControllerV2 {
 
     chartAxis;
     chartLines = [];
@@ -74,6 +74,8 @@ export default class TrendLineClear extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) : GraphData  {
 
+        
+        data = data.filter ( w => w['complete']); 
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         let history = filterWeeks(data,neededColumns);

@@ -9,3 +9,7 @@ package-lock.json
 bundle.js
 public/styles
 public/scripts
+browser
+node
+ts-modules 
+svg

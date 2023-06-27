@@ -616,7 +616,7 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
     },
     {   
         "slug": "trend_tevredenheid",
-        "graph": "TrendLineClear",
+        "graph": "TrendLineKTO",
         "args": [],
         "parameters": [
             [
