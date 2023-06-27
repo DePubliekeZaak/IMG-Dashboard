@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 import { html, createGraphGroupElement } from './html.factory'
-import { DataService, IDataService } from '../../../ts-modules/build/esm/img-modules/services';
+import { DataService, IDataService } from '../../../ts-modules/build/cjs/img-modules/services';
 import {weekFs} from '../../../ts-modules/build/esm/configs' // is dit wel nodig ???? 
 import { BucketService, IBucketService } from './bucket.service';
 import { convert} from './image.factory';

@@ -12,6 +12,5 @@ public
 public
 deploy.sh
 .npmignore 
-svg
 node/.env
 browser/.env
