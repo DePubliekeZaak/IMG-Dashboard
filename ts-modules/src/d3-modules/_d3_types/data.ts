@@ -15,18 +15,18 @@ export interface DataPart {
     _year : number,
 }
 
-export interface GraphData {
-    slice: DataPart[],
-    history: DataPart[],
-    latest: DataPart,
-    flowData?: any[],
-    outflowData? : any[],
-    features?: any[],
-    grouped?: any[],
-    stacked?: ID3DataStackedSerie[]
-    average?: number,
-    pie?: any[]
-}
+// export interface GraphData {
+//     slice: DataPart[],
+//     history: DataPart[],
+//     latest: DataPart,
+//     flowData?: any[],
+//     outflowData? : any[],
+//     features?: any[],
+//     grouped?: any[],
+//     stacked?: ID3DataStackedSerie[]
+//     average?: number,
+//     pie?: any[]
+// }
 
 export interface D3Data {
     label: string,
@@ -61,4 +61,89 @@ export interface ID3DataStackedSerie {
     key: string,
     index: number,
     [key: number]: ID3DataStackedItem
+}
+
+export type LinePoint = {
+    time: string|number|Date,
+    value: number,
+    label: string,
+    colour?: string
+}
+
+export type Line = LinePoint[]
+
+export type Lines = Line[]
+
+export type Bar = {
+    label : string,
+    value : number,
+    value2?: number,
+    colour: string,
+    format? : string,
+    type?: string,
+    meta?: any
+}
+
+export type Bars = Bar[];
+
+export type GroupedBars = {
+    label: string,
+    group: Bars
+}
+
+export type Circle = {
+    label : string,
+    value : number,
+    delta? : string,
+    unit? : string
+    colour: string,
+}
+
+export type Circles = Circle[];
+
+export type Feature = any;
+
+export type GraphData = (Lines|Bars|Feature[][])
+
+export type Sankey = {
+
+    nodes: SankeyNode[],
+    links: SankeyLink[]
+}
+
+export type SankeyNode = {
+    node: number,
+    name: string,
+    label?: string,
+    type?: string
+    
+}
+
+export type SankeyLink = {
+    source: number,
+    target: number,
+    value: number,
+    label?: string,
+    amount?: number,
+    type?: string,
+    meta?: any
+}
+
+export type PlotItem = {
+    label: string,
+    time: string,
+    value: string,
+    radius: string,
+    meta?: any
+}
+
+export type TableData = {
+
+    headers: string[],
+    rows: string[][]
+}
+
+export type IntData  = {
+    graph: (Circle|Bar)[]|Sankey,
+    table: TableData
 }

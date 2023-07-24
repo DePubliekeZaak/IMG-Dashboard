@@ -57,6 +57,7 @@ export class DataService implements IDataService {
             if(endpoint) {
                 
                 const url = 'https://' + domain + apibase + endpoint + '?gemeente=eq.all';
+                console.log(url);
                 promises.push(
                     new Promise((resolve, reject) => {
                         d3.json<ResponseData>(url)

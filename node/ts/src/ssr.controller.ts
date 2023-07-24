@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 import { html, createGraphGroupElement } from './html.factory'
-import { DataService, IDataService } from '../../../ts-modules/build/cjs/img-modules/services';
-import {weekFs} from '../../../ts-modules/build/esm/configs' // is dit wel nodig ???? 
+import { DataService, IDataService } from '../../../ts-modules/src/img-modules/services';
+import { weekFs } from '../../../ts-modules/src/configs' 
 import { BucketService, IBucketService } from './bucket.service';
 import { convert} from './image.factory';
 import fs from 'fs';
@@ -77,8 +77,8 @@ export class SsrController implements ISsrController {
         try {
 
             const imgBuffer = await takeImage({ selector: '[data-img-graph-preset="dashboard"]'});
-            const rr = await fs.writeFileSync('../svg/screenshot.png',imgBuffer,'binary');
-            await this.bucket.writeFile('../svg/screenshot.png',"test.png");
+            const rr = await fs.writeFileSync('../rendered/screenshot.png',imgBuffer,'binary');
+            await this.bucket.writeFile('../rendered/screenshot.png',"test.png");
         }
 
         catch(error) {

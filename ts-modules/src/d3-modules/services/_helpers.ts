@@ -49,7 +49,6 @@ export function thousands(number) {
 export function convertToCurrency(number: number) {
 
     number = Math.ceil(number);
-
     return number.toLocaleString('nl-NL', {style: 'currency', currency: 'EUR', minimumFractionDigits: 0 });
 }
 

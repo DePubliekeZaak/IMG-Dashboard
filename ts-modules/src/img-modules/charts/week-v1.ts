@@ -25,8 +25,8 @@ export default class WeekV1 extends GraphControllerV2  {
 
     pre() {
 
-        this._addScale("x","band","horizontal-reverse","time");
-        this._addScale("y","linear","custom","value");
+        // this._addScale("x","band","horizontal-reverse","time");
+        // this._addScale("y","linear","custom","value");
         this._addScale("r","radius","radius","value");
       //  this._addScale("m","log","horizontal","meldingen")
         this._addPadding(0,0,0,0);
@@ -64,35 +64,43 @@ export default class WeekV1 extends GraphControllerV2  {
         await this.update(this.data,this.segment,false);
     }
 
-    prepareData(data: any[]) : any  {
+    prepareData(data: any[]) : any {
 
-        const history = []; // data; 
-        const pieData = []
+       // const history = []; // data; 
+        const meldingen = [];
+        const pieData = [];
         // this data merging .. has been skipped
         const parameter = "fs_nieuw_dossiers_afgehandeld";
 
-        for (const week of data) {
+        // for (const week of data) {
 
+        //     history.push({
+        //         "time": week["_date"],
+        //         "label": week["_week"],
+        //         "value": week["nieuw_schademeldingen"],
+        //         "colour": "orange"
+        //     })
 
-            history.push({
-                "time": week["_date"],
-                "label": week["_week"],
-                "value": week["nieuw_schademeldingen"],
-                "colour": "orange"
-            })
+        //     history.push({
+        //         "time": week["_date"],
+        //         "label": week["_week"],
+        //         "value": week[parameter],
+        //         "colour": "lightBlue"
+        //     })
+        // }
 
-            history.push({
-                "time": week["_date"],
-                "label": week["_week"],
-                "value": week[parameter],
-                "colour": "lightBlue"
-            })
-        }
+        meldingen.push({
+            label : "Schademeldingen",
+            value : data[0]["fs_schademeldingen"],
+            delta: data[0]["fs_schademeldingen_nieuw"],
+            units: "schademeldingen",
+            colour: "orange"
+        })
 
         pieData.push({
             label : "Afgehandeld",
             value : data[0]["fs_dossiers_afgehandeld"],
-            new: data[0]["fs_nieuw_dossiers_afgehandeld"],
+            delta: data[0]["fs_nieuw_dossiers_afgehandeld"],
             units: "afgehandeld",
             colour: "lightBlue"
         })
@@ -106,18 +114,25 @@ export default class WeekV1 extends GraphControllerV2  {
         })
 
         return { 
-            "history" : history,
-            "latest" : data[0], 
-            "slice" : history, // .slice(0,16), 
+            // "history" : history,
+        //    "latest" : data[0], 
+         //   "slice" : history, // .slice(0,16), 
+            "meldingen" : meldingen,
             "pie" : pieData
         };
     }
 
     async draw(data: any): Promise<void> {
 
-        this.scales.x.set(data.slice.map(d => d["time"]));
-        this.scales.y.set(data.slice.map(d => d["value"]));
-        this.scales.r.set([data.latest['fs_schademeldingen'],data.latest['fs_dossiers_in_behandeling'],data.latest['fs_dossiers_afgehandeld']])
+        // this.scales.x.set(data.slice.map(d => d["time"]));
+        // this.scales.y.set(data.slice.map(d => d["value"]));
+
+        const values = [0];
+        values.push(data.meldingen[0].value);
+        for (const slice of data.pie) {
+            values.push(slice.value);
+        }
+        this.scales.r.set(values)
 
         this.svg.layers.data
             .append("g")
@@ -138,21 +153,17 @@ export default class WeekV1 extends GraphControllerV2  {
             .append("text")
             .text("week 23 - 2023")
 
-        await this.meldingen.draw(data.latest);
+        await this.meldingen.draw(data.meldingen);
         await this.pie.draw(data.pie);
-        // await this.trend.draw(data.slice);
         return;
     }
 
     async redraw(data: any): Promise<void> {
 
         await super.redraw(data);
-
-        this.scales.y.reset([10, this.config.extra.trendHeight]);
-
+     //   this.scales.y.reset([10, this.config.extra.trendHeight]);
         await this.meldingen.redraw();
         await this.pie.redraw();
-        // await this.trend.redraw();
         return;
     }
 

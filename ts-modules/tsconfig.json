@@ -122,6 +122,7 @@
     "src/img-modules/elements/svg/map/dirty",
     "src/img-modules/elements/svg/radial/dirty",
     "src/img-modules/services/dirty",
+    "build"
     
   ]
 }
