@@ -21,6 +21,7 @@
 // export { dashboardGemeente} from "./dashboard/dashboard-gemeente";
 
 export { weekFs } from "./week/fs"
+export { weekFs2 } from "./week/fs2"
 
 // import { staafSchademeldingen } from './single/staaf_schademeldingen';
 // import { staafSchadeopnames } from './single/staaf_schade-opnames';

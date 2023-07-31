@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@local/charts": "file:../ts-modules/src/img-modules/charts",
-    "@local/configs": "file:../ts-modules/src/configs",
+    "@local/configs": "file:../ts-modules/build/cjs/configs",
     "@local/d3_graphs": "file:../ts-modules/src/d3-modules/_d3_graphs",
     "@local/d3_types": "file:../ts-modules/src/d3-modules/_d3_types",
     "@local/d3-services": "file:../ts-modules/src/d3-modules/services",
@@ -66,6 +66,6 @@
     "deploy:prod": "cd public && git add . && git commit -am 'changes' && git push old master",
     "deploy:oldstaging": "cd public && git add . && git commit -am 'changes' && git push oldstaging master",
     "deploy:staging": "cd public && git add . && git commit -am 'changes' && git push staging master",
-    "serve": "webpack serve --env ENV=dev DOMAIN=https://img.publikaan.nl APIBASE=/open-data/staging/api/"
+    "serve": "webpack serve --env ENV=dev DOMAIN=https://img.de-publieke-zaak.nl APIBASE=/open-data/staging/api/"
   }
 }

@@ -59,6 +59,7 @@ let ChartObjects = function ChartObjects() {
         }
 
         return {
+            defs: {},
             body : null,
             layers : {},
             tooltip,

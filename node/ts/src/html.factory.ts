@@ -40,7 +40,7 @@ export const html = () => {
         }
 
       </style>
-    </head><body id="development" style="width:100%;height:100%"><main data-img-graph-preset="dashboard" style="background:#eee;"></main></body></html>`;
+    </head><body id="development" style="width:100%;height:100%"><main data-img-graph-preset="dashboard" style="background:#fff;"></main></body></html>`;
 }
 
 export const createGraphGroupElement = (graphObject : GraphObject, window: Window, htmlContainer: HTMLElement) => {

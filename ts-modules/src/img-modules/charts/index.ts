@@ -38,6 +38,7 @@
 // import SectionHeader from "./section-header"
 
 import WeekV1  from './week-v1';
+import WeekV2  from './week-v2';
 
 export const graphs  = {
 
@@ -46,7 +47,8 @@ export const graphs  = {
     // CijferCurrency,
     // CijferDecimalPlus,
   //  CijfersLine,
-    WeekV1
+    WeekV1,
+    WeekV2
     // CijfersMonths,
     // Grid,
     // Horizon,

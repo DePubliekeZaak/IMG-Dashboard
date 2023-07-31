@@ -1,4 +1,4 @@
-import {breakpoints} from "@local/styleguide";
+import {breakpoints} from "../../../ts-modules/src/img-modules/_styleguide";
 
 export function screenType(width: number) {
 

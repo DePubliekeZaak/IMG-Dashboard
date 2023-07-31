@@ -39,8 +39,8 @@ class WeekV1 extends d3_graphs_1.GraphControllerV2 {
             _super._init.call(this);
             const svgId = "svg-wrapper-" + this.mapping.slug;
             const container = this.main.window.document.createElement('section');
-            // container.style.height = "400px";
-            // container.style.width = "800px";
+            container.style.height = "100%";
+            // container.style.background = "";
             container.style.overflow = "hidden";
             container.id = svgId;
             this.element.appendChild(container);

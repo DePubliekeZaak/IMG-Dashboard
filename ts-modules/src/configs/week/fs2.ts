@@ -1,9 +1,9 @@
 import { IGraphMapping} from '@local/d3_types';
 
-export const weekFs: IGraphMapping[] = [
+export const weekFs2: IGraphMapping[] = [
     {
         "slug" : "week",
-        "graph" : "WeekV1",
+        "graph" : "WeekV2",
         "args" : [],
         "parameters": [[]],
         "header": "",
@@ -11,5 +11,5 @@ export const weekFs: IGraphMapping[] = [
         "endpoint": "actueel",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12']
-        },
+    },
 ]

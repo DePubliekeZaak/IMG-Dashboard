@@ -82,4 +82,7 @@ export { ChartBackgroundAreas } from './svg/area/chart-background-areas';
 // export { default as SumLegend } from "./svg/label/sum-legend";
 // export { default as MapLegend } from "./svg/label/map-legend";
 
+export { CirclePlusV1 } from './svg/week/circle-plus-v1'
+export { ArrowV1 } from './svg/week/arrow-v1'
 export { WeekMeldingenV1 } from './svg/week/meldingen'
+export { WeekVerleendV1 } from './svg/week/verleend'

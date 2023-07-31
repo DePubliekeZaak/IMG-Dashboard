@@ -1,7 +1,8 @@
-import {GraphObject} from "@local/d3_types";
+import {GraphObject} from "../../../ts-modules/src/d3-modules/_d3_types";
 import DataService from "../services/data.service";
 import { default as GraphService } from "../services/graph.service"
-import {weekFs} from '@local/configs'
+
+import {weekFs, weekFs2} from '../../../ts-modules/src/configs'
 import { styleParentElement } from '../services/html.factory'
 
         // container.style.marginBottom = '3rem';
@@ -31,7 +32,7 @@ export class InitWeek {
 
         const size = [800,300]
 
-        this.call("fs", weekFs, segment, false, size);
+        this.call("fs", weekFs2, segment, false, size);
 
     }
 

@@ -18,6 +18,9 @@ export default class ChartSVG {
         this.svg.body = d3.select(this.element)
             .append('svg')
             .style('overflow','visible');
+
+        this.svg.defs = this.svg.body 
+            .append('defs');
     }
 
     redraw(dimensions) {

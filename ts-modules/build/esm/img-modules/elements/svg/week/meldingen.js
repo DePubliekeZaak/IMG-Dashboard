@@ -1,3 +1,4 @@
+import { thousands } from "@local/d3-services";
 import colours from "@local/styleguide/_colours";
 export class WeekMeldingenV1 {
     constructor(ctrlr) {
@@ -18,10 +19,10 @@ export class WeekMeldingenV1 {
             .append("text")
             .attr("class", "total")
             .attr("text-anchor", "end")
-            .attr("y", -30)
+            .attr("y", -24)
             .style("font-family", "Replica")
-            .style("font-size", "1.3rem")
-            .text((d) => d.value);
+            .style("font-size", "2rem")
+            .text((d) => thousands(d.value));
         this.descriptor = this.textWrapper
             .append("text")
             .attr("class", "descriptor")
@@ -36,8 +37,8 @@ export class WeekMeldingenV1 {
             .attr("text-anchor", "end")
             .style("font-family", "NotoSans Regular")
             .style("font-size", "1rem")
-            .attr("y", 20)
-            .text((d) => d.new);
+            .attr("y", 24)
+            .text((d) => d.delta);
     }
     redraw(data) {
         this.wrapper
@@ -45,7 +46,7 @@ export class WeekMeldingenV1 {
             // minus radius
             const x = 0; // -this.ctrlr.scales.r.scale(d.value);
             // plus radius
-            const y = this.ctrlr.scales.r.scale(d.value);
+            const y = this.ctrlr.dimensions.height / 2;
             return "translate(" + x + "," + y + ")";
         });
         this.circle
@@ -55,8 +56,8 @@ export class WeekMeldingenV1 {
         this.textWrapper
             .attr("transform", (d, i) => {
             // plus radius - somthng
-            const x = this.ctrlr.scales.r.scale(d.value) - 80;
-            const y = -40; // + radius? 
+            const x = this.ctrlr.scales.r.scale(d.value) + 80;
+            const y = 0; // + radius? 
             return "translate(" + x + "," + y + ")";
         });
     }

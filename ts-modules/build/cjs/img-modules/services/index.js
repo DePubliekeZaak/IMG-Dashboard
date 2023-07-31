@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataService = exports.slugify = exports.getMonthFromNumber = exports.getWeek = exports.getMonth = exports.filterWeeks = exports.getNeededColumnsForHistoryV2 = exports.munis = void 0;
+exports.DataService = exports.slugify = exports.getMonthFromNumber = exports.getWeek = exports.getMonth = exports.parseForPieV2 = exports.filterWeeks = exports.getNeededColumnsForHistoryV2 = exports.munis = void 0;
 // export { default as BallenbakSimulation } from './ballenbak.simulation';
 var municipalities_1 = require("./municipalities");
 Object.defineProperty(exports, "munis", { enumerable: true, get: function () { return municipalities_1.munis; } });
@@ -10,6 +10,8 @@ Object.defineProperty(exports, "getNeededColumnsForHistoryV2", { enumerable: tru
 //     isArrayOfMaps,
 //     groupByMonths,
 Object.defineProperty(exports, "filterWeeks", { enumerable: true, get: function () { return data_with_history_functions_1.filterWeeks; } });
+var data_functions_1 = require("./data.functions");
+Object.defineProperty(exports, "parseForPieV2", { enumerable: true, get: function () { return data_functions_1.parseForPieV2; } });
 var date_object_utils_1 = require("./date-object.utils");
 Object.defineProperty(exports, "getMonth", { enumerable: true, get: function () { return date_object_utils_1.getMonth; } });
 Object.defineProperty(exports, "getWeek", { enumerable: true, get: function () { return date_object_utils_1.getWeek; } });

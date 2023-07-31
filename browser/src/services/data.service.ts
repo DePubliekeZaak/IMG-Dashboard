@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import {ResponseData} from "@local/d3_types";
+import {ResponseData} from "../../../ts-modules/src/d3-modules/_d3_types";
 import * as _ from 'lodash';
 
 

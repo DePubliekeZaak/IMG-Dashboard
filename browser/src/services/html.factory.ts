@@ -1,4 +1,4 @@
-import { GraphObject } from "@local/d3_types";
+import { GraphObject } from "../../../ts-modules/src/d3-modules/_d3_types";
 
 
 export const styleParentElement = (document: Document) => {
@@ -10,6 +10,7 @@ export const styleParentElement = (document: Document) => {
     parentEl.style.display = 'flex';
     parentEl.style.flexDirection = 'row-reverse';
     parentEl.style.justifyContent = 'space-around';
+    htmlContainer.style.background = "#eee";
     return htmlContainer;
 }
 
@@ -24,9 +25,10 @@ export const createPopupElement = () => {
 }
 
 
-export const createGraphGroupElement = (graphObject : GraphObject, htmlContainer: HTMLElement) => {
+export const createGraphGroupElement = (graphObject : GraphObject, documentEl: HTMLElement) => {
 
     let element = document.createElement('article');
+  
 
     if (graphObject.config && graphObject.config.extra.largeHeader) {
 
@@ -37,7 +39,7 @@ export const createGraphGroupElement = (graphObject : GraphObject, htmlContainer
         header.style.width = '100%';
         header.style.margin = '3rem 0 3rem 0';
 
-        htmlContainer.appendChild(header);
+        documentEl.appendChild(header);
     }
 
     if (graphObject.elementClasslist) {
@@ -47,8 +49,8 @@ export const createGraphGroupElement = (graphObject : GraphObject, htmlContainer
         }
     }
 
-    htmlContainer.appendChild(element);
-
+    documentEl.appendChild(element);
+    console.log(element);
     return element;
 
 }

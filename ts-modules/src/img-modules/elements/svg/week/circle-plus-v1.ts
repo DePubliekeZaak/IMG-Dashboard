@@ -8,16 +8,17 @@ interface ChartElement {
     redraw: ( data: Circles) => void
 }
 
-export class WeekMeldingenV1 {
+export class CirclePlusV1 {
 
     local;
 
     constructor(
         public ctrlr,
+        public slug
     ){
 
-        this.ctrlr.svg.meldingen = {}
-        this.local = this.ctrlr.svg.meldingen;
+        this.ctrlr.svg[this.slug] = {}
+        this.local = this.ctrlr.svg[this.slug];
     }
 
     draw(data: Circles) {

@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 import { html, createGraphGroupElement } from './html.factory'
 import { DataService, IDataService } from '../../../ts-modules/src/img-modules/services';
-import { weekFs } from '../../../ts-modules/src/configs' 
+import { weekFs, weekFs2 } from '../../../ts-modules/src/configs' 
 import { BucketService, IBucketService } from './bucket.service';
 import { convert} from './image.factory';
 import fs from 'fs';
@@ -42,7 +42,7 @@ export class SsrController implements ISsrController {
         global.window = this.window;
 
         const htmlContainer: HTMLElement = this.window.document.querySelector("[data-img-graph-preset='dashboard']");
-        const renderedhtml = await this.data.call(null, weekFs, 'all', false, htmlContainer,_size);
+        const renderedhtml = await this.data.call(null, weekFs2, 'all', false, htmlContainer,_size);
 
         console.log(renderedhtml);
       //  const r = await fs.writeFileSync('../svg/jsdom.html',renderedhtml)

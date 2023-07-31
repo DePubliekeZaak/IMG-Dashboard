@@ -1,7 +1,8 @@
-import { WeekMeldingenV1, ChartPieWeek, ChartBarWeekV1  } from '@local/elements';
+import { WeekMeldingenV1, ChartPieWeek, ChartBarWeekV1, ArrowV1  } from '@local/elements';
 import { DataPart, GraphData } from "@local/d3_types";
 import { GraphControllerV2 } from "@local/d3_graphs";
 import { IGraphMapping } from '@local/d3_types';
+import { WeekVerleendV1 } from '@local/elements';
 
 export default class WeekV1 extends GraphControllerV2  {
 
@@ -9,7 +10,7 @@ export default class WeekV1 extends GraphControllerV2  {
     
     meldingen;
     pie;
-    trend;
+    verleend;
 
     constructor(
         public main: any,
@@ -39,8 +40,8 @@ export default class WeekV1 extends GraphControllerV2  {
 
         const svgId = "svg-wrapper-" + this.mapping.slug
         const container = this.main.window.document.createElement('section');
-        // container.style.height = "400px";
-        // container.style.width = "800px";
+        container.style.height = "100%";
+        // container.style.background = "";
         container.style.overflow = "hidden";
         container.id = svgId;
         this.element.appendChild(container);
@@ -59,6 +60,7 @@ export default class WeekV1 extends GraphControllerV2  {
     
         this.meldingen = new WeekMeldingenV1(this);
         this.pie = new ChartPieWeek(this);
+        this.verleend = new WeekVerleendV1(this);
         // this.trend = new ChartBarWeekV1(this);
 
         await this.update(this.data,this.segment,false);
@@ -69,6 +71,7 @@ export default class WeekV1 extends GraphControllerV2  {
        // const history = []; // data; 
         const meldingen = [];
         const pieData = [];
+        const verleend = [];
         // this data merging .. has been skipped
         const parameter = "fs_nieuw_dossiers_afgehandeld";
 
@@ -99,26 +102,32 @@ export default class WeekV1 extends GraphControllerV2  {
 
         pieData.push({
             label : "Afgehandeld",
-            value : data[0]["fs_dossiers_afgehandeld"],
-            delta: data[0]["fs_nieuw_dossiers_afgehandeld"],
+            value : data[0]["fs_schademeldingen_afgehandeld"],
+            delta: data[0]["fs_schademeldingen_afgehandeld_nieuw"],
             units: "afgehandeld",
             colour: "lightBlue"
         })
 
         pieData.push({
             label : "In behandeling",
-            value : data[0]["fs_dossiers_in_behandeling"],
-            new : data[0]["fs_nieuw_dossiers_in_behandeling"],
+            value : data[0]["fs_schademeldingen_in_behandeling"],
+            delta : data[0]["fs_schademeldingen_in_behandeling_nieuw"],
             units: "in behandeling",
             colour: "moss"
         })
 
+        verleend.push({
+            label : "Totaal verleend",
+            value : data[0]["fs_totaal_verleend"],
+            delta : data[0]["fs_totaal_verleend_nieuw"],
+            format: "in currency",
+            colour: "black"
+        })
+
         return { 
-            // "history" : history,
-        //    "latest" : data[0], 
-         //   "slice" : history, // .slice(0,16), 
-            "meldingen" : meldingen,
-            "pie" : pieData
+            meldingen,
+            "pie" : pieData,
+            verleend
         };
     }
 
@@ -151,19 +160,28 @@ export default class WeekV1 extends GraphControllerV2  {
             .attr("text-anchor","end")
             .attr("transform","translate(" + (this.dimensions.width - 140) + ",30)")
             .append("text")
-            .text("week 23 - 2023")
+            .text("week xx - 2023")
 
         await this.meldingen.draw(data.meldingen);
         await this.pie.draw(data.pie);
+        await this.verleend.draw(data.verleend);
         return;
     }
 
     async redraw(data: any): Promise<void> {
 
         await super.redraw(data);
-     //   this.scales.y.reset([10, this.config.extra.trendHeight]);
         await this.meldingen.redraw();
-        await this.pie.redraw();
+        await this.pie.redraw(data.pie);
+        await this.verleend.redraw(data.verleend);
+
+        this.svg.pie_wrapper
+        .attr("transform", (d) => {
+             const x =  2 * this.dimensions.width / 3;
+             const y = this.dimensions.height / 2;
+             return "translate(" + x + "," + y + ") rotate(-45)"
+        })
+        
         return;
     }
 

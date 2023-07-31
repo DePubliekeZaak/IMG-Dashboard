@@ -1,5 +1,5 @@
-import { graphs } from '@local/charts';
-import { munis } from '@local/img-services';
+import { graphs } from '../../../ts-modules/src/img-modules/charts';
+// import { munis } from '@local/img-services';
 import { createGraphGroupElement } from './html.factory';
 
 export default class GraphService {
@@ -12,8 +12,7 @@ export default class GraphService {
         this.ctrlr = ctrlr;
     }
 
-    call(params: string, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
-
+    call(params: string, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement, size: number[]) {
 
         const promises = this.ctrlr.dataService.createDashboardCalls(dashboardArray, segment,false);
 
@@ -29,7 +28,6 @@ export default class GraphService {
             }
 
             if (params === 'mms') {
-
                 weekData = this.ctrlr.dataService.parseMmsData(weekData);
             }
            
@@ -39,7 +37,6 @@ export default class GraphService {
             }
 
             if (update) {
-
                 this.ctrlr.interactions.updateMuniList(segment);
             }
          
@@ -51,7 +48,9 @@ export default class GraphService {
                 const graphType = graphObject.config ? graphObject.config.graphType : graphObject.graph;
              
                 const element = htmlContainer; // createGraphGroupElement(graphObject, htmlContainer); // htmlContainer.querySelector('#img-dashboard-container'
-                
+                element.style.width = size[0].toString() + 'px';
+                element.style.height = size[1].toString() + 'px';
+
                 if (update) {
                     this.graphMethods[graphObject.slug].update(data, segment, true);
                 } else {

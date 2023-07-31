@@ -12,6 +12,10 @@ export {
 //     parseHistoryForStackedArea
 } from './data-with-history.functions'
 
+export {
+        parseForPieV2
+} from './data.functions'
+
 export { getMonth, getWeek, getMonthFromNumber } from './date-object.utils';
 export { slugify } from './slugify.utils'
 
