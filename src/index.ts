@@ -78,9 +78,16 @@ export class InitGraph {
     }
 }
 
+
+
+window.addEventListener("load", (event) => {
+    console.log("on load");
+});
+
 new InitGraph();
 
 
+// niet langer actief 
 window.addEventListener('graph_ready', function (e) {
     new InitGraph();
 }, false);

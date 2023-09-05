@@ -48,9 +48,6 @@ export class HtmlAverage {
 
     redraw(data: GraphData) {
 
-        console.log(data.latest)
-        console.log(this.ctrlr.parameters.y)
-
         let value =  Math.round(100 * data.latest[this.ctrlr.parameters.y]) / 100;
 
         this.ctrlr.element.querySelector('.total').innerText = (value > 9999) ? thousands(value) : value;

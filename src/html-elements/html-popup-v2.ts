@@ -205,8 +205,6 @@ export class HtmlPopupV2 {
 
     populateFormula() {
 
-        console.log(this.data[0]);
-
         // @ts-ignore
         let score = (
             

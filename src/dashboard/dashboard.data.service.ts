@@ -49,6 +49,8 @@ export default class DashboardData {
 
     mergeArrayObjects(arrays){
 
+        console.log(arrays);
+
         const eemsdelta = ['Appingedam','Delfzijl','Loppersum'];
 
         let weekData = [];
@@ -103,6 +105,8 @@ export default class DashboardData {
             
 
             muniData = this.createMapDataForEemsdelta(muniData);
+
+            console.log(muniData);
 
         }
 

@@ -15,8 +15,6 @@ export default class DashboardGraph {
 
     call(params, dashboardArray, segment: string, update: boolean, htmlContainer: HTMLElement) {
 
-     
-
         const promises = this.ctrlr.dataService.createDashboardCalls(dashboardArray, segment,false);
 
         Promise.all(promises).then((values) => {
@@ -47,6 +45,8 @@ export default class DashboardGraph {
             for (let graphObject of dashboardArray) {
 
                 let data = graphObject.segment ? weekData : muniData;
+
+                // console.log(data);
 
                 // if (graphObject.config && graphObject.config.multiples) {
 

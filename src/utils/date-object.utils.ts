@@ -58,7 +58,6 @@ export function getCompleteMonths(newData) {
         }
     }
 
-    console.log(newData);
 
     return newData.filter( w => w.complete == true);
 }

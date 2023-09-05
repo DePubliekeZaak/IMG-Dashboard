@@ -51,18 +51,12 @@ export class InitDashboard {
             let newScreen = screenType(window.innerWidth);
 
             if ( screen != newScreen) {
-
                 setTimeout(() => {
                     self.reloadHtml();
                 }, 100);
-                
             }
 
         }, false);
-
-        // setTimeout( () => {
-        //     window.dispatchEvent(new Event('resize'));
-        // }, 1000);
     }
 
     reloadHtml() {
@@ -79,17 +73,14 @@ export class InitDashboard {
       
         } else {
             let mobileNavTop = this.html.createMobileNav(this.htmlContainer);
-            // let mobileNavBottom = this.html.createMobileNav(this.htmlContainer);
         }
 
         this.html.createPopupElement();
-
     }
 
     call(topic, dashboardArray, segment: string, update: boolean) {
 
         this.html.pageHeader(topic, this.htmlContainer);
-
         this.graphService.call(topic, dashboardArray, segment, update, this.htmlContainer)
     }
 }

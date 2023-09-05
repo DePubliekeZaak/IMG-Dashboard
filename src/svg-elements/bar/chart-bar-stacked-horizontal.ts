@@ -138,8 +138,6 @@ export class ChartBarStackedHorizontal {
         this.barValue
             .text(function(d, i ) {
 
-                console.log(d);
-
                 let label = (i === 0) ? "Afgehandeld" : "In behandeling";
 
                 let text = label + ": " + (d[1] - d[0]);

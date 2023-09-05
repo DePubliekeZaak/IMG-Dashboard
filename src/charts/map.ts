@@ -90,6 +90,7 @@ export default class Map extends GraphControllerV2 {
             feature.properties.colour = this.firstMapping['colour'];
         }
 
+
         return {
             latest: null,
             slice: null,

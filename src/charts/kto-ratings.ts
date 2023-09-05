@@ -91,8 +91,6 @@ export default class KTORatings extends GraphControllerV2 {
         
         let selectedMonth = monthIndex && yearIndex ? getCompleteMonths(data).find( (m) => m['_month'] === parseInt(monthIndex) && m['_year'] === parseInt(yearIndex)) : history[0];
 
-        console.log(getCompleteMonths(history));
-
         if (this.mapping.parameters[1]) {
 
             // @ts-ignore

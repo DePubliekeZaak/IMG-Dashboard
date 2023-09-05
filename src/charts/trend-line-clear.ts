@@ -111,8 +111,6 @@ export default class TrendLineClear extends GraphControllerV2 {
 
     draw(data: GraphData) {
 
-        console.log(data.slice);
-
         this.scales.x.set(data.slice.map(d => new Date(d[this.parameters.x])));
 
         let minValue = this.config.extra.minValue || 0; // d3.min(data.map(d => ((d[this.yParameter]) * .85)));

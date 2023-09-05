@@ -84,8 +84,6 @@ export class InitSingle {
 
         for (let endpoint of uniqueEndpoints) {
 
-            console.log(endpoint);
-
             const graphObjectArray = this.graphObjectArray.filter( o => o.endpoint === endpoint);
 
             let url = (endpoint === '/api/gemeenten') ? 'https://tcmg-hub.publikaan.nl/api/gemeenten' : (endpoint || '/api/data') + '?gemeente=eq.' + segment;
