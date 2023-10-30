@@ -76,7 +76,7 @@ export default class CijfersMonths extends GraphControllerV2  {
         return { 
             "history" : history,
             "latest" : data[0], 
-            "slice" : history.slice(0,8), 
+            "slice" : history.slice(2,10), 
         };
     }
 

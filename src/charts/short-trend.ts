@@ -70,7 +70,7 @@ export default class ShortTrend extends GraphControllerV2 {
         return { 
             "history" : history,
             "latest" : data[0], 
-            "slice" : history.slice(0,12).reverse(), 
+            "slice" : history.slice(2,14).reverse(), 
         };
 
     }
