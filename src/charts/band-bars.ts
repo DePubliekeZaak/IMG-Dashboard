@@ -72,7 +72,9 @@ export default class BandBars extends GraphControllerV2 {
 
         let slice: D3DataTypeLatest[] = [];
 
-        let d = data.find( j => j['gemeente'] === this.segment);
+        let d = data.find( j => j['gemeente'].toLowerCase() === this.segment);
+
+        console.log(d);
 
         for (let mapping of this.mapping.parameters[0]) {
 

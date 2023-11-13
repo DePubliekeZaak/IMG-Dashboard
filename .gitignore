@@ -12,3 +12,7 @@ public
 public
 deploy.sh
 .npmignore 
+deploy.dev.sh
+deploy.prod.sh
+deploy.staging.sh
+

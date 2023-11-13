@@ -32,7 +32,7 @@ export default class ChartBarTrend {
         let barWidth = this.ctrlr.dimensions.width / data.slice.length - 1;
 
         this.bars
-            .attr("x", (d: DataPart, i: Number)  => {
+            .attr("x", (d: DataPart, i: number)  => {
                 return i > 0 ? self.ctrlr.scales.x.fn(d[self.ctrlr.parameters.x]) - barWidth : 0;
             })
             .attr("y", self.ctrlr.dimensions.height)

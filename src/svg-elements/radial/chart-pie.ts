@@ -19,8 +19,6 @@ export class ChartPie {
             .sort(null)
             .value((d) => d['value']);
 
-            console.log(data[0]);
-
 
         this.ctrlr.svg.arcs = this.ctrlr.svg.layers.data.selectAll(".arc")
             .data(pie(data[0]), (d => d.data.label))
