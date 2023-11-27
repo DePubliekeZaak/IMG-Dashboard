@@ -62,7 +62,7 @@ export default class MuniSelector extends GraphControllerV2 {
             window.location.href = window.location.origin + window.location.pathname + '?topic=gemeente&gemeente=' + new_muni
         });
 
-        d3.json('./geojson/gemeenten2021.topojson').then( (topojsonObject) => {
+        d3.json('https://img.publikaan.nl/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
             self.topojsonObject = topojsonObject; 
             this.update(this.data,this.segment, false);
      });

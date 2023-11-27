@@ -51,10 +51,11 @@ export class HtmlCircle {
         let number = document.createElement('span');
         number.classList.add('number');
         number.classList.add('in_circle');
-        number.style.fontSize = '3rem';
+        number.style.fontSize =  '2.8rem';
+        number.style.fontWeight = '500';
         number.style.lineHeight = "1";
         number.style.color = 'black';
-        number.style.fontFamily = "Replica";
+        number.style.fontFamily = "Sora, sans-serif";
 
         div.appendChild(number);
 
@@ -125,7 +126,7 @@ export class HtmlCircle {
     }
 
 
-    redraw(data,parameter,extraParameter) {
+    redraw(data, parameter,extraParameter) {
 
         let element = this.element != undefined ? this.element : this.ctrlr.element;
         
@@ -141,9 +142,9 @@ export class HtmlCircle {
             element.querySelector('.number.in_circle').innerText = (value > 9999) ? thousands(value) : value;
         }
 
-        if(value > 9999) {
+        if(value > 999) {
 
-            element.querySelector('.number.in_circle').style.fontSize = '2rem'
+            element.querySelector('.number.in_circle').style.fontSize = '1.6rem'
         }
 
         if(this.ctrlr.config.extra.noRespondents) {

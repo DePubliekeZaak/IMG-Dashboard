@@ -47,6 +47,8 @@ export default class DashboardGraph {
                 //     this.dashBoardMap.highlight(segment);
                 // }
             }
+
+            this.ctrlr.html.updatedAt(weekData[0], this.ctrlr.htmlContainer);
          
 
             for (let graphObject of dashboardArray) {
@@ -76,6 +78,8 @@ export default class DashboardGraph {
                 // } else {
 
                 const graphType = graphObject.config ? graphObject.config.graphType : graphObject.graph;
+
+              
 
                 const element = this.ctrlr.html.createGraphGroupElement(graphObject, htmlContainer); // htmlContainer.querySelector('#img-dashboard-container'
 

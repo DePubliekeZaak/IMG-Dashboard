@@ -62,6 +62,8 @@ export default class ShortTrend extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) : GraphData  {
 
+        console.log(data);
+
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = groupByMonths(data,neededColumns);
 
@@ -70,7 +72,7 @@ export default class ShortTrend extends GraphControllerV2 {
         return { 
             "history" : history,
             "latest" : data[0], 
-            "slice" : history.slice(2,14).reverse(), 
+            "slice" : history.slice(0,14).reverse(), 
         };
 
     }

@@ -42,6 +42,8 @@ export class InitDashboard {
         const { params, segment } = this.params.read();
         const dashboardArray = this.params.matchConfig(params.topic);
 
+        this.interactions.updateMenuList(params.topic);
+
         this.call(params.topic, dashboardArray, segment, false);
 
         let screen = screenType(window.innerWidth);
@@ -87,6 +89,7 @@ export class InitDashboard {
     }
 
     call(topic, dashboardArray, segment: string, update: boolean) {
+
 
         this.html.pageHeader(topic, this.htmlContainer);
 

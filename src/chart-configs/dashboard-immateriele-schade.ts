@@ -14,7 +14,8 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
                 {
                     "label": "Totaal uitgekeerd",
                     "column": "immateriele_schade_totaal_verleend",
-                    "colour": "black"
+                    "colour": "black",
+                    "format": "currency"
                 }
             ]
         ],

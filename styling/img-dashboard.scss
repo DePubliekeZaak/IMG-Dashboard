@@ -18,7 +18,7 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
-  justify-content: space-between  ;
+  justify-content: space-between;
   align-items: flex-start;
 
   padding: 2rem 0rem 2rem 0rem;
@@ -39,7 +39,7 @@ main {
 
   @media (min-width: $breakpoint-lg) {
     padding: 2.95rem 0rem 0rem 0px;
-    width : calc(100% - 280px - 3rem); 
+    width : calc(100% - 280px - 0rem); 
     margin: 0;
     
   }
@@ -56,7 +56,7 @@ aside {
     order: 1;
     width: calc(100% - 0rem);
     background: #64a7c6;
-    margin: auto;
+    margin: 0;
 
     margin-top: 1rem;
 
@@ -147,53 +147,33 @@ aside {
   }
 }
 
-.mobile_nav {
+// .mobile_nav {
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem auto 2rem auto;
-  padding: 1rem 0;
-  background: $moss;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 2rem auto 2rem auto;
+//   padding: 1rem 0;
+//   background: $moss;
 
-  &:nth-of-type(2) {
+//   &:nth-of-type(2) {
 
-    top: auto;
-    bottom: 0;
-  }
-}
+//     top: auto;
+//     bottom: 0;
+//   }
+// }
 
-.mobile_nav_v2 {
 
-  position: fixed;
-  z-index: 12;
-  top: 0;
-  left: calc(-100vw - 3rem + 0px);
-  height: calc(100vh - 0rem);
-  width: calc(100vw - 0rem);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0rem auto 0rem auto;
-  padding: 4rem 1rem 1rem 0;
-  background: rgb(46 54 56);
-  transition: left 200ms ease;
-  color: rgb(222 228 182);
-
-  &.is-open {
-    left: 0rem;
-  }
-}
 
 .img-dashboard-breadcrumbs {
   list-style: none;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 100%;
   text-align: center;
   // text-transform: lowercase;
@@ -216,11 +196,16 @@ aside {
     
     }
 
-    span:nth-child(even):after {
-        content: '>';
+    span:nth-child(even) {
+        // content: '>';
         margin: 0 .5rem;
         display: inline-block;
-        font-size: .825rem;
+        font-size: 8px;
+        color: #35718d;
+
+        &:last-child {
+          display: none;
+        }
     } 
 
     span:last-child:after {

@@ -30,7 +30,7 @@ export default class DashboardHTMLV2 {
         // parentEl.style.width = 'calc(100% - 0rem)';
         parentEl.style.display = 'flex';
         parentEl.style.flexDirection = 'row-reverse';
-        parentEl.style.justifyContent = 'space-around';
+        parentEl.style.justifyContent = 'space-between';
         return htmlContainer;
     }
 
@@ -252,6 +252,35 @@ export default class DashboardHTMLV2 {
 
     }
 
+    updatedAt(data, htmlContainer) {
+
+        let prevBC = document.querySelector('.img-updated-at');
+        if (prevBC) {
+            return;
+        }
+
+        let updatedContainer = document.createElement('div');
+        updatedContainer.classList.add('img-updated-at');
+        updatedContainer.style.width = "100%";
+
+
+        let span = document.createElement('span');
+
+
+        span.style.fontSize = '.85rem';
+        // span.style.background = "rgb(222, 233, 240)";
+        // span.style.padding = '.125rem .25rem';
+        span.style.borderRadius = '4px';
+
+        const datum = new Date(data._date).toLocaleDateString("nl-NL");
+
+        span.innerHTML = "Laatst bijgewerkt op " + datum
+
+        updatedContainer.appendChild(span);
+        htmlContainer.insertBefore(updatedContainer,document.querySelector(".img-dashboard-breadcrumbs"));
+
+    }
+
     pageHeader(topic: string, htmlContainer) {
 
         let prevBC = document.querySelector('.img-dashboard-breadcrumbs');
@@ -259,10 +288,14 @@ export default class DashboardHTMLV2 {
             prevBC.remove()
         }
 
+        const crumbs = this._crumbs(topic);
+
+        if (crumbs.length < 1) return;
+
         let breadcrumbContainer = document.createElement('ul');
         breadcrumbContainer.classList.add('img-dashboard-breadcrumbs');
+        breadcrumbContainer.style.margin= '.25rem 0 3rem 0 ';
 
-        const crumbs = this._crumbs(topic);
 
         for (let crumb of crumbs.slice(0, crumbs.length)) {
 
@@ -273,10 +306,14 @@ export default class DashboardHTMLV2 {
             if (topic !== crumb.topic) {
                 c.addEventListener( 'click', (event) => { this.controller.interactions.switchTopic((<HTMLElement>event.target).getAttribute('dashboard-topic'),'all') });
                 c.classList.add('is-link');
+                c.style.color = 'rgb(53, 113, 141)';
             }
             breadcrumbContainer.appendChild(c); 
+
+     
             
             let d = document.createElement('span');
+            d.innerHTML = '<svg class="icon icon-arrow-left-img1 flex-shrink-0 mt-px rotate-180"><use xlink:href="#icon-arrow-left-img1"></use></svg>';
             breadcrumbContainer.appendChild(d); 
         }
 
@@ -287,8 +324,10 @@ export default class DashboardHTMLV2 {
         // breadcrumbContainer.appendChild(br);
         // breadcrumbContainer.appendChild(h2);
 
-        breadcrumbContainer.style.marginBottom = '3rem';
+      
         htmlContainer.appendChild(breadcrumbContainer);
+
+    
     }
 
     _crumbs(topic) {

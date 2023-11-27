@@ -10,7 +10,8 @@ export const dashboardWaardedalingsRegeling : (GraphObject|IGraphMapping)[] = [
                 {
                     "label": "Totaal",
                     "column": "waardedaling_totaal_verleend",
-                    "colour": "black"
+                    "colour": "black",
+                    "format": "currency"
                 },
                 {
                     "label": "Totaal",

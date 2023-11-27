@@ -11,9 +11,6 @@ export class HtmlAccented {
 
     draw() {
 
-      console.log("hiya");
-
-
         let element = this.element != undefined ? this.element : this.ctrlr.element;
 
       //  console.log(this.ctrlr.mapping.parameters);
@@ -52,7 +49,7 @@ export class HtmlAccented {
         number.style.fontSize = '1.6rem';
         number.style.lineHeight = "1.45";
         number.style.color = 'black';
-        number.style.fontFamily = "Sora,sans-serif!important";
+        number.style.fontFamily = "Sora,sans-serif";
         number.style.fontWeight = "500";
         number.style.borderBottom =  '2px solid ' +  colours[this.ctrlr.firstMapping.colour][0];
 

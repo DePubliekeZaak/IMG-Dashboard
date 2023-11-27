@@ -37,7 +37,7 @@ export default class HtmlPeriodSelector {
 
 
         dropdown.style.border = '1px solid black';
-        dropdown.style.margin = '-1rem 0 0 .5rem';
+        dropdown.style.margin = '-1rem 0 2rem .5rem';
         dropdown.style.borderRadius = '0';
 
 

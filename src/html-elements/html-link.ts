@@ -21,13 +21,14 @@ export class HtmlLink {
 
         let a = document.createElement('a');
         a.onclick = () => this.main.interactions.switchTopic(this.topic,'all');
-        a.innerHTML = `<span style="line-height: 1.25; border-bottom: 1px solid;">` + this.label + `</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 30 30" style="margin-left: .5rem"><path d="M20.4 7H1v15.9h19.4l9.6-8L20.4 7z" fill="#000"></path></svg>`; 
+        a.innerHTML = `<svg class="icon icon-img-arrow-right mr-2"><use xlink:href="#icon-img-arrow-right"></use></svg><span style="line-height: 1;font-weight: 600; font-family: Sora, sans-serif;">` + this.label + `</span>`; 
         a.style.justifyContent = window.innerWidth < breakpoints.sm ? 'center' : 'flex-start';
         a.style.alignSelf = 'flex-end';
         a.style.color = 'black';
         a.style.textDecoration = 'none';
         a.style.display = 'flex';
         a.style.flexDirection = 'row';
+        a.style.fontSize = '.825rem';
         a.style.padding = window.innerWidth < breakpoints.sm ? '2rem 0 2.5rem 0' : '2.5rem 0 0.5rem 0';
 
         this.linkElement.appendChild(a);
