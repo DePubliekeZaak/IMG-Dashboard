@@ -24,7 +24,7 @@ export class HtmlNumber {
         // total.style.color = 'black';
         // total.style.fontFamily = 'NotoSans Regular';
         // total.style.fontWeight = 'normal';
-        // total.style.fontSize = '0.8rem';
+        // total.style.fontSize = '0.825rem';
         // total.style.lineHeight = "1";
         // total.innerText = 'totaal:';
         // total.style.margin = '0 auto .75rem auto';

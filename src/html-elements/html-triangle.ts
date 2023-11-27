@@ -22,7 +22,7 @@ export class HtmlTriangle {
 
             let qualifier = document.createElement('span');
             qualifier.classList.add('label');
-            qualifier.style.fontSize = '.8rem';
+            qualifier.style.fontSize = '.825rem';
             qualifier.style.height = '1rem';
             // qualifier.style.position = 'absolute';
             // qualifier.style.top = 'calc(50% - .5rem)';
@@ -75,7 +75,7 @@ export class HtmlTriangle {
             units.innerText = this.config.extra.units;
             units.style.color = 'white';
             units.style.fontFamily = 'NotoSans Regular';
-            units.style.fontSize = '0.8rem';
+            units.style.fontSize = '0.825rem';
             units.style.display = 'block';
             // units.style.marginTop = '1rem';
             div.appendChild(units);
@@ -106,7 +106,7 @@ export class HtmlTriangle {
 
             let period = document.createElement('span');
             period.classList.add('period');
-            period.style.fontSize = '.8rem';
+            period.style.fontSize = '.825rem';
             period.style.height = '1rem';
             period.style.position = 'absolute';
             period.style.top = 'calc(50% - .5rem)';
@@ -124,7 +124,7 @@ export class HtmlTriangle {
         //
         //     let label = document.createElement('span');
         //     label.classList.add('label');
-        //     label.style.fontSize = '.8rem';
+        //     label.style.fontSize = '.825rem';
         //     label.style.height = '1rem';
         //     // qualifier.style.position = 'absolute';
         //     // qualifier.style.top = 'calc(50% - .5rem)';

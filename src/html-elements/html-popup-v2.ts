@@ -29,7 +29,7 @@ export class HtmlPopupV2 {
             pielleke.style.width = '1.5rem';
             pielleke.style.height = '1.5rem'
             pielleke.style.position = 'absolute';
-            pielleke.style.top = '-.8rem';
+            pielleke.style.top = '-.825rem';
             pielleke.style.left = 'calc(' + (popupWidth / 2) + 'px - 0.1rem)';  // padding - width
             pielleke.style.transform = 'rotate(45deg)';
             pielleke.style.borderLeft = '1px solid black';

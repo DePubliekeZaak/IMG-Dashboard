@@ -52,7 +52,7 @@ export class HtmlMulti {
                 units.innerText = mapping.units;
                 units.style.color = 'black';
                 units.style.fontFamily = 'NotoSans Regular';
-                units.style.fontSize = '.8rem';
+                units.style.fontSize = '.825rem';
                 // units.style.textTransform = 'uppercase'
                 units.style.display = 'block';
                 units.style.marginTop = '.5rem';

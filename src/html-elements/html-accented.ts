@@ -11,6 +11,8 @@ export class HtmlAccented {
 
     draw() {
 
+      console.log("hiya");
+
 
         let element = this.element != undefined ? this.element : this.ctrlr.element;
 
@@ -47,10 +49,11 @@ export class HtmlAccented {
         let number = document.createElement('span');
         number.classList.add('number');
         number.classList.add('accented');
-        number.style.fontSize = '2rem';
-        number.style.lineHeight = "1.2";
+        number.style.fontSize = '1.6rem';
+        number.style.lineHeight = "1.45";
         number.style.color = 'black';
-        number.style.fontFamily = "Replica";
+        number.style.fontFamily = "Sora,sans-serif!important";
+        number.style.fontWeight = "500";
         number.style.borderBottom =  '2px solid ' +  colours[this.ctrlr.firstMapping.colour][0];
 
         div.appendChild(number);
@@ -61,8 +64,8 @@ export class HtmlAccented {
             units.classList.add('units');
             units.innerText = this.ctrlr.firstMapping.units;
             units.style.color = 'black';
-            units.style.fontFamily = 'NotoSans Regular';
-            units.style.fontSize = '.8rem';
+            // units.style.fontFamily = 'NotoSans Regular';
+            units.style.fontSize = '.825rem';
             // units.style.textTransform = 'uppercase'
             units.style.display = 'block';
             units.style.marginTop = '.37rem';

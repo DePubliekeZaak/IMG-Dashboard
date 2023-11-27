@@ -23,7 +23,7 @@ export class HtmlCircle {
 
             let qualifier = document.createElement('span');
             qualifier.classList.add('label');
-            qualifier.style.fontSize = '.8rem';
+            qualifier.style.fontSize = '.825rem';
             qualifier.style.height = '1rem';
             qualifier.style.color = 'black';
             qualifier.style.fontFamily = 'NotoSans Regular';
@@ -65,7 +65,7 @@ export class HtmlCircle {
             units.innerText = this.ctrlr.firstMapping.units;
             units.style.color = 'black';
             units.style.fontFamily = 'NotoSans Regular';
-            units.style.fontSize = '0.8rem';
+            units.style.fontSize = '0.825rem';
             units.style.display = 'block';
             // units.style.marginTop = '1rem';
             div.appendChild(units);
@@ -75,7 +75,7 @@ export class HtmlCircle {
 
             let period = document.createElement('span');
             period.classList.add('period');
-            period.style.fontSize = '.8rem';
+            period.style.fontSize = '.825rem';
             period.style.height = '1rem';
             period.style.position = 'absolute';
             period.style.top = 'calc(50% - .5rem)';
@@ -92,7 +92,7 @@ export class HtmlCircle {
 
             let label = document.createElement('span');
             label.classList.add('label');
-            label.style.fontSize = '.8rem';
+            label.style.fontSize = '.825rem';
             label.style.height = '1rem';
             label.style.color = 'black';
             label.style.fontFamily = 'NotoSans Regular';
@@ -108,7 +108,7 @@ export class HtmlCircle {
             label.classList.add('label');
             label.classList.add('no_respondents');
             label.classList.add(this.ctrlr.mapping.slug);
-            label.style.fontSize = '.8rem';
+            label.style.fontSize = '.825rem';
             label.style.height = '1rem';
             label.style.color = 'black';
             label.style.fontFamily = 'NotoSans Regular';

@@ -41,7 +41,7 @@ export class ChartCircles {
 
         this.headerLabels = this.headerGroup
             .append('text')
-            .style("font-size",".8rem")
+            .style("font-size",".825rem")
             .text( d => d.label);
 
 
@@ -63,7 +63,7 @@ export class ChartCircles {
             .append("text")
             .attr("class","small-label in-circle")
             .attr("text-anchor","middle")
-            .style("font-size",".8rem")
+            .style("font-size",".825rem")
             .style("fill","black");
           //  .style("fill","white");
     }

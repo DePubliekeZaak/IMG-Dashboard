@@ -61,7 +61,7 @@ export default class HtmlLegendDots {
 
         let label = document.createElement('span');
         label.style.fontFamily = "NotoSans Regular";
-        label.style.fontSize = (window.innerWidth > 700) ? '.8rem' : '.71em';
+        label.style.fontSize = (window.innerWidth > 700) ? '.825rem' : '.71em';
         label.innerText = map['label'];
         return label;
     }

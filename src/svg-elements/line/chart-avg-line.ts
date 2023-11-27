@@ -31,7 +31,7 @@ export class ChartAvgLine {
                     // .attr("class", "small-label smallest-label")
                     .attr("text-anchor", "end")
                     .attr("font-family", "NotoSans Regular")
-                    .attr("font-size", ".8rem")
+                    .attr("font-size", ".825rem")
                     .style("fill", "black");
             }
     }

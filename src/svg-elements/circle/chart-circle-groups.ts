@@ -49,7 +49,7 @@ export default class ChartCircleGroups {
             .append('text')
             .attr("text-anchor", (direction === 'horizontal') ? "middle" : "middle")
             .style("font-family", "NotoSans Regular")
-            .style("font-size",".8rem")
+            .style("font-size",".825rem")
             .attr('dy', (d,i) => {
 
                 if (direction === 'horizontal') {
@@ -88,7 +88,7 @@ export default class ChartCircleGroups {
             .attr("text-anchor","middle")
             .style("font-family", "NotoSans Regular")
             .style("fill","black")
-            .style("font-size",".8rem");
+            .style("font-size",".825rem");
 
         let groupWidth = this.ctrlr.dimensions.width / groupedData.length;
         this.center = {x: (groupWidth / 2) , y: ((this.ctrlr.dimensions.height * .85) + 48) };

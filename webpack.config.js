@@ -9,8 +9,8 @@ const config = (env) =>  {
     entry: "./src/index.ts",
     output: {
       path: path.resolve(__dirname, "public/"),
-      chunkFilename: 'scripts/bundle.js',
-      filename: 'scripts/bundle.js',
+      chunkFilename: 'scripts/dashboard-bundle.js',
+      filename: 'scripts/dashboard-bundle.js',
       assetModuleFilename: (pathData) => {
         const filepath = path
             .dirname(pathData.filename)
@@ -33,7 +33,7 @@ const config = (env) =>  {
     devtool:'source-map',
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "./styles/main.css"
+        filename: "./styles/dashboard.css"
       }),
       new webpack.DefinePlugin({
         ENV: JSON.stringify(env.ENV),

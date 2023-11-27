@@ -29,7 +29,7 @@ export class HtmlPopup {
             pielleke.style.width = '1.5rem';
             pielleke.style.height = '1.5rem'
             pielleke.style.position = 'absolute';
-            pielleke.style.top = '-.8rem';
+            pielleke.style.top = '-.825rem';
             pielleke.style.left = 'calc(' + (popupWidth / 2) + 'px - 0.1rem)';  // padding - width
             pielleke.style.transform = 'rotate(45deg)';
             pielleke.style.borderLeft = '1px solid black';
@@ -168,7 +168,7 @@ export class HtmlPopup {
         // a.style.textDecoration = 'none';
         // a.style.borderBottom = '1px solid black';
         // a.style.cursor = 'pointer';
-        // a.style.fontSize = '.8rem';
+        // a.style.fontSize = '.825rem';
 
         // div.appendChild(a);
 

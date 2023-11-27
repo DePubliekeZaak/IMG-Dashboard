@@ -26,9 +26,10 @@ export default class HtmlHeader {
 
         let h = document.createElement('h3');
         h.innerText = this.label;
-        h.style.fontFamily = 'NotoSans Regular';
+        // h.style.fontFamily = 'NotoSans Regular';
         h.style.textAlign = 'center';
-        h.style.fontSize = '1rem';
+        h.style.fontSize = '.825rem';
+        h.style.fontWeight = '500';
         h.style.lineHeight = '1.44';
         h.style.margin = '0';
 

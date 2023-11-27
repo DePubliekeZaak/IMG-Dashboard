@@ -29,7 +29,6 @@ export default class CijferV2 extends GraphControllerV2   {
     init() {
 
         super._init();
-
      
         this.html = new HtmlAccented(this);
     

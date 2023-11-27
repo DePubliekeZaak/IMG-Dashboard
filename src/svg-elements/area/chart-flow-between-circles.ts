@@ -112,7 +112,7 @@ export class ChartFlowBetweenCircles {
         //     .enter()
         //     .append("text")
         //     // .attr("class","turnover")
-        //     .style("font-size",".8rem")
+        //     .style("font-size",".825rem")
         //     .attr("text-anchor","middle")
         //     .text( (d,i) => {
         //

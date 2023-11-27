@@ -4,9 +4,9 @@ import 'babel-polyfill';
 import 'isomorphic-fetch';
 
 import { InitDashboard } from "./dashboard/dashboard.controller";
-import { InitTicker } from "./ticker/ticker.controller";
-import { InitSingle} from "./single.controller";
-import DataStore  from "./data.store"
+// import { InitTicker } from "./ticker/ticker.controller";
+// import { InitSingle} from "./single.controller";
+// import DataStore  from "./data.store"
 
 
 
@@ -37,35 +37,35 @@ export class InitGraph {
 
                     break;
 
-                case 'ticker' :
+                // case 'ticker' :
 
-                    this.ticker();
+                //     this.ticker();
 
-                    break;
+                //     break;
 
-                default :
+                // default :
 
-                    this.single();
+                //     this.single();
 
             }
         }
     }
 
-    single() {
-        const single = new InitSingle();
-        single.init();
-    }
+    // single() {
+    //     const single = new InitSingle();
+    //     single.init();
+    // }
 
     dashboard() {
         const dashboard = new InitDashboard();
         dashboard.init();
     }
 
-    ticker() {
+    // ticker() {
 
-        const ticker = new InitTicker();
-        ticker.init();
-    }
+    //     const ticker = new InitTicker();
+    //     ticker.init();
+    // }
 
     addStylesheets() {
 
@@ -74,7 +74,7 @@ export class InitGraph {
         link.rel  = 'stylesheet';
         link.type = 'text/css';
         // @ts-ignore
-        link.href = DOMAIN + '/graphs/styles/main.css'; //; //  ; //  graphObject
+        link.href = DOMAIN + '/graphs/styles/dashboard.css'; //; //  ; //  graphObject
         link.media = 'all';
         head.appendChild(link);
     }

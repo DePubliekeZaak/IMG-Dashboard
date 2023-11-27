@@ -47,7 +47,7 @@ export class ChartFlowDuration {
                     return d.duration + ' dagen';
                 }
             })
-            .style("font-size", ".8rem")
+            .style("font-size", ".825rem")
             .style("text-anchor", "middle");
 
         this.durationLabel = this.svgLayers.data

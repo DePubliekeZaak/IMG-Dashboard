@@ -56,7 +56,7 @@ export class ChartStackedGroupMms {
             .attr('dx', this.ctrlr.config.padding.left)
             .attr('dy', '2px')
             .style("text-anchor", "start")
-            .style("font-size",".8rem")
+            .style("font-size",".825rem")
             .attr('fill-opacity', 1);
     }
 

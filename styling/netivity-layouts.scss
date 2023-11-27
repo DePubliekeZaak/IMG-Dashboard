@@ -48,23 +48,23 @@ body#development {
 
 //  }
 
-  .section {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+  // .section {
+  //   padding-left: 1rem;
+  //   padding-right: 1rem;
+  // }
 
   .container {
 
     width: calc(100%);
 
-    @media (min-width: 1088px) {
-      max-width: 960px;
-      width: 960px;
+    @media (min-width: $breakpoint-1) {
+      max-width: $breakpoint-1;
+      width: $breakpoint-1;
     }
 
-    @media (min-width: 1322px) {
-      max-width: 1194px;
-      width: 1194px;
+    @media (min-width: $breakpoint-2) {
+      max-width: $breakpoint-2;
+      width: $breakpoint-2;
     }
 
     
@@ -143,6 +143,7 @@ body#development {
     transition-property: background-color,opacity,transform;
     transition-timing-function: cubic-bezier(.45,.1,.45,.9);
     width: 16px;
+    background-color: rgb(222 228 182);
   }
 
   .header__hamburger.is-active span:first-child {

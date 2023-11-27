@@ -24,6 +24,8 @@ export default class DashboardHTMLV2 {
 
         const htmlContainer: HTMLScriptElement =  document.querySelector("[data-img-graph-preset='dashboard']");
         const parentEl = htmlContainer.parentElement;
+        const parentSection = parentEl.parentElement;
+        parentSection.style.width = '100%';
         parentEl.classList.add('container');
         // parentEl.style.width = 'calc(100% - 0rem)';
         parentEl.style.display = 'flex';
@@ -55,7 +57,8 @@ export default class DashboardHTMLV2 {
         navButton.style.top = 'calc(50vh - 20px)';
         navButton.style.width = '40px';
         navButton.style.height = '40px';
-        navButton.style.background = colours.lightBlue[0];
+        navButton.style.background = 'rgb(46 54 56)';
+        // 'rgb(222 228 182)'
 
         for (let i = 0; i < 3; i++) {
             let span = document.createElement('span');
@@ -82,17 +85,17 @@ export default class DashboardHTMLV2 {
 
         let div = document.createElement('div');
 
-        let header = document.createElement('h3');
+        // let header = document.createElement('h3');
 
-        header.style.fontSize = '1.75rem';
-        header.style.lineHeight = '1.22';
-        header.style.fontWeight = 'normal';
-        header.style.marginBottom =  '3rem';
-        // header.style.fontFamily = 'Noto Sans';
+        // header.style.fontSize = '1.75rem';
+        // header.style.lineHeight = '1.25';
+        // header.style.fontWeight = 'normal';
+        // header.style.marginBottom =  '3rem';
+        // // header.style.fontFamily = 'Noto Sans';
 
-        header.innerText = "Dashboard";
+        // header.innerText = "Dashboard";
 
-        div.appendChild(header);
+        // div.appendChild(header);
 
         let ul = document.createElement('ul');
         ul.style.flexDirection = 'column';
@@ -100,10 +103,11 @@ export default class DashboardHTMLV2 {
 
         let li_1 = document.createElement('li');
         li_1.innerText = 'Overzicht regelingen';
+        li_1.style.fontSize = '.875rem';
         li_1.style.fontWeight = '700';
-        li_1.style.padding = '.125rem 0 0rem 0';
-        li_1.style.marginBottom = '1.5rem';
-        li_1.style.lineHeight = '1.5';
+        li_1.style.padding = '.625rem';
+        // li_1.style.marginBottom = '1.5rem';
+        li_1.style.lineHeight = '1.25';
         li_1.style.cursor = 'pointer';
         li_1.classList.add('active');
         // li_1.style.width = '100%';
@@ -114,7 +118,9 @@ export default class DashboardHTMLV2 {
         let li = document.createElement('li');
         li.innerText = 'Fysieke schade';
         li.style.fontWeight = '700';
-        li.style.padding = '.125rem 0';
+        li.style.padding = '.625rem';
+        li.style.fontSize = '.875rem';
+        
         li.style.lineHeight = '1.5';
         li.style.cursor = 'pointer';
         // li.classList.add('active');
@@ -126,8 +132,9 @@ export default class DashboardHTMLV2 {
 
             let li = document.createElement('li');
             li.innerText = i.label;
-            li.style.padding = '.125rem 0';
-            li.style.lineHeight = '1.5';
+            li.style.padding = '.625rem';
+            li.style.lineHeight = '1.25';
+            li.style.fontSize = '.875rem';
             li.style.cursor = 'pointer';
             li.setAttribute('data-slug', i.topic);
             li.onclick = () =>  this.interactions.switchTopic(i.topic,'all');
@@ -135,7 +142,7 @@ export default class DashboardHTMLV2 {
             if (["Waardedaling","Immateriële schade","Waardering en reacties"].indexOf(i.label) >  -1) {
 
                 li.style.fontWeight = '700';
-                li.style.marginTop = '1rem';
+                // li.style.marginTop = '1rem';
             }
 
             ul.appendChild(li);
@@ -143,11 +150,12 @@ export default class DashboardHTMLV2 {
 
         let li3 = document.createElement('li');
         li3.innerText = 'Publieke data';
+        li3.style.fontSize = '.875rem';
         li3.style.fontWeight = '700';
-        li3.style.padding = '.125rem 0';
+        li3.style.padding = '.625rem';
         li3.style.lineHeight = '1.5';
         li3.style.cursor = 'pointer';
-        li3.style.marginTop = '1rem';
+        // li3.style.marginTop = '1rem';
         // li.classList.add('active');
         // li3.setAttribute('data-slug', 'fysieke_schade');
         li3.onclick = () =>  window.open('https://img.publikaan.nl/publieke-data/docs/');;
@@ -157,11 +165,12 @@ export default class DashboardHTMLV2 {
 
             let li4 = document.createElement('li');
             li4.innerText = 'Terug naar website';
+            li4.style.fontSize = '.875rem';
             li4.style.fontWeight = '400';
-            li4.style.padding = '.125rem 0';
+            li4.style.padding = '.625rem';
             li4.style.lineHeight = '1.5';
             li4.style.cursor = 'pointer';
-            li4.style.marginTop = '3rem';
+            // li4.style.marginTop = '3rem';
             li4.onclick = () =>  this.interactions.closeMenu();
             ul.appendChild(li4);
         }
@@ -255,9 +264,10 @@ export default class DashboardHTMLV2 {
 
         const crumbs = this._crumbs(topic);
 
-        for (let crumb of crumbs.slice(0, crumbs.length - 1)) {
+        for (let crumb of crumbs.slice(0, crumbs.length)) {
 
             let c = document.createElement('span');
+            
             c.innerText = crumb.label;
             c.setAttribute('dashboard-topic', crumb.topic)
             if (topic !== crumb.topic) {
@@ -270,12 +280,12 @@ export default class DashboardHTMLV2 {
             breadcrumbContainer.appendChild(d); 
         }
 
-        let h2 = document.createElement('h2');
-        let br = document.createElement('br');
+        // let h2 = document.createElement('h2');
+        // let br = document.createElement('br');
       
-        h2.innerText = crumbs[crumbs.length - 1].label;
-        breadcrumbContainer.appendChild(br);
-        breadcrumbContainer.appendChild(h2);
+        // h2.innerText = crumbs[crumbs.length - 1].label;
+        // breadcrumbContainer.appendChild(br);
+        // breadcrumbContainer.appendChild(h2);
 
         breadcrumbContainer.style.marginBottom = '3rem';
         htmlContainer.appendChild(breadcrumbContainer);
