@@ -66,6 +66,7 @@ export default class ShortTrend extends GraphControllerV2 {
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = groupByMonths(data,neededColumns);
+        console.log(history);
 
         this.main.dataStore.setGraph(this.mapping.slug, history)
 
