@@ -1,0 +1,39 @@
+.number_accented {
+
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin: 1.5rem 0;
+   
+    @media (min-width: $breakpoint-sm) {
+        margin: .5rem 0;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        margin: 0;
+    }
+
+    span.number.accented {
+        font-size: 1.6rem;
+        line-height: 1.45;
+        color: black;
+        font-family: Sora, sans-serif;
+        font-weight: 500;
+    }
+
+    span.units {
+
+        color: black;
+        font-size: 0.825rem;
+        display: block;
+        margin-top: 0.37rem;
+        text-align: center;
+
+        @media (min-width: $breakpoint-lg) {
+            text-align: right;
+        }
+    }
+}

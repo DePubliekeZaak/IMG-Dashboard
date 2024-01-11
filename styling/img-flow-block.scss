@@ -1,0 +1,35 @@
+.img-graph-grid-container.flow-block, .img-graph-container.flow-block {
+
+  margin-bottom: 3rem;
+
+
+  @media (min-width: $breakpoint-sm) {
+
+    margin-bottom: 0;
+    border-right: 1px solid black;
+    // border-radius : 7px;
+    padding: 2rem 0;
+
+    }
+    // background: white;
+
+    &:last-child, &#fs_ves_oud {
+      border: none;
+    }
+
+    .article_header {
+      border: none !important;
+      margin: 0;
+
+      >  span {
+        display: none;
+      }
+    }
+
+    .number_accented  {
+     
+      margin: 0;
+
+    }
+  
+  }
