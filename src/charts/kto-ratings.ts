@@ -37,6 +37,8 @@ export default class KTORatings extends GraphControllerV2 {
 
     init() {
 
+        const self = this;
+
         super._init();
 
         this.config.extra.decimal = true;
@@ -60,6 +62,12 @@ export default class KTORatings extends GraphControllerV2 {
         const completeMonths = getCompleteMonths(this.data).filter( (m) => m[column] !== undefined && m[column] !== null);
         this.htmlPeriodSelector.draw(completeMonths);
 
+        const periodSelect = document.querySelector('.period_select_' + this.mapping.slug ) as HTMLSelectElement;
+
+        periodSelect.addEventListener("change", function () {
+            self.update(self.data,periodSelect.options[periodSelect.selectedIndex].value,true);
+        }, true);
+
         super._svg(svgWrapper);
 
         this.chartBar = new ChartBarHorizontal(this);
@@ -73,14 +81,16 @@ export default class KTORatings extends GraphControllerV2 {
         const history = groupByMonths(data,neededColumns);
 
         const dataIndex = (this.segment === 'all') ? 1 : 2;
-        const monthIndex = (this.segment === 'all') ? false : this.segment;
+        const monthIndex = (this.segment === 'all') ? false : this.segment.split("-")[0];
+        const yearIndex = (this.segment === 'all') ? false : this.segment.split("-")[1];
 
         let rapportcijfers = [];
      
         let hasEnoughData = true;
         let clearWeek = {};
         
-        let selectedMonth = monthIndex ? history.find( (m) => m['_month'] === parseInt(monthIndex)) : history[0];
+        let selectedMonth = monthIndex && yearIndex ? getCompleteMonths(data).find( (m) => m['_month'] === parseInt(monthIndex) && m['_year'] === parseInt(yearIndex)) : history[0];
+
 
         if (this.mapping.parameters[1]) {
 
@@ -105,7 +115,7 @@ export default class KTORatings extends GraphControllerV2 {
 
         return { 
             "history" : history,
-            "latest" : data[0], 
+            "latest" : selectedMonth, 
             "slice" : rapportcijfers
         };
     }
@@ -130,13 +140,6 @@ export default class KTORatings extends GraphControllerV2 {
         this.yScale = this.scales.y.set(data.slice.map(d => d['label']));
 
         this.chartBar.draw(data.slice);
-        
-        const periodSelect = document.querySelector('.period_select_' + this.mapping.slug ) as HTMLSelectElement;
-
-        periodSelect.addEventListener("change", function () {
-            self.update(self.data,periodSelect.options[periodSelect.selectedIndex].value,true);
-        });
-
     }
 
     update(data: GraphData, segment: string, update: boolean) {

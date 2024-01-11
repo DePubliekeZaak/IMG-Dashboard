@@ -5,6 +5,7 @@ import { getNeededColumnsForHistoryV2, groupByMonths } from '../d3-services/data
 import { GraphControllerV2 } from './graph-v2';
 import { IGraphMapping } from '../types/mapping';
 import { flattenColumn } from '../d3-services/_helpers';
+import { getCompleteMonths } from "../utils/date-object.utils";
 
 export default class ShortTrend extends GraphControllerV2 {
 
@@ -25,10 +26,11 @@ export default class ShortTrend extends GraphControllerV2 {
 
     pre() {
 
-        this.parameters.x = flattenColumn(this.mapping.parameters[0][0].column);
+        this.parameters.x = "year_month";
+        this.parameters.y = "fysieke_schade_maandcijfer";
 
-        this._addScale("x","band","horizontal",this.mapping.args[0]); // week en maand 
-        this._addScale("y","linear","vertical",this.parameters.x);
+        this._addScale("x","band","horizontal", "year_month"); // week en maand 
+        this._addScale("y","linear","vertical", 'maandcijfer');
         this._addAxis("x","x","bottom");
         this._addMargin(0,0,0,0);
         this._addPadding(10,0,10,10);
@@ -51,9 +53,11 @@ export default class ShortTrend extends GraphControllerV2 {
         this.config.paddingOuter = 0;
         this.config.extra.decimal = true;
 
-        if(this.mapping.args[0] === "_month") {
+        if(this.parameters.x === "year_month") {
             this.config.extra.axisInMonths = true;
         }
+
+        // console.log(this.parameters);
 
         this.chartBlockTrend = new ChartBlockTrend(this);
 
@@ -62,11 +66,17 @@ export default class ShortTrend extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        console.log(data);
 
-        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
-        const history = groupByMonths(data,neededColumns);
-        console.log(history);
+        // console.log(data);
+      //  const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
+      //  let history = groupByMonths(data,neededColumns);
+        let history = getCompleteMonths(data);
+
+        // wat voor schaap is dit ?? 
+        // year +  month on cat ? 
+
+        // history = history.filter( m => m.complete);
+        
 
         this.main.dataStore.setGraph(this.mapping.slug, history)
 

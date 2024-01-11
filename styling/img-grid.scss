@@ -30,7 +30,7 @@
 
 
 
-@for $i from 1 through 12 {
+@for $i from 1 through 20 {
     
     .img-graph-grid-column-start-#{$i} {
         grid-column-start: $i;
@@ -59,7 +59,7 @@
 
 @media (max-width : $breakpoint-lg) {
 
-    @for $i from 1 through 12 {
+    @for $i from 1 through 20 {
 
         .img-graph-grid-tablet-width-#{$i} {
             grid-column-end: span $i;
@@ -74,6 +74,16 @@
         }
 
 
+    }
+
+}
+
+@media (max-width : $breakpoint-sm) {
+
+
+    .img-graph-phone-hide {
+
+        display: none;
     }
 
 }

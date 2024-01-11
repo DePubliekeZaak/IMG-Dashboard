@@ -64,7 +64,7 @@ export default class Map extends GraphControllerV2 {
         this.legend = new MapLegend(this);
 
         // get geodata.js
-        d3.json('https://img.publikaan.nl/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
+        d3.json('https://img.publikaan.nl/graphs/geojson/gemeenten2021.topojson').then( (topojsonObject) => {
             this.topojsonObject = topojsonObject;
             this.update(this.data,this.segment,false);
         });

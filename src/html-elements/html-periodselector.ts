@@ -30,7 +30,7 @@ export default class HtmlPeriodSelector {
         for (let month of data) {
             option = document.createElement('option');
             option.label = monthNames[month._month - 1] + ' ' + month._year;
-            option.value = month._month;
+            option.value = month._month + '-' + month._year;
             option.innerText = 'Maand';
             dropdown.appendChild(option);
         }

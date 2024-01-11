@@ -31,9 +31,11 @@ export default class CijferV2 extends GraphControllerV2   {
         super._init();
      
         this.html = new HtmlAccented(this);
+
+        this.element.id = this.mapping.slug;
     
 
-        this.html.draw();
+        this.html.draw(0);
 
     
         if(this.mapping.parameters[0] && this.mapping.parameters[0][0].format == "decimal") {

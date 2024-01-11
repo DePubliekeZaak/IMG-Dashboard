@@ -17,43 +17,43 @@ export default class HtmlHeader {
 
         this.headerElement = document.createElement('div');
         this.headerElement.classList.add('article_header');
-        this.headerElement.style.position = 'relative';
-        this.headerElement.style.borderBottom = '1px solid black';
-        this.headerElement.style.width = 'calc(100% - 0px)';
-        this.headerElement.style.paddingBottom = '.75rem';
-        this.headerElement.style.marginBottom = '2.5rem';
+        // this.headerElement.style.position = 'relative';
+        // this.headerElement.style.borderBottom = '1px solid black';
+        // this.headerElement.style.width = 'calc(100% - 0px)';
+        // this.headerElement.style.paddingBottom = '.75rem';
+        // this.headerElement.style.marginBottom = '2.5rem';
 
         let h = document.createElement('h3');
         h.innerText = this.label;
         // h.style.fontFamily = 'Sora, sans-serif';
-        h.style.textAlign = 'center';
-        h.style.fontSize = '1rem';
-        h.style.fontWeight = '500';
-        h.style.lineHeight = '1.44';
-        h.style.margin = '0';
+        // h.style.textAlign = 'center';
+        // h.style.fontSize = '1rem';
+        // h.style.fontWeight = '500';
+        // h.style.lineHeight = '1.44';
+        // h.style.margin = '0';
 
         this.headerElement.appendChild(h);
 
         for (let i = 0; i < 3; i++) {
 
             let span = document.createElement('span');
-            span.style.position =  'absolute';
-            span.style.bottom =  '-.33rem';
-            span.style.height =  '.33rem';
-            span.style.width = '1px';
-            span.style.backgroundColor = '#000';
+            // span.style.position =  'absolute';
+            // span.style.bottom =  '-.33rem';
+            // span.style.height =  '.33rem';
+            // span.style.width = '1px';
+            // span.style.backgroundColor = '#000';
 
-            if (i === 0) {
+            // if (i === 0) {
 
-                span.style.left =  '50%';
-                span.style.bottom =  '0';
+            //     span.style.left =  '50%';
+            //     span.style.bottom =  '0';
 
-            } else if (i === 1) {
-                span.style.left =  '0';
+            // } else if (i === 1) {
+            //     span.style.left =  '0';
 
-            } else if (i === 2) {
-                span.style.right =  '0';
-            }
+            // } else if (i === 2) {
+            //     span.style.right =  '0';
+            // }
 
             this.headerElement.appendChild(span);
         }

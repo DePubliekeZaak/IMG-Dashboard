@@ -334,6 +334,323 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     'img-graph-grid-height-4'
                 ]
             },
+            {
+                "slug" : "fs_flow",
+                "graph": "FlowFsV1",
+                "parameters": [
+                    [
+                        {
+                            "label": "Vaste vergoeding",
+                            "column": "ves_aanvragen_oud",
+                            "colour": "blue",
+                            "units" : "aanvragen"
+                        },
+                        {
+                            "label": "Vaste vergoeding",
+                            "column": "ves_aanvragen",
+                            "colour": "blue",
+                            "units" : "aanvragen"
+                        },
+                        {
+                            "label": "Daadwerkelijk herstel",
+                            "column": "dh_aanvragen",
+                            "colour": "green",
+                            "units" : "aanvragen"
+                        },
+                        {
+                            "label": "Causaal maatwerk",
+                            "column": "cm_aanvragen",
+                            "colour": "orange",
+                            "units" : "aanvragen"
+                        },
+                        
+                    ]
+                ],
+                "header": "",
+                "description" : "",
+                "endpoint": "fysieke_schade",
+                "segment": "all",
+                "elementClasslist": [
+                    'img-graph-container',
+                    // 'img-graph-grid-tablet-width-12',
+                    'img-graph-grid-column-start-1',
+                    'img-graph-grid-width-12',
+                    'img-graph-grid-row-start-7',
+                    'img-graph-grid-tablet-row-start-11',
+                    'img-graph-grid-height-12',
+                    'img-graph-phone-hide'
+                ]
+            },
+            {
+                "slug" : "fs_nieuw_beleid",
+                "graph": "FlowNewV1",
+                "parameters": [
+                    [
+                    ]
+                ],
+                "header": "Nieuw beleid",
+                "description" : "",
+                "endpoint": "fysieke_schade",
+                "segment": "all",
+                "elementClasslist": [
+                    'img-graph-container',
+                    'img-graph-grid-tablet-width-12',
+                    'img-graph-grid-column-start-1',
+                    'img-graph-grid-width-12',
+                    'img-graph-grid-row-start-12',
+                    'img-graph-grid-tablet-row-start-16',
+                    'img-graph-grid-height-1',
+                    
+                ]
+            },
+            {
+                "slug" : "fs_ves_oud",
+                "graph": "CijfersV1",
+                "parameters": [
+                    [
+                        {
+                            "label": "Aanvragen",
+                            "column": "ves_aanvragen_oud",
+                            "colour": "orange",
+                            "units" : "aanvragen"
+                        }, 
+                        {
+                            "label": "Afgehandeld",
+                            "column": "ves_afgehandeld_oud",
+                            "colour": "green",
+                            "units" : "afgehandeld"
+                        }, 
+                    ]
+                ],
+                "header": "Vaste vergoeding",
+                "description" : "",
+                "endpoint": "fysieke_schade",
+                "segment": "all",
+                "elementClasslist": [
+                    'img-graph-container',
+                    'img-graph-grid-tablet-width-4',
+                    'img-graph-grid-column-start-9',
+                    'img-graph-grid-width-4',
+                    'img-graph-grid-row-start-7',
+                    'img-graph-grid-tablet-row-start-11',
+                    'img-graph-grid-height-4',
+                    'img-graph-phone-hide'
+                ]
+            },
+            // {
+            //     "slug" : "fs_ves_oud_a",
+            //     "graph": "CijferV2",
+            //     "parameters": [
+            //         [
+            
+            //             {
+            //                 "label": "Afgehandeld",
+            //                 "column": "ves_afgehandeld_oud",
+            //                 "colour": "green",
+            //                 "units" : "afgehandeld"
+            //             }    
+            //         ]
+            //     ],
+            //     "header": "",
+            //     "description" : "",
+            //     "endpoint": "fysieke_schade",
+            //     "segment": "all",
+            //     "elementClasslist": [
+            //         'img-graph-container',
+            //         'img-graph-grid-tablet-width-4',
+            //         'img-graph-grid-column-start-9',
+            //         'img-graph-grid-width-4',
+            //         'img-graph-grid-row-start-9',
+            //         'img-graph-grid-tablet-row-start-13',
+            //         'img-graph-grid-height-2',
+            //         'img-graph-phone-hide'
+            //     ]
+            // },
+            {
+                "slug" : "fs_ves_nieuw",
+                "graph": "CijfersV1",
+                "parameters": [
+                    [
+                        {
+                            "label": "Aanvragen",
+                            "column": "ves_aanvragen",
+                            "colour": "orange",
+                            "units" : "aanvragen"
+                        },
+                        {
+                            "label": "Afgehandeld",
+                            "column": "ves_afgehandeld",
+                            "colour": "green",
+                            "units" : "afgehandeld"
+                        }    
+                    ]
+                ],
+                "header": "Vaste vergoeding",
+                "description" : "",
+                "endpoint": "fysieke_schade",
+                "segment": "all",
+                "elementClasslist": [
+                    'img-graph-container',
+                    'img-graph-grid-tablet-width-4',
+                    'img-graph-grid-column-start-1',
+                    'img-graph-grid-width-4',
+                    'img-graph-grid-row-start-14',
+                    'img-graph-grid-tablet-row-start-18',
+                    'img-graph-grid-height-4'
+                ]
+            },
+            // {
+            //     "slug" : "fs_ves",
+            //     "graph": "CijferV2",
+            //     "parameters": [
+            //         [
+            
+            //             {
+            //                 "label": "Afgehandeld",
+            //                 "column": "ves_afgehandeld",
+            //                 "colour": "green",
+            //                 "units" : "afgehandeld"
+            //             }    
+            //         ]
+            //     ],
+            //     "header": "",
+            //     "description" : "",
+            //     "endpoint": "fysieke_schade",
+            //     "segment": "all",
+            //     "elementClasslist": [
+            //         'img-graph-container',
+            //         'img-graph-grid-tablet-width-4',
+            //         'img-graph-grid-column-start-1',
+            //         'img-graph-grid-width-4',
+            //         'img-graph-grid-row-start-14',
+            //         'img-graph-grid-tablet-row-start-18',
+            //         'img-graph-grid-height-2'
+            //     ]
+            // },
+            {
+                "slug" : "fs_daadwerkelijk_herstel",
+                "graph": "CijfersV1",
+                "parameters": [
+                    [
+                        {
+                            "label": "Aanvragen",
+                            "column": "dh_aanvragen",
+                            "colour": "orange",
+                            "units" : "aanvragen"
+                        },
+                        {
+                            "label": "Afgehandeld",
+                            "column": "dh_afgehandeld",
+                            "colour": "green",
+                            "units" : "afgehandeld"
+                        }   
+                    ]
+                ],
+                "header": "Daadwerkelijk herstel",
+                "description" : "",
+                "endpoint": "fysieke_schade",
+                "segment": "all",
+                "elementClasslist": [
+                    'img-graph-container',
+                    'img-graph-grid-tablet-width-4',
+                    'img-graph-grid-column-start-5',
+                    'img-graph-grid-width-4',
+                    'img-graph-grid-row-start-14',
+                    'img-graph-grid-tablet-row-start-18',
+                    'img-graph-grid-height-4'
+                ]
+            },
+            // {
+            //     "slug" : "fs_daadwerkelijk_herstel",
+            //     "graph": "CijferV2",
+            //     "parameters": [
+            //         [
+            //             {
+            //                 "label": "Afgehandeld",
+            //                 "column": "dh_afgehandeld",
+            //                 "colour": "green",
+            //                 "units" : "afgehandeld"
+            //             }   
+            //         ]
+            //     ],
+            //     "header": "",
+            //     "description" : "",
+            //     "endpoint": "fysieke_schade",
+            //     "segment": "all",
+            //     "elementClasslist": [
+            //         'img-graph-container',
+            //         'img-graph-grid-tablet-width-4',
+            //         'img-graph-grid-column-start-5',
+            //         'img-graph-grid-width-4',
+            //         'img-graph-grid-row-start-14',
+            //         'img-graph-grid-tablet-row-start-18',
+            //         'img-graph-grid-height-2'
+            //     ]
+            // },
+            {
+                "slug" : "fs_causaal_maatwerk",
+                "graph": "CijfersV1",
+                "parameters": [
+                    [
+                        {
+                            "label": "Aanvragen",
+                            "column": "cm_aanvragen",
+                            "colour": "orange",
+                            "units" : "aanvragen"
+                        } ,
+                        {
+                            "label": "Afgehandeld",
+                            "column": "cm_afgehandeld",
+                            "colour": "green",
+                            "units" : "afgehandeld"
+                        }   
+                    ]
+                ],
+                "header": "Causaal maatwerk",
+                "description" : "",
+                "endpoint": "fysieke_schade",
+                "segment": "all",
+                "elementClasslist": [
+                    'img-graph-container',
+                    'img-graph-grid-tablet-width-4',
+                    'img-graph-grid-column-start-9',
+                    'img-graph-grid-width-4',
+                    'img-graph-grid-row-start-14',
+                    'img-graph-grid-tablet-row-start-18',
+                    'img-graph-grid-height-4'
+                ]
+            },
+          
+         
+            // {
+            //     "slug" : "fs_cm_a",
+            //     "graph": "CijferV2",
+            //     "parameters": [
+            //         [
+            //             {
+            //                 "label": "Afgehandeld",
+            //                 "column": "cm_afgehandeld",
+            //                 "colour": "green",
+            //                 "units" : "afgehandeld"
+            //             }   
+            //         ]
+            //     ],
+            //     "header": "",
+            //     "description" : "",
+            //     "endpoint": "fysieke_schade",
+            //     "segment": "all",
+            //     "elementClasslist": [
+            //         'img-graph-container',
+            //         'img-graph-grid-tablet-width-4',
+            //         'img-graph-grid-column-start-9',
+            //         'img-graph-grid-width-4',
+            //         'img-graph-grid-row-start-14',
+            //         'img-graph-grid-tablet-row-start-18',
+            //         'img-graph-grid-height-2'
+            //     ]
+            // },
+            
+
         ]
     },
     {
@@ -860,7 +1177,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                 ],
                 "header" : "",
                 "description" : "",
-                "endpoint": "waardedaling",
+                "endpoint": "meldingen",
                 "segment": "all",
                 "elementClasslist": [
                     'img-graph-container',

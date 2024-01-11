@@ -44,7 +44,7 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                 // },
                 {
                     "label": "Tevredenheidscijfer",
-                    "column": "maandcijfer",
+                    "column": "year_month",
                     "colour": "moss"
                 },
                 {
@@ -334,7 +334,7 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
     
         "header" : "Rapportcijfers besluiten waardedaling",
         "description" : "",
-        "endpoint": "tevredenheid",
+        "endpoint": "immateriele_schade",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-ipad-6','img-graph-rating','img-graph-container-vertical-padding']
     },
@@ -616,7 +616,7 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
     },
     {   
         "slug": "trend_tevredenheid",
-        "graph": "TrendLine",
+        "graph": "TrendLineClear",
         "args": [],
         "parameters": [
             [
@@ -637,6 +637,18 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     "column": "waardedaling_maandcijfer",
                     "colour": "blue",
                     "short": "wd"
+                },
+                {
+                    "label": "Immateriele schade",
+                    "column": "ims_maandcijfer",
+                    "colour": "yellow",
+                    "short": "ims"
+                },
+                {
+                    "label": "Vaste vergoeding",
+                    "column": "ves_maandcijfer",
+                    "colour": "lightBlue",
+                    "short": "ves"
                 }
             ]
         ],

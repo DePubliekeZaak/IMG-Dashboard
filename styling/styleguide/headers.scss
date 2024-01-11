@@ -6,18 +6,29 @@
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid black;
+  padding-bottom: 0.75rem;
+  margin-bottom: 2.5rem;
 
   h3 {
 
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.44;
+    margin: 0px;
   }
 
   span {
 
     $h : .33rem;
 
-    height: $h;
+    position: absolute;
+    bottom: 0px;
+    height: 0.33rem;
     width: 1px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+    left: 50%;
+
 
     &:nth-of-type(2), &:nth-of-type(3) {
 
@@ -35,3 +46,4 @@
   }
 
 }
+

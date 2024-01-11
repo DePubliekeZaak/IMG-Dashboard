@@ -45,6 +45,7 @@ import { ChartBackgroundAreas } from './area/chart-background-areas';
 import ChartBackgroundArea from './area/chart-background-area';
 import ChartStackedArea  from "./area/chart-stacked-area";
 import { ChartFlowBetweenCircles } from './area/chart-flow-between-circles';
+import { ChartFlowFsV1 } from  './area/chart-flow-fs-v1'
 
 // circle 
 import { ChartCircles } from './circle/chart-circles';
@@ -106,5 +107,6 @@ export {
     ChartEndLabel,
     ChartBrackets,
     SumLegend,
-    MapLegend
+    MapLegend,
+    ChartFlowFsV1
 }

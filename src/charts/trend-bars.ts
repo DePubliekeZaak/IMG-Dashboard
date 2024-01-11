@@ -64,8 +64,8 @@ export default class TrendBars extends GraphControllerV2 {
 
         for (let i = 0;  i < this.mapping.parameters[0].length; i++) {
 
-                this.chartBars.push(new ChartBarTrend(this,flattenColumn(this.mapping.parameters[0][i].column), this.mapping.parameters[0][i].colour));
-                this.chartLines.push(new ChartLineMiddled(this, getMappingKey(this.mapping.parameters[0][i],"column"), getMappingKey(this.mapping.parameters[0][i],"colour")));
+            this.chartBars.push(new ChartBarTrend(this,flattenColumn(this.mapping.parameters[0][i].column), this.mapping.parameters[0][i].colour));
+            this.chartLines.push(new ChartLineMiddled(this, getMappingKey(this.mapping.parameters[0][i],"column"), getMappingKey(this.mapping.parameters[0][i],"colour")));
         }
 
         this.chartFocus = new ChartFocusTime(this);
@@ -77,7 +77,11 @@ export default class TrendBars extends GraphControllerV2 {
     prepareData(data: DataPart[]) : GraphData  {
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
+
+        // console.log(neededColumns);
         let history = filterWeeks(data,neededColumns);
+        // console.log(data);
+
 
         history.forEach( (week, i) => { 
             week['_index'] = i;
@@ -90,6 +94,7 @@ export default class TrendBars extends GraphControllerV2 {
             );
         }
 
+   
        // history = history.reverse();
 
         return {
@@ -127,7 +132,6 @@ export default class TrendBars extends GraphControllerV2 {
 
         for (let barTrend of this.chartBars) {
             barTrend.draw(data);
-
         }
 
         for (let line of this.chartLines) {

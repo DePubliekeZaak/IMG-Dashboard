@@ -84,7 +84,8 @@ export class ChartAxesV2 {
 
                    this.axis
                        .tickFormat( (d,i) => {
-                          return (this.ctrlr.config.extra.axisInMonths) ? getMonthFromNumber(d) : d;
+                            let m = (d.split("_")[1]);
+                          return (this.ctrlr.config.extra.axisInMonths) ? getMonthFromNumber(m) : d;
                        })
                    break;
 

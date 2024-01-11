@@ -20,6 +20,8 @@ import TickerNumbers  from "./ticker-numbers";
 import TrendLine  from './trend-line';
 import TrendLineSmooth  from './trend-line-smooth';
 import TrendLineMms  from './trend-line-mms';
+import TrendLineClear  from './trend-line-clear';
+import TrendLineKTO from './trend-line-kto';
 import TrendBars  from './trend-bars';
 import TrendBarsStacked  from './trend-bars-stacked';
 import BandBars from './band-bars';
@@ -42,7 +44,9 @@ import ShortTrend from "./short-trend";
 // import { Results} from "./_results"
 import MuniSelector from "./muni-selector"
 import SectionHeader from "./section-header"
-
+import FlowFsV1 from "./flow-fs-v1";
+import FlowNewV1 from "./flow-new-v1";
+import CijfersV1 from './cijfers-v1';
 
 export const graphs  = {
 
@@ -66,6 +70,8 @@ export const graphs  = {
     TrendLine,
     TrendLineSmooth,
     TrendLineMms,
+    TrendLineClear,
+    TrendLineKTO,
     TrendBars,
     TrendBarsStacked,
     BandBars,
@@ -83,5 +89,8 @@ export const graphs  = {
     KTORatings,
     ShortTrend,
     MuniSelector,
-    SectionHeader
+    SectionHeader,
+    FlowFsV1,
+    FlowNewV1,
+    CijfersV1
 };

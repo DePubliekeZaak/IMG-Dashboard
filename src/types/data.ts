@@ -9,6 +9,7 @@ interface KeyValue {
 export interface DataPart {
     KeyValue?,
     gemeente?: string,
+    complete?: boolean,
     _date:  string,
     _month? : number,
     _week? : number,

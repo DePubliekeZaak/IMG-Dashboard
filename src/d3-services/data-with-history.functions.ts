@@ -91,7 +91,7 @@ export function filterWeeks(data: DataPart[], neededColumns: string[]) : DataPar
             if (week[column] !== null && week[column] !== undefined) {
                 clearWeek[column] = week[column]
             } else {
-              //  console.log(column);
+                // console.log(column);
                 hasEnoughData = false;
             }
         }
