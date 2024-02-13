@@ -43,20 +43,20 @@ export function getDateRangeOfWeek(weekNo) {
 
 export function getCompleteMonths(newData) {
 
-    let completeMonths = []; // newData.filter( (w) => {
+    // let completeMonths = []; // newData.filter( (w) => {
 
-    const groupedData = _.groupBy(newData,(w) => w._month.toString() + w._year.toString());
+    // const groupedData = _.groupBy(newData,(w) => w._month.toString() + w._year.toString());
 
-    const groupedArray = Object.values(groupedData).sort( (a,b) => +new Date(b[0]._date) - +new Date(a[0]._date))
+    // const groupedArray = Object.values(groupedData).sort( (a,b) => +new Date(b[0]._date) - +new Date(a[0]._date))
 
-    for (let group of groupedArray) {
+    // for (let group of groupedArray) {
 
-        group.sort((a: any, b: any) => (a._year.toString() + a._week.toString()) - (b._year.toString() + b._week.toString()));
-        // if last has day <= 7
-        if (new Date(group.reverse()[0]._date).getDate() <= 7) {
-            completeMonths.push(group[0]);
-        }
-    }
+    //     group.sort((a: any, b: any) => (a._year.toString() + a._week.toString()) - (b._year.toString() + b._week.toString()));
+    //     // if last has day <= 7
+    //     if (new Date(group.reverse()[0]._date).getDate() <= 7) {
+    //         completeMonths.push(group[0]);
+    //     }
+    // }
 
-    return completeMonths;
+    return newData.filter( w => w.complete);
 }

@@ -13,6 +13,7 @@ export interface DataPart {
     _month? : number,
     _week? : number,
     _year? : number,
+    _yearmonth? : number
 }
 
 export interface GraphData {

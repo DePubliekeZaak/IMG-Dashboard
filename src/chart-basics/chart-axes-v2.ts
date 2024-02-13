@@ -1,4 +1,4 @@
-import { localTime } from '../d3-services/_formats';
+import { localTime, monthNames, shortMonthNames } from '../d3-services/_formats';
 import * as d3 from "d3";
 import {getMonth, getMonthFromNumber} from "../utils/date-object.utils";
 import { convertToCurrency } from '../d3-services/_helpers';
@@ -82,10 +82,26 @@ export class ChartAxesV2 {
 
                case 'band' :
 
+               if (this.config.format === 'ktomaandcijfer') {
+
+                    this.axis
+                        // .tickValues(data.filter( (d,i) => i % 2).map( (d) => d['_index']))
+                        .tickFormat( (d, i) => {
+
+                                    let week = data.find( (w) => w['_yearmonth'] == d);
+                                    return  shortMonthNames[week['_month'] - 1];
+                                
+                        });
+
+                } else {
+
                    this.axis
                        .tickFormat( (d,i) => {
                           return (this.ctrlr.config.extra.axisInMonths) ? getMonthFromNumber(d) : d;
                        })
+                }
+
+
                    break;
 
                case 'linear' :
@@ -102,30 +118,6 @@ export class ChartAxesV2 {
                         .ticks(4)
                         .tickFormat( d => convertToCurrency(d))
 
-                    // } else if (this.config.format === 'monthly') {
-
-                    //     let months = [];
-                    //     let ticks = [];
-
-                    //     for (let w of data) {
-                    //         if (months.indexOf(w._month) < 0)  {
-                    //             months.push(w._month);
-                    //             ticks.push(w["_index"]);
-                    //         } else {
-                    //            console.log(w._date + "-" + w._month);
-                    //         }
-                    //     };
-
-                    //     console.log(ticks);
-
-                    //     this.axis
-                    //         .tickValues(ticks)
-                    //         .tickFormat( (d, i) => {
-                    //             console.log(d);
-                    //             let week = data.find( (w) => w['_index'] == d);
-                    //             return week._month;
-                    //         });
-                    //     break;
                         
                     } else if (this.config.format === 'quarterly') {
 
@@ -161,28 +153,13 @@ export class ChartAxesV2 {
                             .tickValues(data.filter( (d,i) => i % 2).map( (d) => d['_index']))
                             .tickFormat( (d, i) => {
 
-                                    // if (window.innerWidth < breakpoints.sm) {
-
-                                    //     if(i % 2) {
-
-                                    //         let week = data.find( (w) => w['_index'] == d);
-                                    //         return  'w' + week['_week'];
-                                    //     }
-
-
-                                    // } else {
-
                                         let week = data.find( (w) => w['_index'] == d);
                                         return  'w' + week['_week'];
-
-                                    // }
-
-
                                     
                             });
                         break;
 
-                    } else {
+                    }  else {
 
                         this.axis
                             .ticks(4);

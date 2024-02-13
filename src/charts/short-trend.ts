@@ -29,7 +29,7 @@ export default class ShortTrend extends GraphControllerV2 {
 
         this._addScale("x","band","horizontal",this.mapping.args[0]); // week en maand 
         this._addScale("y","linear","vertical",this.parameters.x);
-        this._addAxis("x","x","bottom");
+        this._addAxis("x","x","bottom","ktomaandcijfer");
         this._addMargin(0,0,0,0);
         this._addPadding(10,0,10,10);
     }
@@ -62,18 +62,24 @@ export default class ShortTrend extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-        console.log(data);
+        data = data.filter( w => w["complete"]);
 
-        const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
-        const history = groupByMonths(data,neededColumns);
-        console.log(history);
+        data.forEach( w => {
+            let doubleDigitMonth = w._month < 10 ? "0" + w._month.toString() : w._month.toString();
+            w._yearmonth = parseInt(w._year.toString() + doubleDigitMonth)
+            w["maand_n"] = w["fysieke_schade_aantal_respondenten"] + w["waardedaling_aantal_respondenten"] + w["ims_aantal_respondenten"] + w["ves_aantal_respondenten"];
+        })
+
+        let neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
+        neededColumns = neededColumns.concat(["_yearmonth","maand_n"]);
+        const history = data; // groupByMonths(data,neededColumns);
 
         this.main.dataStore.setGraph(this.mapping.slug, history)
 
         return { 
             "history" : history,
             "latest" : data[0], 
-            "slice" : history.slice(0,14).reverse(), 
+            "slice" : history.slice(0,10).reverse(), 
         };
 
     }
