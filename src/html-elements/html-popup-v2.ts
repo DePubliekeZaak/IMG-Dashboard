@@ -202,8 +202,6 @@ export class HtmlPopupV2 {
 
     populateFormula() {
 
-     
-
         // @ts-ignore
         let score = (
             (this.data[0].wd_besluiten * this.data[0].waardedaling_doorlopend_cijfer) 
@@ -218,8 +216,6 @@ export class HtmlPopupV2 {
           + this.data[0].ims_besluiten
           + this.data[0].ves_besluiten
           )
-
-          console.log(score);
 
         // @ts-ignore
         document.querySelector('#img-dashboard_popup .top.value.w_besluiten').innerText = this.data[0].wd_besluiten;
