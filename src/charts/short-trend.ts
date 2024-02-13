@@ -29,15 +29,9 @@ export default class ShortTrend extends GraphControllerV2 {
         this.parameters.x = "year_month";
         this.parameters.y = "fysieke_schade_maandcijfer";
 
-<<<<<<< HEAD
-        this._addScale("x","band","horizontal", "year_month"); // week en maand 
-        this._addScale("y","linear","vertical", 'maandcijfer');
-        this._addAxis("x","x","bottom");
-=======
         this._addScale("x","band","horizontal",this.mapping.args[0]); // week en maand 
         this._addScale("y","linear","vertical",this.parameters.x);
         this._addAxis("x","x","bottom","ktomaandcijfer");
->>>>>>> current
         this._addMargin(0,0,0,0);
         this._addPadding(10,0,10,10);
     }
@@ -72,19 +66,6 @@ export default class ShortTrend extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) : GraphData  {
 
-<<<<<<< HEAD
-
-        // console.log(data);
-      //  const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
-      //  let history = groupByMonths(data,neededColumns);
-        let history = getCompleteMonths(data);
-
-        // wat voor schaap is dit ?? 
-        // year +  month on cat ? 
-
-        // history = history.filter( m => m.complete);
-        
-=======
         data = data.filter( w => w["complete"]);
 
         data.forEach( w => {
@@ -96,7 +77,6 @@ export default class ShortTrend extends GraphControllerV2 {
         let neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         neededColumns = neededColumns.concat(["_yearmonth","maand_n"]);
         const history = data; // groupByMonths(data,neededColumns);
->>>>>>> current
 
         this.main.dataStore.setGraph(this.mapping.slug, history)
 
