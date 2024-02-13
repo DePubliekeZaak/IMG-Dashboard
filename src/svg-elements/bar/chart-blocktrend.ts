@@ -62,7 +62,7 @@ export default class ChartBlockTrend {
 
                             return 'Maand: ' + getLongMonthFromNumber(d._month)+ '<br/>' +
                                 'Rapportcijfer: ' + Math.round(d[self.ctrlr.parameters.y] * 10) / 10  + '</b><br/>' +
-                                'Respondenten: ' + d['aantal_respondenten'];
+                                'Respondenten: ' + d['maand_n'];
 
 
                     })
@@ -85,7 +85,9 @@ export default class ChartBlockTrend {
         ;
 
         this.barLabels
-            .text((d: any) => Math.round(d[self.ctrlr.parameters.y] * 10) / 10)
+            .text((d: any) => {
+                return (Math.round(d[self.ctrlr.parameters.y] * 10) / 10).toFixed(1);
+            })
             .attr('transform', (d: any) => {
 
                     return 'translate(' + (this.ctrlr.scales.x.scale(d[self.ctrlr.parameters.x]) + (this.ctrlr.scales.x.scale.bandwidth() / 2)) + ',' +

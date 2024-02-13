@@ -59,7 +59,6 @@ export function getCompleteMonths(newData) {
     // }
 
 
-
     let array=  newData.filter( w => w.complete == true);
 
     for (let d of array) {
@@ -68,4 +67,5 @@ export function getCompleteMonths(newData) {
     }
 
     return array;
+
 }

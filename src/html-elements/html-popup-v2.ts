@@ -165,13 +165,10 @@ export class HtmlPopupV2 {
 
         top.innerHTML = `
       ( <span title="besluiten fysieke schade" class="top value fs_besluiten"></span> * <span title="doorlopend rapportcijfer fysieke schade" class="top value fs_cijfer"></span> )
-      + ( <span title="besluiten waardedaling" class="top value w_besluiten"></span> * <span title="doorlopend rapportcijfer waardedaling" class="top value w_cijfer"></span> )
-      + ( <span title="besluiten immateriele_schade" class="top value ims_besluiten"></span> * <span title="doorlopend rapportcijfer immateriele schade" class="top value ims_cijfer"></span> )
-      + ( <span title="besluiten vaste_vergoeding" class="top value ves_besluiten"></span> * <span title="doorlopend rapportcijfer vaste vergoeding" class="top value ves_cijfer"></span> ) 
-     
-
+      + ( <span title="besluiten waardedaling" class="top value w_besluiten"></span> * <span title="doorlopend rapportcijfer waardedaling" class="top value w_cijfer"></span> ) 
+      + ( <span title="besluiten immateriele_schade" class="top value ims_besluiten"></span> * <span title="doorlopend rapportcijfer ims" class="top value ims_cijfer"></span> ) 
+      + ( <span title="besluiten vaste_vergoeding" class="top value ves_besluiten"></span> * <span title="doorlopend rapportcijfer ves" class="top value ves_cijfer"></span> ) 
         `;
-
 
         left.appendChild(top);
 
@@ -181,10 +178,10 @@ export class HtmlPopupV2 {
         bottom.style.paddingBottom = '1.5rem';
 
         bottom.innerHTML = `
-           <span title="besluiten fysieke schade"  class="bottom value fs_besluiten"></span> 
-           + <span title="besluiten waardedaling" class="bottom value w_besluiten"></span>
-           + <span title="besluiten ims" class="bottom value ims_besluiten"></span>
-           + <span title="besluiten ves" class="bottom value ves_besluiten"></span>
+            <span title="besluiten fysieke schade"  class="bottom value fs_besluiten"></span> +
+            <span  title="besluiten waardedaling" class="bottom value w_besluiten"></span> +
+            <span  title="besluiten immateriele_schade" class="bottom value ims_besluiten"></span> +
+            <span  title="besluiten vaste_vergoeding" class="bottom value ves_besluiten"></span>
         `
         left.appendChild(bottom);
 
@@ -205,47 +202,56 @@ export class HtmlPopupV2 {
 
     populateFormula() {
 
-        console.log(this.data[0]);
+     
 
         // @ts-ignore
         let score = (
-            
-            (this.data[0].waardedaling_besluiten * this.data[0].waardedaling_doorlopend_cijfer) 
-            + (this.data[0].fysieke_schade_besluiten * this.data[0].fysieke_schade_doorlopend_cijfer)
-            + (this.data[0].immateriele_schade_besluiten * this.data[0].ims_doorlopend_cijfer)
-            + (this.data[0].vaste_vergoeding_afgehandeld * this.data[0].ves_doorlopend_cijfer)
-            ) 
-            / (this.data[0].waardedaling_besluiten + this.data[0].fysieke_schade_besluiten + this.data[0].immateriele_schade_besluiten + this.data[0].vaste_vergoeding_afgehandeld
-            );
+            (this.data[0].wd_besluiten * this.data[0].waardedaling_doorlopend_cijfer) 
+          + (this.data[0].fs_besluiten * this.data[0].fysieke_schade_doorlopend_cijfer)
+          + (this.data[0].ims_besluiten * this.data[0].ims_doorlopend_cijfer)
+          + (this.data[0].ves_besluiten * this.data[0].ves_doorlopend_cijfer)
+          ) 
+          /   
+          (
+            this.data[0].wd_besluiten 
+          + this.data[0].fs_besluiten
+          + this.data[0].ims_besluiten
+          + this.data[0].ves_besluiten
+          )
+
+          console.log(score);
 
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .top.value.w_besluiten').innerText = this.data[0].waardedaling_besluiten;
+        document.querySelector('#img-dashboard_popup .top.value.w_besluiten').innerText = this.data[0].wd_besluiten;
         // @ts-ignore
         document.querySelector('#img-dashboard_popup .top.value.w_cijfer').innerText = this.data[0].waardedaling_doorlopend_cijfer;
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .bottom.value.w_besluiten').innerText = this.data[0].waardedaling_besluiten;
-        // @ts-ignore
-        document.querySelector('#img-dashboard_popup .top.value.fs_besluiten').innerText = this.data[0].fysieke_schade_besluiten;
+        document.querySelector('#img-dashboard_popup .top.value.fs_besluiten').innerText = this.data[0].fs_besluiten;
         // @ts-ignore
         document.querySelector('#img-dashboard_popup .top.value.fs_cijfer').innerText = this.data[0].fysieke_schade_doorlopend_cijfer;
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .bottom.value.fs_besluiten').innerText = this.data[0].fysieke_schade_besluiten;
+        document.querySelector('#img-dashboard_popup .bottom.value.w_besluiten').innerText = this.data[0].wd_besluiten;
+        // @ts-ignore
+        document.querySelector('#img-dashboard_popup .bottom.value.fs_besluiten').innerText = this.data[0].fs_besluiten;
+
 
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .top.value.ims_besluiten').innerText = this.data[0].immateriele_schade_besluiten;
+        document.querySelector('#img-dashboard_popup .top.value.ims_besluiten').innerText = this.data[0].ims_besluiten;
+        // @ts-ignore
+        document.querySelector('#img-dashboard_popup .bottom.value.ims_besluiten').innerText = this.data[0].ims_besluiten;
         // @ts-ignore
         document.querySelector('#img-dashboard_popup .top.value.ims_cijfer').innerText = this.data[0].ims_doorlopend_cijfer;
+
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .bottom.value.ims_besluiten').innerText = this.data[0].immateriele_schade_besluiten;
+        document.querySelector('#img-dashboard_popup .top.value.ves_besluiten').innerText = this.data[0].ves_besluiten;
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .top.value.ves_besluiten').innerText = this.data[0].vaste_vergoeding_afgehandeld;
+        document.querySelector('#img-dashboard_popup .bottom.value.ves_besluiten').innerText = this.data[0].ves_besluiten;
         // @ts-ignore
         document.querySelector('#img-dashboard_popup .top.value.ves_cijfer').innerText = this.data[0].ves_doorlopend_cijfer;
+
+
         // @ts-ignore
-        document.querySelector('#img-dashboard_popup .bottom.value.ves_besluiten').innerText = this.data[0].vaste_vergoeding_afgehandeld;
-       
-        // @ts-ignore
-        document.querySelector('#img-dashboard_popup .kto_result').innerText = Math.round(score * 100) / 100;
+        document.querySelector('#img-dashboard_popup .kto_result').innerText = (Math.round(score * 100) / 100).toFixed(2);
     }
 
 }

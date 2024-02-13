@@ -132,17 +132,17 @@ export class HtmlCircle {
         
         if(element.tagName === 'SECTION') { element = element.parentNode;}
         
-        let value =  (this.ctrlr.config.extra.decimal) ? Math.round(data[0][parameter] * 10) / 10 : Math.round(data[0][parameter]);
+        let value =  (this.ctrlr.config.extra.decimal) ? (Math.round(data[0][parameter] * 10) / 10).toFixed(1) : Math.round(data[0][parameter]);
 
         if (this.ctrlr.config.extra.segmentIndicator) {
 
             element.querySelector('.number.in_circle').innerText = (this.ctrlr.config.qualifier && this.ctrlr.config.qualifier !== undefined) ? value + this.ctrlr.config.qualifier : value;
 
         } else {
-            element.querySelector('.number.in_circle').innerText = (value > 9999) ? thousands(value) : value;
+            element.querySelector('.number.in_circle').innerText = (parseInt(value.toString()) > 9999) ? thousands(value) : value;
         }
 
-        if(value > 999) {
+        if(parseInt(value.toString()) > 999) {
 
             element.querySelector('.number.in_circle').style.fontSize = '1.6rem'
         }

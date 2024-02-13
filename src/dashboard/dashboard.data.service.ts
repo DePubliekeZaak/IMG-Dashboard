@@ -122,9 +122,12 @@ export default class DashboardData {
 
             for (let prop of Object.keys(munis[0])) {
 
+
                 if (['_date', "_year", "_month", "_week"].indexOf(prop) > -1) {
 
                     e[prop] = munis[0][prop];
+
+
                 } else if (prop !== 'gemeente') {
 
 

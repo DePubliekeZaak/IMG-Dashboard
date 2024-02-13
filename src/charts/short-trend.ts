@@ -29,9 +29,15 @@ export default class ShortTrend extends GraphControllerV2 {
         this.parameters.x = "year_month";
         this.parameters.y = "fysieke_schade_maandcijfer";
 
+<<<<<<< HEAD
         this._addScale("x","band","horizontal", "year_month"); // week en maand 
         this._addScale("y","linear","vertical", 'maandcijfer');
         this._addAxis("x","x","bottom");
+=======
+        this._addScale("x","band","horizontal",this.mapping.args[0]); // week en maand 
+        this._addScale("y","linear","vertical",this.parameters.x);
+        this._addAxis("x","x","bottom","ktomaandcijfer");
+>>>>>>> current
         this._addMargin(0,0,0,0);
         this._addPadding(10,0,10,10);
     }
@@ -66,6 +72,7 @@ export default class ShortTrend extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) : GraphData  {
 
+<<<<<<< HEAD
 
         // console.log(data);
       //  const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
@@ -77,13 +84,26 @@ export default class ShortTrend extends GraphControllerV2 {
 
         // history = history.filter( m => m.complete);
         
+=======
+        data = data.filter( w => w["complete"]);
+
+        data.forEach( w => {
+            let doubleDigitMonth = w._month < 10 ? "0" + w._month.toString() : w._month.toString();
+            w._yearmonth = parseInt(w._year.toString() + doubleDigitMonth)
+            w["maand_n"] = w["fysieke_schade_aantal_respondenten"] + w["waardedaling_aantal_respondenten"] + w["ims_aantal_respondenten"] + w["ves_aantal_respondenten"];
+        })
+
+        let neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
+        neededColumns = neededColumns.concat(["_yearmonth","maand_n"]);
+        const history = data; // groupByMonths(data,neededColumns);
+>>>>>>> current
 
         this.main.dataStore.setGraph(this.mapping.slug, history)
 
         return { 
             "history" : history,
             "latest" : data[0], 
-            "slice" : history.slice(0,14).reverse(), 
+            "slice" : history.slice(0,10).reverse(), 
         };
 
     }

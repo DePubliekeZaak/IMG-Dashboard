@@ -77,6 +77,8 @@ export default class KTORatings extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) :GraphData  {
 
+        data = getCompleteMonths(data);
+
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
         const history = groupByMonths(data,neededColumns);
 

@@ -30,12 +30,9 @@ export class ChartLine {
 
         const yParameter = this.ctrlr.parameters[this.yParameter] != undefined ? this.ctrlr.parameters[this.yParameter] : this.yParameter;
 
-        // console.log(yParameter)
-
         return d3.line()
             .x(d => this.ctrlr.scales.x.scale(d[this.ctrlr.parameters.x]  ))
-            .y(d => { 
-                return this.ctrlr.scales.y.scale(d[yParameter]) })
+            .y(d => this.ctrlr.scales.y.scale(d[yParameter]))
             .curve(d3.curveBasis);
     }
 
@@ -50,7 +47,6 @@ export class ChartLine {
             .attr("fill", 'transparent')
             .attr("stroke", d => colours[this.colour][0] )
             .attr("stroke-width", 1)
-            // .attr("stroke-dasharray","2 4")
         ;
     }
 }
