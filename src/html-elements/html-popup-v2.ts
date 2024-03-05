@@ -1,8 +1,7 @@
 import { DataPart } from "../types/data";
 
 export class HtmlPopupV2 {
-
-
+    
     popupElement = document.getElementById('img-dashboard_popup');
     data = [];
 
@@ -12,7 +11,6 @@ export class HtmlPopupV2 {
     ){
        this.create();
     }
-
 
     pop(event) {
 

@@ -30,7 +30,7 @@ export default class ShortTrend extends GraphControllerV2 {
         this.parameters.y = "fysieke_schade_maandcijfer";
 
         this._addScale("x","band","horizontal",this.mapping.args[0]); // week en maand 
-        this._addScale("y","linear","vertical",this.parameters.x);
+        this._addScale("y","linear","vertical",this.parameters.y);
         this._addAxis("x","x","bottom","ktomaandcijfer");
         this._addMargin(0,0,0,0);
         this._addPadding(10,0,10,10);
