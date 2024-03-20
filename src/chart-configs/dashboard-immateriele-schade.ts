@@ -45,8 +45,6 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
             "segment": "all",
             "elementClasslist": [
                 'img-graph-container',
-                // 'img-graph-grid-tablet-column-start-1',
-                // 'img-graph-grid-tablet-span-12',
                 'img-graph-grid-column-start-5',
                 'img-graph-grid-column-span-4',
                 'img-graph-grid-row-start-1',
@@ -73,8 +71,6 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
             "segment": "all",
             "elementClasslist": [
                 'img-graph-container',
-                // 'img-graph-grid-tablet-column-start-1',
-                // 'img-graph-grid-tablet-span-12',
                 'img-graph-grid-column-start-9',
                 'img-graph-grid-column-span-4',
                 'img-graph-grid-row-start-1',
@@ -102,8 +98,6 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
             "segment": "all",
             "elementClasslist": [
                 'img-graph-container',
-                // 'img-graph-grid-tablet-column-start-1',
-                // 'img-graph-grid-tablet-span-12',
                 'img-graph-grid-column-start-1',
                 'img-graph-grid-column-span-4',
                 'img-graph-grid-row-start-1',
