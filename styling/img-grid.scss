@@ -40,6 +40,10 @@
         grid-column-end: $i;
     }
 
+    .img-graph-grid-column-span-#{$i} {
+        grid-column-end: span $i;
+    }
+
     .img-graph-grid-row-start-#{$i} {
         grid-row-start: $i;
     }

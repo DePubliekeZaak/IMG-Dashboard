@@ -77,6 +77,11 @@ export default class TrendBars extends GraphControllerV2 {
     prepareData(data: DataPart[]) : GraphData  {
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
+
+        console.log(data);
+
+        console.log(neededColumns);
+
         let history = filterWeeks(data,neededColumns);
 
         history.forEach( (week, i) => { 
@@ -89,6 +94,8 @@ export default class TrendBars extends GraphControllerV2 {
                 new Date(week._date) > new Date(this.mapping.args[0])
             );
         }
+
+        console.log(history);
 
        // history = history.reverse();
 

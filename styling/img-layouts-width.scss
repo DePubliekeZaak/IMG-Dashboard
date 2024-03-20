@@ -39,6 +39,15 @@
   }
 }
 
+.img-graph-container-ipad-4 {
+
+  width: 100%;
+
+  @media (min-width : $breakpoint-sm) {
+    width: calc(33% - (3rem/2));
+  }
+}
+
 .img-graph-container-6 {
   width: 100%;
 

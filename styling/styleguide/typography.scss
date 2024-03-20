@@ -5,6 +5,8 @@ body {
 }
 
 
+
+
 @mixin uppercase() {
 
   font-family: Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -25,6 +27,11 @@ body {
   letter-spacing: 0px;
 }
 
+
+b {
+  font-weight: 500;
+  font-family: 'NotoSans SemiBold';
+}
 
 h3 {
   font-family: Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
