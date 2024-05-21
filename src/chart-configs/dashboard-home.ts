@@ -557,7 +557,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
         "header": "Immateriële schade",
         "description" : "",
         "linkLabel" : "Meer over immateriële schade",
-        "linkTopic" : "immateriële_schade",
+        "linkTopic" : "immateriele_schade",
         "endpoint": "meldingen",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-12'],
@@ -570,9 +570,9 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     [
                         {
                             "label": "Aanvragen",
-                            "column": "immateriele_schade_aanvragen",
+                            "column": "ims_totaal_ingediend",
                             "colour": "orange",
-                            "units" : "meldingen"
+                            "units" : "aanvragen"
                         } 
                     ]
                 ],
@@ -596,7 +596,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     [
                         {
                             "label": "Afgehandeld",
-                            "column": "immateriele_schade_besluiten",
+                            "column": "ims_totaal_afgehandeld",
                             "colour": "moss",
                             "units" : "afgehandeld"
                         }
@@ -622,7 +622,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     [
                         {
                             "label": "In behandeling",
-                            "column": "immateriele_schade_in_behandeling",
+                            "column": "ims_totaal_in_behandeling",
                             "colour": "blue",
                             "units" : "in behandeling"
                         }   
@@ -649,13 +649,13 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     [
                         {
                             "label": "Aanvragen",
-                            "column": "immateriele_schade_aanvragen",
+                            "column": "ims_totaal_ingediend",
                             "colour": "orange",
                             "short": "meldingen"
                         },
                         {
                             "label": "In behandeling",
-                            "column": "immateriele_schade_in_behandeling",
+                            "column": "ims_totaal_in_behandeling",
                             "colour": "blue",
                             "short": "in beh."
                         },
@@ -684,7 +684,7 @@ export const dashboardHome : (GraphObject|IGraphMapping)[] = [
                     [
                         {
                             "label": "Uitgekeerd",
-                            "column": "immateriele_schade_totaal_verleend",
+                            "column": "ims_totaal_verleend",
                             "colour": "lightBlue",
                             "format": "currency",
                             "units" : "uitgekeerd"

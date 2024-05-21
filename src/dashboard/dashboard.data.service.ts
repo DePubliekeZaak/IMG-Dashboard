@@ -53,14 +53,17 @@ export default class DashboardData {
 
         const eemsdelta = ['Appingedam','Delfzijl','Loppersum'];
 
+
+
         let weekData = [];
         let muniData = [];
         // uitzondering for Grid
         if(arrays.length > 0) {
             // hoe herken ik arrays met alle gemeentes
-            const arraysWithWeeks = arrays.filter( a => a.length < 2 || a[0].gemeente === a[1].gemeente || eemsdelta.indexOf(a[0].gemeente));
+            const arraysWithWeeks = arrays.filter( a => a.length < 2 || a[0].gemeente === a[1].gemeente ); // || eemsdelta.indexOf(a[0].gemeente)       
             const arraysWithMunis = arrays.filter( a => a.length > 1 && a[0]._week === a[1]._week);
             // make sure data are merged into array with most weeks ..
+
             arraysWithWeeks.sort(function (a, b) {
                 return b.length - a.length;
             });
@@ -102,10 +105,7 @@ export default class DashboardData {
                 }
             }
 
-            
-
             muniData = this.createMapDataForEemsdelta(muniData);
-
         }
 
         return { weekData, muniData };

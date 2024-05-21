@@ -76,7 +76,6 @@ export default class ChartMap   {
                     html = "<div class='uppercase'>" + d.properties.gemeentenaam + "</div><div>" + d.properties[property] + "%</div>";
                 }
 
-
                 if(d.properties[property] && d.properties[property] > 0) {
 
                     d3.select(event.target)

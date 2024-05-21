@@ -32,12 +32,10 @@ export interface D3DataTypeLatest extends DataPart { // extends mapping
     label: string,
     value: string,
     colour?: string
-
 }
 
 export interface D3DataTypeHistorical extends DataPart {
     colour? : string
-    
 }
 
 export interface IKeyValueObject {

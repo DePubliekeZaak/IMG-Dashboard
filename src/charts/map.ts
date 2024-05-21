@@ -78,7 +78,7 @@ export default class Map extends GraphControllerV2 {
         for (let feature of features) {
 
             let muni = data.filter( (m) => {
-                return m.gemeente === slugify(feature.properties.gemeentenaam).toLowerCase();
+                return m.gemeente.toLowerCase() === slugify(feature.properties.gemeentenaam).toLowerCase();
             })[0];
 
             if(muni && Object.entries(muni).length > 0) {

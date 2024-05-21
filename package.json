@@ -55,6 +55,6 @@
     "build:prod": "webpack --env ENV=prod DOMAIN=https://img.publikaan.nl APIBASE=/open-data/api/",
     "build:staging": "webpack --env ENV=dev DOMAIN=https://img.de-publieke-zaak.nl APIBASE=/open-data/staging/api/",
     "build:dev": "webpack --env ENV=dev DOMAIN=https://img.de-publieke-zaak.nl APIBASE=/open-data/dev/api/",
-    "serve": "webpack serve --env ENV=dev DOMAIN=https://img.publikaan.nl APIBASE=/open-data/dev/api/"
+    "serve": "webpack serve --env ENV=dev DOMAIN=https://img.publikaan.nl APIBASE=/open-data/staging/api/"
   }
 }

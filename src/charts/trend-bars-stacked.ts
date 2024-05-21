@@ -66,9 +66,7 @@ export default class TrendBarsStacked extends GraphControllerV2 {
 
         super._svg(container);
 
-     
         this.chartStackedBars = new ChartStackedBars(this);
-              //  this.chartLines.push(new ChartLineMiddled(this, getMappingKey(this.mapping.parameters[0][i],"column"), getMappingKey(this.mapping.parameters[0][i],"colour")));
         
         this.chartFocus = new ChartFocusTime(this);
         this.legend = new HtmlLegendDots(this);
@@ -86,7 +84,6 @@ export default class TrendBarsStacked extends GraphControllerV2 {
             week['colour'] = getMappingKey(this.firstMapping,"colour") 
         });
 
-        
         let columnArray = this.mapping.parameters[0].map( m => (flattenColumn(m.column)));
 
         this.keys = Object.keys(history[0]).filter(key => {
@@ -112,8 +109,6 @@ export default class TrendBarsStacked extends GraphControllerV2 {
     }
 
     draw(data: GraphData) {
-
-      
 
         this.scales.x.set(data.slice.map(d => d[this.parameters.x]));
 

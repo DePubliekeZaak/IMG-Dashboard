@@ -78,9 +78,9 @@ export default class TrendBars extends GraphControllerV2 {
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
 
-        console.log(data);
+        // console.log(data);
 
-        console.log(neededColumns);
+        // console.log(neededColumns);
 
         let history = filterWeeks(data,neededColumns);
 
@@ -95,7 +95,7 @@ export default class TrendBars extends GraphControllerV2 {
             );
         }
 
-        console.log(history);
+        
 
        // history = history.reverse();
 
