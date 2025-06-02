@@ -154,75 +154,75 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-vertical-padding']
     },
-    {
-    "slug": "flow_doorlooptijden",
-    "graph": "FlowDossierCount",
-    "parameters": [[
+//     {
+//     "slug": "flow_doorlooptijden",
+//     "graph": "FlowDossierCount",
+//     "parameters": [[
 
-        {
-            "label" : "Nieuwe meldingen",
-            "column" : "maatwerk_nieuwe_meldingen",
-            "outflow" : "instroom_fase_ontvangst", // "nieuw_schademeldingen",
-            "duration" : "",
-            "colour": "moss"
-        },
-        {
-            "label" : "Ontvangst & Analyse",
-            "column" : "in_fase_ontvangst",
-            "outflow" : "instroom_fase_planning_opname", // "instroom_fase_ontvangst_analyse",
-            "duration" : "",
-            "colour": "lightBlue"
-        },
-        {
-            "label" : "Planning schade-opname",
-            "column" : "in_fase_planning_opname",
-            "outflow" : "instroom_fase_ingepland_voor_opname", // "instroom_fase_ingepland_voor_opname",
-            "duration" : "",
-            "colour": "blue"
-        },
-        {
-            "label" : "Ingepland voor opname",
-            "column" : "in_fase_ingepland_voor_opname",
-            "outflow" : "instroom_fase_opleveren_schaderapport", // "instroom_fase_opleveren_rapport_bewoner",
-            "duration" : "",
-            "colour": "violet"
-        },
-        {
-            "label" : "Opleveren rapport",
-            "column" : "in_fase_opleveren_schaderapport",
-            "outflow" : "instroom_fase_rapport_bij_bewoner",
-            "duration" : "",
-            "colour": "purple"
-        },
-        {
-            "label" : "Rapport bij bewoner",
-            "column" : "in_fase_rapport_bij_bewoner",
-            "outflow" : "instroom_fase_voorbereiden_besluit",
-            "duration" : "",
-            "colour": "brown"
-        },
-        {
-            "label" : "Voorbereiden besluit",
-            "column" : "in_fase_voorbereiding_besluit",
-            "outflow" : "nieuw_afgehandeld",
-            "duration" : "",
-            "colour": "orange"
-        },
-        {
-            "label" : "Afgerond",
-            "column" : "maatwerk_nieuw_afgehandeld",
-            "outflow" : "",
-            "duration" : "",
-            "colour": "yellow"
-        }
-    ]
-    ],
-    "header": "Voortgang per procedurestap",
-    "description" : "Een schademelding doorloopt een aantal stappen in de procedure voor afhandeling. Zolang er wekelijks ongeveer net zoveel schademeldingen naar een volgende stap in de procedure gaan als er nieuw binnenkomen, dan is de de capaciteit van de totale schadeafhandeling op niveau. De grafiek toont dus de mate waarin er voortgang is in het totaal van schademeldingen die in behandeling zijn. ",
-    "endpoint": "productie",
-    "segment": "all",
-    "elementClasslist": ['img-graph-container','img-graph-container-12']
-  },
+//         {
+//             "label" : "Nieuwe meldingen",
+//             "column" : "maatwerk_nieuwe_meldingen",
+//             "outflow" : "instroom_fase_ontvangst", // "nieuw_schademeldingen",
+//             "duration" : "",
+//             "colour": "moss"
+//         },
+//         {
+//             "label" : "Ontvangst & Analyse",
+//             "column" : "in_fase_ontvangst",
+//             "outflow" : "instroom_fase_planning_opname", // "instroom_fase_ontvangst_analyse",
+//             "duration" : "",
+//             "colour": "lightBlue"
+//         },
+//         {
+//             "label" : "Planning schade-opname",
+//             "column" : "in_fase_planning_opname",
+//             "outflow" : "instroom_fase_ingepland_voor_opname", // "instroom_fase_ingepland_voor_opname",
+//             "duration" : "",
+//             "colour": "blue"
+//         },
+//         {
+//             "label" : "Ingepland voor opname",
+//             "column" : "in_fase_ingepland_voor_opname",
+//             "outflow" : "instroom_fase_opleveren_schaderapport", // "instroom_fase_opleveren_rapport_bewoner",
+//             "duration" : "",
+//             "colour": "violet"
+//         },
+//         {
+//             "label" : "Opleveren rapport",
+//             "column" : "in_fase_opleveren_schaderapport",
+//             "outflow" : "instroom_fase_rapport_bij_bewoner",
+//             "duration" : "",
+//             "colour": "purple"
+//         },
+//         {
+//             "label" : "Rapport bij bewoner",
+//             "column" : "in_fase_rapport_bij_bewoner",
+//             "outflow" : "instroom_fase_voorbereiden_besluit",
+//             "duration" : "",
+//             "colour": "brown"
+//         },
+//         {
+//             "label" : "Voorbereiden besluit",
+//             "column" : "in_fase_voorbereiding_besluit",
+//             "outflow" : "nieuw_afgehandeld",
+//             "duration" : "",
+//             "colour": "orange"
+//         },
+//         {
+//             "label" : "Afgerond",
+//             "column" : "maatwerk_nieuw_afgehandeld",
+//             "outflow" : "",
+//             "duration" : "",
+//             "colour": "yellow"
+//         }
+//     ]
+//     ],
+//     "header": "Voortgang per procedurestap",
+//     "description" : "Een schademelding doorloopt een aantal stappen in de procedure voor afhandeling. Zolang er wekelijks ongeveer net zoveel schademeldingen naar een volgende stap in de procedure gaan als er nieuw binnenkomen, dan is de de capaciteit van de totale schadeafhandeling op niveau. De grafiek toont dus de mate waarin er voortgang is in het totaal van schademeldingen die in behandeling zijn. ",
+//     "endpoint": "productie",
+//     "segment": "all",
+//     "elementClasslist": ['img-graph-container','img-graph-container-12']
+//   },
   {
     "slug": "taart_schadevergoeding_totaal",
     "graph": "PieChartSumV2",
@@ -298,91 +298,91 @@ export const dashboardMain : (GraphObject|IGraphMapping)[] = [
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
     },
-    // {
-    //     "slug": "taart_bezwaren",
-    //     "graph": "PieChartSumV2",
-    //     "parameters":  [
-    //         [
-    //             {
-    //                 "label": "Gegrond",
-    //                 "column": "bezwaren_gegrond",
-    //                 "colour": "moss"
-    //             },
-    //             {
-    //                 "label": "Deels gegrond",
-    //                 "column": "bezwaren_deels_gegrond",
-    //                 "colour": "orange"
-    //             },
-    //             {
-    //                 "label": "Ongegrond",
-    //                 "column": "bezwaren_ongegrond",
-    //                 "colour": "blue"
-    //             },
-    //             {
-    //                 "label": "Niet ontvankelijk",
-    //                 "column": "bezwaren_niet_ontvankelijk",
-    //                 "colour": "purple"
-    //             },
-    //             {
-    //                 "label": "Ingetrokken",
-    //                 "column": "bezwaren_ingetrokken",
-    //                 "colour": "brown"
-    //             },
-    //             {
-    //                 "label": "Naar schadeprocedure",
-    //                 "column": "bezwaren_doorgezet",
-    //                 "colour": "orange"
-    //             }
-    //         ],
-    //         [
-    //             {
-    //                 "label": "Totaal afgehandeld",
-    //                 "column": null,
-    //                 "colour": "black"
-    //             }
-    //         ],
-    //         [
-    //             {
-    //                 "label": "In behandeling",
-    //                 "column": "bezwaren_in_behandeling",
-    //                 "colour": "yellow"
-    //             }
-    //         ]
-    //     ],
-    //     "header" : "Bezwaren",
-    //     "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
-    //     "endpoint": "reacties",
-    //     "segment": "all",
-    //     "elementClasslist": ['img-graph-container','img-graph-container-4']
-    // },
     {
-        "slug": "taart_specials",
+        "slug": "taart_bezwaren",
         "graph": "PieChartSumV2",
         "parameters":  [
             [
                 {
-                    "label": "Afgehandelde specials",
-                    "column": "specials_afgehandeld",
+                    "label": "Gegrond",
+                    "column": "bezwaren_gegrond",
                     "colour": "moss"
                 },
                 {
-                    "label": "Specials in behandeling",
-                    "column": "specials_in_behandeling",
+                    "label": "Deels gegrond",
+                    "column": "bezwaren_deels_gegrond",
+                    "colour": "orange"
+                },
+                {
+                    "label": "Ongegrond",
+                    "column": "bezwaren_ongegrond",
                     "colour": "blue"
+                },
+                {
+                    "label": "Niet ontvankelijk",
+                    "column": "bezwaren_niet_ontvankelijk",
+                    "colour": "purple"
+                },
+                {
+                    "label": "Ingetrokken",
+                    "column": "bezwaren_ingetrokken",
+                    "colour": "brown"
+                },
+                {
+                    "label": "Naar schadeprocedure",
+                    "column": "bezwaren_doorgezet",
+                    "colour": "orange"
                 }
             ],
             [
                 {
-                    "label": "Totaal",
-                    "column": undefined,
-                    "colour": undefined
+                    "label": "Totaal afgehandeld",
+                    "column": null,
+                    "colour": "black"
+                }
+            ],
+            [
+                {
+                    "label": "In behandeling",
+                    "column": "bezwaren_in_behandeling",
+                    "colour": "yellow"
                 }
             ]
         ],
-        "header" : "Speciale dossiers",
-        "description" : "Sommige schademeldingen hebben speciale aandacht nodig, zoals voor monumenten, bedrijven en agrariërs. Dit worden ook wel specials genoemd. De doorlooptijd voor de specials wijkt af van de reguliere schademeldingen voor woonhuizen zonder bijzondere omstandigheden.",
-        "endpoint": "specials",
+        "header" : "Bezwaren",
+        "description" : "De besluiten die het IMG neemt over aanvragen tot schadevergoeding staan open voor bezwaar. Het aantal bezwaren zegt iets over de mate waarin er tevredenheid is over de aanpak en handelwijze van het IMG.",
+        "endpoint": "reacties",
         "segment": "all",
         "elementClasslist": ['img-graph-container','img-graph-container-4']
-    }
+    },
+    // {
+    //     "slug": "taart_specials",
+    //     "graph": "PieChartSumV2",
+    //     "parameters":  [
+    //         [
+    //             {
+    //                 "label": "Afgehandelde specials",
+    //                 "column": "specials_afgehandeld",
+    //                 "colour": "moss"
+    //             },
+    //             {
+    //                 "label": "Specials in behandeling",
+    //                 "column": "specials_in_behandeling",
+    //                 "colour": "blue"
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 "label": "Totaal",
+    //                 "column": undefined,
+    //                 "colour": undefined
+    //             }
+    //         ]
+    //     ],
+    //     "header" : "Speciale dossiers",
+    //     "description" : "Sommige schademeldingen hebben speciale aandacht nodig, zoals voor monumenten, bedrijven en agrariërs. Dit worden ook wel specials genoemd. De doorlooptijd voor de specials wijkt af van de reguliere schademeldingen voor woonhuizen zonder bijzondere omstandigheden.",
+    //     "endpoint": "specials",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-4']
+    // }
 ]

@@ -248,9 +248,9 @@ export class HtmlPopup {
 
     populateFormula() {
 
-        console.log("formule-x");
+        // console.log("formule-x");
 
-        console.log(this.data[0]);
+        // console.log(this.data[0]);
 
         // @ts-ignore
         let score = ((this.data[0].waardedaling_besluiten * this.data[0].waardedaling_doorlopend_cijfer) + (this.data[0].fysieke_schade_besluiten * this.data[0].fysieke_schade_doorlopend_cijfer )) /   (this.data[0].waardedaling_besluiten + this.data[0].fysieke_schade_besluiten)

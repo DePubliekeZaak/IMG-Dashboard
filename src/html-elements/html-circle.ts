@@ -128,6 +128,8 @@ export class HtmlCircle {
 
     redraw(data, parameter,extraParameter) {
 
+        // console.log(data);
+
         let element = this.element != undefined ? this.element : this.ctrlr.element;
         
         if(element.tagName === 'SECTION') { element = element.parentNode;}

@@ -608,7 +608,7 @@ export const dashboardReacties : (GraphObject|IGraphMapping)[] = [
                     },
                 ]
         ],
-        "header" : "Rapportcijfers immateriele schade",
+        "header" : "Rapportcijfers immateriele schade volwassenen",
         "description" : "",
         "endpoint": "tevredenheid",
         "segment": "all",

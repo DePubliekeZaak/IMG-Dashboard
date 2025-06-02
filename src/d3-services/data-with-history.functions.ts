@@ -33,7 +33,7 @@ export function getNeededColumnsForHistory(data: any, graphObject: any): string[
 export function getNeededColumnsForHistoryV2(data: any, mapping: IGraphMapping): string[] {
 
     let m = mapping.parameters;
-    let columns = ['_date','_month','_week','_year'];
+    let columns = ['_date','_month','_week','_year','_yearmonth'];
 
     for (let n of m) {
             columns = columns.concat(n.map( (o) => flattenColumn(o.column)))
@@ -91,7 +91,7 @@ export function filterWeeks(data: DataPart[], neededColumns: string[]) : DataPar
             if (week[column] !== null && week[column] !== undefined) {
                 clearWeek[column] = week[column]
             } else {
-              //  console.log(column);
+                console.log("column not found : " + column);
                 hasEnoughData = false;
             }
         }

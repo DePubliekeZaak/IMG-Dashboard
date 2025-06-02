@@ -46,7 +46,7 @@ export default class ChartBarTrend {
                 let h = self.ctrlr.dimensions.height - self.ctrlr.scales.y.fn(d[self.yParameter]);
 
                 if (h < 0) {
-                  console.log(d)
+                //   console.log(d)
                     h = 0;
                 }
                 

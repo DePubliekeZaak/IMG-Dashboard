@@ -461,35 +461,35 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
                     'img-mobile-margin-vertical'
                 ]
             },
-            {
-                "slug" : "bol_tevredenheid_algemeen",
-                "graph": "CijferV2",
-                "args" : [],
-                "parameters": [
-                    [
-                        {
-                            "label": "Totaal",
-                            "column": "immateriele_schade_unieke_adressen",
-                            "colour": "blue",
-                            "units" : "unieke adressen"
-                        }
-                    ],
-                ],
-                "header": "",
-                "description" : "", //"Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
-                "endpoint": "immateriele_schade",
-                "segment": "all",
-                "elementClasslist": [
-                    'img-graph-container',
-                    // 'img-graph-grid-tablet-column-start-1',
-                    // 'img-graph-grid-tablet-width-4',
-                    // 'img-graph-grid-tablet-row-start-7',
-                    'img-graph-grid-column-start-10',
-                    'img-graph-grid-width-3',
-                    'img-graph-grid-row-start-1',
-                    'img-graph-grid-height-2'
-                ]
-            },
+            // {
+            //     "slug" : "bol_tevredenheid_algemeen",
+            //     "graph": "CijferV2",
+            //     "args" : [],
+            //     "parameters": [
+            //         [
+            //             {
+            //                 "label": "Totaal",
+            //                 "column": "immateriele_schade_unieke_adressen",
+            //                 "colour": "blue",
+            //                 "units" : "unieke adressen"
+            //             }
+            //         ],
+            //     ],
+            //     "header": "",
+            //     "description" : "", //"Het betreft hier een gemiddelde gebaseerd op alle reacties die sinds de start van diverse metingen zijn binnengekomen. Er wordt daarbij voor verschillende regelingen per e-mail om een reactie gevraagd kort nadat het besluit is bekend gemaakt bij de aanvrager. Na een besluit over de aanvraag tot vergoeding van fysieke schade wordt gevraagd: “Welk rapportcijfer geeft u het besluit dat u ontvangen heeft? (1-10)” Na een besluit over de aanvraag tot vergoeding van waardedaling wordt gevraagd: “Hoe tevreden bent u over het indienen en afhandelen van uw aanvraag?(1-10)” Hoe meer besluiten er zijn genomen bij die specifieke regeling, hoe zwaarder dat gemiddelde vervolgens meetelt bij het tevredenheidscijfer voor het IMG als geheel. Onder het totaalcijfer over de gehele periode, staat het doorlopend gemiddelde totaalcijfer voor die maand weergegeven. Het totaalcijfer wordt wekelijks geüpdatet en is tot op heden gebaseerd op <span data-slug='aantal_respondenten'>xxxxx</span> reacties.",
+            //     "endpoint": "immateriele_schade",
+            //     "segment": "all",
+            //     "elementClasslist": [
+            //         'img-graph-container',
+            //         // 'img-graph-grid-tablet-column-start-1',
+            //         // 'img-graph-grid-tablet-width-4',
+            //         // 'img-graph-grid-tablet-row-start-7',
+            //         'img-graph-grid-column-start-10',
+            //         'img-graph-grid-width-3',
+            //         'img-graph-grid-row-start-1',
+            //         'img-graph-grid-height-2'
+            //     ]
+            // },
             {
                 "slug" : "bol_tevredenheid_algemeen",
                 "graph": "Cijfer",
@@ -526,7 +526,7 @@ export const dashboardImmaterieleSchade : (GraphObject|IGraphMapping)[] | [] = [
                     // 'img-graph-grid-tablet-width-3',
                     'img-graph-grid-column-start-10',
                     'img-graph-grid-width-3',
-                    'img-graph-grid-row-start-3',
+                    'img-graph-grid-row-start-2',
                     'img-graph-grid-height-4'
                 ]
             },

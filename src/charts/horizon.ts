@@ -107,6 +107,8 @@ export default class Horizon extends GraphControllerV2   {
 
     draw(data: GraphData) {
 
+        console.log(data);
+
         const xValues = data.slice.map(d => d[this.parameters.x]);
 
         this.scales.x.set([xValues[xValues.length - 1] - 1], xValues[0]);

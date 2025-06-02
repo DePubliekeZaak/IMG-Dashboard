@@ -40,60 +40,60 @@ export const dashboardMeldingen : (GraphObject|IGraphMapping)[] = [
         "publishDate": null,
         "elementClasslist": ['img-graph-container','img-graph-container-6','img-graph-container-map']
     },
-    {   
-        "slug": "meldingen_trend_aos_meldingen",
-        "graph": "TrendBars",
-        "parameters": [
-            [
-                {
-                    "label": "AOS Meldingen",
-                    "column": "nieuw_aos_meldingen",
-                    "colour": "moss",
-                    "short": "melding"
-                },
-                {
-                    "label": "Acuut onveilige situaties",
-                    "column": "nieuw_aos_meldingen_gegrond",
-                    "colour": "orange",
-                    "short": "gegrond"
-                }
-            ]
-        ],
-        "header" : "Trend AOS-meldingen",
-        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie door de tijd heen, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-        "endpoint": "meldingen",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6']
+    // {   
+    //     "slug": "meldingen_trend_aos_meldingen",
+    //     "graph": "TrendBars",
+    //     "parameters": [
+    //         [
+    //             {
+    //                 "label": "AOS Meldingen",
+    //                 "column": "nieuw_aos_meldingen",
+    //                 "colour": "moss",
+    //                 "short": "melding"
+    //             },
+    //             {
+    //                 "label": "Acuut onveilige situaties",
+    //                 "column": "nieuw_aos_meldingen_gegrond",
+    //                 "colour": "orange",
+    //                 "short": "gegrond"
+    //             }
+    //         ]
+    //     ],
+    //     "header" : "Trend AOS-meldingen",
+    //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie door de tijd heen, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
+    //     "endpoint": "meldingen",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-6']
 
-    },
-    {
-        "slug": "meldingen_taart_aos_meldingen",
-        "graph": "PieChartSumV2",
-        "parameters":  [
-            [
-                {
-                    "label": "Wel",
-                    "column": "aos_meldingen_gegrond",
-                    "colour": "moss"
-                },
-                {
-                    "label": "Niet",
-                    "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
-                    "colour": "blue"
-                }
-            ],
-            [
-                {
-                    "label": "Totaal",
-                    "column": "aos_meldingen",
-                    "colour": "gray"
-                }
-            ]
-        ],
-        "header" : "Wel/niet acuut onveilige situatie",
-        "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
-        "endpoint": "voortgang",
-        "segment": "all",
-        "elementClasslist": ['img-graph-container','img-graph-container-6']
-    }
+    // },
+    // {
+    //     "slug": "meldingen_taart_aos_meldingen",
+    //     "graph": "PieChartSumV2",
+    //     "parameters":  [
+    //         [
+    //             {
+    //                 "label": "Wel",
+    //                 "column": "aos_meldingen_gegrond",
+    //                 "colour": "moss"
+    //             },
+    //             {
+    //                 "label": "Niet",
+    //                 "column": ['aos_meldingen','aos_meldingen_gegrond','-'],
+    //                 "colour": "blue"
+    //             }
+    //         ],
+    //         [
+    //             {
+    //                 "label": "Totaal",
+    //                 "column": "aos_meldingen",
+    //                 "colour": "gray"
+    //             }
+    //         ]
+    //     ],
+    //     "header" : "Wel/niet acuut onveilige situatie",
+    //     "description" : "Het aantal meldingen van een mogelijk acuut onveilige situatie in totaal, waarbij ook het aantal meldingen is aangeven waar na een veiligheidsinspectie een acuut onveilige situatie is vastgesteld. Na het vaststellen ervan, neemt het IMG preventieve veiligheidsmaatregelen.",
+    //     "endpoint": "voortgang",
+    //     "segment": "all",
+    //     "elementClasslist": ['img-graph-container','img-graph-container-6']
+    // }
 ]

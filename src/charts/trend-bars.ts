@@ -84,6 +84,8 @@ export default class TrendBars extends GraphControllerV2 {
 
         let history = filterWeeks(data,neededColumns);
 
+        console.log(history);
+
         history.forEach( (week, i) => { 
             week['_index'] = i;
             week['colour'] = getMappingKey(this.firstMapping,"colour") 
@@ -95,7 +97,7 @@ export default class TrendBars extends GraphControllerV2 {
             );
         }
 
-        console.log(history);
+       
 
        // history = history.reverse();
 

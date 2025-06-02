@@ -48,8 +48,8 @@ export class HtmlAverage {
 
     redraw(data: GraphData) {
 
-        console.log(data.latest)
-        console.log(this.ctrlr.parameters.y)
+        // console.log(data.latest)
+        // console.log(this.ctrlr.parameters.y)
 
         let value =  Math.round(100 * data.latest[this.ctrlr.parameters.y]) / 100;
 

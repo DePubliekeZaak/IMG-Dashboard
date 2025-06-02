@@ -69,10 +69,14 @@ export default class KTORatings extends GraphControllerV2 {
 
     prepareData(data: DataPart[]) :GraphData  {
 
+    
+
         data = getCompleteMonths(data);
 
         const neededColumns = getNeededColumnsForHistoryV2(data, this.mapping);
-        const history = groupByMonths(data,neededColumns);
+        // const history = groupByMonths(data,neededColumns);
+
+        // console.log(data)
 
         const dataIndex = (this.segment === 'all') ? 1 : 2;
         const monthIndex = (this.segment === 'all') ? false : this.segment;
@@ -82,7 +86,9 @@ export default class KTORatings extends GraphControllerV2 {
         let hasEnoughData = true;
         let clearWeek = {};
         
-        let selectedMonth = monthIndex ? history.find( (m) => m['_month'] === parseInt(monthIndex)) : history[0];
+        let selectedMonth = monthIndex ? data.find( (m) => m['_yearmonth'] === parseInt(monthIndex)) : data[0];
+
+        // console.log(selectedMonth);
 
         if (this.mapping.parameters[1]) {
 
@@ -106,18 +112,21 @@ export default class KTORatings extends GraphControllerV2 {
         }
 
         return { 
-            "history" : history,
-            "latest" : data[0], 
+            "history" : data,
+            "latest" : selectedMonth, 
             "slice" : rapportcijfers
         };
     }
 
     redraw(data: GraphData) {
 
+        // console.log(data);
+
         // @ts-ignore
         let parameter = (this.segment === 'all') ? this.mapping.parameters[0][0].column : this.mapping.parameters[0][1].column;
         // @ts-ignore
         let extraParameter = (this.segment === 'all') ? this.mapping.parameters[0][2].column : this.mapping.parameters[0][3].column;
+    
         this.htmlCircle.redraw([data.latest], parameter, extraParameter);
 
         super.redraw(data);

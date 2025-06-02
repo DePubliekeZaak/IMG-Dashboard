@@ -84,7 +84,7 @@ export class InitSingle {
 
         for (let endpoint of uniqueEndpoints) {
 
-            console.log(endpoint);
+            // console.log(endpoint);
 
             const graphObjectArray = this.graphObjectArray.filter( o => o.endpoint === endpoint);
 
