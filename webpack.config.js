@@ -3,25 +3,24 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 const isProduction = process.env.NODE_ENV == "production";
 
-const config = (env) =>  {
-
+const config = (env) => {
   return {
     entry: "./src/index.ts",
     output: {
       path: path.resolve(__dirname, "public/"),
-      chunkFilename: 'scripts/dashboard-bundle.js',
-      filename: 'scripts/dashboard-bundle.js',
+      chunkFilename: "scripts/dashboard-bundle.js",
+      filename: "scripts/dashboard-bundle.js",
       assetModuleFilename: (pathData) => {
         const filepath = path
-            .dirname(pathData.filename)
-            .split("/")
-            .slice(1)
-            .join("/");
+          .dirname(pathData.filename)
+          .split("/")
+          .slice(1)
+          .join("/");
         return `./styles/${filepath}/[name].[hash][ext][query]`;
       },
     },
     devServer: {
-      open:false,
+      open: false,
       port: 3003,
       hot: true,
       client: {
@@ -30,17 +29,17 @@ const config = (env) =>  {
         reconnect: true,
       },
     },
-    devtool:'source-map',
+    devtool: "source-map",
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "./styles/dashboard.css"
+        filename: "./styles/dashboard.css",
       }),
       new webpack.DefinePlugin({
         ENV: JSON.stringify(env.ENV),
         DOMAIN: JSON.stringify(env.DOMAIN),
-        APIBASE: JSON.stringify(env.APIBASE)
-      })
-  ],
+        APIBASE: JSON.stringify(env.APIBASE),
+      }),
+    ],
     module: {
       rules: [
         {
@@ -50,22 +49,26 @@ const config = (env) =>  {
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
+          use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            "postcss-loader",
+            "sass-loader",
+          ],
         },
         {
           test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
           type: "asset/resource",
-        }
+        },
       ],
     },
     resolve: {
-      extensions: [".ts",".js"]
-    }
-  }
+      extensions: [".ts", ".js"],
+    },
+  };
 };
 
 module.exports = (env) => {
-
   let c = config(env);
 
   if (isProduction) {

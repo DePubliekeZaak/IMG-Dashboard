@@ -24,10 +24,10 @@ export default class DashboardGraph {
             
             let { weekData, muniData } = this.ctrlr.dataService.mergeArrayObjects(data);
 
-            if (segment === 'eemsdelta') {
-                weekData = this.ctrlr.dataService.createHistoryForEemsdelta(weekData);
-                weekData = this.ctrlr.dataService.correctionForEemsdelta(weekData);
-            }
+            // if (segment === 'eemsdelta') {
+            //     weekData = this.ctrlr.dataService.createHistoryForEemsdelta(weekData);
+            //     weekData = this.ctrlr.dataService.correctionForEemsdelta(weekData);
+            // }
 
             if (params === 'mms') {
 

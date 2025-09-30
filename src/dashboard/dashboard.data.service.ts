@@ -25,7 +25,9 @@ export default class DashboardData {
         let self = this;
         let promises = [];
         let uniqueEndpoints: any = [...Array.from(new Set(dashboardArray.map((o) => o.endpoint)))];
-        const restQuery = (segment === 'eemsdelta') ? '?gemeente=in.(loppersum,delfzijl,appingedam)&_date=gte.2018-11-01' : '?gemeente=eq.' + segment + '&_date=gte.2018-11-01';
+        // const restQuery = (segment === 'eemsdelta') ? '?gemeente=in.(loppersum,delfzijl,appingedam)&_date=gte.2018-11-01' : '?gemeente=eq.' + segment + '&_date=gte.2018-11-01';
+        const restQuery = '?gemeente=eq.' + segment + '&_date=gte.2018-11-01';
+
 
         for (let endpoint of uniqueEndpoints) {
 
@@ -105,7 +107,7 @@ export default class DashboardData {
                 }
             }
 
-            muniData = this.createMapDataForEemsdelta(muniData);
+            // muniData = this.createMapDataForEemsdelta(muniData);
         }
 
         return { weekData, muniData };

@@ -1,4 +1,3 @@
-assets
 bower_components
 node_modules
 dist
@@ -11,8 +10,7 @@ bundle.js
 public
 public
 deploy.sh
-.npmignore 
+.npmignore
 deploy.dev.sh
 deploy.prod.sh
 deploy.staging.sh
-

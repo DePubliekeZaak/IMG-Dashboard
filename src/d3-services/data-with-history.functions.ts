@@ -32,8 +32,8 @@ export function getNeededColumnsForHistory(data: any, graphObject: any): string[
 
 export function getNeededColumnsForHistoryV2(data: any, mapping: IGraphMapping): string[] {
 
-    let m = mapping.parameters;
-    let columns = ['_date','_month','_week','_year'];
+    let m = mapping.parameters
+    let columns = ['_date','_month','_week','_year','_yearmonth'];
 
     for (let n of m) {
             columns = columns.concat(n.map( (o) => flattenColumn(o.column)))
